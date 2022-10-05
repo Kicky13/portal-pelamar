@@ -10,18 +10,25 @@ class ThemeMode {
     const ktName = document.body.hasAttribute('data-kt-name')
     const name = ktName ? ktName + '_' : ''
     return 'kt_' + name + 'theme_mode_' + postfix
+    
   }
 
   public getMode = (): Mode => {
     const modeParam: string = this.getParamName('value')
     const menuMode: Mode | '' = this.getMenuMode()
     const defaultMode = 'light'
+
+    console.log(`--localStorage`,localStorage);
+    
     if (!localStorage) {
       return defaultMode
     }
 
-    const ls = localStorage.getItem(modeParam)
+    let ls = localStorage.getItem(modeParam)
+    ls = `light`
+    
     if (ls) {
+    
       return ls as Mode
     }
 

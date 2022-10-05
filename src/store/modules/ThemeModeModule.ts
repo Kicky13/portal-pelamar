@@ -30,6 +30,7 @@ export default class ThemeModeModule extends VuexModule implements StoreInfo {
 
   @Action
   [Actions.SET_THEME_MODE_ACTION](payload) {
+
     localStorage.setItem(themeModeLSKey, payload);
     localStorage.setItem(themeMenuModeLSKey, payload);
     document.documentElement.setAttribute("data-theme", payload);
