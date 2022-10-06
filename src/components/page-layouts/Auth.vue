@@ -1,40 +1,81 @@
 <template>
-  <div
-    class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed"
-  >
-    <!--begin::Content-->
-    <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
-      <!--begin::Logo-->
-      <a href="#" class="mb-12">
-        <img
-          alt="Logo"
-          src="media/logos/default-dark.svg"
-          class="theme-dark-show h-45px"
-        />
-        <img
-          alt="Logo"
-          src="media/logos/default.svg"
-          class="theme-light-show h-45px"
-        />
-      </a>
-      <!--end::Logo-->
-
-      <router-view></router-view>
-    </div>
-    <!--end::Content-->
-
-    <!--begin::Footer-->
-    <div class="d-flex flex-center flex-column-auto p-10">
-      <!--begin::Links-->
-      <div class="d-flex align-items-center fw-semobold fs-6">
-        <a href="#" class="text-muted text-hover-primary px-2">About</a>
-
-        <a href="#" class="text-muted text-hover-primary px-2">Contact</a>
-
-        <a href="#" class="text-muted text-hover-primary px-2">Contact Us</a>
+  <div>
+    <div class="row auth-login">
+      <div
+        class="col-sm-6 bg-login d-flex justify-content-center align-items-center"
+        :style="
+          'background-image: url(' +
+          require('@/assets/images/background/bg_login.png') +
+          ')'
+        ">
+        <div class="img-logo">
+          <img :src="require('@/assets/images/logo/lg_bumn.png')" alt="" />
+        </div>
       </div>
-      <!--end::Links-->
+      <div
+        class="col-sm-6 bg-bumn"
+        :style="
+          'background-image: url(' +
+          require('@/assets/images/background/bg_bumn.png') +
+          ')'
+        ">
+        <div class="form-data">
+          <label for="my-input" class="label-data">Login</label>
+
+          <div class="form-group">
+            <input
+              id="my-input"
+              class="form-control form-control-solid"
+              type="email"
+              placeholder="Email"
+              name="" />
+          </div>
+          <div class="form-group">
+            <Field
+              type="password"
+              placeholder="Password"
+              class="form-control form-control-lg form-control-solid fw-semobold fs-6"
+              name="newpassword"
+              id="newpassword" />
+            <div class="w-100 d-flex flex-row-reverse">
+              <router-link to="#" class="ml-auto lupa-password"
+                >Lupa Password</router-link
+              >
+            </div>
+          </div>
+          <div class="form-group">
+            <vue-recaptcha ref="recaptcha" sitekey="Your key here" />
+          </div>
+          <div class="form-group">
+            <button class="btn btn-success w-100">Masuk</button>
+          </div>
+          <div class="w-100 d-flex daftar-akun">
+            <span
+              >Belum punya akun ? Daftar
+              <router-link :to="`#`">Disini</router-link></span
+            >
+          </div>
+        </div>
+      </div>
     </div>
-    <!--end::Footer-->
   </div>
 </template>
+<script>
+import { ErrorMessage, Field, Form } from "vee-validate";
+import { VueRecaptcha } from "vue-recaptcha";
+
+export default {
+  data() {
+    return {
+      siteKey: "",
+    };
+  },
+  components: {
+    ErrorMessage,
+    Field,
+    Form,
+    VueRecaptcha,
+  },
+  methods: {},
+};
+</script>
