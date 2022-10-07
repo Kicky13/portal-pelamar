@@ -52,7 +52,7 @@
           <div class="w-100 d-flex daftar-akun">
             <span
               >Belum punya akun ? Daftar
-              <router-link :to="`#`">Disini</router-link></span
+              <router-link :to="`/registrasi`">Disini</router-link></span
             >
           </div>
         </div>
