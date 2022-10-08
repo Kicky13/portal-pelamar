@@ -56,6 +56,9 @@
             >
           </div>
         </div>
+        <footer class="form-data pt-0">
+          <ButtonBack linkPage="/home"></ButtonBack>
+        </footer>
       </div>
     </div>
   </div>
@@ -63,6 +66,7 @@
 <script>
 import { ErrorMessage, Field, Form } from "vee-validate";
 import { VueRecaptcha } from "vue-recaptcha";
+import ButtonBack from "@/components/button-back/Back.vue";
 
 export default {
   data() {
@@ -75,6 +79,7 @@ export default {
     Field,
     Form,
     VueRecaptcha,
+    ButtonBack,
   },
   methods: {},
 };

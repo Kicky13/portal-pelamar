@@ -35,6 +35,9 @@
             <button class="btn btn-success w-100">Kirim</button>
           </div>
         </div>
+        <footer class="form-data pt-0">
+          <ButtonBack linkPage="/sign-in"></ButtonBack>
+        </footer>
       </div>
     </div>
   </div>
@@ -42,6 +45,8 @@
 <script>
 import { ErrorMessage, Field, Form } from "vee-validate";
 import { VueRecaptcha } from "vue-recaptcha";
+import ButtonBack from "@/components/button-back/Back.vue";
+
 export default {
   data() {
     return {
@@ -53,6 +58,7 @@ export default {
     Field,
     Form,
     VueRecaptcha,
+    ButtonBack,
   },
   methods: {},
 };
