@@ -38,7 +38,7 @@
               name="newpassword"
               id="newpassword" />
             <div class="w-100 d-flex flex-row-reverse">
-              <router-link to="#" class="ml-auto lupa-password"
+              <router-link to="/reset-password" class="ml-auto lupa-password"
                 >Lupa Password</router-link
               >
             </div>

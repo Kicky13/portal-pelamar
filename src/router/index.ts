@@ -14,6 +14,11 @@ const routes: Array<RouteRecordRaw> = [
     name: "registrasi",
     component: () => import("@/views/crafted/pages/registrasi/index.vue"),
   },
+  {
+    path: "/reset-password",
+    name: "reset-password",
+    component: () => import("@/views/crafted/pages/reset-password/index.vue"),
+  },
   // {
   //   path: "/",
   //   redirect: "/dashboard",
