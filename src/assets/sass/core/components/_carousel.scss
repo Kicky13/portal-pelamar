@@ -157,21 +157,21 @@
     }
 
     .carousel-control-next {
-        width: 60px;
-        height: 60px;
-        background: #ffffff;
-        box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.25);
-        border-radius: 50%;
-  
-        .carousel-control-next-icon-custom {
-          .icon {
-            height: 55px;
-            width: 55px;
-            background-repeat: no-repeat;
-            border-radius: 50%;
-          }
+      width: 60px;
+      height: 60px;
+      background: #ffffff;
+      box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.25);
+      border-radius: 50%;
+
+      .carousel-control-next-icon-custom {
+        .icon {
+          height: 55px;
+          width: 55px;
+          background-repeat: no-repeat;
+          border-radius: 50%;
         }
       }
+    }
 
     // Indicators
     .carousel-indicators {
@@ -275,8 +275,28 @@
       }
     }
 
-    .carousel-content{
-        
+    .carousel-content {
+      padding: 0px 80px 0px 80px;
+
+      .informasi {
+        .title {
+          font-family: "Poppins";
+          font-style: normal;
+          font-weight: 700;
+          font-size: 24px;
+          line-height: 36px;
+          -webkit-text-stroke: 1px #1896a4; /* width and color */
+          color: $white;
+        }
+
+        .informasi-detail {
+          font-family: "Poppins";
+          font-style: normal;
+          font-weight: 700;
+          font-size: 26px;
+          line-height: 39px;color: #1f2855;
+        }
+      }
     }
     // Theme colors
     @each $name, $value in $theme-colors {

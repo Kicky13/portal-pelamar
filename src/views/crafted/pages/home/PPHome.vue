@@ -111,11 +111,28 @@
               <!--end::Heading-->
 
               <!--begin::Carousel-->
-              <div class="carousel-inner pt-8">
+              <div class="carousel-inner">
                 <!--begin::Item-->
                 <div class="carousel-item active w-100">
                   <div class="carousel-content">
-
+                    <div class="row">
+                      <div class="col-sm-4">
+                        <div class="informasi">
+                          <label for="" class="title">Tahap 1</label>
+                          <div class="informasi-detail">
+                            Membaca Informasi
+                            <br />
+                            Secara Lengkap
+                          </div>
+                          <div class="informasi-detail-sub">
+                            Pastikan Anda telah membaca secara lengkap 
+                            <br>
+                            informasi yang ditampikan di website ini
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-8"></div>
+                    </div>
                   </div>
                 </div>
                 <!--end::Item-->
@@ -134,7 +151,8 @@
                 data-bs-target="#kt_carousel_1_carousel"
                 data-bs-slide="prev">
                 <span class="carousel-control-prev-icon-custom">
-                  <div class="icon"
+                  <div
+                    class="icon"
                     :style="
                       'background-image: url(' +
                       require('@/assets/images/icon/prev-icon.svg') +
@@ -148,16 +166,14 @@
                 type="button"
                 data-bs-target="#kt_carousel_1_carousel"
                 data-bs-slide="next">
-                <span
-                  class="carousel-control-next-icon-custom"
-                  >
-                  <div class="icon"
+                <span class="carousel-control-next-icon-custom">
+                  <div
+                    class="icon"
                     :style="
                       'background-image: url(' +
                       require('@/assets/images/icon/next-icon.svg') +
                       ')'
-                    "></div
-                >
+                    "></div>
                 </span>
                 <span class="visually-hidden">Next</span>
               </button>
