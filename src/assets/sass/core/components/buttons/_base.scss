@@ -81,13 +81,24 @@
     border: 1px solid #104e70 !important;
     width: 46px;
     height: 46px;
-	border-radius: 50%;
-	
-	 i{
-		color: #104E70;
-		font-size: 22px;
-		margin: -0px 0 0 -5px;
-	 }
+    border-radius: 50%;
+
+    i {
+      color: #104e70;
+      font-size: 22px;
+      margin: -0px 0 0 -5px;
+    }
+  }
+
+  &.btn-primary-portal {
+    background: #1896a4;
+    border-radius: 3px;
+    color: $white;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 21px;
   }
 }
 

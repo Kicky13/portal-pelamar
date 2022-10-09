@@ -2,7 +2,7 @@
 // Explore(used for demo product demo)
 //
 
-$explore-primary: #00B2FF;
+$explore-primary: #1F2855;
 $explore-primary-light: #F1FAFF;
 $explore-primary-active: #0098DA;
 $explore-primary-inverse: $white;
@@ -44,11 +44,13 @@ $explore-warning-inverse: $white;
 .explore-btn-primary {	
 	border: 0;
     color: $explore-primary-inverse;
-    background-color: $explore-primary;
+    background-color:$explore-primary;
+    border-radius: 5px;
 
     &:hover {
-        color: $explore-primary-inverse;
-        background-color: $explore-primary-active;
+        color: $explore-primary !important;
+        background-color: $explore-primary-light;
+        border: 1px solid $explore-primary !important;
     }
 }
 

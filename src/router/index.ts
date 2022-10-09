@@ -5,6 +5,19 @@ import JwtService from "@/core/services/JwtService";
 
 const routes: Array<RouteRecordRaw> = [
   {
+    path: "/",
+    name: "Home",
+    redirect:"/",
+    component: () => import("@/views/crafted/layout/Layout.vue"),
+    children:[
+      {
+        path: "/",
+        name: "dashboard",
+        component: () => import("@/views/crafted/pages/home/PPHome.vue"),
+      }
+    ]
+  },
+  {
     path: "/sign-in",
     name: "sign-in",
     component: () => import("@/components/page-layouts/Auth.vue"),
