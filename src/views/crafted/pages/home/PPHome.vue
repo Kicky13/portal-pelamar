@@ -115,8 +115,8 @@
                 <!--begin::Item-->
                 <div class="carousel-item active w-100">
                   <div class="carousel-content">
-                    <div class="row">
-                      <div class="col-sm-4">
+                    <div class="row d-flex align-items-center">
+                      <div class="col-sm-5">
                         <div class="informasi">
                           <label for="" class="title">Tahap 1</label>
                           <div class="informasi-detail">
@@ -125,24 +125,29 @@
                             Secara Lengkap
                           </div>
                           <div class="informasi-detail-sub">
-                            Pastikan Anda telah membaca secara lengkap 
-                            <br>
+                            Pastikan Anda telah membaca secara lengkap
+                            <br />
                             informasi yang ditampikan di website ini
                           </div>
                         </div>
                       </div>
-                      <div class="col-sm-8"></div>
+                      <div class="col-sm-7">
+                        <div class="images">
+                          <!-- <img src="" alt=""> -->
+                          <div class="image-default"></div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
                 <!--end::Item-->
 
                 <!--begin::Item-->
-                <div class="carousel-item">dadasdas</div>
+                <!-- <div class="carousel-item">dadasdas</div> -->
                 <!--end::Item-->
 
                 <!--begin::Item-->
-                <div class="carousel-item">dadasdas</div>
+                <!-- <div class="carousel-item">dadasdas</div> -->
                 <!--end::Item-->
               </div>
               <button
@@ -183,6 +188,77 @@
         </div>
       </div>
     </div>
+
+    <!--  -->
+    <div
+      class="kebijakan w-100"
+      :style="
+        'background-image: url(' +
+        require('@/assets/images/background/bg_home_2.png') +
+        ')'
+      ">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="container content-kebijakan">
+            <label for="" class="content-title">
+              Sebelum mendaftar pastikan Anda telah membaca seluruh ketentuan
+              umum, tata cara melamar dan jadwal kegiatan rekrutmen dan seleksi
+              di situs web ini.
+            </label>
+            <div class="list-content">
+              <ol class="ol-custom">
+                <li>Warga Negara Indonesia</li>
+                <li>
+                  Usia minimal ketika mendaftar mengikuti jenjang pendidikan
+                  sebagai berikut:
+                  <ul>
+                    <li>Diploma I/II/III : 27 tahun;</li>
+                    <li>S1/Diploma IV : 25 tahun;</li>
+                    <li>S2/S3 : 27 tahun;</li>
+                  </ul>
+                </li>
+                <li>Bersedia ditempatkan di seluruh wilayah Indonesia.</li>
+                <li>Sehat jasmani, rohani dan bebas narkoba.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--  -->
+    <div class="container kontribusi">
+      <div class="row">
+        <div class="col-sm-12 text-center">
+          <span class="title-kontribusi">Kontribusi Untuk Negeri </span>
+          <br />
+          <span class="sub-title-kontribusi">Bersama Kami</span>
+          <div class="line-kontribusi"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+          <div class="cols-sm-12">
+          <div class="perusahaan">
+            <div class="">
+              <img
+                :src="require('@/assets/images/content/content_1.png')"
+                class="img-fluid w-100"
+                alt="" />
+            </div>
+            <div>
+              <img
+                :src="require('@/assets/images/content/content_2.png')"
+                class="img-fluid w-100"
+                alt="" />
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="col-sm-2"></div>
+      </div>
+    </div>
+    <!--  -->
   </div>
 </template>
 <script>
