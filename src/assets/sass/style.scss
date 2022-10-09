@@ -12,10 +12,10 @@
 // Layout
 @import "layout/layout";
 
-
-
-// page
-
+page
+.row {
+  --bs-gutter-x: none !important;
+}
 @import "layout/page/auth";
 @import "layout/page/registrasi";
 @import "layout/page/reset-password";
