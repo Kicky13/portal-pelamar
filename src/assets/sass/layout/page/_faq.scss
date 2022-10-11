@@ -1,4 +1,3 @@
-
 .faq-page {
   .icon-atas {
     margin-bottom: 30px;
@@ -41,6 +40,10 @@
         font-size: 16px;
         line-height: 24px;
         color: #585858;
+
+        a {
+          color: #585858;
+        }
       }
     }
   }
@@ -53,107 +56,34 @@
     margin-bottom: 36px;
   }
 
-
-
-  .data-informasi {
-    margin-bottom: 45px;
-    text-align: end;
-    .name {
-      font-family: "Poppins";
-      font-style: normal;
-      font-weight: 400;
-      font-size: 15px;
-      line-height: 22px;
-      color: #585858;
-    }
-    .detail {
-      font-family: "Poppins";
-      font-style: normal;
-      font-weight: 700;
-      font-size: 15px;
-      line-height: 22px;
-      color: #585858;
-    }
-  }
-
-  .deskripsi {
-    label {
-      font-family: "Poppins";
-      font-style: normal;
-      font-weight: 700;
-      font-size: 20px;
-      line-height: 30px;
-      color: #1f2855;
-      margin-bottom: 11px;
-    }
-    p {
-      font-family: "Poppins";
-      font-style: normal;
-      font-weight: 400;
-      font-size: 15px;
-      line-height: 22px;
-      color: #505050;
-      margin-bottom: 50px;
-    }
-  }
-
-  .detail-rekomendasi{
-    margin-bottom: 60px;
-    .rekomendasi {
-      .title-rekomendasi {
-        font-family: "Poppins";
-        font-style: normal;
-        font-weight: 700;
-        font-size: 20px;
-        line-height: 30px;
-        color: #1f2855;
-      }
-      .line-rekomendasi {
-        width: 100%;
-        border: 1px solid #1896a4;
-        margin: auto;
-        margin-top: 21px;
-        margin-bottom: 36px;
-      }
-    }
-    .pencarian-list {
-      .informasi {
-        .images {
-          padding: 30px;
-          img {
-            max-width: 100px;
-            max-height: 80px;
-            width: 100%;
-            height: auto;
-          }
-        }
-  
-        .detail-informasi {
-          label {
+  .content-faq {
+    .accordion {
+      padding-left: 60px;
+      padding-right: 60px;
+      margin-bottom: 80px;
+      margin-top: 46px;
+      .accordion-item {
+        margin-bottom: 28px;
+        .accordion-header {
+          border: 1px solid #d9d9d9;
+          .collapsed {
             font-family: "Poppins";
             font-style: normal;
             font-weight: 700;
-            font-size: 18px;
-            line-height: 27px;
+            font-size: 14px;
+            line-height: 21px;
             color: #1f2855;
           }
-  
-          .name {
+          .accordion-button {
+            border-radius: 0 !important;
+            background-color: #d9d9d9;
+            height: 82px;
             font-family: "Poppins";
             font-style: normal;
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 24px;
-            color: #585858;
-          }
-  
-          .date {
-            font-family: "Poppins";
-            font-style: normal;
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 24px;
-            color: #585858;
+            font-weight: 700 !important;
+            font-size: 14px !important;
+            line-height: 21px;
+            color: #1f2855;
           }
         }
       }
