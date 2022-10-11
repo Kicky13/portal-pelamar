@@ -9,7 +9,7 @@ const DocMenuConfig = [
       },
       {
         heading: "Lowongan",
-        route: "/lowongan",
+        route: "/pencarian-lowongan",
         svgIcon: "media/icons/duotune/general/gen019.svg",
         fontIcon: "bi-layers",
       },
