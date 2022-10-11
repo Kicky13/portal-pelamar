@@ -7,15 +7,20 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "Home",
-    redirect:"/",
+    redirect: "/",
     component: () => import("@/views/crafted/layout/Layout.vue"),
-    children:[
+    children: [
       {
         path: "/",
         name: "dashboard",
         component: () => import("@/views/crafted/pages/home/PPHome.vue"),
-      }
-    ]
+      },
+      {
+        path: "/pencarian-lowongan",
+        name: "pencarian-lowongan",
+        component: () => import("@/views/crafted/pages/pencarian/index.vue"),
+      },
+    ],
   },
   {
     path: "/sign-in",
@@ -32,6 +37,7 @@ const routes: Array<RouteRecordRaw> = [
     name: "reset-password",
     component: () => import("@/views/crafted/pages/reset-password/index.vue"),
   },
+
   // {
   //   path: "/",
   //   redirect: "/dashboard",
