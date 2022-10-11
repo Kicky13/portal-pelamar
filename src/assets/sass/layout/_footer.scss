@@ -94,3 +94,31 @@
     }
   }
 }
+
+.footer-profile {
+  background: #1896a4;
+  width: 100%;
+  height: auto;
+  padding: 40px 0px 20px 20px;
+
+  .copyright {
+    text-align: center;
+    .company_name {
+      font-family: "Poppins", sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 14px;
+      color: #f8f7f7;
+    }
+    .social_media {
+      a {
+        margin: 0px 0px 0px 24px;
+        img {
+          width: 22px;
+          height: 22px;
+        }
+      }
+    }
+  }
+}

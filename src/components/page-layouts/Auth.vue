@@ -47,7 +47,7 @@
             <vue-recaptcha ref="recaptcha" sitekey="Your key here" />
           </div>
           <div class="form-group">
-            <button class="btn btn-success w-100">Masuk</button>
+            <router-link to="/profile/user" class="btn btn-success w-100">Masuk</router-link>
           </div>
           <div class="w-100 d-flex daftar-akun">
             <span

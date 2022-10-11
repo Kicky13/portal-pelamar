@@ -4,6 +4,7 @@ import { Mutations, Actions } from "@/store/enums/StoreEnums";
 import JwtService from "@/core/services/JwtService";
 
 const routes: Array<RouteRecordRaw> = [
+  // Homepage
   {
     path: "/",
     name: "Home",
@@ -34,6 +35,22 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("@/views/crafted/pages/faq/PPFaq.vue"),
       },
     ],
+  },
+  // Homepage
+
+  // Profile User
+  {
+    path: "/profile/user",
+    name: "ProfileUser",
+    redirect: "/profile/user",
+    component: () => import("@/views/crafted/layout/LayoutProfile.vue"),
+    children:[
+      {
+        path: "/profile/user",
+        name: "ProfileUser",
+        component: () => import("@/views/crafted/back-office/PPBackOffice.vue"),
+      },
+    ]
   },
   {
     path: "/sign-in",
