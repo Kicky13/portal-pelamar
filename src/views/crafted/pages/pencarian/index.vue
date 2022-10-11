@@ -97,10 +97,11 @@
                 </div>
               </div>
               <div class="col-sm-2">
-                <button
+                <router-link
+                  :to="`/pencarian-lowongan/${this.detailUuid}/detail`"
                   class="btn w-100 float-right btn-primary-outline-portal">
                   Detail
-                </button>
+                </router-link>
               </div>
             </div>
             <!--  -->
@@ -122,10 +123,11 @@
                 </div>
               </div>
               <div class="col-sm-2">
-                <button
+                <router-link
+                  :to="`/pencarian-lowongan/${this.detailUuid}/detail`"
                   class="btn w-100 float-right btn-primary-outline-portal">
                   Detail
-                </button>
+                </router-link>
               </div>
             </div>
             <!--  -->
@@ -151,10 +153,11 @@
                 </div>
               </div>
               <div class="col-sm-2">
-                <button
+                <router-link
+                  :to="`/pencarian-lowongan/${this.detailUuid}/detail`"
                   class="btn w-100 float-right btn-primary-outline-portal">
                   Detail
-                </button>
+                </router-link>
               </div>
             </div>
             <!--  -->
@@ -176,10 +179,11 @@
                 </div>
               </div>
               <div class="col-sm-2">
-                <button
+                <router-link
+                  :to="`/pencarian-lowongan/${this.detailUuid}/detail`"
                   class="btn w-100 float-right btn-primary-outline-portal">
                   Detail
-                </button>
+                </router-link>
               </div>
             </div>
             <!--  -->
@@ -203,10 +207,11 @@
                 </div>
               </div>
               <div class="col-sm-2">
-                <button
+                <router-link
+                  :to="`/pencarian-lowongan/${this.detailUuid}/detail`"
                   class="btn w-100 float-right btn-primary-outline-portal">
                   Detail
-                </button>
+                </router-link>
               </div>
             </div>
             <!--  -->
@@ -217,7 +222,9 @@
                 <li class="page-item">
                   <a class="page-link page-link-prev" href="#">Prev</a>
                 </li>
-                <li class="page-item"><a class="page-link active" href="#">1</a></li>
+                <li class="page-item">
+                  <a class="page-link active" href="#">1</a>
+                </li>
                 <li class="page-item"><a class="page-link" href="#">2</a></li>
                 <li class="page-item"><a class="page-link" href="#">3</a></li>
                 <li class="page-item">
@@ -234,5 +241,10 @@
 <script>
 export default {
   name: "pencarian",
+  data() {
+    return {
+      detailUuid: "123456",
+    };
+  },
 };
 </script>
