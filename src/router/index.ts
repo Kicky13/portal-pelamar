@@ -23,7 +23,15 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: "/pencarian-lowongan/:uuid/detail",
         name: "pencarian-lowongan-detail",
-        component: () => import("@/views/crafted/pages/pencarian/detail/PPDetailPencarian.vue"),
+        component: () =>
+          import(
+            "@/views/crafted/pages/pencarian/detail/PPDetailPencarian.vue"
+          ),
+      },
+      {
+        path: "/faq",
+        name: "faq",
+        component: () => import("@/views/crafted/pages/faq/PPFaq.vue"),
       },
     ],
   },
