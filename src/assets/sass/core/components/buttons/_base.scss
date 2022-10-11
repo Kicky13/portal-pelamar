@@ -102,6 +102,31 @@
     padding: 18px !important;
   }
 
+  &.btn-success-portal {
+    background: #18A43F;
+    border-radius: 3px;
+    color: $white;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 21px;
+    padding: 18px !important;
+  }
+
+  &.btn-transparent-portal {
+    background: $white;
+    border-radius: 3px;
+    color: #C4C4C4;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 21px;
+    border: 0;
+    padding: 18px !important;
+  }
+
   &.btn-primary-outline-portal {
     background: $white;
     border-radius: 3px;

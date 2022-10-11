@@ -19,7 +19,7 @@
               <div class="content">
                 <img
                   class="img-fluid"
-                  src="media/kbumn/images/logo/lg_bumn.png"
+                  :src="require('@/assets/images/logo/lg_bumn.png')"
                   alt="" />
               </div>
             </div>
@@ -28,15 +28,15 @@
                 <label for="title-label">Hubungi Kami </label>
                 <ul class="p-0">
                   <li>
-                    <img src="media/kbumn/images/icon/ic_globe.svg" alt="" />
+                    <img :src="require('@/assets/images/icon/ic_globe.svg')" alt="" />
                     portalpelamar.bumn.go.id
                   </li>
                   <li>
-                    <img src="media/kbumn/images/icon/ic_mail.svg" alt="" />
+                    <img :src="require('@/assets/images/icon/ic_mail.svg')" alt="" />
                     tanyapelamar@bumn.go.id
                   </li>
                   <li>
-                    <img src="media/kbumn/images/icon/ic_message.svg" alt="" />
+                    <img :src="require('@/assets/images/icon/ic_message.svg')" alt="" />
                     081238284482
                   </li>
                 </ul>

@@ -36,7 +36,7 @@
         <router-link to="/dashboard">
           <img
             alt="Logo"
-            src="media/kbumn/images/logo/logo_portal_pelamar.png"
+            :src="require('@/assets/images/logo/logo_portal_pelamar.png')"
             class="logo-default h-50px"
           />
           <img
