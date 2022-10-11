@@ -101,6 +101,24 @@
     line-height: 21px;
     padding: 18px !important;
   }
+
+  &.btn-primary-outline-portal {
+    background: $white;
+    border-radius: 3px;
+    color: #1896A4;
+    border: 1px solid #1896a4 !important;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 21px;
+    padding: 18px !important;
+
+    &:hover{
+      background-color: #1896A4;
+      color: $white;
+    }
+  }
 }
 
 // Icons
