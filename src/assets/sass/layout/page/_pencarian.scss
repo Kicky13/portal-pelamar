@@ -1,0 +1,110 @@
+.pencarian-page {
+  .banner {
+    margin-top: -40px;
+    width: 100%;
+    height: auto;
+    max-height: 642px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+    .informasi-banner {
+      text-align: center;
+      padding: 100px 0px 0px 0px;
+
+      label {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 48px;
+        line-height: 72px;
+        color: #ffffff;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      }
+
+      .line-banner {
+        width: 474px;
+        border: 1px solid $white;
+        margin: auto;
+        margin-top: 21px;
+        margin-bottom: 36px;
+      }
+
+      .total-lowongan {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 100;
+        font-size: 20px;
+        line-height: 30px;
+        color: #ffffff;
+      }
+    }
+  }
+
+  .form-pencarian {
+    padding: 60px 130px;
+  }
+
+  .pencarian-content {
+    margin-top: 35px;
+    margin-bottom: 20px;
+    text-align: center;
+
+    .title {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      color: #1f2855;
+    }
+
+    .line-title {
+      width: 100%;
+      border: 1px solid #1896a4;
+      margin: auto;
+      margin-top: 21px;
+      margin-bottom: 36px;
+    }
+  }
+
+  .pencarian-list {
+    .informasi {
+      .images {
+        padding: 30px;
+        img {
+          max-width: 100px;
+          max-height: 80px;
+          width: 100%;
+          height: auto;
+        }
+      }
+
+      .detail-informasi {
+        label {
+          font-family: "Poppins";
+          font-style: normal;
+          font-weight: 700;
+          font-size: 18px;
+          line-height: 27px;
+          color: #1f2855;
+        }
+
+        .name {
+          font-family: "Poppins";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 24px;color: #585858;
+        }
+
+        .date {
+          font-family: "Poppins";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 24px;color: #585858;
+        }
+      }
+    }
+  }
+}

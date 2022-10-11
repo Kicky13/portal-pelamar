@@ -1,5 +1,6 @@
 <template>
   <div class="home-page">
+    <!--  -->
     <div class="row">
       <div class="col-sm-12">
         <section
@@ -78,9 +79,9 @@
                         </select>
                       </div>
                       <div class="col-sm-2">
-                        <button class="btn btn-primary-portal w-100">
+                        <router-link :to="`/pencarian-lowongan?`" class="btn btn-primary-portal w-100">
                           Cari
-                        </button>
+                        </router-link>
                       </div>
                     </div>
                   </div>
@@ -91,6 +92,7 @@
         </section>
       </div>
     </div>
+    <!--  -->
     <div class="container pendaftaran">
       <div class="row">
         <div class="col-sm-12 text-center">
@@ -188,7 +190,6 @@
         </div>
       </div>
     </div>
-
     <!--  -->
     <div
       class="kebijakan w-100"
