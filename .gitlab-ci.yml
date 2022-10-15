@@ -12,8 +12,8 @@ build-dev:       # This job runs in the build stage, which runs first.
   image: docker:stable  
   script:
     - echo $CI_REGISTRY_PASSWORD | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
-    - docker build -t $CI_REGISTRY/robiyanto/portal-pelamar-kbumn:dev -f dockerfiles/Dockerfile.dev .
-    - docker push $CI_REGISTRY/robiyanto/portal-pelamar-kbumn:dev
+    # - docker build -t $CI_REGISTRY/robiyanto/portal-pelamar-kbumn:dev -f dockerfiles/Dockerfile.dev .
+    # - docker push $CI_REGISTRY/robiyanto/portal-pelamar-kbumn:dev
 
 deploy-dev:      # This job runs in the deploy stage.
   stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
