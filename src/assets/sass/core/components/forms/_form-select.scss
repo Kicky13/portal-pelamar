@@ -4,6 +4,8 @@
 // https://primer.github.io/.
 
 .form-select {
+	border-radius: 3px;
+	height: 57px;
 	color: var(--kt-form-select-color);
 	background-color: var(--kt-form-select-bg);
 	background-image: var(--kt-form-select-indicator);

@@ -181,7 +181,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from "vue";
-import { useI18n } from "vue-i18n/index";
+import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
 import { version } from "@/core/helpers/documentation";
 import { asideMenuIcons } from "@/core/helpers/config";

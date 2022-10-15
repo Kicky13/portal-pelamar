@@ -1,0 +1,96 @@
+.footer {
+  background: #1896a4;
+  width: 100%;
+  height: auto;
+  padding: 40px 0px 20px 20px;
+
+  .circle-footer {
+    img {
+      margin-top: -100px;
+      z-index: 99999999;
+      position: inherit;
+      margin-bottom: 30px;
+    }
+  }
+  .content {
+    img {
+      height: 121px;
+      width: 158px;
+      left: 271px;
+      top: 161px;
+      border-radius: 0px;
+    }
+  }
+  .detail_footer {
+    label {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 27px;
+      color: $white;
+    }
+    ul {
+      list-style-type: none;
+      margin-top: 13px;
+
+      li {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 37px;
+        color: $white;
+        img {
+          width: 24px;
+          height: 24px;
+          margin-right: 20px;
+        }
+      }
+    }
+  }
+  .label_info {
+    font-family: "Lato", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 17px;
+    color: #f8f7f7;
+  }
+  .informasi_email {
+    .input_custom {
+      border-radius: 8px;
+      border: 1px solid #e5e5e5;
+    }
+    .btn-berlangganan {
+      padding: 8px;
+      background: #1f2855;
+      border-radius: 8px;
+      color: #fff;
+    }
+  }
+  hr {
+    border: 1px solid #fff;
+    margin: 32px 0px 28px 0px;
+  }
+  .copyright {
+    text-align: center;
+    .company_name {
+      font-family: "Poppins", sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 14px;
+      color: #f8f7f7;
+    }
+    .social_media {
+      a {
+        margin: 0px 0px 0px 24px;
+        img {
+          width: 22px;
+          height: 22px;
+        }
+      }
+    }
+  }
+}

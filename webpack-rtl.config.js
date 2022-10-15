@@ -42,7 +42,13 @@ function mainConfig() {
       filename: "[name].js",
     },
     resolve: {
-      extensions: [".scss"],
+      extensions: ["*", ".js", ".jsx", ".vue"],
+      symlinks: false,
+      alias: {
+        "@": path.resolve(__dirname, "../src"),
+        vue$: "vue/dist/vue.esm-bundler.js",
+        vue: path.resolve(__dirname, `../node_modules/vue`),
+      },
     },
     plugins: [
       new MiniCssExtractPlugin({

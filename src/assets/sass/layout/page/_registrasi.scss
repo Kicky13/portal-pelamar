@@ -1,0 +1,67 @@
+.registrasi-page {
+  min-height: 100vh;
+
+  .bg-login {
+    background-repeat: no-repeat;
+    background-size: 110vh;
+
+    .img-logo {
+      img {
+        max-width: 158px;
+        max-height: 121px;
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+  .bg-bumn {
+    background-repeat: no-repeat;
+    background-position: right bottom; /*Positioning*/
+    background-size: 433px 264px;
+
+    .form-data {
+      padding: 120px;
+      .label-data {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 32px;
+        color: #616161;
+      }
+      .informasi-akun {
+        margin-bottom: 24px;
+        span {
+          font-family: "Poppins";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 21px;
+          color: #737373;
+        }
+      }
+      .form-group {
+        margin-bottom: 22px;
+        input {
+          background: rgba(0, 0, 0, 0.07);
+          border-radius: 3px;
+          height: 45px;
+        }
+
+        .lupa-password {
+          font-family: "Poppins";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 21px;
+          color: #737373;
+          margin-top: 8px;
+        }
+      }
+
+      .daftar-akun {
+        margin-top: -8px;
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
