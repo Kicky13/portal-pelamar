@@ -7,7 +7,7 @@ build-QA:       # This job runs in the build stage, which runs first.
   stage: build
   when: on_success
   script:
-    - echo "Compiling the code..."
+    - echo "Compiling the code.."
     - echo "Compile complete."
     - echo "aaa."
   environment:
