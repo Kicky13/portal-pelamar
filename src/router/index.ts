@@ -39,19 +39,25 @@ const routes: Array<RouteRecordRaw> = [
   // Homepage
 
   // Profile User
-  {
-    path: "/profile/user",
-    name: "ProfileUser",
-    redirect: "/profile/user",
-    component: () => import("@/views/crafted/layout/LayoutProfile.vue"),
-    children:[
-      {
+  // {
+  //   path: "/profile/user",
+  //   name: "ProfileUser",
+  //   redirect: "/profile/user",
+  //   component: () => import("@/views/crafted/layout/LayoutProfile.vue"),
+  //   children:[
+  //     {
+  //       path: "/profile/user",
+  //       name: "ProfileUser",
+  //       component: () => import("@/views/crafted/back-office/PPBackOffice.vue"),
+  //     },
+  //   ]
+  // },
+
+        {
         path: "/profile/user",
         name: "ProfileUser",
         component: () => import("@/views/crafted/back-office/PPBackOffice.vue"),
       },
-    ]
-  },
   {
     path: "/sign-in",
     name: "sign-in",
