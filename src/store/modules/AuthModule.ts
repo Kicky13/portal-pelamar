@@ -53,11 +53,13 @@ export default class AuthModule extends VuexModule implements UserAuthInfo {
   }
 
   @Mutation
-  [Mutations.SET_AUTH](user) {
+  [Mutations.SET_AUTH](data) {
+    console.log(data);
     this.isAuthenticated = true;
-    this.user = user;
+    this.user = data.decode_token;
     this.errors = {};
-    JwtService.saveToken(user.api_token);
+    JwtService.saveToken(data.access_token);
+    window.localStorage.setItem('id_token', data.access_token);
   }
 
   @Mutation
@@ -80,12 +82,12 @@ export default class AuthModule extends VuexModule implements UserAuthInfo {
 
   @Action
   [Actions.LOGIN](credentials) {
-    return ApiService.post("login", credentials)
+    return ApiService.post("auth/login?username=" + credentials.email + "&password=" + credentials.password, credentials)
       .then(({ data }) => {
         this.context.commit(Mutations.SET_AUTH, data);
       })
       .catch(({ response }) => {
-        this.context.commit(Mutations.SET_ERROR, response.data.errors);
+        this.context.commit(Mutations.SET_ERROR, response.status_code);
       });
   }
 
@@ -120,14 +122,14 @@ export default class AuthModule extends VuexModule implements UserAuthInfo {
   [Actions.VERIFY_AUTH](payload) {
     if (JwtService.getToken()) {
       ApiService.setHeader();
-      ApiService.post("verify_token", payload)
-        .then(({ data }) => {
-          this.context.commit(Mutations.SET_AUTH, data);
-        })
-        .catch(({ response }) => {
-          this.context.commit(Mutations.SET_ERROR, response.data.errors);
-          this.context.commit(Mutations.PURGE_AUTH);
-        });
+      // ApiService.post("verify_token", payload)
+      //   .then(({ data }) => {
+      //     this.context.commit(Mutations.SET_AUTH, data);
+      //   })
+      //   .catch(({ response }) => {
+      //     this.context.commit(Mutations.SET_ERROR, response.data.errors);
+      //     this.context.commit(Mutations.PURGE_AUTH);
+      //   });
     } else {
       this.context.commit(Mutations.PURGE_AUTH);
     }
