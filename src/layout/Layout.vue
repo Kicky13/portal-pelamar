@@ -4,7 +4,7 @@
   <!-- begin:: Body -->
   <div class="page d-flex flex-row flex-column-fluid">
     <div id="kt_wrapper" class="wrapper d-flex flex-column flex-row-fluid">
-      <KTHeader :title="pageTitle" />
+      <NavbarLayout/>
 
       <!-- begin:: Content Head -->
       <KTToolbar
@@ -24,11 +24,11 @@
         }"
       >
         <!-- begin:: Aside Left -->
-        <KTAside
+        <!-- <KTAside
           v-if="asideEnabled"
           :lightLogo="themeLightLogo"
           :darkLogo="themeDarkLogo"
-        />
+        /> -->
         <!-- end:: Aside Left -->
         <!-- begin:: Content Body -->
         <div class="content flex-row-fluid">
@@ -37,19 +37,10 @@
         <!-- end:: Content Body -->
       </div>
       <!-- end:: Content -->
-      <KTFooter />
+      <FooterLayout />
     </div>
   </div>
   <!-- end:: Body -->
-  <KTScrollTop />
-  <KTMessengerDrawer />
-  <KTUserMenu />
-  <KTCreateApp />
-  <KTInviteFriendsModal />
-
-  <KTToolbarButtons />
-  <KTDemosDrawer />
-  <KTHelpDrawer />
 </template>
 
 <script lang="ts">
@@ -61,15 +52,9 @@ import KTHeader from "@/layout/header/Header.vue";
 import KTFooter from "@/layout/footer/Footer.vue";
 import HtmlClass from "@/core/services/LayoutService";
 import KTToolbar from "@/layout/toolbar/Toolbar.vue";
-import KTScrollTop from "@/layout/extras/ScrollTop.vue";
-import KTUserMenu from "@/layout/header/partials/ActivityDrawer.vue";
+import NavbarLayout from "@/views/crafted/layout/Navbar/PPNavbar.vue";
+import FooterLayout from "@/views/crafted/layout/FooterBar/PPFooterMinimalist.vue";
 import KTLoader from "@/components/Loader.vue";
-import KTCreateApp from "@/components/modals/wizards/create-app-modal/CreateAppModal.vue";
-import KTInviteFriendsModal from "@/components/modals/general/InviteFriendsModal.vue";
-import KTToolbarButtons from "@/layout/extras/ToolbarButtons.vue";
-import KTDemosDrawer from "@/layout/extras/DemosDrawer.vue";
-import KTHelpDrawer from "@/layout/extras/HelpDrawer.vue";
-import KTMessengerDrawer from "@/layout/extras/MessengerDrawer.vue";
 import { Actions } from "@/store/enums/StoreEnums";
 import { MenuComponent } from "@/assets/ts/components";
 import { reinitializeComponents } from "@/core/plugins/keenthemes";
@@ -92,14 +77,8 @@ export default defineComponent({
     KTHeader,
     KTFooter,
     KTToolbar,
-    KTScrollTop,
-    KTCreateApp,
-    KTInviteFriendsModal,
-    KTUserMenu,
-    KTToolbarButtons,
-    KTDemosDrawer,
-    KTHelpDrawer,
-    KTMessengerDrawer,
+    NavbarLayout,
+    FooterLayout,
     KTLoader,
   },
   setup() {

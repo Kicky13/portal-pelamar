@@ -33,7 +33,7 @@
 
       <!--begin::Mobile logo-->
       <div class="header-logo me-5 me-md-10 flex-grow-1 flex-lg-grow-0">
-        <router-link to="/dashboard">
+        <router-link to="/">
           <img
             alt="Logo"
             :src="require('@/assets/images/logo/logo_portal_pelamar.png')"
