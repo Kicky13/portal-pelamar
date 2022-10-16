@@ -9,7 +9,7 @@
         </div>
         <div class="col-sm-10">
           <div class="content flex-row-fluid">
-            <router-view />
+            <slot />
           </div>
         </div>
       </div>
