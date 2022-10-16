@@ -23,65 +23,27 @@
           v-if="breadcrumbs"
           class="breadcrumb breadcrumb-separatorless fw-semobold fs-7 my-1"
         >
-          <li class="breadcrumb-item text-white opacity-75">
+          <li class="breadcrumb-item text-dark">
             <router-link to="/dashboard" class="text-white"> Home </router-link>
           </li>
-          <li class="breadcrumb-item text-white opacity-75">
+          <li class="breadcrumb-item text-dark">
             <span class="bullet bg-gray-200 w-5px h-2px"></span>
           </li>
           <template v-for="(item, index) in breadcrumbs" :key="index">
-            <li class="breadcrumb-item text-white opacity-75">
+            <li class="breadcrumb-item text-dark">
               {{ item }}
             </li>
-            <li class="breadcrumb-item text-white opacity-75">
+            <li class="breadcrumb-item text-dark">
               <span class="bullet bg-gray-200 w-5px h-2px"></span>
             </li>
           </template>
-          <li class="breadcrumb-item text-white opacity-75">
+          <li class="breadcrumb-item text-dark">
             {{ title }}
           </li>
         </ul>
         <!--end::Breadcrumb-->
       </div>
       <!--end::Page title-->
-
-      <!--begin::Actions-->
-      <div class="d-flex align-items-center py-3 py-md-1">
-        <!--begin::Wrapper-->
-        <div class="me-4">
-          <!--begin::Menu-->
-          <a
-            href="#"
-            class="btn btn-custom btn-active-white btn-flex btn-color-white btn-active-color-primary fw-bold"
-            data-kt-menu-trigger="click"
-            data-kt-menu-placement="bottom-end"
-            data-kt-menu-flip="top-end"
-          >
-            <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
-              <inline-svg src="media/icons/duotune/general/gen031.svg" />
-            </span>
-            Filter
-          </a>
-
-          <Dropdown1></Dropdown1>
-          <!--end::Menu-->
-        </div>
-        <!--end::Wrapper-->
-
-        <!--begin::Button-->
-        <a
-          href="#"
-          data-theme="light"
-          class="btn btn-bg-body btn-active-color-primary"
-          data-bs-toggle="modal"
-          data-bs-target="#kt_modal_create_app"
-          id="kt_toolbar_primary_button"
-        >
-          Create
-        </a>
-        <!--end::Button-->
-      </div>
-      <!--end::Actions-->
     </div>
     <!--end::Container-->
   </div>
