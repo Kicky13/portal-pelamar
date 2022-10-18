@@ -153,6 +153,20 @@
                     </div>
                   </div>
                 </div>
+                <div class="row">
+                  <div class="col-sm-1">
+                    <img
+                      :src="require('@/assets/images/icon/ic_clock.svg')"
+                      alt="" />
+                  </div>
+                  <div class="col-sm-11">
+                    <div class="date">10 Januari 2022</div>
+                    <div class="informasi-activity">
+                      Melamar posisi Direktur Management Risiko di Perum
+                      Perumnas
+                    </div>
+                  </div>
+                </div>
               </fragment>
             </div>
             <!-- Content | jika terdapat suatu data -->
