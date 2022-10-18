@@ -65,6 +65,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/crafted/back-office/pengaturan/PPPengaturan.vue"),
   },
   {
+    path: "/profile/resume-cv",
+    name: "ProfileResumeCV",
+    component: () => import("@/views/crafted/back-office/resumeCV/PPResumeCV.vue"),
+  },
+  {
     path: "/sign-in",
     name: "sign-in",
     component: () => import("@/components/page-layouts/Auth.vue"),

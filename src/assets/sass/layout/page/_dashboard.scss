@@ -68,7 +68,7 @@
 .card-profile {
   margin-top: 22px;
   width: 100%;
-  height: 280px;
+  height: auto;
   background: #ffffff;
   border: 1px solid rgba(140, 141, 141, 0.5);
   box-shadow: 0px 1px 13px rgba(0, 0, 0, 0.2);
@@ -187,12 +187,82 @@
         height: 45px;
       }
 
-      &__update{
+      &__update {
         float: right;
       }
 
-      .form-group{
+      .form-group {
         margin-bottom: 15px;
+      }
+    }
+    // pengaturan
+
+    .resume-cv {
+      padding-top: 7px;
+      padding-bottom: 7px;
+      &__personal {
+        .title {
+          border-left: 10px solid #1896a4;
+          height: 53px;
+          label {
+            margin-left: 23px;
+            font-family: "Poppins";
+            font-style: normal;
+            font-weight: 700;
+            font-size: 15px;
+            line-height: 22px;
+            color: #1f2855;
+          }
+        }
+        &__body {
+          padding-left: 32px;
+          padding-right: 32px;
+
+          .title-body {
+            font-family: "Poppins";
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 215%;
+            color: #181818;
+          }
+
+          .title-sub-body {
+            font-family: "Poppins";
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 215%;
+            color: #181818;
+          }
+        }
+        &__update {
+          margin-top: -35px;
+          float: right;
+        }
+
+        // Personifikasi
+        .content_personifikasi {
+          .title-personifikasi {
+            font-family: "Poppins";
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 215%;
+            /* or 30px */
+            color: #181818;
+          }
+
+          .informasi {
+            font-family: "Poppins";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 30px;
+
+            color: #181818;
+          }
+        }
       }
     }
   }

@@ -30,7 +30,7 @@
         </router-link>
       </li>
       <li>
-        <router-link to="#" class="d-flex align-items-center">
+        <router-link to="/profile/resume-cv" class="d-flex align-items-center">
           <img
             :src="require('@/assets/images/icon/ic_cv.svg')"
             class="img-fluid"
