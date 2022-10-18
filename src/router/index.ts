@@ -70,6 +70,16 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/crafted/back-office/resumeCV/PPResumeCV.vue"),
   },
   {
+    path: "/profile/detail-cv/personal",
+    name: "ProfileResumeCV",
+    component: () => import("@/views/crafted/back-office/detailCV/dataPersonal/PPDataPersonal.vue"),
+  },
+  {
+    path: "/profile/detail-cv/personafikasi",
+    name: "ProfilePersonafikasi",
+    component: () => import("@/views/crafted/back-office/detailCV/personafikasi/PPPersonafikasi.vue"),
+  },
+  {
     path: "/sign-in",
     name: "sign-in",
     component: () => import("@/components/page-layouts/Auth.vue"),
