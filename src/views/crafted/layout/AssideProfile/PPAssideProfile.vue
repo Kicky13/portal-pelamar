@@ -3,7 +3,7 @@
     <label for="">Akun Saya</label>
     <ul>
       <li>
-        <router-link to="#" class="d-flex align-items-center">
+        <router-link to="/profile/user" class="d-flex align-items-center">
           <img
             :src="require('@/assets/images/icon/ic_dashboard.svg')"
             class="img-fluid"
@@ -11,7 +11,7 @@
         </router-link>
       </li>
       <li>
-        <router-link to="#" class="d-flex align-items-center">
+        <router-link to="/profile/pengaturan" class="d-flex align-items-center">
           <img
             :src="require('@/assets/images/icon/ic_user.svg')"
             class="img-fluid"

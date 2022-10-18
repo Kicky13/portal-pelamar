@@ -167,7 +167,32 @@
         font-size: 12px;
         line-height: 18px;
         color: rgba(10, 10, 10, 0.5);
-       
+      }
+    }
+
+    // pengaturan
+    .pengaturan {
+      margin-top: 22px;
+      &__label {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 21px;
+        color: rgba(0, 0, 0, 0.5);
+      }
+      &__form {
+        background: rgba(0, 0, 0, 0.07);
+        border-radius: 3px;
+        height: 45px;
+      }
+
+      &__update{
+        float: right;
+      }
+
+      .form-group{
+        margin-bottom: 15px;
       }
     }
   }
