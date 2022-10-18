@@ -46,12 +46,12 @@
 
               <ul style="margin-left: 36px; margin-top:10px;">
                 <li>
-                  <router-link to="#">
+                  <router-link to="/profile/detail-cv/personal">
                     <span>Data Personal</span>
                   </router-link>
                 </li>
                 <li>
-                  <router-link to="#">
+                  <router-link  to="/profile/detail-cv/personafikasi">
                     <span>Personifikasi</span>
                   </router-link>
                 </li>
