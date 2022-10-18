@@ -71,7 +71,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: "/profile/detail-cv/personal",
-    name: "ProfileResumeCV",
+    name: "ProfilePersonal",
     component: () => import("@/views/crafted/back-office/detailCV/dataPersonal/PPDataPersonal.vue"),
   },
   {
