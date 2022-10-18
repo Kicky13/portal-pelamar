@@ -90,6 +90,18 @@
     }
   }
 
+  &.btn-success-portal-soft {
+    background: #00daa6;
+    border-radius: 4px;
+    color: $white;
+    font-family: "Poppins";
+    height: 45px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 21px;
+  }
+
   &.btn-primary-portal {
     background: #1896a4;
     border-radius: 3px;
@@ -99,11 +111,12 @@
     font-weight: 700;
     font-size: 14px;
     line-height: 21px;
-    padding: 18px !important;
+    height: 52px;
+
   }
 
   &.btn-success-portal {
-    background: #18A43F;
+    background: #18a43f;
     border-radius: 3px;
     color: $white;
     font-family: "Poppins";
@@ -117,7 +130,7 @@
   &.btn-transparent-portal {
     background: $white;
     border-radius: 3px;
-    color: #C4C4C4;
+    color: #c4c4c4;
     font-family: "Poppins";
     font-style: normal;
     font-weight: 700;
@@ -130,7 +143,7 @@
   &.btn-primary-outline-portal {
     background: $white;
     border-radius: 3px;
-    color: #1896A4;
+    color: #1896a4;
     border: 1px solid #1896a4 !important;
     font-family: "Poppins";
     font-style: normal;
@@ -139,8 +152,8 @@
     line-height: 21px;
     padding: 18px !important;
 
-    &:hover{
-      background-color: #1896A4;
+    &:hover {
+      background-color: #1896a4;
       color: $white;
     }
   }
