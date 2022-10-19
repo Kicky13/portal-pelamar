@@ -43,7 +43,7 @@
         data-kt-menu-placement="bottom-start"
         class="menu-item menu-lg-down-accordion me-lg-1"
       >
-        <router-link v-if="isUserAuthenticated && isLanding()" :to="`/dashboard`" class="menu-link py-3">
+        <router-link v-if="isUserAuthenticated && isLanding()" :to="`/profile/user`" class="menu-link py-3">
           <span class="menu-login btn explore-btn-primary">Dashboard</span>
           <span class="menu-arrow d-lg-none"></span>
         </router-link>

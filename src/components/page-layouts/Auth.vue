@@ -119,7 +119,7 @@ export default {
           },
         }).then(function () {
           // Go to page after successfully login
-          router.push({ name: "dashboard" });
+          router.push({ name: "ProfileUser" });
         });
       } else {
         Swal.fire({
@@ -142,7 +142,7 @@ export default {
     onMounted(() => {
       //check if current user is authenticated
       if (store.getters.isUserAuthenticated) {
-        router.push({ name: "dashboard" });
+        router.push({ name: "ProfileUser" });
       }
 
       nextTick(() => {
@@ -162,7 +162,7 @@ export default {
 
         // check if current user is authenticated
         if (store.getters.isUserAuthenticated) {
-          router.push({ name: "dashboard" });
+          router.push({ name: "ProfileUser" });
         }
 
         removeModalBackdrop();
