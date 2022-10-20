@@ -1,20 +1,21 @@
 <template>
   <div
-    class="col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start"
-  >
-    <label for="items-per-page">
+    class="col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start">
+    <span>show</span>
+
+    <label for="items-per-page ">
       <select
-        class="form-select form-select-sm form-select-solid"
+        class="form-select-datatable form-select-sm"
         v-if="itemsPerPageDropdownEnabled"
         v-model="itemsCountInTable"
         name="items-per-page"
-        id="items-per-page"
-      >
+        id="items-per-page">
         <option :value="10">10</option>
         <option :value="25">25</option>
         <option :value="50">50</option>
       </select>
     </label>
+    <span>entries</span>
   </div>
 </template>
 
