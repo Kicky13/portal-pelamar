@@ -5,7 +5,7 @@
 
     <label for="items-per-page ">
       <select
-        class="form-select-datatable form-select-sm"
+        class="form-select-datatable"
         v-if="itemsPerPageDropdownEnabled"
         v-model="itemsCountInTable"
         name="items-per-page"
