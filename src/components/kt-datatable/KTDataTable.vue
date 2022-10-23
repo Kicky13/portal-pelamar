@@ -1,5 +1,11 @@
 <template>
   <div class="dataTables_wrapper dt-bootstrap4 no-footer">
+    <TableFooter
+      @page-change="pageChange"
+      v-model:itemsPerPage="itemsInTable"
+      :count="totalItems"
+      :items-per-page-dropdown-enabled="itemsPerPageDropdownEnabled"
+    />
     <TableContent
       @on-items-select="onItemSelect"
       @on-sort="onSort"
@@ -16,12 +22,7 @@
         <slot :name="name" :row="item" />
       </template>
     </TableContent>
-    <TableFooter
-      @page-change="pageChange"
-      v-model:itemsPerPage="itemsInTable"
-      :count="totalItems"
-      :items-per-page-dropdown-enabled="itemsPerPageDropdownEnabled"
-    />
+   
   </div>
 </template>
 
