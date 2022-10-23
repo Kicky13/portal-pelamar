@@ -76,7 +76,7 @@
                   </router-link>
                 </li>
                 <li>
-                  <router-link to="#">
+                  <router-link to="/profile/detail-cv/narasumber">
                     <span>Narasumber</span>
                   </router-link>
                 </li>

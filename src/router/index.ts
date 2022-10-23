@@ -90,6 +90,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/crafted/back-office/detailCV/referensi/PPReferensi.vue"),
   },
   {
+    path: "/profile/detail-cv/narasumber",
+    name: "ProfileNarasumber",
+    component: () => import("@/views/crafted/back-office/detailCV/narasumber/PPNarasumber.vue"),
+  },
+  {
     path: "/sign-in",
     name: "sign-in",
     component: () => import("@/components/page-layouts/Auth.vue"),
