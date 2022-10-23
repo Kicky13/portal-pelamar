@@ -56,7 +56,7 @@
                   </router-link>
                 </li>
                 <li>
-                  <router-link to="#">
+                  <router-link to="/profile/detail-cv/riwayat-pekerjaan">
                     <span>Riwayat Pekerjaan</span>
                   </router-link>
                 </li>
@@ -81,7 +81,7 @@
                   </router-link>
                 </li>
                 <li>
-                  <router-link to="#">
+                  <router-link to="/profile/detail-cv/referensi">
                     <span>Referensi</span>
                   </router-link>
                 </li>
