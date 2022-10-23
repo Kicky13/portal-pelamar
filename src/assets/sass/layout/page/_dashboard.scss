@@ -352,3 +352,12 @@
   text-align: center;
   height: 100px;
 }
+
+.form-check{
+  margin-bottom: 10px;
+}
+
+.form-check-input:checked{
+  background-color: #1896A4;
+  border: 1px solid #1896A4;
+}
