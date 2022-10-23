@@ -81,7 +81,6 @@
       height: 20px;
     }
     span {
-      margin-left: 16px;
       font-family: "Poppins";
       font-style: normal;
       font-weight: 700;
@@ -89,6 +88,10 @@
       line-height: 22px;
       color: #1f2855;
     }
+  }
+
+  .sub-title-card{
+    margin-left: 5px;
   }
 
   .body-card {
@@ -292,6 +295,67 @@
         }
       }
     }
+
+    // referensi
+    .referensi {
+      margin-top: 22px;
+      &__label {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 11px;
+        line-height: 21px;
+        color: rgba(0, 0, 0, 0.5);
+      }
+      &__form {
+        background: rgba(0, 0, 0, 0.07);
+        border-radius: 12px;
+        height: 40px;
+      }
+
+      &__update {
+        i{
+          color: #fff;
+        }
+        float: right;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+    }
+    // referensi
+
+    // narasumber
+    .narasumber {
+      margin-top: 22px;
+      &__label {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 11px;
+        line-height: 21px;
+        color: rgba(0, 0, 0, 0.5);
+      }
+      &__form {
+        background: rgba(0, 0, 0, 0.07);
+        border-radius: 12px;
+        height: 40px;
+      }
+
+      &__update {
+        i{
+          color: #fff;
+        }
+        float: right;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+    }
+        // narasumber
+
   }
 }
 
