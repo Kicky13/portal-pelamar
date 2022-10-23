@@ -102,7 +102,9 @@
                           id="exampleRadios1"
                           value="option1"
                           checked />
-                        <label class="form-check-label ml-2" for="exampleRadios1">
+                        <label
+                          class="form-check-label ml-2"
+                          for="exampleRadios1">
                           Laki - Laki
                         </label>
                       </div>
@@ -113,8 +115,10 @@
                           name="exampleRadios"
                           id="exampleRadios2"
                           value="option2" />
-                        <label class="form-check-label ml-2" for="exampleRadios2">
-                         Perempuan
+                        <label
+                          class="form-check-label ml-2"
+                          for="exampleRadios2">
+                          Perempuan
                         </label>
                       </div>
                     </div>
@@ -136,8 +140,6 @@
                       </select>
                     </div>
                   </div>
-
-                 
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group row">
@@ -224,7 +226,11 @@
                       >Alamat Lengkap<span class="text-danger">*</span>
                     </label>
                     <div class="col-sm-9">
-                      <textarea name="" id="" rows="10" class="w-100 custom_textarea"></textarea>
+                      <textarea
+                        name=""
+                        id=""
+                        rows="10"
+                        class="w-100 custom_textarea"></textarea>
                     </div>
                   </div>
                 </div>
@@ -236,7 +242,9 @@
                       >Upload File KTP<span class="text-danger">*</span>
                     </label>
                     <div class="col-sm-9">
-                      <textarea name="" id="" rows="10" class="w-100 custom_textarea"></textarea>
+                      <input type="file" id="upload" hidden />
+                      
+                      <label for="upload" class="label-upload w-100">Pilih atau taruh file disini</label>
                     </div>
                   </div>
                 </div>

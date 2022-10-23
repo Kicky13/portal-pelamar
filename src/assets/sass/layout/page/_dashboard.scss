@@ -316,24 +316,39 @@
   border: 1px solid transparent;
 }
 
-.number-id{
+.number-id {
   margin-left: 5px;
   margin-right: 5px;
 }
 
-.flag-id{
+.flag-id {
   margin-right: 5px;
-  .flag-red{
+  .flag-red {
     width: 25px;
     height: 8px;
     background-color: red;
     border: 1px solid rgba(140, 141, 141, 0.5);
   }
-  .flag-white{
+  .flag-white {
     width: 25px;
     height: 8px;
     background-color: white;
     border: 1px solid rgba(140, 141, 141, 0.5);
-
   }
+}
+
+.label-upload {
+  background-color: #e5f1f3;
+  border: 1px solid #1896A4;
+  opacity: 1;
+  color: #bcc2c4;
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+  font-family: sans-serif;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  text-align: center;
+  height: 100px;
 }
