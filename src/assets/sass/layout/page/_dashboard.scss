@@ -197,6 +197,33 @@
     }
     // pengaturan
 
+    // pengaturan
+    .personal {
+      margin-top: 22px;
+      &__label {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 11px;
+        line-height: 21px;
+        color: rgba(0, 0, 0, 0.5);
+      }
+      &__form {
+        background: rgba(0, 0, 0, 0.07);
+        border-radius: 12px;
+        height: 40px;
+      }
+
+      &__update {
+        float: right;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+    }
+    // pengaturan
+
     .resume-cv {
       padding-top: 7px;
       padding-bottom: 7px;
@@ -265,5 +292,48 @@
         }
       }
     }
+  }
+}
+
+.custom_form_select {
+  background: rgba(0, 0, 0, 0.07);
+  border-radius: 12px;
+  height: 40px;
+  width: 50%;
+  padding: 5px;
+  border: 1px solid transparent;
+}
+
+.form-check {
+  .form-check-label {
+    margin-left: 10px;
+  }
+}
+
+.custom_textarea {
+  background: rgba(0, 0, 0, 0.07);
+  border-radius: 12px;
+  border: 1px solid transparent;
+}
+
+.number-id{
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.flag-id{
+  margin-right: 5px;
+  .flag-red{
+    width: 25px;
+    height: 8px;
+    background-color: red;
+    border: 1px solid rgba(140, 141, 141, 0.5);
+  }
+  .flag-white{
+    width: 25px;
+    height: 8px;
+    background-color: white;
+    border: 1px solid rgba(140, 141, 141, 0.5);
+
   }
 }
