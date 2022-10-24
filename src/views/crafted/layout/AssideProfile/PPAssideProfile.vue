@@ -61,17 +61,17 @@
                   </router-link>
                 </li>
                 <li>
-                  <router-link to="#">
+                  <router-link to="/profile/detail-cv/keanggotaan-organisasi">
                     <span>Keanggotaan Organisasi</span>
                   </router-link>
                 </li>
                 <li>
-                  <router-link to="#">
+                  <router-link to="/profile/detail-cv/pendidikan-pelatihan">
                     <span>Pendidikan & Pelatihan</span>
                   </router-link>
                 </li>
                 <li>
-                  <router-link to="#">
+                  <router-link to="/profile/detail-cv/publikasi">
                     <span>Publikasi</span>
                   </router-link>
                 </li>
