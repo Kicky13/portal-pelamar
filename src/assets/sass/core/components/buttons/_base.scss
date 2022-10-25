@@ -113,6 +113,19 @@
     line-height: 21px;
     height: 52px;
 
+    i {
+      color: $white;
+    }
+
+    &:hover {
+      background-color: #fff;
+      border: 1px solid #1896a4 !important;
+      color: #1896a4;
+
+      i {
+        color: #1896a4;
+      }
+    }
   }
 
   &.btn-success-portal {

@@ -80,6 +80,26 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/crafted/back-office/detailCV/personafikasi/PPPersonafikasi.vue"),
   },
   {
+    path: "/profile/detail-cv/riwayat-pekerjaan",
+    name: "ProfileRiwayatPekerjaan",
+    component: () => import("@/views/crafted/back-office/detailCV/riwayatPekerjaan/PPRiwayat.vue"),
+  },
+  {
+    path: "/profile/detail-cv/referensi",
+    name: "ProfileReferensi",
+    component: () => import("@/views/crafted/back-office/detailCV/referensi/PPReferensi.vue"),
+  },
+  {
+    path: "/profile/detail-cv/narasumber",
+    name: "ProfileNarasumber",
+    component: () => import("@/views/crafted/back-office/detailCV/narasumber/PPNarasumber.vue"),
+  },
+  {
+    path: "/profile/detail-cv/publikasi",
+    name: "ProfilePublikasi",
+    component: () => import("@/views/crafted/back-office/detailCV/publikasi/PPPublikasi.vue"),
+  },
+  {
     path: "/sign-in",
     name: "sign-in",
     component: () => import("@/components/page-layouts/Auth.vue"),

@@ -1,32 +1,5 @@
 <template>
   <LayoutProfileAside :titlePage="title">
-    <div class="dashboard-profile">
-      <div class="row d-flex align-items-center">
-        <div class="col-sm-6 d-flex align-items-center">
-          <div class="images-profile">
-            <img
-              :src="require('@/assets/images/icon/ic_image_profile.png')"
-              alt="" />
-          </div>
-          <div class="informasi-profile">
-            <label for="">Nurul Jannah</label>
-            <div class="email">nama@gmail.com</div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="informasi-persentase d-flex align-items-center">
-            <div class="jabatan-dilamar text-center">
-              <label for="" class="total">2</label>
-              <p for="" class="wording">Jabatan Dilamar</p>
-            </div>
-            <div class="jabatan-dilamar text-center">
-              <label for="" class="total">100%</label>
-              <p for="" class="wording">Prosentase CV</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="row">
       <div class="col-sm-12">
         <div class="card-profile p-0">
@@ -210,84 +183,485 @@
                   </div>
                 </div>
                 <!-- Personifikasi -->
-                <hr />
                 <!-- Riwayat Pekerjaan -->
-                <div class="title d-flex align-items-center">
+                <div class="title d-flex align-items-center border-top">
                   <label for="">Riwayat Pekerjaan</label>
                 </div>
 
                 <div class="container">
-                    <KTDatatable
-                  @on-sort="sort"
-                  @on-items-select="onItemSelect"
-                  :data="data"
-                  :header="tableHeader"
-                  :checkbox-enabled="true">
-                  <template v-slot:customer="{ row: customer }">
-                    <router-link
-                      to="/apps/subscriptions/view-subscription"
-                      href=""
-                      class="text-gray-800 text-hover-primary mb-1">
-                      {{ customer.customer }}
-                    </router-link>
-                  </template>
-                  <template v-slot:status="{ row: customer }">
-                    <a href="#" class="text-gray-600 text-hover-primary mb-1">
-                      <div :class="`badge badge-light-${customer.color}`">
-                        {{ customer.status }}
+                  <KTDatatable
+                    class="text-center"
+                    @on-sort="sort"
+                    @on-items-select="onItemSelect"
+                    :data="data"
+                    :header="tableHeader">
+                    <template v-slot:customer="{ row: customer }">
+                      <router-link
+                        to="/apps/subscriptions/view-subscription"
+                        href=""
+                        class="text-gray-800 text-hover-primary mb-1">
+                        {{ customer.customer }}
+                      </router-link>
+                    </template>
+                    <template v-slot:status="{ row: customer }">
+                      <a href="#" class="text-gray-600 text-hover-primary mb-1">
+                        <div :class="`badge badge-light-${customer.color}`">
+                          {{ customer.status }}
+                        </div>
+                      </a>
+                    </template>
+                    <template v-slot:billing="{ row: customer }">
+                      <div class="badge badge-light">
+                        {{ customer.billing }}
                       </div>
-                    </a>
-                  </template>
-                  <template v-slot:billing="{ row: customer }">
-                    <div class="badge badge-light">{{ customer.billing }}</div>
-                  </template>
-                  <template v-slot:product="{ row: customer }">
-                    {{ customer.product }}
-                  </template>
-                  <template v-slot:createdDate="{ row: customer }">
-                    {{ customer.createdDate }}
-                  </template>
-                  <template v-slot:actions="{ row: customer }">
-                    <a
-                      href="#"
-                      class="btn btn-sm btn-light btn-active-light-primary"
-                      data-kt-menu-trigger="click"
-                      data-kt-menu-placement="bottom-end"
-                      data-kt-menu-flip="top-end"
-                      >Actions
-                      <span class="svg-icon svg-icon-5 m-0">
-                        <inline-svg
-                          src="media/icons/duotune/arrows/arr072.svg" />
-                      </span>
-                    </a>
-                    <!--begin::Menu-->
-                    <div
-                      class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semobold fs-7 w-125px py-4"
-                      data-kt-menu="true">
-                      <!--begin::Menu item-->
-                      <div class="menu-item px-3">
-                        <router-link
-                          to="/apps/customers/customer-details"
-                          class="menu-link px-3"
-                          >View</router-link
-                        >
+                    </template>
+                    <template v-slot:product="{ row: customer }">
+                      {{ customer.product }}
+                    </template>
+                    <template v-slot:createdDate="{ row: customer }">
+                      {{ customer.createdDate }}
+                    </template>
+                    <template v-slot:actions="{ row: customer }">
+                      <a
+                        href="#"
+                        class="btn btn-sm btn-light btn-active-light-primary"
+                        data-kt-menu-trigger="click"
+                        data-kt-menu-placement="bottom-end"
+                        data-kt-menu-flip="top-end"
+                        >Actions
+                        <span class="svg-icon svg-icon-5 m-0">
+                          <inline-svg
+                            src="media/icons/duotune/arrows/arr072.svg" />
+                        </span>
+                      </a>
+                      <!--begin::Menu-->
+                      <div
+                        class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semobold fs-7 w-125px py-4"
+                        data-kt-menu="true">
+                        <!--begin::Menu item-->
+                        <div class="menu-item px-3">
+                          <router-link
+                            to="/apps/customers/customer-details"
+                            class="menu-link px-3"
+                            >View</router-link
+                          >
+                        </div>
+                        <!--end::Menu item-->
+                        <!--begin::Menu item-->
+                        <div class="menu-item px-3">
+                          <a
+                            @click="deleteSubscription(customer.id)"
+                            class="menu-link px-3"
+                            >Delete</a
+                          >
+                        </div>
+                        <!--end::Menu item-->
                       </div>
-                      <!--end::Menu item-->
-                      <!--begin::Menu item-->
-                      <div class="menu-item px-3">
-                        <a
-                          @click="deleteSubscription(customer.id)"
-                          class="menu-link px-3"
-                          >Delete</a
-                        >
-                      </div>
-                      <!--end::Menu item-->
-                    </div>
-                    <!--end::Menu-->
-                  </template>
-                </KTDatatable>
+                      <!--end::Menu-->
+                    </template>
+                  </KTDatatable>
                 </div>
                 <!-- Riwayat Pekerjaan -->
+
+                <!-- Keanggotan Organisasi -->
+                <div class="title d-flex align-items-center border-top">
+                  <label for="">Keanggotaan Organisasi</label>
+                </div>
+
+                <div class="container">
+                  <KTDatatable
+                    class="text-center"
+                    @on-sort="sort"
+                    @on-items-select="onItemSelect"
+                    :data="data"
+                    :header="tableHeader">
+                    <template v-slot:customer="{ row: customer }">
+                      <router-link
+                        to="/apps/subscriptions/view-subscription"
+                        href=""
+                        class="text-gray-800 text-hover-primary mb-1">
+                        {{ customer.customer }}
+                      </router-link>
+                    </template>
+                    <template v-slot:status="{ row: customer }">
+                      <a href="#" class="text-gray-600 text-hover-primary mb-1">
+                        <div :class="`badge badge-light-${customer.color}`">
+                          {{ customer.status }}
+                        </div>
+                      </a>
+                    </template>
+                    <template v-slot:billing="{ row: customer }">
+                      <div class="badge badge-light">
+                        {{ customer.billing }}
+                      </div>
+                    </template>
+                    <template v-slot:product="{ row: customer }">
+                      {{ customer.product }}
+                    </template>
+                    <template v-slot:createdDate="{ row: customer }">
+                      {{ customer.createdDate }}
+                    </template>
+                    <template v-slot:actions="{ row: customer }">
+                      <a
+                        href="#"
+                        class="btn btn-sm btn-light btn-active-light-primary"
+                        data-kt-menu-trigger="click"
+                        data-kt-menu-placement="bottom-end"
+                        data-kt-menu-flip="top-end"
+                        >Actions
+                        <span class="svg-icon svg-icon-5 m-0">
+                          <inline-svg
+                            src="media/icons/duotune/arrows/arr072.svg" />
+                        </span>
+                      </a>
+                      <!--begin::Menu-->
+                      <div
+                        class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semobold fs-7 w-125px py-4"
+                        data-kt-menu="true">
+                        <!--begin::Menu item-->
+                        <div class="menu-item px-3">
+                          <router-link
+                            to="/apps/customers/customer-details"
+                            class="menu-link px-3"
+                            >View</router-link
+                          >
+                        </div>
+                        <!--end::Menu item-->
+                        <!--begin::Menu item-->
+                        <div class="menu-item px-3">
+                          <a
+                            @click="deleteSubscription(customer.id)"
+                            class="menu-link px-3"
+                            >Delete</a
+                          >
+                        </div>
+                        <!--end::Menu item-->
+                      </div>
+                      <!--end::Menu-->
+                    </template>
+                  </KTDatatable>
+                </div>
+                <!-- Keanggotaan Organisasi -->
+
+                <!-- Pendidikan & Pelatihan -->
+                <div class="title d-flex align-items-center border-top">
+                  <label for="">Pendidikan & Pelatihan</label>
+                </div>
+
+                <div class="container">
+                  <KTDatatable
+                    class="text-center"
+                    @on-sort="sort"
+                    @on-items-select="onItemSelect"
+                    :data="data"
+                    :header="tableHeader">
+                    <template v-slot:customer="{ row: customer }">
+                      <router-link
+                        to="/apps/subscriptions/view-subscription"
+                        href=""
+                        class="text-gray-800 text-hover-primary mb-1">
+                        {{ customer.customer }}
+                      </router-link>
+                    </template>
+                    <template v-slot:status="{ row: customer }">
+                      <a href="#" class="text-gray-600 text-hover-primary mb-1">
+                        <div :class="`badge badge-light-${customer.color}`">
+                          {{ customer.status }}
+                        </div>
+                      </a>
+                    </template>
+                    <template v-slot:billing="{ row: customer }">
+                      <div class="badge badge-light">
+                        {{ customer.billing }}
+                      </div>
+                    </template>
+                    <template v-slot:product="{ row: customer }">
+                      {{ customer.product }}
+                    </template>
+                    <template v-slot:createdDate="{ row: customer }">
+                      {{ customer.createdDate }}
+                    </template>
+                    <template v-slot:actions="{ row: customer }">
+                      <a
+                        href="#"
+                        class="btn btn-sm btn-light btn-active-light-primary"
+                        data-kt-menu-trigger="click"
+                        data-kt-menu-placement="bottom-end"
+                        data-kt-menu-flip="top-end"
+                        >Actions
+                        <span class="svg-icon svg-icon-5 m-0">
+                          <inline-svg
+                            src="media/icons/duotune/arrows/arr072.svg" />
+                        </span>
+                      </a>
+                      <!--begin::Menu-->
+                      <div
+                        class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semobold fs-7 w-125px py-4"
+                        data-kt-menu="true">
+                        <!--begin::Menu item-->
+                        <div class="menu-item px-3">
+                          <router-link
+                            to="/apps/customers/customer-details"
+                            class="menu-link px-3"
+                            >View</router-link
+                          >
+                        </div>
+                        <!--end::Menu item-->
+                        <!--begin::Menu item-->
+                        <div class="menu-item px-3">
+                          <a
+                            @click="deleteSubscription(customer.id)"
+                            class="menu-link px-3"
+                            >Delete</a
+                          >
+                        </div>
+                        <!--end::Menu item-->
+                      </div>
+                      <!--end::Menu-->
+                    </template>
+                  </KTDatatable>
+                </div>
+                <!-- Pendidikan & Pelatihan -->
+
+                <!-- Publikasi -->
+                <div class="title d-flex align-items-center border-top">
+                  <label for="">Publikasi</label>
+                </div>
+
+                <div class="container">
+                  <KTDatatable
+                    class="text-center"
+                    @on-sort="sort"
+                    @on-items-select="onItemSelect"
+                    :data="data"
+                    :header="tableHeader">
+                    <template v-slot:customer="{ row: customer }">
+                      <router-link
+                        to="/apps/subscriptions/view-subscription"
+                        href=""
+                        class="text-gray-800 text-hover-primary mb-1">
+                        {{ customer.customer }}
+                      </router-link>
+                    </template>
+                    <template v-slot:status="{ row: customer }">
+                      <a href="#" class="text-gray-600 text-hover-primary mb-1">
+                        <div :class="`badge badge-light-${customer.color}`">
+                          {{ customer.status }}
+                        </div>
+                      </a>
+                    </template>
+                    <template v-slot:billing="{ row: customer }">
+                      <div class="badge badge-light">
+                        {{ customer.billing }}
+                      </div>
+                    </template>
+                    <template v-slot:product="{ row: customer }">
+                      {{ customer.product }}
+                    </template>
+                    <template v-slot:createdDate="{ row: customer }">
+                      {{ customer.createdDate }}
+                    </template>
+                    <template v-slot:actions="{ row: customer }">
+                      <a
+                        href="#"
+                        class="btn btn-sm btn-light btn-active-light-primary"
+                        data-kt-menu-trigger="click"
+                        data-kt-menu-placement="bottom-end"
+                        data-kt-menu-flip="top-end"
+                        >Actions
+                        <span class="svg-icon svg-icon-5 m-0">
+                          <inline-svg
+                            src="media/icons/duotune/arrows/arr072.svg" />
+                        </span>
+                      </a>
+                      <!--begin::Menu-->
+                      <div
+                        class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semobold fs-7 w-125px py-4"
+                        data-kt-menu="true">
+                        <!--begin::Menu item-->
+                        <div class="menu-item px-3">
+                          <router-link
+                            to="/apps/customers/customer-details"
+                            class="menu-link px-3"
+                            >View</router-link
+                          >
+                        </div>
+                        <!--end::Menu item-->
+                        <!--begin::Menu item-->
+                        <div class="menu-item px-3">
+                          <a
+                            @click="deleteSubscription(customer.id)"
+                            class="menu-link px-3"
+                            >Delete</a
+                          >
+                        </div>
+                        <!--end::Menu item-->
+                      </div>
+                      <!--end::Menu-->
+                    </template>
+                  </KTDatatable>
+                </div>
+                <!-- Publikasi -->
+
+                <!-- Narasumber -->
+                <div class="title d-flex align-items-center border-top">
+                  <label for="">Narasumber</label>
+                </div>
+
+                <div class="container">
+                  <KTDatatable
+                    class="text-center"
+                    @on-sort="sort"
+                    @on-items-select="onItemSelect"
+                    :data="data"
+                    :header="tableHeader">
+                    <template v-slot:customer="{ row: customer }">
+                      <router-link
+                        to="/apps/subscriptions/view-subscription"
+                        href=""
+                        class="text-gray-800 text-hover-primary mb-1">
+                        {{ customer.customer }}
+                      </router-link>
+                    </template>
+                    <template v-slot:status="{ row: customer }">
+                      <a href="#" class="text-gray-600 text-hover-primary mb-1">
+                        <div :class="`badge badge-light-${customer.color}`">
+                          {{ customer.status }}
+                        </div>
+                      </a>
+                    </template>
+                    <template v-slot:billing="{ row: customer }">
+                      <div class="badge badge-light">
+                        {{ customer.billing }}
+                      </div>
+                    </template>
+                    <template v-slot:product="{ row: customer }">
+                      {{ customer.product }}
+                    </template>
+                    <template v-slot:createdDate="{ row: customer }">
+                      {{ customer.createdDate }}
+                    </template>
+                    <template v-slot:actions="{ row: customer }">
+                      <a
+                        href="#"
+                        class="btn btn-sm btn-light btn-active-light-primary"
+                        data-kt-menu-trigger="click"
+                        data-kt-menu-placement="bottom-end"
+                        data-kt-menu-flip="top-end"
+                        >Actions
+                        <span class="svg-icon svg-icon-5 m-0">
+                          <inline-svg
+                            src="media/icons/duotune/arrows/arr072.svg" />
+                        </span>
+                      </a>
+                      <!--begin::Menu-->
+                      <div
+                        class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semobold fs-7 w-125px py-4"
+                        data-kt-menu="true">
+                        <!--begin::Menu item-->
+                        <div class="menu-item px-3">
+                          <router-link
+                            to="/apps/customers/customer-details"
+                            class="menu-link px-3"
+                            >View</router-link
+                          >
+                        </div>
+                        <!--end::Menu item-->
+                        <!--begin::Menu item-->
+                        <div class="menu-item px-3">
+                          <a
+                            @click="deleteSubscription(customer.id)"
+                            class="menu-link px-3"
+                            >Delete</a
+                          >
+                        </div>
+                        <!--end::Menu item-->
+                      </div>
+                      <!--end::Menu-->
+                    </template>
+                  </KTDatatable>
+                </div>
+                <!-- Narasumber -->
+
+                <!-- Referensi -->
+                <div class="title d-flex align-items-center border-top">
+                  <label for="">Referensi</label>
+                </div>
+
+                <div class="container">
+                  <KTDatatable
+                    class="text-center"
+                    @on-sort="sort"
+                    @on-items-select="onItemSelect"
+                    :data="data"
+                    :header="tableHeader">
+                    <template v-slot:customer="{ row: customer }">
+                      <router-link
+                        to="/apps/subscriptions/view-subscription"
+                        href=""
+                        class="text-gray-800 text-hover-primary mb-1">
+                        {{ customer.customer }}
+                      </router-link>
+                    </template>
+                    <template v-slot:status="{ row: customer }">
+                      <a href="#" class="text-gray-600 text-hover-primary mb-1">
+                        <div :class="`badge badge-light-${customer.color}`">
+                          {{ customer.status }}
+                        </div>
+                      </a>
+                    </template>
+                    <template v-slot:billing="{ row: customer }">
+                      <div class="badge badge-light">
+                        {{ customer.billing }}
+                      </div>
+                    </template>
+                    <template v-slot:product="{ row: customer }">
+                      {{ customer.product }}
+                    </template>
+                    <template v-slot:createdDate="{ row: customer }">
+                      {{ customer.createdDate }}
+                    </template>
+                    <template v-slot:actions="{ row: customer }">
+                      <a
+                        href="#"
+                        class="btn btn-sm btn-light btn-active-light-primary"
+                        data-kt-menu-trigger="click"
+                        data-kt-menu-placement="bottom-end"
+                        data-kt-menu-flip="top-end"
+                        >Actions
+                        <span class="svg-icon svg-icon-5 m-0">
+                          <inline-svg
+                            src="media/icons/duotune/arrows/arr072.svg" />
+                        </span>
+                      </a>
+                      <!--begin::Menu-->
+                      <div
+                        class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semobold fs-7 w-125px py-4"
+                        data-kt-menu="true">
+                        <!--begin::Menu item-->
+                        <div class="menu-item px-3">
+                          <router-link
+                            to="/apps/customers/customer-details"
+                            class="menu-link px-3"
+                            >View</router-link
+                          >
+                        </div>
+                        <!--end::Menu item-->
+                        <!--begin::Menu item-->
+                        <div class="menu-item px-3">
+                          <a
+                            @click="deleteSubscription(customer.id)"
+                            class="menu-link px-3"
+                            >Delete</a
+                          >
+                        </div>
+                        <!--end::Menu item-->
+                      </div>
+                      <!--end::Menu-->
+                    </template>
+                  </KTDatatable>
+                </div>
+                <!-- Referensi -->
               </div>
             </div>
           </div>
@@ -298,7 +672,6 @@
 </template>
 <script>
 import LayoutProfileAside from "@/views/crafted/layout/LayoutProfile.vue";
-import Datatable from "@/components/kt-datatable/KTDataTable.vue";
 import KTDatatable from "@/components/kt-datatable/KTDataTable.vue";
 
 export default {
@@ -338,7 +711,6 @@ export default {
   },
   components: {
     LayoutProfileAside,
-    Datatable,
     KTDatatable,
   },
 };

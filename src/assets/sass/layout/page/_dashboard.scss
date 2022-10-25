@@ -81,7 +81,6 @@
       height: 20px;
     }
     span {
-      margin-left: 16px;
       font-family: "Poppins";
       font-style: normal;
       font-weight: 700;
@@ -89,6 +88,11 @@
       line-height: 22px;
       color: #1f2855;
     }
+  }
+
+  .sub-title-card{
+    margin-left: 5px;
+    margin-right: 10px;
   }
 
   .body-card {
@@ -197,6 +201,33 @@
     }
     // pengaturan
 
+    // pengaturan
+    .personal {
+      margin-top: 22px;
+      &__label {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 11px;
+        line-height: 21px;
+        color: rgba(0, 0, 0, 0.5);
+      }
+      &__form {
+        background: rgba(0, 0, 0, 0.07);
+        border-radius: 12px;
+        height: 40px;
+      }
+
+      &__update {
+        float: right;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+    }
+    // pengaturan
+
     .resume-cv {
       padding-top: 7px;
       padding-bottom: 7px;
@@ -265,5 +296,133 @@
         }
       }
     }
+
+    // referensi
+    .referensi {
+      margin-top: 22px;
+      &__label {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 11px;
+        line-height: 21px;
+        color: rgba(0, 0, 0, 0.5);
+      }
+      &__form {
+        background: rgba(0, 0, 0, 0.07);
+        border-radius: 12px;
+        height: 40px;
+      }
+
+      &__update {
+        i{
+          color: #fff;
+        }
+        float: right;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+    }
+    // referensi
+
+    // narasumber
+    .narasumber {
+      margin-top: 22px;
+      &__label {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 11px;
+        line-height: 21px;
+        color: rgba(0, 0, 0, 0.5);
+      }
+      &__form {
+        background: rgba(0, 0, 0, 0.07);
+        border-radius: 12px;
+        height: 40px;
+      }
+
+      &__update {
+        i{
+          color: #fff;
+        }
+        float: right;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+    }
+        // narasumber
+
   }
+}
+
+.custom_form_select {
+  background: rgba(0, 0, 0, 0.07);
+  border-radius: 12px;
+  height: 40px;
+  width: 50%;
+  padding: 5px;
+  border: 1px solid transparent;
+}
+
+.form-check {
+  .form-check-label {
+    margin-left: 10px;
+  }
+}
+
+.custom_textarea {
+  background: rgba(0, 0, 0, 0.07);
+  border-radius: 12px;
+  border: 1px solid transparent;
+}
+
+.number-id {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.flag-id {
+  margin-right: 5px;
+  .flag-red {
+    width: 25px;
+    height: 8px;
+    background-color: red;
+    border: 1px solid rgba(140, 141, 141, 0.5);
+  }
+  .flag-white {
+    width: 25px;
+    height: 8px;
+    background-color: white;
+    border: 1px solid rgba(140, 141, 141, 0.5);
+  }
+}
+
+.label-upload {
+  background-color: #e5f1f3;
+  border: 1px solid #1896A4;
+  opacity: 1;
+  color: #bcc2c4;
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+  font-family: sans-serif;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  text-align: center;
+  height: 100px;
+}
+
+.form-check{
+  margin-bottom: 10px;
+}
+
+.form-check-input:checked{
+  background-color: #1896A4;
+  border: 1px solid #1896A4;
 }

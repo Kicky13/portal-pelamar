@@ -1,32 +1,6 @@
 <template>
   <LayoutProfileAside :titlePage="title">
-    <div class="dashboard-profile">
-      <div class="row d-flex align-items-center">
-        <div class="col-sm-6 d-flex align-items-center">
-          <div class="images-profile">
-            <img
-              :src="require('@/assets/images/icon/ic_image_profile.png')"
-              alt="" />
-          </div>
-          <div class="informasi-profile">
-            <label for="">Nurul Jannah</label>
-            <div class="email">nama@gmail.com</div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="informasi-persentase d-flex align-items-center">
-            <div class="jabatan-dilamar text-center">
-              <label for="" class="total">2</label>
-              <p for="" class="wording">Jabatan Dilamar</p>
-            </div>
-            <div class="jabatan-dilamar text-center">
-              <label for="" class="total">100%</label>
-              <p for="" class="wording">Prosentase CV</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+   
     <div class="row">
       <div class="col-sm-7">
         <div class="card-profile">
