@@ -162,9 +162,15 @@
                       <select
                         class="custom_form_select w-100"
                         placeholder="Select..."
+                        name="statusKawin"
                         as="select">
-                        <option value="Dalam Negeri">Dalam Negeri</option>
-                        <option value="Luar Negeri">Dalam Negeri</option>
+                        <option selected disabled value="">Pilih Salah Satu</option>
+                        <option
+                        v-for="(status, index) in dataPersonalModule.listStatus"
+                          :value="status.id"
+                          :key="index">
+                          {{ status.name }}
+                        </option>
                       </select>
                     </div>
                   </div>
@@ -324,11 +330,11 @@ export default {
     ErrorMessage,
   },
   mounted() {
-    this.testSM()
     this.getListAgama()
     this.getListKota()
     this.getListProvinsi()
     this.getListKotaLahir()
+    this.getListStatus()
   },
   methods: {
     ...mapActions('dataPersonalModule', [
@@ -337,6 +343,7 @@ export default {
       'getListKotaLahir',
       'getListProvinsi',
       'getListKota',
+      'getListStatus',
     ]),
   },
 };
