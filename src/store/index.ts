@@ -7,6 +7,8 @@ import BreadcrumbsModule from "@/store/modules/BreadcrumbsModule";
 import ConfigModule from "@/store/modules/ConfigModule";
 import ThemeModeModule from "@/store/modules/ThemeModeModule";
 import StateManagement from "@/store/modules/StateManagement";
+// Views
+import DataPersonal from "@/store/modules/views/DataPersonalModule";
 
 config.rawError = true;
 
@@ -18,6 +20,8 @@ const store = createStore({
     ConfigModule,
     ThemeModeModule,
     StateManagement,
+    // Views
+    dataPersonalModule: DataPersonal,
   },
 });
 

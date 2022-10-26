@@ -46,9 +46,15 @@
                       <select
                         class="custom_form_select w-50"
                         placeholder="Select..."
-                        as="select">
-                        <option value="Dalam Negeri">Dalam Negeri</option>
-                        <option value="Luar Negeri">Dalam Negeri</option>
+                        as="select"
+                        name="kotaLahir">
+                        <option selected disabled value="">Pilih Salah Satu</option>
+                        <option
+                          v-for="(kota, index) in dataPersonalModule.listKotaLahir"
+                          :value="kota.id"
+                          :key="index">
+                          {{ kota.nama }}
+                        </option>
                       </select>
                     </div>
                   </div>
@@ -64,9 +70,15 @@
                           style="margin-left: 5px"
                           class="custom_form_select w-100"
                           placeholder="Select..."
+                          name="provinsi"
                           as="select">
-                          <option value="Dalam Negeri">Dalam Negeri</option>
-                          <option value="Luar Negeri">Dalam Negeri</option>
+                          <option selected disabled value="">Pilih Salah Satu</option>
+                          <option
+                            v-for="(provinsi, index) in dataPersonalModule.listProvinsi"
+                            :value="provinsi.kode"
+                            :key="index">
+                            {{ provinsi.nama }}
+                          </option>
                         </select>
                       </div>
                       <label
@@ -77,11 +89,27 @@
                       </label>
                       <div class="col-sm-4">
                         <select
+                          v-if="dataPersonalModule.selectedProvinsi != null && dataPersonalModule.selectedProvinsi != `` && dataPersonalModule.selectedProvinsi != 0"
                           class="custom_form_select w-100"
                           placeholder="Select..."
+                          name="kota"
                           as="select">
-                          <option value="Dalam Negeri">Dalam Negeri</option>
-                          <option value="Luar Negeri">Dalam Negeri</option>
+                          <option selected disabled value="">Pilih Salah Satu</option>
+                          <option
+                            v-for="(kota, index) in dataPersonalModule.listKotaByProvinsi"
+                            :value="kota.id"
+                            :key="index">
+                            {{ kota.nama }}
+                          </option>
+                        </select>
+                        <select
+                          v-else
+                          class="custom_form_select w-100"
+                          placeholder="Select..."
+                          name="kota"
+                          disabled
+                          as="select">
+                          <option selected disabled value="">Pilih Salah Satu</option>
                         </select>
                       </div>
                     </div>
@@ -210,8 +238,13 @@
                         class="custom_form_select w-100"
                         placeholder="Select..."
                         as="select">
-                        <option value="Dalam Negeri">Dalam Negeri</option>
-                        <option value="Luar Negeri">Dalam Negeri</option>
+                        <option selected disabled value="">Pilih Salah Satu</option>
+                        <option
+                        v-for="(agama, index) in dataPersonalModule.listAgama"
+                        :value="agama.id"
+                        :key="index">
+                        {{ agama.name }}
+                      </option>
                       </select>
                     </div>
                   </div>
@@ -255,7 +288,6 @@
                     <router-link to="#" class="btn btn-transparent-portal-soft"
                       >Kembali</router-link
                     >
-
                     <router-link to="#" class="btn btn-success-portal-soft"
                       >Selanjutnya</router-link
                     >
@@ -272,6 +304,7 @@
 <script>
 import LayoutProfileAside from "@/views/crafted/layout/LayoutProfile.vue";
 import { Field, ErrorMessage } from "vee-validate";
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "BackOfficeDataPersonal",
@@ -280,11 +313,31 @@ export default {
       title: "Data Personal",
     };
   },
-
+  computed: {
+    ...mapState({
+      dataPersonalModule: (state) => state.dataPersonalModule.data,
+    })
+  },
   components: {
     LayoutProfileAside,
     Field,
     ErrorMessage,
+  },
+  mounted() {
+    this.testSM()
+    this.getListAgama()
+    this.getListKota()
+    this.getListProvinsi()
+    this.getListKotaLahir()
+  },
+  methods: {
+    ...mapActions('dataPersonalModule', [
+      'testSM',
+      'getListAgama',
+      'getListKotaLahir',
+      'getListProvinsi',
+      'getListKota',
+    ]),
   },
 };
 </script>
