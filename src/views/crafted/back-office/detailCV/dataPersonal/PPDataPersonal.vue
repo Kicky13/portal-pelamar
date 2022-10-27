@@ -345,6 +345,13 @@ export default {
       'getListKota',
       'getListStatus',
     ]),
+    changeProvinsiHandler() {
+    },
+    changeKotaLahirHandler() {
+    },
+    changeKotaHandler() {
+    },
+    
   },
 };
 </script>

@@ -1,4 +1,5 @@
 import ApiService from "@/core/services/ApiService";
+import axios from "axios";
 
 const state = {
     data: {
@@ -9,6 +10,13 @@ const state = {
         listKotaByProvinsi: [],
         listStatus: [],
         listAgama: [],
+        reqParamsKota: {
+            is_luar_negeri: 0,
+            kode_provinsi: null,
+        },
+        reqParams: {
+            is_luar_negeri: 0,
+        },
     },
 }
 
@@ -45,8 +53,9 @@ const actions = {
         await commit('changeDataPersonal', {
             isLoading: true,
         });
+        const { data } = state
         try {
-            const res = await ApiService.get('master/kota');
+            const res = await ApiService.post('master/kota', data.reqParams);
             if (res.data.status_code == `201` || res.data.status_code == 201) {
                 await commit('changeDataPersonal', {
                     isLoading: false,
@@ -68,7 +77,7 @@ const actions = {
             isLoading: true,
         });
         try {
-            const res = await ApiService.get('master/provinsi');
+            const res = await ApiService.post('master/provinsi', state.data.reqParams);
             if (res.data.status_code == `201` || res.data.status_code == 201) {
                 await commit('changeDataPersonal', {
                     isLoading: false,
@@ -90,12 +99,8 @@ const actions = {
             isLoading: true,
         });
         const { data } = state
-        let link = 'master/kota?is_luar_negeri=0'
-        if (data.selectedProvinsi != null && data.selectedProvinsi != '' && data.selectedProvinsi != 0) {
-            link = 'master/kota?is_luar_negeri=0&kode_provinsi=' + data.selectedProvinsi
-        }
         try {
-            const res = await ApiService.get('master/kota');
+            const res = await ApiService.post('master/kota', state.data.reqParamsKota);
             if (res.data.status_code == `201` || res.data.status_code == 201) {
                 await commit('changeDataPersonal', {
                     isLoading: false,
