@@ -150,7 +150,7 @@
                       {{ listOrganisasi.uraian_kegiatan }}
                     </template>
                     <template v-slot:jenisOrganisasi="{ row: listOrganisasi }">
-                      {{ listOrganisasi.id_jenis_organisasi }}
+                      {{ listOrganisasi.jenis_org.name }}
                     </template>
                     <template v-slot:action="{ row: listOrganisasi }">
                       <button @click="edit(listOrganisasi.id)" class="btn btn-warning">
