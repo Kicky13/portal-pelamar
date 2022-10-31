@@ -140,16 +140,16 @@
                       {{ listOrganisasi.jabatan }}<br>
                       {{ listOrganisasi.nama_organisasi }}
                     </template>
-                    <template v-slot:awalMenjabat="{ row: listOrganisasi }">
+                    <template v-slot:tanggal_mulai="{ row: listOrganisasi }">
                       {{ listOrganisasi.tanggal_mulai }}
                     </template>
-                    <template v-slot:akhirMenjabat="{ row: listOrganisasi }">
+                    <template v-slot:tanggal_akhir="{ row: listOrganisasi }">
                       {{ listOrganisasi.tanggal_akhir }}
                     </template>
-                    <template v-slot:uraianKegiatan="{ row: listOrganisasi }">
+                    <template v-slot:uraian_kegiatan="{ row: listOrganisasi }">
                       {{ listOrganisasi.uraian_kegiatan }}
                     </template>
-                    <template v-slot:jenisOrganisasi="{ row: listOrganisasi }">
+                    <template v-slot:jenis_organisasi="{ row: listOrganisasi }">
                       {{ listOrganisasi.jenis_org.name }}
                     </template>
                     <template v-slot:action="{ row: listOrganisasi }">
@@ -202,22 +202,22 @@ export default {
         },
         {
           columnName: "Awal Menjabat",
-          columnLabel: "awalMenjabat",
+          columnLabel: "tanggal_mulai",
           sortEnabled: false,
         },
         {
           columnName: "Akhir Menjabat",
-          columnLabel: "akhirMenjabat",
+          columnLabel: "tanggal_akhir",
           sortEnabled: false,
         },
         {
           columnName: "Uraian Kegiatan",
-          columnLabel: "uraianKegiatan",
+          columnLabel: "uraian_kegiatan",
           sortEnabled: false,
         },
         {
           columnName: "Jenis Organisasi",
-          columnLabel: "jenisOrganisasi",
+          columnLabel: "jenis_organisasi",
           sortEnabled: false,
         },
         {
