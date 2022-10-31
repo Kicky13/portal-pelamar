@@ -14,14 +14,14 @@
                     <label
                       for="staticEmail"
                       class="col-sm-3 col-form-label personal__label"
-                      >Nama Lengkap<span class="text-danger">*</span></label
-                    >
+                      >Nama Lengkap<span class="text-danger">*</span>
+                    </label>
                     <div class="col-sm-9">
                       <input
                         type="text"
                         class="form-control personal__form"
                         v-model="dataPersonalModule.formData.nama"/>
-                        <span v-show="validation.name" class="text-danger">Wajib Diisi. Harus berisikan abjad saja. Minimal 3 karakter.</span>
+                        <span v-show="dataPersonalModule.validation.nama" class="text-danger">Wajib Diisi. Harus berisikan abjad saja. Minimal 3 karakter.</span>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -36,7 +36,7 @@
                         v-model="dataPersonalModule.formData.gelar"
                         class="form-control personal__form"
                         id="inputPassword" />
-                      <span v-show="validation.gelar" class="text-danger">Wajib Diisi. Harus berisikan abjad saja. Minimal 3 karakter.</span>
+                      <span v-show="dataPersonalModule.validation.gelar" class="text-danger">Wajib Diisi. Harus berisikan abjad saja. Minimal 3 karakter.</span>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -51,7 +51,7 @@
                           class="custom_form_select w-50"
                           placeholder="Select..."
                           as="select"
-                          v-model="dataPersonalModule.formData.tempatLahir"
+                          v-model="dataPersonalModule.formData.id_kota_lahir"
                           name="kotaLahir">
                           <option selected disabled value="">Pilih Salah Satu</option>
                           <option
@@ -61,7 +61,7 @@
                             {{ kota.nama }}
                           </option>
                         </select>
-                        <span v-show="validation.tempatLahir" class="text-danger">Wajib Memilih salah satu</span>
+                        <span v-show="dataPersonalModule.validation.id_kota_lahir" class="text-danger">Wajib Memilih salah satu</span>
                       </div>
                     </div>
                   </div>
@@ -89,7 +89,7 @@
                             {{ provinsi.nama }}
                           </option>
                         </select>
-                        <span v-show="validation.provinsi" class="text-danger">Wajib Dipilih</span>
+                        <span v-show="dataPersonalModule.validation.provinsi" class="text-danger">Wajib Dipilih</span>
                       </div>
                       <label
                         for="inputPassword"
@@ -122,7 +122,7 @@
                           as="select">
                           <option selected disabled value="">Pilih Provinsi Dahulu</option>
                         </select>
-                        <span v-show="validation.kota" class="text-danger">Wajib Dipilih</span>
+                        <span v-show="dataPersonalModule.validation.kota" class="text-danger">Wajib Dipilih</span>
                       </div>
                     </div>
                   </div>
@@ -141,7 +141,7 @@
                           name="exampleRadios"
                           id="exampleRadios1"
                           value="L"
-                          v-model="dataPersonalModule.formData.jenisKelamin"
+                          v-model="dataPersonalModule.formData.gender"
                           checked />
                         <label
                           class="form-check-label ml-2"
@@ -155,7 +155,7 @@
                           type="radio"
                           name="exampleRadios"
                           id="exampleRadios2"
-                          v-model="dataPersonalModule.formData.jenisKelamin"
+                          v-model="dataPersonalModule.formData.gender"
                           value="P" />
                         <label
                           class="form-check-label ml-2"
@@ -177,7 +177,7 @@
                         class="custom_form_select w-100"
                         placeholder="Select..."
                         name="statusKawin"
-                        v-model="dataPersonalModule.formData.statusKawin"
+                        v-model="dataPersonalModule.formData.marital_status"
                         as="select">
                         <option selected disabled value="">Pilih Salah Satu</option>
                         <option
@@ -187,7 +187,7 @@
                           {{ status.name }}
                         </option>
                       </select>
-                      <span v-show="validation.statusKawin" class="text-danger">Wajib Memilih salah satu</span>
+                      <span v-show="dataPersonalModule.validation.marital_status" class="text-danger">Wajib Memilih salah satu</span>
                     </div>
                   </div>
                 </div>
@@ -204,7 +204,7 @@
                         v-model="dataPersonalModule.formData.nik"
                         class="form-control personal__form"
                         id="inputPassword" />
-                      <span v-show="validation.nik" class="text-danger">Wajib Diisi. Harus berisikan angka saja. Minimal 5 karakter.</span>
+                      <span v-show="dataPersonalModule.validation.nik" class="text-danger">Wajib Diisi. Harus berisikan angka saja. Minimal 5 karakter.</span>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -221,12 +221,12 @@
                       <label for="" class="number-id">+62</label>
                       <input
                         type="number"
-                        v-model="dataPersonalModule.formData.nohp"
+                        v-model="dataPersonalModule.formData.phone"
                         class="form-control personal__form"
                         id="inputPassword" />
                     </div>
                     <label class="col-sm-3"></label>
-                    <span v-show="validation.nohp" class="col-sm-9 text-danger">Wajib Diisi. Harus berisikan angka saja. Minimal 10 karakter.</span>
+                    <span v-show="dataPersonalModule.validation.phone" class="col-sm-9 text-danger">Wajib Diisi. Harus berisikan angka saja. Minimal 10 karakter.</span>
                   </div>
                   <div class="form-group row">
                     <label
@@ -237,10 +237,10 @@
                     <div class="col-sm-9">
                       <input
                         type="date"
-                        v-model="dataPersonalModule.formData.tglLahir"
+                        v-model="dataPersonalModule.formData.tgl_lahir"
                         class="form-control personal__form"
                         id="inputPassword" />
-                      <span v-show="validation.tanggalLahir" class="text-danger">Wajib Diisi</span>
+                      <span v-show="dataPersonalModule.validation.tgl_lahir" class="text-danger">Wajib Diisi</span>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -255,7 +255,7 @@
                         v-model="dataPersonalModule.formData.email"
                         class="form-control personal__form"
                         id="inputPassword" />
-                      <span v-show="validation.email" class="text-danger">Wajib Diisi. Format email harus benar.</span>
+                      <span v-show="dataPersonalModule.validation.email" class="text-danger">Wajib Diisi. Format email harus benar.</span>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -278,7 +278,7 @@
                         {{ agama.name }}
                       </option>
                       </select>
-                      <span v-show="validation.agama" class="text-danger">Wajib Memilih salah satu.</span>
+                      <span v-show="dataPersonalModule.validation.agama" class="text-danger">Wajib Memilih salah satu.</span>
                     </div>
                   </div>
                 </div>
@@ -295,10 +295,10 @@
                       <textarea
                         name=""
                         id=""
-                        v-model="dataPersonalModule.formData.fullAddress"
+                        v-model="dataPersonalModule.formData.alamat"
                         rows="10"
                         class="w-100 custom_textarea"></textarea>
-                      <span v-show="validation.fullAddress" class="text-danger">Wajib Diisi Minimal 3 karakter.</span>
+                      <span v-show="dataPersonalModule.validation.alamat" class="text-danger">Wajib Diisi Minimal 3 karakter.</span>
                     </div>
                   </div>
                 </div>
@@ -312,7 +312,7 @@
                     <div class="col-sm-9">
                       <input @change="uploadKtp" ref="ktp" type="file" id="upload" hidden />
                       <label for="upload" class="label-upload w-100">Pilih atau taruh file disini</label>
-                      <span v-show="validation.ktp" class="text-danger">Wajib melampirkan file dengan format pdf, png, jpg atau jpeg.</span>
+                      <span v-show="dataPersonalModule.validation.ktp" class="text-danger">Wajib melampirkan file dengan format pdf, png, jpg atau jpeg.</span>
                     </div>
                   </div>
                 </div>
@@ -345,12 +345,29 @@
 </template>
 <script>
 import LayoutProfileAside from "@/views/crafted/layout/LayoutProfile.vue";
-import { Field, ErrorMessage } from "vee-validate";
+import { Form, Field, ErrorMessage } from "vee-validate";
 import { mapState, mapActions } from "vuex";
 import * as Yup from "yup";
+import Swal from "sweetalert2/dist/sweetalert2.min.js";
+import { useRouter } from "vue-router";
 
 export default {
   name: "BackOfficeDataPersonal",
+  components: {
+    Form,
+    Field,
+    ErrorMessage,
+  },
+  setup() {
+    const router = useRouter();
+    const formValidate = Yup.object().shape({
+      name: Yup.string().min(4).required().label("Name")
+    });
+    return {
+      formValidate,
+      router,
+    }
+  },
   data() {
     return {
       title: "Data Personal",
@@ -399,13 +416,31 @@ export default {
       'getListStatus',
       'getDataPersonal',
       'submitForm',
+      'validateForm',
     ]),
     async submit() {
-      const submit = await this.submitForm()
-      if (submit) {
-        console.log('Submit Berhasil');
-      } else {
-        console.log('Submit Error');
+      const validating = await this.validateForm()
+      console.log(validating)
+      if (validating) {
+        const submit = await this.submitForm()
+        if (submit) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Data Berhasil Disimpan!',
+            showConfirmButton: false,
+            timer: 1500,
+          })
+          this.router.push({ name: "ProfilePersonafikasi" });
+        } else {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Something went wrong, please try again later!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
       }
     },
     async changeProvinsiHandler() {

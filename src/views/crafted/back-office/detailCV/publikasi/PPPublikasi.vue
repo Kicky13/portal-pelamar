@@ -28,9 +28,11 @@
                     >
                     <div class="col-sm-10">
                       <input
-                        type="email"
+                        type="text"
+                        v-model="publikasiModule.formData.judul_publikasi"
                         class="form-control narasumber__form"
                         id="inputPassword" />
+                      <span v-show="publikasiModule.validator.judul_publikasi" class="text-danger">Wajib Diisi.</span>  
                     </div>
                   </div>
                   <div class="form-group row">
@@ -42,8 +44,10 @@
                     <div class="col-sm-10">
                       <input
                         type="email"
+                        v-model="publikasiModule.formData.media_publikasi"
                         class="form-control narasumber__form"
                         id="inputPassword" />
+                      <span v-show="publikasiModule.validator.media_publikasi" class="text-danger">Wajib Diisi.</span>  
                     </div>
                   </div>
                   <div class="form-group row">
@@ -56,11 +60,14 @@
                       <select
                         class="custom_form_select w-25"
                         placeholder="Select..."
+                        v-model="publikasiModule.formData.tahun"
                         as="select">
-                        <option value="Dalam Negeri">Dalam Negeri</option>
-                        <option value="Luar Negeri">Dalam Negeri</option>
+                        <option selected disabled value="">Pilih Salah Satu</option>
+                        <option v-for="(data, index) in yearList" :value="data">{{ data }}</option>
                       </select>
                     </div>
+                    <div class="col-sm-2"></div>
+                    <span v-show="publikasiModule.validator.tahun" class="col-sm-10 text-danger">Wajib Dipilih.</span>  
                   </div>
                  
                 </div>
@@ -69,8 +76,15 @@
               <div class="row">
                 <div class="col-sm-12">
                   <div class="pengaturan__update">
-                    <button class="btn btn-primary-portal">
+                    <button @click="handleSubmit" v-if="!publikasiModule.isSubmitLoading" class="btn btn-primary-portal">
                       <i class="fas fa-plus"></i> Tambah Publikasi
+                    </button>
+                    <button v-else class="btn btn-primary-portal">
+                      <span class="indicator-label">Mohon Tunggu
+                        <span
+                          class="spinner-border spinner-border-sm align-middle ms-2">
+                        </span>
+                      </span>
                     </button>
                   </div>
                 </div>
@@ -81,35 +95,32 @@
                     class="text-center"
                     @on-sort="sort"
                     @on-items-select="onItemSelect"
-                    :data="data"
-                    :header="tableHeader">
+                    :data="publikasiModule.listPublikasi"
+                    :header="publikasiModule.column">
                     <template v-slot:customer="{ row: customer }">
                       <router-link
                         to="/apps/subscriptions/view-subscription"
                         href=""
                         class="text-gray-800 text-hover-primary mb-1">
-                        {{ customer.customer }}
+                        {{ data.customer }}
                       </router-link>
                     </template>
-                    <template v-slot:status="{ row: customer }">
+                    <template v-slot:judul_publikasi="{ row: data }">
                       <a href="#" class="text-gray-600 text-hover-primary mb-1">
-                        <div :class="`badge badge-light-${customer.color}`">
-                          {{ customer.status }}
+                        <div :class="`badge badge-light-success`">
+                          {{ data.judul_publikasi }}
                         </div>
                       </a>
                     </template>
-                    <template v-slot:billing="{ row: customer }">
+                    <template v-slot:media_publikasi="{ row: data }">
                       <div class="badge badge-light">
-                        {{ customer.billing }}
+                        {{ data.media_publikasi }}
                       </div>
                     </template>
-                    <template v-slot:product="{ row: customer }">
-                      {{ customer.product }}
+                    <template v-slot:tahun="{ row: data }">
+                      {{ data.tahun }}
                     </template>
-                    <template v-slot:createdDate="{ row: customer }">
-                      {{ customer.createdDate }}
-                    </template>
-                    <template v-slot:actions="{ row: customer }">
+                    <template v-slot:actions="{ row: data }">
                       <a
                         href="#"
                         class="btn btn-sm btn-light btn-active-light-primary"
@@ -138,7 +149,7 @@
                         <!--begin::Menu item-->
                         <div class="menu-item px-3">
                           <a
-                            @click="deleteSubscription(customer.id)"
+                            @click="deleteSubscription(data.id)"
                             class="menu-link px-3"
                             >Delete</a
                           >
@@ -173,12 +184,65 @@
 <script>
 import LayoutProfileAside from "@/views/crafted/layout/LayoutProfile.vue";
 import KTDatatable from "@/components/kt-datatable/KTDataTable.vue";
+import { mapState, mapActions } from "vuex";
+import Swal from "sweetalert2/dist/sweetalert2.min.js";
 
 export default {
   name: "BackOfficeNarasumber",
+  computed: {
+    ...mapState({
+      publikasiModule: (state) => state.publikasiModule.data,
+    })
+  },
+  mounted() {
+    this.getPublikasi();
+    this.getYears();
+  },
+  methods: {
+    ...mapActions('publikasiModule', [
+      'getPublikasi',
+      'storePublikasi',
+      'validateForm',
+    ]),
+    async handleSubmit() {
+      const validateForm = await this.validateForm()
+      if (validateForm) {
+        const submit = await this.storePublikasi()
+        if (submit) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Data Berhasil Disimpan!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          this.getNarasumber();
+        } else {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Something went wrong, please try again later!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      }
+    },
+    getYears() {
+      let currentDate = new Date();
+      let currentYear = currentDate.getFullYear();
+      
+      for (let i = 0; i < 5; i++) {
+        let yearIndex = currentYear - i;
+        this.yearList.push(yearIndex)
+      }
+      console.log(this.yearList)
+    },
+  },
   data() {
     return {
       title: "Narasumber",
+      yearList: [],
       tableHeader: [
         {
           columnName: "Order id",
@@ -209,7 +273,6 @@ export default {
       ],
     };
   },
-
   components: {
     LayoutProfileAside,
     KTDatatable,

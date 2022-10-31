@@ -9,6 +9,8 @@ import ThemeModeModule from "@/store/modules/ThemeModeModule";
 import StateManagement from "@/store/modules/StateManagement";
 // Views
 import DataPersonal from "@/store/modules/views/DataPersonalModule";
+import Narasumber from "@/store/modules/views/NarasumberModule";
+import Publikasi from "@/store/modules/views/PublikasiModule";
 
 config.rawError = true;
 
@@ -22,6 +24,8 @@ const store = createStore({
     StateManagement,
     // Views
     dataPersonalModule: DataPersonal,
+    narasumberModule: Narasumber,
+    publikasiModule: Publikasi,
   },
 });
 
