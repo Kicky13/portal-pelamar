@@ -1,35 +1,40 @@
 import ApiService from "@/core/services/ApiService";
-import { ref } from "vue";
 
 const state = {
     data: {
         isLoading: false,
         isSubmitLoading: false,
-        listNarasumber: ref([]),
+        listNarasumber: [],
         column: [
             {
-                columnName: "nama_acara",
-                columnLabel: "Nama Acara",
+                columnName: "Nama Acara",
+                columnLabel: "nama_acara",
+                sortEnabled: false,
             },
             {
-                columnName: "tahun",
-                columnLabel: "Tahun",
+                columnName: "Tahun",
+                columnLabel: "tahun",
+                sortEnabled: false,
             },
             {
-                columnName: "jumlah_peserta",
-                columnLabel: "Jumlah Peserta",
+                columnName: "Jumlah Peserta",
+                columnLabel: "jumlah_peserta",
+                sortEnabled: false,
             },
             {
-                columnName: "penyelenggara",
-                columnLabel: "Penyelenggara",
+                columnName: "Penyelenggara",
+                columnLabel: "penyelenggara",
+                sortEnabled: false,
             },
             {
-                columnName: "lokasi",
-                columnLabel: "Lokasi",
+                columnName: "Lokasi",
+                columnLabel: "lokasi",
+                sortEnabled: false,
             },
             {
-                columnName: "action",
-                columnLabel: "Action",
+                columnName: "Action",
+                columnLabel: "action",
+                sortEnabled: false,
             },
         ],
         formData: {
@@ -66,7 +71,7 @@ const actions = {
             if (res.data.status_code == `201` || res.data.status_code == 201) {
                 await commit('changeNarasumber', {
                     isLoading: false,
-                    listNarasumber: ref(res.data.data),
+                    listNarasumber: res.data.data,
                 })
             } else {
                 await commit('changeNarasumber', {

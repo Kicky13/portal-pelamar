@@ -123,27 +123,17 @@
                     class="text-center"
                     @on-sort="sort"
                     @on-items-select="onItemSelect"
+                    :loading="narasumberModule.isLoading"
                     :data="narasumberModule.listNarasumber"
                     :header="narasumberModule.column">
                     <template v-slot:nama_acara="{ row: listNarasumber }">
-                      <router-link
-                        to="/apps/subscriptions/view-subscription"
-                        href=""
-                        class="text-gray-800 text-hover-primary mb-1">
-                        {{ listNarasumber.nama_acara }}
-                      </router-link>
+                      {{ listNarasumber.nama_acara }}
                     </template>
                     <template v-slot:tahun="{ row: listNarasumber }">
-                      <a href="#" class="text-gray-600 text-hover-primary mb-1">
-                        <div :class="`badge badge-light-success`">
-                          {{ listNarasumber.tahun }}
-                        </div>
-                      </a>
+                      {{ listNarasumber.tahun }}
                     </template>
                     <template v-slot:jumlah_peserta="{ row: listNarasumber }">
-                      <div class="badge badge-light">
-                        {{ listNarasumber.jumlah_peserta }}
-                      </div>
+                      {{ listNarasumber.jumlah_peserta }}
                     </template>
                     <template v-slot:penyelenggara="{ row: listNarasumber }">
                       {{ listNarasumber.penyelenggara }}
@@ -151,43 +141,13 @@
                     <template v-slot:lokasi="{ row: listNarasumber }">
                       {{ listNarasumber.lokasi }}
                     </template>
-                    <template v-slot:actions="{ row: listNarasumber }">
-                      <a
-                        href="#"
-                        class="btn btn-sm btn-light btn-active-light-primary"
-                        data-kt-menu-trigger="click"
-                        data-kt-menu-placement="bottom-end"
-                        data-kt-menu-flip="top-end"
-                        >Actions
-                        <span class="svg-icon svg-icon-5 m-0">
-                          <inline-svg
-                            src="media/icons/duotune/arrows/arr072.svg" />
-                        </span>
-                      </a>
-                      <!--begin::Menu-->
-                      <div
-                        class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semobold fs-7 w-125px py-4"
-                        data-kt-menu="true">
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-3">
-                          <router-link
-                            to="/apps/customers/customer-details"
-                            class="menu-link px-3"
-                            >View</router-link
-                          >
-                        </div>
-                        <!--end::Menu item-->
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-3">
-                          <a
-                            @click="deleteData(listNarasumber.id)"
-                            class="menu-link px-3"
-                            >Delete</a
-                          >
-                        </div>
-                        <!--end::Menu item-->
-                      </div>
-                      <!--end::Menu-->
+                    <template v-slot:action="{ row: listNarasumber }">
+                      <button @click="edit(listNarasumber.id)" class="btn btn-warning">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button @click="delReferensi(listNarasumber.id)" class="btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                      </button>
                     </template>
                   </KTDatatable>
                 </div>
