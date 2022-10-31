@@ -1,9 +1,9 @@
 import ApiService from "@/core/services/ApiService";
-import axios from "axios";
 
 const state = {
     data: {
         isLoading: false,
+        isSubmitLoading: false,
         listKotaLahir: [],
         listProvinsi: [],
         selectedProvinsi: null,
@@ -16,6 +16,22 @@ const state = {
         },
         reqParams: {
             is_luar_negeri: 0,
+        },
+        formData: {
+            nama: '',
+            gelar: '',
+            tempatLahir: '',
+            provinsi: '',
+            kota: '',
+            jenisKelamin: 'L',
+            statusKawin: '',
+            nik: '',
+            nohp: '',
+            tglLahir: '',
+            agama: '',
+            email: '',
+            ktp: null,
+            fullAddress: '',
         },
     },
 }
@@ -74,31 +90,35 @@ const actions = {
     },
     async getListProvinsi({ commit, state }) {
         await commit('changeDataPersonal', {
-            isLoading: true,
+            isSubmitLoading: true,
         });
         try {
             const res = await ApiService.post('master/provinsi', state.data.reqParams);
             if (res.data.status_code == `201` || res.data.status_code == 201) {
                 await commit('changeDataPersonal', {
-                    isLoading: false,
+                    isSubmitLoading: false,
                     listProvinsi: res.data.data,
                 });
             } else {
                 await commit('changeDataPersonal', {
-                    isLoading: false,
+                    isSubmitLoading: false,
                 });
             }
         } catch {
             await commit('changeDataPersonal', {
-                isLoading: false,
+                isSubmitLoading: false,
             });
         }
     },
     async getListKota({ commit, state }) {
+        const { data } = state
         await commit('changeDataPersonal', {
             isLoading: true,
+            reqParamsKota: {
+                is_luar_negeri: 0,
+                kode_provinsi: data.formData.provinsi,
+            }
         });
-        const { data } = state
         try {
             const res = await ApiService.post('master/kota', state.data.reqParamsKota);
             if (res.data.status_code == `201` || res.data.status_code == 201) {
@@ -140,6 +160,73 @@ const actions = {
             });
         }
     },
+    async getDataPersonal({ commit, state }) {
+        await commit('changeDataPersonal', {
+            isLoading: true,
+        })
+        const { data } = state
+        try {
+            const res = await ApiService.get('cv/personal');
+            if (res.data.status_code == `201` || res.data.status_code == 201) {
+                await commit('changeDataPersonal', {
+                    isLoading: false,
+                });
+            } else {
+                await commit('changeDataPersonal', {
+                    isLoading: false,
+                });
+            }
+        } catch {
+            await commit('changeDataPersonal', {
+                isLoading: false,
+            });
+        }
+    },
+    cleanForm({ commit, state }) {
+        commit('changeDataPersonal', {
+            formData: {
+                nama: '',
+                gelar: '',
+                tempatLahir: '',
+                provinsi: '',
+                kota: '',
+                jenisKelamin: 'L',
+                statusKawin: '',
+                nik: '',
+                nohp: '',
+                tglLahir: '',
+                agama: '',
+                email: '',
+                fullAddress: '',
+            }
+        })
+    },
+    async submitForm({ commit, state }) {
+        await commit('changeDataPersonal', {
+            isLoading: true,
+        })
+        const { data } = state
+        try {
+            const res = await ApiService.post('cv/personal', data.formData);
+            if (res.data.status_code == `201` || res.data.status_code == 201) {
+                await commit('changeDataPersonal', {
+                    isLoading: false,
+                });
+                console.log(res.data)
+                return true
+            } else {
+                await commit('changeDataPersonal', {
+                    isLoading: false,
+                });
+                return false
+            }
+        } catch {
+            await commit('changeDataPersonal', {
+                isLoading: false,
+            });
+            return false
+        }
+    }, 
 }
 
 export default {
