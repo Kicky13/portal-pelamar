@@ -9,6 +9,8 @@ import ThemeModeModule from "@/store/modules/ThemeModeModule";
 import StateManagement from "@/store/modules/StateManagement";
 // Views
 import DataPersonal from "@/store/modules/views/DataPersonalModule";
+import DataOrganisasi from "@/store/modules/views/DataOrganisasiModule";
+import DataReferensi from "@/store/modules/views/DataReferensiModule";
 import Narasumber from "@/store/modules/views/NarasumberModule";
 import Publikasi from "@/store/modules/views/PublikasiModule";
 
@@ -24,6 +26,8 @@ const store = createStore({
     StateManagement,
     // Views
     dataPersonalModule: DataPersonal,
+    dataOrganisasiModule: DataOrganisasi,
+    dataReferensiModule: DataReferensi,
     narasumberModule: Narasumber,
     publikasiModule: Publikasi,
   },

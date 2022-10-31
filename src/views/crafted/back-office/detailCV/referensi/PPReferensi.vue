@@ -22,9 +22,10 @@
                     >
                     <div class="col-sm-9">
                       <input
-                        type="email"
+                        type="text"
                         class="form-control personal__form"
-                        id="inputPassword" />
+                        v-model="dataReferensiModule.formData.nama_ref"
+                        id="inputNamaRef" />
                     </div>
                   </div>
                   <div class="form-group row">
@@ -35,9 +36,10 @@
                     >
                     <div class="col-sm-9">
                       <input
-                        type="email"
+                        type="text"
                         class="form-control personal__form"
-                        id="inputPassword" />
+                        v-model="dataReferensiModule.formData.jabatan"
+                        id="inputJabatan" />
                     </div>
                   </div>
                 </div>
@@ -50,9 +52,10 @@
                     >
                     <div class="col-sm-9">
                       <input
-                        type="email"
+                        type="text"
                         class="form-control personal__form"
-                        id="inputPassword" />
+                        v-model="dataReferensiModule.formData.perusahaan"
+                        id="inputPerusahaan" />
                     </div>
                   </div>
                   <div class="form-group row">
@@ -70,7 +73,8 @@
                       <input
                         type="number"
                         class="form-control personal__form"
-                        id="inputPassword" />
+                        v-model="dataReferensiModule.formData.no_hp"
+                        id="inputNoHp" />
                     </div>
                   </div>
                 </div>
@@ -78,8 +82,18 @@
               <div class="row">
                 <div class="col-sm-12">
                   <div class="pengaturan__update">
-                    <button class="btn btn-primary-portal">
+                    <button v-if="!dataReferensiModule.isLoading && dataReferensiModule.idReferensi == 0" @click="submit" class="btn btn-primary-portal">
                       <i class="fas fa-plus"></i> Tambah Referensi
+                    </button>
+                    <button v-else-if="!dataReferensiModule.isLoading && dataReferensiModule.idReferensi != 0" @click="update" class="btn btn-primary-portal">
+                      <i class="fas fa-arrow-circle"></i> Update Referensi
+                    </button>
+                    <button v-else @click="submit" disabled class="btn btn-primary-portal">
+                      <span class="indicator-label">Mohon Tunggu
+                        <span
+                          class="spinner-border spinner-border-sm align-middle ms-2">
+                        </span>
+                      </span>
                     </button>
                   </div>
                 </div>
@@ -90,71 +104,28 @@
                     class="text-center"
                     @on-sort="sort"
                     @on-items-select="onItemSelect"
-                    :data="data"
+                    :loading="dataReferensiModule.isLoading"
+                    :data="dataReferensiModule.listReferensi"
                     :header="tableHeader">
-                    <template v-slot:customer="{ row: customer }">
-                      <router-link
-                        to="/apps/subscriptions/view-subscription"
-                        href=""
-                        class="text-gray-800 text-hover-primary mb-1">
-                        {{ customer.customer }}
-                      </router-link>
+                    <template v-slot:nama="{ row: listReferensi }">
+                      {{ listReferensi.nama_ref }}
                     </template>
-                    <template v-slot:status="{ row: customer }">
-                      <a href="#" class="text-gray-600 text-hover-primary mb-1">
-                        <div :class="`badge badge-light-${customer.color}`">
-                          {{ customer.status }}
-                        </div>
-                      </a>
+                    <template v-slot:jabatan="{ row: listReferensi }">
+                      {{ listReferensi.jabatan }}
                     </template>
-                    <template v-slot:billing="{ row: customer }">
-                      <div class="badge badge-light">
-                        {{ customer.billing }}
-                      </div>
+                    <template v-slot:perusahaan="{ row: listReferensi }">
+                      {{ listReferensi.perusahaan }}
                     </template>
-                    <template v-slot:product="{ row: customer }">
-                      {{ customer.product }}
+                    <template v-slot:no_hp="{ row: listReferensi }">
+                      {{ listReferensi.no_hp }}
                     </template>
-                    <template v-slot:createdDate="{ row: customer }">
-                      {{ customer.createdDate }}
-                    </template>
-                    <template v-slot:actions="{ row: customer }">
-                      <a
-                        href="#"
-                        class="btn btn-sm btn-light btn-active-light-primary"
-                        data-kt-menu-trigger="click"
-                        data-kt-menu-placement="bottom-end"
-                        data-kt-menu-flip="top-end"
-                        >Actions
-                        <span class="svg-icon svg-icon-5 m-0">
-                          <inline-svg
-                            src="media/icons/duotune/arrows/arr072.svg" />
-                        </span>
-                      </a>
-                      <!--begin::Menu-->
-                      <div
-                        class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semobold fs-7 w-125px py-4"
-                        data-kt-menu="true">
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-3">
-                          <router-link
-                            to="/apps/customers/customer-details"
-                            class="menu-link px-3"
-                            >View</router-link
-                          >
-                        </div>
-                        <!--end::Menu item-->
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-3">
-                          <a
-                            @click="deleteSubscription(customer.id)"
-                            class="menu-link px-3"
-                            >Delete</a
-                          >
-                        </div>
-                        <!--end::Menu item-->
-                      </div>
-                      <!--end::Menu-->
+                    <template v-slot:action="{ row: listReferensi }">
+                      <button @click="edit(listReferensi.id)" class="btn btn-warning">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button @click="delReferensi(listReferensi.id)" class="btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                      </button>
                     </template>
                   </KTDatatable>
                 </div>
@@ -182,41 +153,105 @@
 <script>
 import LayoutProfileAside from "@/views/crafted/layout/LayoutProfile.vue";
 import KTDatatable from "@/components/kt-datatable/KTDataTable.vue";
+import { Field, ErrorMessage } from "vee-validate";
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "BackOfficeReferensi",
   data() {
     return {
-      title: "Referensi",
+      title: "Data Referensi",
       tableHeader: [
         {
-          columnName: "Order id",
-          columnLabel: "order",
+          columnName: "nama",
+          columnLabel: "nama",
           sortEnabled: false,
         },
         {
-          columnName: "Amount",
-          columnLabel: "amount",
+          columnName: "jabatan",
+          columnLabel: "jabatan",
           sortEnabled: false,
         },
         {
-          columnName: "Status",
-          columnLabel: "status",
-          sortingField: "status.label",
+          columnName: "perusahaan",
+          columnLabel: "perusahaan",
           sortEnabled: false,
         },
         {
-          columnName: "Date",
-          columnLabel: "date",
+          columnName: "No Handphone",
+          columnLabel: "no_hp",
           sortEnabled: false,
         },
         {
-          columnName: "Invoice",
-          columnLabel: "invoice",
+          columnName: "Action",
+          columnLabel: "action",
           sortEnabled: false,
         },
       ],
     };
+  },
+  computed: {
+    ...mapState({
+      dataReferensiModule: (state) => state.dataReferensiModule.data,
+    })
+  },
+  components: {
+    LayoutProfileAside,
+    Field,
+    ErrorMessage,
+  },
+  mounted() {
+    this.getListReferensi(),
+    this.cleanForm()
+  },
+  methods: {
+    ...mapActions('dataReferensiModule', [
+      'getListReferensi',
+      'getReferensiById',
+      'submitForm',
+      'updateForm',
+      'deleteReferensi',
+      'cleanForm'
+    ]),
+    async submit() {
+      const submit = await this.submitForm()
+      if (submit) {
+        this.getListReferensi();
+        this.cleanForm();
+        console.log('Submit Berhasil');
+      } else {
+        console.log('Submit Error');
+      }
+    },
+    async edit(id){
+      this.$store.commit('dataReferensiModule/changeDataReferensi', {
+        idReferensi: id
+      })
+      await this.getReferensiById()
+    },
+    async update() {
+      const update = await this.updateForm()
+      if (update) {
+        this.getListReferensi();
+        this.cleanForm();
+        console.log('Update Berhasil');
+      } else {
+        console.log('Update Error');
+      }
+    },
+    async delReferensi(id) {
+      this.$store.commit('dataReferensiModule/changeDataReferensi', {
+        idReferensi: id
+      })
+      const del = await this.deleteReferensi()
+      if (del) {
+        this.getListReferensi();
+        this.cleanForm();
+        console.log('Delete Berhasil');
+      } else {
+        console.log('Delete Error');
+      }
+    }
   },
 
   components: {
