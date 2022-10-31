@@ -11,6 +11,8 @@ import StateManagement from "@/store/modules/StateManagement";
 import DataPersonal from "@/store/modules/views/DataPersonalModule";
 import DataOrganisasi from "@/store/modules/views/DataOrganisasiModule";
 import DataReferensi from "@/store/modules/views/DataReferensiModule";
+import Narasumber from "@/store/modules/views/NarasumberModule";
+import Publikasi from "@/store/modules/views/PublikasiModule";
 
 config.rawError = true;
 
@@ -26,6 +28,8 @@ const store = createStore({
     dataPersonalModule: DataPersonal,
     dataOrganisasiModule: DataOrganisasi,
     dataReferensiModule: DataReferensi,
+    narasumberModule: Narasumber,
+    publikasiModule: Publikasi,
   },
 });
 
