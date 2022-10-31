@@ -155,13 +155,8 @@
               <div class="row">
                 <div class="col-sm-12">
                   <div class="pengaturan__update">
-                    <router-link to="#" class="btn btn-transparent-portal-soft"
-                      >Kembali</router-link
-                    >
-
-                    <router-link to="#" class="btn btn-success-portal-soft"
-                      >Selanjutnya</router-link
-                    >
+                    <router-link to="#" class="btn btn-transparent-portal-soft">Kembali</router-link>
+                    <router-link to="#" class="btn btn-success-portal-soft">Selanjutnya</router-link>
                   </div>
                 </div>
               </div>
