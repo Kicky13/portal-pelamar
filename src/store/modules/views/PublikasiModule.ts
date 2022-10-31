@@ -8,30 +8,34 @@ const state = {
         listPublikasi: ref([]),
         column: [
             {
-                columnName: "judul_publikasi",
-                columnLabel: "Judul Publikasi",
+                columnLabel: "judul",
+                columnName: "Judul Publikasi",
+                sortEnabled: false,
             },
             {
-                columnName: "media_publikasi",
-                columnLabel: "Media Publikasi",
+                columnLabel: "media",
+                columnName: "Media Publikasi",
+                sortEnabled: false,
             },
             {
-                columnName: "tahun",
-                columnLabel: "Tahun",
+                columnLabel: "tahun",
+                columnName: "Tahun",
+                sortEnabled: false,
             },
             {
-                columnName: "action",
-                columnLabel: "Action",
+                columnLabel: "action",
+                columnName: "Action",
+                sortEnabled: false,
             },
         ],
         formData: {
-            judul_publikasi: '',
-            media_publikasi: '',
+            judul: '',
+            media: '',
             tahun: '',
         },
         validator: {
-            judul_publikasi: false,
-            media_publikasi: false,
+            judul: false,
+            media: false,
             tahun: false,
         },
     },
@@ -98,8 +102,8 @@ const actions = {
     async validateForm({commit, state}) {
         const { data } = state
         let validator = {
-            judul_publikasi: data.formData.judul_publikasi.length < 1 || data.formData.judul_publikasi == null ? true : false,
-            media_publikasi: data.formData.media_publikasi.length == '' || data.formData.media_publikasi == null ? true : false,
+            judul: data.formData.judul.length < 1 || data.formData.judul == null ? true : false,
+            media: data.formData.media.length == '' || data.formData.media == null ? true : false,
             tahun: data.formData.tahun.length == '' || data.formData.tahun == null ? true : false,
         }
         console.log(validator)
@@ -107,7 +111,7 @@ const actions = {
             validator: validator
         })
 
-        if (validator.judul_publikasi || validator.tahun || validator.media_publikasi) {
+        if (validator.judul || validator.tahun || validator.media) {
             return false
         } else {
             return true
