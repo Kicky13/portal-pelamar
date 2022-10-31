@@ -22,9 +22,10 @@
                     >
                     <div class="col-sm-9">
                       <input
-                        type="email"
+                        type="text"
                         class="form-control personal__form"
-                        id="inputPassword" />
+                        v-model="dataReferensiModule.formData.nama_ref"
+                        id="inputNamaRef" />
                     </div>
                   </div>
                   <div class="form-group row">
@@ -35,9 +36,10 @@
                     >
                     <div class="col-sm-9">
                       <input
-                        type="email"
+                        type="text"
                         class="form-control personal__form"
-                        id="inputPassword" />
+                        v-model="dataReferensiModule.formData.jabatan"
+                        id="inputJabatan" />
                     </div>
                   </div>
                 </div>
@@ -50,9 +52,10 @@
                     >
                     <div class="col-sm-9">
                       <input
-                        type="email"
+                        type="text"
                         class="form-control personal__form"
-                        id="inputPassword" />
+                        v-model="dataReferensiModule.formData.perusahaan"
+                        id="inputPerusahaan" />
                     </div>
                   </div>
                   <div class="form-group row">
@@ -70,7 +73,8 @@
                       <input
                         type="number"
                         class="form-control personal__form"
-                        id="inputPassword" />
+                        v-model="dataReferensiModule.formData.no_hp"
+                        id="inputNoHp" />
                     </div>
                   </div>
                 </div>
@@ -78,8 +82,15 @@
               <div class="row">
                 <div class="col-sm-12">
                   <div class="pengaturan__update">
-                    <button class="btn btn-primary-portal">
+                    <button v-if="!dataReferensiModule.isSubmitLoading" @click="submit" class="btn btn-primary-portal">
                       <i class="fas fa-plus"></i> Tambah Referensi
+                    </button>
+                    <button v-else @click="submit" disabled class="btn btn-primary-portal">
+                      <span class="indicator-label">Mohon Tunggu
+                        <span
+                          class="spinner-border spinner-border-sm align-middle ms-2">
+                        </span>
+                      </span>
                     </button>
                   </div>
                 </div>
@@ -182,12 +193,14 @@
 <script>
 import LayoutProfileAside from "@/views/crafted/layout/LayoutProfile.vue";
 import KTDatatable from "@/components/kt-datatable/KTDataTable.vue";
+import { Field, ErrorMessage } from "vee-validate";
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "BackOfficeReferensi",
   data() {
     return {
-      title: "Referensi",
+      title: "Data Referensi",
       tableHeader: [
         {
           columnName: "Order id",
@@ -217,6 +230,33 @@ export default {
         },
       ],
     };
+  },
+  computed: {
+    ...mapState({
+      dataReferensiModule: (state) => state.dataReferensiModule.data,
+    })
+  },
+  components: {
+    LayoutProfileAside,
+    Field,
+    ErrorMessage,
+  },
+  mounted() {
+    this.getListReferensi()
+  },
+  methods: {
+    ...mapActions('dataReferensiModule', [
+      'getListReferensi',
+      'submitForm',
+    ]),
+    async submit() {
+      const submit = await this.submitForm()
+      if (submit) {
+        console.log('Submit Berhasil');
+      } else {
+        console.log('Submit Error');
+      }
+    },
   },
 
   components: {
