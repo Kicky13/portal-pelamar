@@ -7,6 +7,10 @@ import BreadcrumbsModule from "@/store/modules/BreadcrumbsModule";
 import ConfigModule from "@/store/modules/ConfigModule";
 import ThemeModeModule from "@/store/modules/ThemeModeModule";
 import StateManagement from "@/store/modules/StateManagement";
+// Views
+import DataPersonal from "@/store/modules/views/DataPersonalModule";
+import Narasumber from "@/store/modules/views/NarasumberModule";
+import Publikasi from "@/store/modules/views/PublikasiModule";
 
 config.rawError = true;
 
@@ -18,6 +22,10 @@ const store = createStore({
     ConfigModule,
     ThemeModeModule,
     StateManagement,
+    // Views
+    dataPersonalModule: DataPersonal,
+    narasumberModule: Narasumber,
+    publikasiModule: Publikasi,
   },
 });
 

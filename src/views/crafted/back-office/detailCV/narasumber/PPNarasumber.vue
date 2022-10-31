@@ -27,7 +27,9 @@
                       <input
                         type="email"
                         class="form-control narasumber__form"
+                        v-model="narasumberModule.formData.nama_acara"
                         id="inputPassword" />
+                      <span v-show="narasumberModule.validator.nama_acara" class="text-danger">Wajib Diisi.</span>
                     </div>
                   </div>
 
@@ -41,11 +43,14 @@
                       <select
                         class="custom_form_select w-50"
                         placeholder="Select..."
+                        v-model="narasumberModule.formData.tahun"
                         as="select">
-                        <option value="Dalam Negeri">Dalam Negeri</option>
-                        <option value="Luar Negeri">Dalam Negeri</option>
+                        <option selected disabled value="">Pilih Salah Satu</option>
+                        <option v-for="(tahun, index) in yearList" :value="tahun">{{ tahun }}</option>
                       </select>
                     </div>
+                    <div class="col-sm-3"></div>
+                    <span v-show="narasumberModule.validator.tahun" class="col-sm-9 text-danger">Wajib Memilih Salah satu.</span>
                   </div>
                   <div class="form-group row">
                     <label
@@ -55,9 +60,11 @@
                     >
                     <div class="col-sm-9">
                       <input
-                        type="email"
+                        type="number"
                         class="form-control narasumber__form"
+                        v-model="narasumberModule.formData.jumlah_peserta"
                         id="inputPassword" />
+                      <span v-show="narasumberModule.validator.jumlah_peserta" class="text-danger">Wajib Diisi.</span>
                     </div>
                   </div>
                 </div>
@@ -70,9 +77,11 @@
                     >
                     <div class="col-sm-9">
                       <input
-                        type="email"
+                        type="text"
                         class="form-control narasumber__form"
+                        v-model="narasumberModule.formData.penyelenggara"
                         id="inputPassword" />
+                      <span v-show="narasumberModule.validator.penyelenggara" class="text-danger">Wajib Diisi.</span>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -83,9 +92,11 @@
                     >
                     <div class="col-sm-9">
                       <input
-                        type="email"
+                        type="text"
                         class="form-control narasumber__form"
+                        v-model="narasumberModule.formData.lokasi"
                         id="inputPassword" />
+                      <span v-show="narasumberModule.validator.lokasi" class="text-danger">Wajib Diisi.</span>
                     </div>
                   </div>
                 </div>
@@ -93,8 +104,15 @@
               <div class="row">
                 <div class="col-sm-12">
                   <div class="pengaturan__update">
-                    <button class="btn btn-primary-portal">
+                    <button @click="handleSubmit" v-if="!narasumberModule.isSubmitLoading" class="btn btn-primary-portal">
                       <i class="fas fa-plus"></i> Tambah Riwayat Pembicara
+                    </button>
+                    <button v-else class="btn btn-primary-portal">
+                      <span class="indicator-label">Mohon Tunggu
+                        <span
+                          class="spinner-border spinner-border-sm align-middle ms-2">
+                        </span>
+                      </span>
                     </button>
                   </div>
                 </div>
@@ -105,35 +123,35 @@
                     class="text-center"
                     @on-sort="sort"
                     @on-items-select="onItemSelect"
-                    :data="data"
-                    :header="tableHeader">
-                    <template v-slot:customer="{ row: customer }">
+                    :data="narasumberModule.listNarasumber"
+                    :header="narasumberModule.column">
+                    <template v-slot:nama_acara="{ row: listNarasumber }">
                       <router-link
                         to="/apps/subscriptions/view-subscription"
                         href=""
                         class="text-gray-800 text-hover-primary mb-1">
-                        {{ customer.customer }}
+                        {{ listNarasumber.nama_acara }}
                       </router-link>
                     </template>
-                    <template v-slot:status="{ row: customer }">
+                    <template v-slot:tahun="{ row: listNarasumber }">
                       <a href="#" class="text-gray-600 text-hover-primary mb-1">
-                        <div :class="`badge badge-light-${customer.color}`">
-                          {{ customer.status }}
+                        <div :class="`badge badge-light-success`">
+                          {{ listNarasumber.tahun }}
                         </div>
                       </a>
                     </template>
-                    <template v-slot:billing="{ row: customer }">
+                    <template v-slot:jumlah_peserta="{ row: listNarasumber }">
                       <div class="badge badge-light">
-                        {{ customer.billing }}
+                        {{ listNarasumber.jumlah_peserta }}
                       </div>
                     </template>
-                    <template v-slot:product="{ row: customer }">
-                      {{ customer.product }}
+                    <template v-slot:penyelenggara="{ row: listNarasumber }">
+                      {{ listNarasumber.penyelenggara }}
                     </template>
-                    <template v-slot:createdDate="{ row: customer }">
-                      {{ customer.createdDate }}
+                    <template v-slot:lokasi="{ row: listNarasumber }">
+                      {{ listNarasumber.lokasi }}
                     </template>
-                    <template v-slot:actions="{ row: customer }">
+                    <template v-slot:actions="{ row: listNarasumber }">
                       <a
                         href="#"
                         class="btn btn-sm btn-light btn-active-light-primary"
@@ -162,7 +180,7 @@
                         <!--begin::Menu item-->
                         <div class="menu-item px-3">
                           <a
-                            @click="deleteSubscription(customer.id)"
+                            @click="deleteData(listNarasumber.id)"
                             class="menu-link px-3"
                             >Delete</a
                           >
@@ -197,43 +215,67 @@
 <script>
 import LayoutProfileAside from "@/views/crafted/layout/LayoutProfile.vue";
 import KTDatatable from "@/components/kt-datatable/KTDataTable.vue";
+import { mapState, mapActions } from "vuex";
+import Swal from "sweetalert2/dist/sweetalert2.min.js";
 
 export default {
   name: "BackOfficeNarasumber",
+  computed: {
+    ...mapState({
+      narasumberModule: (state) => state.narasumberModule.data,
+    })
+  },
+  mounted() {
+    this.getNarasumber();
+    this.getYears();
+  },
+  methods: {
+    ...mapActions('narasumberModule', [
+      'getNarasumber',
+      'storeNarasumber',
+      'validateForm',
+    ]),
+    async handleSubmit() {
+      const validateForm = await this.validateForm()
+      if (validateForm) {
+        const submit = await this.storeNarasumber()
+        if (submit) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Data Berhasil Disimpan!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          this.getNarasumber();
+        } else {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Something went wrong, please try again later!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      }
+    },
+    getYears() {
+      let currentDate = new Date();
+      let currentYear = currentDate.getFullYear();
+      
+      for (let i = 0; i < 5; i++) {
+        let yearIndex = currentYear - i;
+        this.yearList.push(yearIndex)
+      }
+      console.log(this.yearList)
+    },
+  },
   data() {
     return {
       title: "Narasumber",
-      tableHeader: [
-        {
-          columnName: "Order id",
-          columnLabel: "order",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Amount",
-          columnLabel: "amount",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Status",
-          columnLabel: "status",
-          sortingField: "status.label",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Date",
-          columnLabel: "date",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Invoice",
-          columnLabel: "invoice",
-          sortEnabled: false,
-        },
-      ],
+      yearList: [],
     };
   },
-
   components: {
     LayoutProfileAside,
     KTDatatable,
