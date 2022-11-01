@@ -1,83 +1,407 @@
 <template>
-    <LayoutProfileAside :titlePage="title">
-      
-      <div class="row">
-        <div class="col-sm-7">
-          <div class="card-profile">
-            <div class="title-card">
-              <img :src="require('@/assets/images/icon/ic_user.svg')" alt="" />
-              <span>Akun</span>
-            </div>
-            <div class="body-card">
-              <div class="container pengaturan">
-                <div class="form-group row">
-                  <label
-                    for="staticEmail"
-                    class="col-sm-3 col-form-label pengaturan__label"
-                    >Email :</label
-                  >
-                  <div class="col-sm-9">
-                    <input
-                      type="email"
-                      class="form-control pengaturan__form"
-                      id="inputPassword" />
+  <LayoutProfileAside :titlePage="title">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card-profile">
+          <div class="title-card d-flex align-items-center">
+            <span>Riwayat Pendidikan Formal</span>
+          </div>
+          <div class="body-card">
+            <div class="referensi">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group row">
+                    <label
+                      for="staticEmail"
+                      class="col-sm-2 col-form-label personal__label"
+                      >Jenjang<span class="text-danger">*</span></label
+                    >
+                    <div class="col-sm-10">
+                      <select
+                        class="custom_form_select w-100"
+                        placeholder="Select..."
+                        as="select"
+                        v-model="pendidikanPelatihanModule.formDataPendidikan.id_jenjang"
+                        name="jenjang">
+                        <option selected disabled value="">Pilih Salah Satu</option>
+                        <option
+                          v-for="(jenjang, index) in pendidikanPelatihanModule.listJenjang"
+                          :value="jenjang.id"
+                          :key="index">
+                          {{ jenjang.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-6">
+                      <div class="row">
+                        <label
+                          for="staticEmail"
+                          class="col-sm-4 col-form-label personal__label"
+                          >Negara<span class="text-danger">*</span></label
+                        >
+                        <div class="col-sm-8">
+                          <select
+                            class="custom_form_select w-100"
+                            placeholder="Select..."
+                            as="select"
+                            v-model="pendidikanPelatihanModule.formDataPendidikan.id_negara"
+                            @change="changeNegaraHandler($event)"
+                            name="negara">
+                            <option selected disabled value="">Pilih Salah Satu</option>
+                            <option
+                              v-for="(negara, index) in pendidikanPelatihanModule.listNegara"
+                              :value="negara.id"
+                              :key="index"
+                              :kode="negara.kode">
+                              {{ negara.nama }}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="row">
+                        <label
+                          for="staticEmail"
+                          class="col-sm-4 col-form-label personal__label"
+                          >Kota<span class="text-danger">*</span></label
+                        >
+                        <div class="col-sm-8">
+                          <select
+                            class="custom_form_select w-100"
+                            placeholder="Select..."
+                            as="select"
+                            v-model="pendidikanPelatihanModule.formDataPendidikan.id_kota"
+                            name="kota">
+                            <option selected disabled value="">Pilih Salah Satu</option>
+                            <option
+                              v-for="(kota, index) in pendidikanPelatihanModule.listKota"
+                              :value="kota.id"
+                              :key="index">
+                              {{ kota.nama }}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label
+                      for="staticEmail"
+                      class="col-sm-2 personal__label"
+                      >Penghargaan<span class="text-danger">*</span></label
+                    >
+                    <div class="col-sm-10">
+                      <textarea
+                        class="form-control personal__form"
+                        style="min-height:100px !important;"
+                        v-model="pendidikanPelatihanModule.formDataPendidikan.penghargaan"
+                        id="penghargaan">
+                      </textarea>
+                    </div>
                   </div>
                 </div>
-                <div class="form-group row">
-                  <label
-                    for="inputPassword"
-                    class="col-sm-3 col-form-label pengaturan__label"
-                    >No HP :</label
-                  >
-                  <div class="col-sm-9">
-                    <input
-                      type="password"
-                      class="form-control pengaturan__form"
-                      id="inputPassword" />
+                <div class="col-sm-6">
+                  <div class="form-group row">
+                    <label
+                      for="staticEmail"
+                      class="col-sm-3 col-form-label personal__label"
+                      >Jurusan<span class="text-danger">*</span></label
+                    >
+                    <div class="col-sm-9">
+                      <input
+                        type="text"
+                        class="form-control personal__form"
+                        v-model="pendidikanPelatihanModule.formDataPendidikan.jurusan"
+                        id="jurusan" />
+                    </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-12">
-                    <div class="pengaturan__update">
-                      <button class="btn btn-success-portal-soft">Update</button>
+                  <div class="form-group row">
+                    <label
+                      for="staticEmail"
+                      class="col-sm-3 col-form-label personal__label"
+                      >Perguruan Tinggi<span class="text-danger">*</span></label
+                    >
+                    <div class="col-sm-9">
+                      <select
+                        class="custom_form_select w-100"
+                        placeholder="Select..."
+                        as="select"
+                        v-model="pendidikanPelatihanModule.formDataPendidikan.id_perguruan_tinggi"
+                        name="kota">
+                        <option selected disabled value="">Pilih Salah Satu</option>
+                        <option
+                          v-for="(kampus, index) in pendidikanPelatihanModule.listKampus"
+                          :value="kampus.id"
+                          :key="index">
+                          {{ kampus.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label
+                      for="staticEmail"
+                      class="col-sm-3 col-form-label personal__label"
+                      >Tahun Lulus<span class="text-danger">*</span></label
+                    >
+                    <div class="col-sm-9">
+                      <select
+                        class="custom_form_select w-100"
+                        placeholder="Select..."
+                        v-model="pendidikanPelatihanModule.formDataPendidikan.tahun_lulus"
+                        as="select">
+                        <option selected disabled value="">Pilih Salah Satu</option>
+                        <option v-for="(data, index) in yearList" :value="data">{{ data }}</option>
+                      </select>
                     </div>
                   </div>
                 </div>
               </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="pengaturan__update">
+                    <button v-if="!pendidikanPelatihanModule.isLoading1 && pendidikanPelatihanModule.idPendidikan == 0" @click="submit_pendidikan" class="btn btn-primary-portal">
+                      <i class="fas fa-plus"></i> Tambah
+                    </button>
+                    <button v-else-if="!pendidikanPelatihanModule.isLoading1 && pendidikanPelatihanModule.idPendidikan != 0" @click="update_pendidikan" class="btn btn-primary-portal">
+                      <i class="fas fa-arrow-circle"></i> Update
+                    </button>
+                    <button v-else @click="submit_pendidikan" disabled class="btn btn-primary-portal">
+                      <span class="indicator-label">Mohon Tunggu
+                        <span
+                          class="spinner-border spinner-border-sm align-middle ms-2">
+                        </span>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <KTDatatable
+                    class="text-center"
+                    @on-sort="sort"
+                    @on-items-select="onItemSelect"
+                    :loading="pendidikanPelatihanModule.isLoading1"
+                    :data="pendidikanPelatihanModule.listPendidikan"
+                    :header="tableHeader">
+                    <template v-slot:jenjang="{ row: listPendidikan }">
+                      {{ listPendidikan.jenjang.name }} - {{ listPendidikan.perguruan_tinggi.name }}
+                    </template>
+                    <template v-slot:tahun_lulus="{ row: listPendidikan }">
+                      {{ listPendidikan.tahun_lulus }}
+                    </template>
+                    <template v-slot:jurusan="{ row: listPendidikan }">
+                      {{ listPendidikan.jurusan }}
+                    </template>
+                    <template v-slot:kota="{ row: listPendidikan }">
+                      {{ listPendidikan.kota.nama }}, {{ listPendidikan.negara.nama }}
+                    </template>
+                    <template v-slot:penghargaan="{ row: listPendidikan }">
+                      {{ listPendidikan.penghargaan }}
+                    </template>
+                    <template v-slot:action="{ row: listPendidikan }">
+                      <button @click="edit_pendidikan(listPendidikan.id)" class="btn btn-warning">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button @click="delPendidikan(listPendidikan.id)" class="btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </template>
+                  </KTDatatable>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-sm-5">
-          <div class="card-profile">
-            <div class="title-card">
-              <img :src="require('@/assets/images/icon/ic_lock.svg')" alt="" />
-              <span>Ubah Password</span>
-            </div>
-            <div class="body-card">
-              <div class="pengaturan">
-                <div class="form-group row">
-                  <div class="col-sm-12">
-                    <input
-                      placeholder="Password Baru"
-                      type="password"
-                      class="form-control pengaturan__form"
-                      id="inputPassword" />
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <div class="col-sm-12">
-                    <input
-                      placeholder="Ketik Ulang Password Baru"
-                      type="password"
-                      class="form-control pengaturan__form"
-                      id="inputPassword" />
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-12">
-                    <div class="pengaturan__update">
-                      <button class="btn btn-success-portal-soft">Update</button>
+          <div>
+            <hr>
+          </div>
+          <div class="title-card d-flex align-items-center">
+            <span>Riwayat Pelatihan</span>
+          </div>
+          <div class="body-card">
+            <div class="referensi">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group row">
+                    <label
+                      for="staticEmail"
+                      class="col-sm-3 col-form-label personal__label"
+                      >Nama Pelatihan<span class="text-danger">*</span></label
+                    >
+                    <div class="col-sm-9">
+                      <input
+                        type="text"
+                        class="form-control personal__form"
+                        v-model="pendidikanPelatihanModule.formDataPelatihan.name"
+                        id="nama_pelatihan" />
                     </div>
+                  </div>
+                  <div class="form-group row">
+                    <label
+                      for="staticEmail"
+                      class="col-sm-3 col-form-label personal__label"
+                      >Penyelenggara<span class="text-danger">*</span></label
+                    >
+                    <div class="col-sm-9">
+                      <input
+                        type="text"
+                        class="form-control personal__form"
+                        v-model="pendidikanPelatihanModule.formDataPelatihan.penyelenggara"
+                        id="penyelenggara" />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label
+                      for="staticEmail"
+                      class="col-sm-3 col-form-label personal__label"
+                      >Tahun<span class="text-danger">*</span></label
+                    >
+                    <div class="col-sm-9">
+                      <select
+                        class="custom_form_select w-100"
+                        placeholder="Select..."
+                        v-model="pendidikanPelatihanModule.formDataPelatihan.tahun"
+                        as="select">
+                        <option selected disabled value="">Pilih Salah Satu</option>
+                        <option v-for="(data, index) in yearList" :value="data">{{ data }}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group row">
+                    <label
+                      for="staticEmail"
+                      class="col-sm-3 col-form-label personal__label"
+                      >Kota<span class="text-danger">*</span></label
+                    >
+                    <div class="col-sm-9">
+                      <select
+                        class="custom_form_select w-100"
+                        placeholder="Select..."
+                        as="select"
+                        v-model="pendidikanPelatihanModule.formDataPelatihan.id_kota"
+                        name="kotapelatihan">
+                        <option selected disabled value="">Pilih Salah Satu</option>
+                        <option
+                          v-for="(kota, index) in pendidikanPelatihanModule.listKotaPelatihan"
+                          :value="kota.id"
+                          :key="index">
+                          {{ kota.nama }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label
+                      for="staticEmail"
+                      class="col-sm-3 personal__label"
+                      >Kategori Pelatihan<span class="text-danger">*</span></label
+                    >
+                    <div class="col-sm-9">
+                      <select
+                        class="custom_form_select w-100"
+                        placeholder="Select..."
+                        as="select"
+                        v-model="pendidikanPelatihanModule.formDataPelatihan.id_kategori_pelatihan"
+                        name="kategori_pelatihan">
+                        <option selected disabled value="">Pilih Salah Satu</option>
+                        <option
+                          v-for="(kat, index) in pendidikanPelatihanModule.listKategoriPelatihan"
+                          :value="kat.id"
+                          :key="index">
+                          {{ kat.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label
+                      for="staticEmail"
+                      class="col-sm-3 personal__label"
+                      >Nomor Sertifikat<span class="text-danger">*</span></label
+                    >
+                    <div class="col-sm-9">
+                      <input
+                        type="text"
+                        class="form-control personal__form"
+                        v-model="pendidikanPelatihanModule.formDataPelatihan.nomor_sertifikat"
+                        id="nomor_sertifikat" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="pengaturan__update">
+                    <button v-if="!pendidikanPelatihanModule.isLoading2 && pendidikanPelatihanModule.idPelatihan == 0" @click="submit_pelatihan" class="btn btn-primary-portal">
+                      <i class="fas fa-plus"></i> Tambah
+                    </button>
+                    <button v-else-if="!pendidikanPelatihanModule.isLoading2 && pendidikanPelatihanModule.idPelatihan != 0" @click="update_pelatihan" class="btn btn-primary-portal">
+                      <i class="fas fa-arrow-circle"></i> Update
+                    </button>
+                    <button v-else @click="submit_pelatihan" disabled class="btn btn-primary-portal">
+                      <span class="indicator-label">Mohon Tunggu
+                        <span
+                          class="spinner-border spinner-border-sm align-middle ms-2">
+                        </span>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <KTDatatable
+                    class="text-center"
+                    @on-sort="sort"
+                    @on-items-select="onItemSelect"
+                    :loading="pendidikanPelatihanModule.isLoading2"
+                    :data="pendidikanPelatihanModule.listPelatihan"
+                    :header="tableHeader2">
+                    <template v-slot:nama="{ row: listPelatihan }">
+                      {{ listPelatihan.name }}
+                    </template>
+                    <template v-slot:tahun="{ row: listPelatihan }">
+                      {{ listPelatihan.tahun }}
+                    </template>
+                    <template v-slot:penyelenggara="{ row: listPelatihan }">
+                      {{ listPelatihan.penyelenggara }}
+                    </template>
+                    <template v-slot:kota="{ row: listPelatihan }">
+                      {{ listPelatihan.kota.nama }}
+                    </template>
+                    <template v-slot:kategori="{ row: listPelatihan }">
+                      {{ listPelatihan.kategori.name }}
+                    </template>
+                    <template v-slot:no_sertifikat="{ row: listPelatihan }">
+                      {{ listPelatihan.nomor_sertifikat }}
+                    </template>
+                    <template v-slot:action="{ row: listPelatihan }">
+                      <button @click="edit_pelatihan(listPelatihan.id)" class="btn btn-warning">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button @click="delPelatihan(listPelatihan.id)" class="btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </template>
+                  </KTDatatable>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="pengaturan__update">
+                    <router-link to="#" class="btn btn-transparent-portal-soft"
+                      >Kembali</router-link
+                    >
+
+                    <router-link to="#" class="btn btn-success-portal-soft"
+                      >Selanjutnya</router-link
+                    >
                   </div>
                 </div>
               </div>
@@ -85,22 +409,237 @@
           </div>
         </div>
       </div>
-    </LayoutProfileAside>
-  </template>
-  <script>
-  import LayoutProfileAside from "@/views/crafted/layout/LayoutProfile.vue";
-  
-  export default {
-    name: "BackOfficePengaturan",
-    data() {
-      return {
-        title: "Pengaturan",
-      };
+    </div>
+  </LayoutProfileAside>
+</template>
+<script>
+import LayoutProfileAside from "@/views/crafted/layout/LayoutProfile.vue";
+import KTDatatable from "@/components/kt-datatable/KTDataTable.vue";
+import { Field, ErrorMessage } from "vee-validate";
+import { mapState, mapActions } from "vuex";
+
+export default {
+  name: "BackOfficePendidikan",
+  data() {
+    return {
+      title: "Data Keanggotaan Pendidikan",
+      yearList: [],
+      tableHeader: [
+        {
+          columnName: "Jenjang Pendidikan",
+          columnLabel: "jenjang",
+          sortEnabled: false,
+        },
+        {
+          columnName: "Tahun Lulus",
+          columnLabel: "tahun_lulus",
+          sortEnabled: false,
+        },
+        {
+          columnName: "Jurusan",
+          columnLabel: "jurusan",
+          sortEnabled: false,
+        },
+        {
+          columnName: "Kota dan Negara",
+          columnLabel: "kota",
+          sortEnabled: false,
+        },
+        {
+          columnName: "Penghargaan",
+          columnLabel: "penghargaan",
+          sortEnabled: false,
+        },
+        {
+          columnName: "Action",
+          columnLabel: "action",
+          sortEnabled: false,
+        },
+      ],
+      tableHeader2: [
+        {
+          columnName: "Nama Pelatihan",
+          columnLabel: "nama",
+          sortEnabled: false,
+        },
+        {
+          columnName: "Tahun",
+          columnLabel: "tahun",
+          sortEnabled: false,
+        },
+        {
+          columnName: "Nama Penyelenggara",
+          columnLabel: "penyelenggara",
+          sortEnabled: false,
+        },
+        {
+          columnName: "Kota Penyelenggara",
+          columnLabel: "kota",
+          sortEnabled: false,
+        },
+        {
+          columnName: "Kategori",
+          columnLabel: "kategori",
+          sortEnabled: false,
+        },
+        {
+          columnName: "Nomor Sertifikat",
+          columnLabel: "no_sertifikat",
+          sortEnabled: false,
+        },
+        {
+          columnName: "Action",
+          columnLabel: "action",
+          sortEnabled: false,
+        },
+      ],
+    };
+  },
+  computed: {
+    ...mapState({
+      pendidikanPelatihanModule: (state) => state.pendidikanPelatihanModule.data,
+    })
+  },
+  components: {
+    LayoutProfileAside,
+    Field,
+    ErrorMessage,
+  },
+  mounted() {
+    this.getYears(),
+    this.getListJenjang(),
+    this.getListNegara(),
+    this.getListKota(),
+    this.getListKampus(),
+    this.getListKotaPelatihan(),
+    this.getListKategoriPelatihan(),
+    this.getListPendidikan(),
+    this.getListPelatihan(),
+    this.cleanFormPendidikan(),
+    this.cleanFormPelatihan()
+  },
+  methods: {
+    ...mapActions('pendidikanPelatihanModule', [
+      'getListJenjang',
+      'getListNegara',
+      'getListKota',
+      'getListKampus',
+      'getListKotaPelatihan',
+      'getListKategoriPelatihan',
+      'getListPendidikan',
+      'getListPelatihan',
+      'getPendidikanById',
+      'getPelatihanById',
+      'submitFormPendidikan',
+      'submitFormPelatihan',
+      'updateFormPendidikan',
+      'updateFormPelatihan',
+      'deletePendidikan',
+      'deletePelatihan',
+      'cleanFormPendidikan',
+      'cleanFormPelatihan'
+    ]),
+    getYears() {
+      let currentDate = new Date();
+      let currentYear = currentDate.getFullYear();
+      
+      for (let i = 0; i < 20; i++) {
+        let yearIndex = currentYear - i;
+        this.yearList.push(yearIndex)
+      }
     },
-  
-    components: {
-      LayoutProfileAside,
+    async changeNegaraHandler() {
+      const n = event.target.options[event.target.options.selectedIndex].getAttribute('kode');
+      this.$store.commit('pendidikanPelatihanModule/changeDataPendidikan', {
+        paramKota: {
+          kode_provinsi: n
+        }
+      })
+      await this.getListKota()
     },
-  };
-  </script>
-  
+    async submit_pendidikan() {
+      const submit = await this.submitFormPendidikan()
+      if (submit) {
+        this.getListPendidikan();
+        this.cleanFormPendidikan();
+        console.log('Submit Berhasil');
+      } else {
+        console.log('Submit Error');
+      }
+    },
+    async edit_pendidikan(id){
+      this.$store.commit('pendidikanPelatihanModule/changeDataPendidikan', {
+        idPendidikan: id
+      })
+      await this.getPendidikanById()
+    },
+    async update_pendidikan() {
+      const update = await this.updateFormPendidikan()
+      if (update) {
+        this.getListPendidikan();
+        this.cleanFormPendidikan();
+        console.log('Update Berhasil');
+      } else {
+        console.log('Update Error');
+      }
+    },
+    async delPendidikan(id) {
+      this.$store.commit('pendidikanPelatihanModule/changeDataPendidikan', {
+        idPendidikan: id
+      })
+      const del = await this.deletePendidikan()
+      if (del) {
+        this.getListPendidikan();
+        this.cleanFormPendidikan();
+        console.log('Delete Berhasil');
+      } else {
+        console.log('Delete Error');
+      }
+    },
+    async submit_pelatihan() {
+      const submit = await this.submitFormPelatihan()
+      if (submit) {
+        this.getListPelatihan();
+        this.cleanFormPelatihan();
+        console.log('Submit Berhasil');
+      } else {
+        console.log('Submit Error');
+      }
+    },
+    async edit_pelatihan(id){
+      this.$store.commit('pendidikanPelatihanModule/changeDataPendidikan', {
+        idPelatihan: id
+      })
+      await this.getPelatihanById()
+    },
+    async update_pelatihan() {
+      const update = await this.updateFormPelatihan()
+      if (update) {
+        this.getListPelatihan();
+        this.cleanFormPelatihan();
+        console.log('Update Berhasil');
+      } else {
+        console.log('Update Error');
+      }
+    },
+    async delPelatihan(id) {
+      this.$store.commit('pendidikanPelatihanModule/changeDataPendidikan', {
+        idPelatihan: id
+      })
+      const del = await this.deletePelatihan()
+      if (del) {
+        this.getListPelatihan();
+        this.cleanFormPelatihan();
+        console.log('Delete Berhasil');
+      } else {
+        console.log('Delete Error');
+      }
+    }
+  },
+
+  components: {
+    LayoutProfileAside,
+    KTDatatable,
+  },
+};
+</script>

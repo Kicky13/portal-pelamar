@@ -26,7 +26,7 @@
                   </div>
                   <div class="form-group row">
                     <div class="col-sm-6">
-                      <div class="form-group row">
+                      <div class="row">
                         <label
                           for="staticEmail"
                           class="col-sm-4 personal__label"
@@ -42,7 +42,7 @@
                       </div>
                     </div>
                     <div class="col-sm-6">
-                      <div class="form-group row">
+                      <div class="row">
                         <label
                           for="staticEmail"
                           class="col-sm-4 personal__label"
