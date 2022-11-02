@@ -76,7 +76,10 @@
               <div class="row">
                 <div class="col-sm-12">
                   <div class="pengaturan__update">
-                    <button @click="handleSubmit" v-if="!publikasiModule.isSubmitLoading" class="btn btn-primary-portal">
+                    <button @click="handleSubmit" v-if="!publikasiModule.isSubmitLoading && publikasiModule.selectedRecordID == null" class="btn btn-primary-portal">
+                      <i class="fas fa-plus"></i> Tambah Publikasi
+                    </button>
+                    <button @click="handleUpdate" v-else-if="!publikasiModule.isSubmitLoading && publikasiModule.selectedRecordID != null" class="btn btn-primary-portal">
                       <i class="fas fa-plus"></i> Tambah Publikasi
                     </button>
                     <button v-else class="btn btn-primary-portal">
@@ -107,10 +110,10 @@
                       {{ data.tahun }}
                     </template>
                     <template v-slot:action="{ row: data }">
-                      <button @click="edit(data.id)" class="btn btn-warning">
+                      <button @click="getUpdateRecord(data.id)" class="btn btn-warning">
                         <i class="fas fa-edit"></i>
                       </button>
-                      <button @click="delReferensi(data.id)" class="btn btn-danger">
+                      <button @click="deleteRecord(data.id)" class="btn btn-danger">
                         <i class="fas fa-trash"></i>
                       </button>
                     </template>
@@ -152,8 +155,12 @@ export default {
   methods: {
     ...mapActions('publikasiModule', [
       'getPublikasi',
+      'getDetailPublikasi',
+      'updatePublikasi',
+      'deletePublikasi',
       'storePublikasi',
       'validateForm',
+      'clearForm',
     ]),
     async handleSubmit() {
       const validateForm = await this.validateForm()
@@ -167,7 +174,8 @@ export default {
             showConfirmButton: false,
             timer: 1500,
           });
-          this.getNarasumber();
+          this.getPublikasi();
+          this.clearForm();
         } else {
           Swal.fire({
             position: 'top-end',
@@ -178,6 +186,73 @@ export default {
           });
         }
       }
+    },
+    async getUpdateRecord(idRecord) {
+      await this.getDetailPublikasi(idRecord)
+    },
+    async deleteRecord(idRecord) {
+      console.log(idRecord)
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(() => {
+        this.progressDelete(idRecord);
+      })
+    },
+    async progressDelete(recordID) {
+      const deleteRecord = await this.deletePublikasi(recordID)
+        if (deleteRecord) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Data Berhasil Disimpan!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          this.getPublikasi();
+          this.clearForm();
+        } else {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Something went wrong, please try again later!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+    },
+    async handleUpdate() {
+      const validateForm = await this.validateForm()
+      if (validateForm) {
+        const submit = await this.updatePublikasi()
+        if (submit) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Data Berhasil Disimpan!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          this.getPublikasi();
+          this.clearForm();
+        } else {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Something went wrong, please try again later!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      }
+    },
+    cancelUpdate() {
+      this.clearForm()
     },
     getYears() {
       let currentDate = new Date();
@@ -192,36 +267,8 @@ export default {
   },
   data() {
     return {
-      title: "Narasumber",
+      title: "Publikasi",
       yearList: [],
-      tableHeader: [
-        {
-          columnName: "Order id",
-          columnLabel: "order",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Amount",
-          columnLabel: "amount",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Status",
-          columnLabel: "status",
-          sortingField: "status.label",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Date",
-          columnLabel: "date",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Invoice",
-          columnLabel: "invoice",
-          sortEnabled: false,
-        },
-      ],
     };
   },
   components: {

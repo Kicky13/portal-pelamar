@@ -14,6 +14,7 @@ import PendidikanPelatihan from "@/store/modules/views/PendidikanPelatihanModule
 import DataReferensi from "@/store/modules/views/DataReferensiModule";
 import Narasumber from "@/store/modules/views/NarasumberModule";
 import Publikasi from "@/store/modules/views/PublikasiModule";
+import Personifikasi from "@/store/modules/views/PersonifikasiModule";
 
 config.rawError = true;
 
@@ -32,6 +33,7 @@ const store = createStore({
     dataReferensiModule: DataReferensi,
     narasumberModule: Narasumber,
     publikasiModule: Publikasi,
+    personifikasiModule: Personifikasi,
   },
 });
 
