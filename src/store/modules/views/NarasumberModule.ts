@@ -5,6 +5,7 @@ const state = {
         isLoading: false,
         isSubmitLoading: false,
         listNarasumber: [],
+        selectedRecordID: null,
         column: [
             {
                 columnName: "Nama Acara",
@@ -84,6 +85,18 @@ const actions = {
             });
         }
     },
+    clearForm({commit, state}) {
+        commit('changeNarasumber', {
+            formData: {
+                nama_acara: '',
+                tahun: '',
+                jumlah_peserta: '',
+                penyelenggara: '',
+                lokasi: '',
+            },
+            selectedRecordID: null,
+        })
+    },
     async storeNarasumber({commit, state}) {
         const { data } = state
 
@@ -93,6 +106,100 @@ const actions = {
 
         try {
             const res = await ApiService.post('cv/narasumber', data.formData);
+            if (res.data.status_code == `201` || res.data.status_code == 201) {
+                await commit('changeNarasumber', {
+                    isSubmitLoading: false,
+                });
+                return true
+            } else {
+                await commit('changeNarasumber', {
+                    isSubmitLoading: false,
+                });
+                return false
+            }
+        } catch {
+            await commit('changeNarasumber', {
+                isSubmitLoading: false,
+            });
+            return false
+        }
+    },
+
+    async getDetailNarasumber({commit, state}, payload) {
+        const { data } = state
+
+        await commit('changeNarasumber', {
+            isSubmitLoading: false,
+            selectedRecordID: payload,
+        });
+
+        try {
+            const res = await ApiService.get('cv/narasumber/' + payload);
+            if (res.data.status_code == `201` || res.data.status_code == 201) {
+                console.log(res.data);
+                let responseData = res.data.data;
+                await commit('changeNarasumber', {
+                    isSubmitLoading: false,
+                    formData: {
+                        nama_acara: responseData.nama_acara,
+                        tahun: responseData.tahun,
+                        jumlah_peserta: responseData.jumlah_peserta,
+                        penyelenggara: responseData.penyelenggara,
+                        lokasi: responseData.lokasi,
+                    },
+                });
+                return true
+            } else {
+                await commit('changeNarasumber', {
+                    isSubmitLoading: false,
+                });
+                return false
+            }
+        } catch {
+            await commit('changeNarasumber', {
+                isSubmitLoading: false,
+            });
+            return false
+        }
+    },
+
+    async updateNarasumber({commit, state}) {
+        const { data } = state
+
+        await commit('changeNarasumber', {
+            isSubmitLoading: false,
+        });
+
+        try {
+            const res = await ApiService.put('cv/narasumber/' + data.selectedRecordID, data.formData);
+            if (res.data.status_code == `201` || res.data.status_code == 201) {
+                await commit('changeNarasumber', {
+                    isSubmitLoading: false,
+                });
+                return true
+            } else {
+                await commit('changeNarasumber', {
+                    isSubmitLoading: false,
+                });
+                return false
+            }
+        } catch {
+            await commit('changeNarasumber', {
+                isSubmitLoading: false,
+            });
+            return false
+        }
+    },
+
+    async deleteNarasumber({commit, state}, payload) {
+        const { data } = state
+
+        await commit('changeNarasumber', {
+            isSubmitLoading: false,
+        });
+
+        try {
+            const res = await ApiService.delete('cv/narasumber/' + payload);
             if (res.data.status_code == `201` || res.data.status_code == 201) {
                 await commit('changeNarasumber', {
                     isSubmitLoading: false,
