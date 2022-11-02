@@ -5,6 +5,7 @@ const state = {
     data: {
         isLoading: false,
         isSubmitLoading: false,
+        selectedRecordID: null,
         listPublikasi: ref([]),
         column: [
             {
@@ -71,6 +72,15 @@ const actions = {
             });
         }
     },
+    clearForm({commit, state}) {
+        commit('changePublikasi', {
+            formData: {
+                judul: '',
+                media: '',
+                tahun: '',
+            },
+        });
+    },
     async storePublikasi({commit, state}) {
         const { data } = state
 
@@ -80,6 +90,98 @@ const actions = {
 
         try {
             const res = await ApiService.post('cv/publikasi', data.formData);
+            if (res.data.status_code == `201` || res.data.status_code == 201) {
+                await commit('changePublikasi', {
+                    isSubmitLoading: false,
+                });
+                return true
+            } else {
+                await commit('changePublikasi', {
+                    isSubmitLoading: false,
+                });
+                return false
+            }
+        } catch {
+            await commit('changePublikasi', {
+                isSubmitLoading: false,
+            });
+            return false
+        }
+    },
+
+    async getDetailPublikasi({commit, state}, payload) {
+        const { data } = state
+
+        await commit('changePublikasi', {
+            isSubmitLoading: false,
+            selectedRecordID: payload,
+        });
+
+        try {
+            const res = await ApiService.get('cv/publikasi/' + payload);
+            if (res.data.status_code == `201` || res.data.status_code == 201) {
+                console.log(res.data);
+                let responseData = res.data.data;
+                await commit('changePublikasi', {
+                    isSubmitLoading: false,
+                    formData: {
+                        judul: responseData.judul,
+                        media: responseData.media,
+                        tahun: responseData.tahun,
+                    },
+                });
+                return true
+            } else {
+                await commit('changePublikasi', {
+                    isSubmitLoading: false,
+                });
+                return false
+            }
+        } catch {
+            await commit('changePublikasi', {
+                isSubmitLoading: false,
+            });
+            return false
+        }
+    },
+
+    async updatePublikasi({commit, state}) {
+        const { data } = state
+
+        await commit('changePublikasi', {
+            isSubmitLoading: false,
+        });
+
+        try {
+            const res = await ApiService.put('cv/publikasi/' + data.selectedRecordID, data.formData);
+            if (res.data.status_code == `201` || res.data.status_code == 201) {
+                await commit('changePublikasi', {
+                    isSubmitLoading: false,
+                });
+                return true
+            } else {
+                await commit('changePublikasi', {
+                    isSubmitLoading: false,
+                });
+                return false
+            }
+        } catch {
+            await commit('changePublikasi', {
+                isSubmitLoading: false,
+            });
+            return false
+        }
+    },
+
+    async deletePublikasi({commit, state}, payload) {
+        const { data } = state
+
+        await commit('changePublikasi', {
+            isSubmitLoading: false,
+        });
+
+        try {
+            const res = await ApiService.delete('cv/publikasi/' + payload);
             if (res.data.status_code == `201` || res.data.status_code == 201) {
                 await commit('changePublikasi', {
                     isSubmitLoading: false,
