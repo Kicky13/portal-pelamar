@@ -22,6 +22,7 @@
                         class="form-control personal__form"
                         v-model="dataOrganisasiModule.formData.jabatan"
                         id="inputJabatan" />
+                      <span v-show="dataOrganisasiModule.validator.jabatan" class="text-danger">Wajib Diisi.</span> 
                     </div>
                   </div>
                   <div class="form-group row">
@@ -38,6 +39,7 @@
                             class="form-control personal__form"
                             v-model="dataOrganisasiModule.formData.tanggal_mulai"
                             id="inputTglMulai" />
+                          <span v-show="dataOrganisasiModule.validator.tanggal_mulai" class="text-danger">Wajib Diisi.</span> 
                         </div>
                       </div>
                     </div>
@@ -71,6 +73,7 @@
                         v-model="dataOrganisasiModule.formData.uraian_kegiatan"
                         id="inputJabatan">
                       </textarea>
+                      <span v-show="dataOrganisasiModule.validator.uraian_kegiatan" class="text-danger">Wajib Diisi.</span> 
                     </div>
                   </div>
                 </div>
@@ -87,6 +90,7 @@
                         class="form-control personal__form"
                         v-model="dataOrganisasiModule.formData.nama_organisasi"
                         id="inputNamaOrg" />
+                      <span v-show="dataOrganisasiModule.validator.nama_organisasi" class="text-danger">Wajib Diisi.</span> 
                     </div>
                   </div>
                   <div class="form-group row">
@@ -104,6 +108,7 @@
                           :value="jenis.id" />
                         {{ jenis.name }}
                       </div>
+                      <span v-show="dataOrganisasiModule.validator.id_jenis_organisasi" class="text-danger">Wajib Diisi.</span> 
                     </div>
                   </div>
                 </div>
@@ -156,7 +161,7 @@
                       <button @click="edit(listOrganisasi.id)" class="btn btn-warning">
                         <i class="fas fa-edit"></i>
                       </button>
-                      <button @click="delOrganisasi(listOrganisasi.id)" class="btn btn-danger">
+                      <button @click="konfirmasiDelete(listOrganisasi.id)" class="btn btn-danger">
                         <i class="fas fa-trash"></i>
                       </button>
                     </template>
@@ -188,6 +193,7 @@ import LayoutProfileAside from "@/views/crafted/layout/LayoutProfile.vue";
 import KTDatatable from "@/components/kt-datatable/KTDataTable.vue";
 import { Field, ErrorMessage } from "vee-validate";
 import { mapState, mapActions } from "vuex";
+import Swal from "sweetalert2/dist/sweetalert2.min.js";
 
 export default {
   name: "BackOfficeOrganisasi",
@@ -251,16 +257,32 @@ export default {
       'submitForm',
       'updateForm',
       'deleteOrganisasi',
+      'validateForm',
       'cleanForm'
     ]),
     async submit() {
-      const submit = await this.submitForm()
-      if (submit) {
-        this.getListOrganisasi();
-        this.cleanForm();
-        console.log('Submit Berhasil');
-      } else {
-        console.log('Submit Error');
+      const validateForm = await this.validateForm()
+      if (validateForm) {
+        const submit = await this.submitForm()
+        if (submit) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Data Berhasil Disimpan!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          this.getListOrganisasi();
+          this.cleanForm();
+        } else {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Something went wrong, please try again later!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
       }
     },
     async edit(id){
@@ -270,13 +292,28 @@ export default {
       await this.getOrganisasiById()
     },
     async update() {
-      const update = await this.updateForm()
-      if (update) {
-        this.getListOrganisasi();
-        this.cleanForm();
-        console.log('Update Berhasil');
-      } else {
-        console.log('Update Error');
+      const validateForm = await this.validateForm()
+      if (validateForm) {
+        const update = await this.updateForm()
+        if (update) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Data Berhasil Diubah!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          this.getListOrganisasi();
+          this.cleanForm();
+        } else {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Something went wrong, please try again later!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
       }
     },
     async delOrganisasi(id) {
@@ -285,12 +322,37 @@ export default {
       })
       const del = await this.deleteOrganisasi()
       if (del) {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Data Berhasil Dihapus!',
+          showConfirmButton: false,
+          timer: 1500,
+        });
         this.getListOrganisasi();
         this.cleanForm();
-        console.log('Delete Berhasil');
       } else {
-        console.log('Delete Error');
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: 'Something went wrong, please try again later!',
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
+    },
+    konfirmasiDelete(id){
+      Swal.fire({
+        title: "Hapus data Keanggotaan Organisasi ini?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "Hapus"
+      }).then((result) => {
+        if (result.value) {
+          this.delOrganisasi(id);
+        }
+      });
     }
   },
 

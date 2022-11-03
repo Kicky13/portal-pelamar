@@ -37,6 +37,23 @@ const state = {
             tahun: '',
             id_kategori_pelatihan: '',
             nomor_sertifikat: ''
+        },
+        validatorPendidikan: {
+            id_jenjang: false,
+            id_negara: false,
+            id_kota: false,
+            penghargaan: false,
+            jurusan: false,
+            id_perguruan_tinggi: false,
+            tahun_lulus: false
+        },
+        validatorPelatihan: {
+            name: false,
+            penyelenggara: false,
+            id_kota: false,
+            tahun: false,
+            id_kategori_pelatihan: false,
+            nomor_sertifikat: false
         }
     },
 }
@@ -468,6 +485,40 @@ const actions = {
                 isLoading2: false,
             });
             return false
+        }
+    },
+    async validatePendidikan({commit, state}) {
+        const { data } = state
+        let validator = {};
+        Object.entries(data.formDataPendidikan).forEach(([key, value], index) => {
+            validator[key] = value == '' || value == null ? true : false;
+        });
+        console.log(validator)
+        commit('changeDataPendidikan', {
+            validatorPendidikan: validator
+        })
+
+        if (Object.values(validator).some(val => val === true)) {
+            return false
+        } else {    
+            return true
+        }
+    },
+    async validatePelatihan({commit, state}) {
+        const { data } = state
+        let validator = {};
+        Object.entries(data.formDataPelatihan).forEach(([key, value], index) => {
+            validator[key] = value == '' || value == null ? true : false;
+        });
+        console.log(validator)
+        commit('changeDataPendidikan', {
+            validatorPelatihan: validator
+        })
+
+        if (Object.values(validator).some(val => val === true)) {
+            return false
+        } else {    
+            return true
         }
     },
 }

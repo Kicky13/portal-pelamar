@@ -31,6 +31,7 @@
                           {{ jenjang.name }}
                         </option>
                       </select>
+                      <span v-show="pendidikanPelatihanModule.validatorPendidikan.id_jenjang" class="text-danger">Wajib Diisi.</span>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -58,6 +59,7 @@
                               {{ negara.nama }}
                             </option>
                           </select>
+                          <span v-show="pendidikanPelatihanModule.validatorPendidikan.id_negara" class="text-danger">Wajib Diisi.</span>
                         </div>
                       </div>
                     </div>
@@ -83,6 +85,7 @@
                               {{ kota.nama }}
                             </option>
                           </select>
+                          <span v-show="pendidikanPelatihanModule.validatorPendidikan.id_kota" class="text-danger">Wajib Diisi.</span>
                         </div>
                       </div>
                     </div>
@@ -100,6 +103,7 @@
                         v-model="pendidikanPelatihanModule.formDataPendidikan.penghargaan"
                         id="penghargaan">
                       </textarea>
+                      <span v-show="pendidikanPelatihanModule.validatorPendidikan.penghargaan" class="text-danger">Wajib Diisi.</span>
                     </div>
                   </div>
                 </div>
@@ -116,6 +120,7 @@
                         class="form-control personal__form"
                         v-model="pendidikanPelatihanModule.formDataPendidikan.jurusan"
                         id="jurusan" />
+                      <span v-show="pendidikanPelatihanModule.validatorPendidikan.jurusan" class="text-danger">Wajib Diisi.</span>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -139,6 +144,7 @@
                           {{ kampus.name }}
                         </option>
                       </select>
+                      <span v-show="pendidikanPelatihanModule.validatorPendidikan.id_perguruan_tinggi" class="text-danger">Wajib Diisi.</span>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -156,6 +162,7 @@
                         <option selected disabled value="">Pilih Salah Satu</option>
                         <option v-for="(data, index) in yearList" :value="data">{{ data }}</option>
                       </select>
+                      <span v-show="pendidikanPelatihanModule.validatorPendidikan.tahun_lulus" class="text-danger">Wajib Diisi.</span>
                     </div>
                   </div>
                 </div>
@@ -207,7 +214,7 @@
                       <button @click="edit_pendidikan(listPendidikan.id)" class="btn btn-warning">
                         <i class="fas fa-edit"></i>
                       </button>
-                      <button @click="delPendidikan(listPendidikan.id)" class="btn btn-danger">
+                      <button @click="confirmDeletePendidikan(listPendidikan.id)" class="btn btn-danger">
                         <i class="fas fa-trash"></i>
                       </button>
                     </template>
@@ -238,6 +245,7 @@
                         class="form-control personal__form"
                         v-model="pendidikanPelatihanModule.formDataPelatihan.name"
                         id="nama_pelatihan" />
+                      <span v-show="pendidikanPelatihanModule.validatorPelatihan.name" class="text-danger">Wajib Diisi.</span>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -252,6 +260,7 @@
                         class="form-control personal__form"
                         v-model="pendidikanPelatihanModule.formDataPelatihan.penyelenggara"
                         id="penyelenggara" />
+                      <span v-show="pendidikanPelatihanModule.validatorPelatihan.penyelenggara" class="text-danger">Wajib Diisi.</span>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -269,6 +278,7 @@
                         <option selected disabled value="">Pilih Salah Satu</option>
                         <option v-for="(data, index) in yearList" :value="data">{{ data }}</option>
                       </select>
+                      <span v-show="pendidikanPelatihanModule.validatorPelatihan.tahun" class="text-danger">Wajib Diisi.</span>
                     </div>
                   </div>
                 </div>
@@ -294,6 +304,7 @@
                           {{ kota.nama }}
                         </option>
                       </select>
+                      <span v-show="pendidikanPelatihanModule.validatorPelatihan.id_kota" class="text-danger">Wajib Diisi.</span>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -317,6 +328,7 @@
                           {{ kat.name }}
                         </option>
                       </select>
+                      <span v-show="pendidikanPelatihanModule.validatorPelatihan.id_kategori_pelatihan" class="text-danger">Wajib Diisi.</span>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -331,6 +343,7 @@
                         class="form-control personal__form"
                         v-model="pendidikanPelatihanModule.formDataPelatihan.nomor_sertifikat"
                         id="nomor_sertifikat" />
+                      <span v-show="pendidikanPelatihanModule.validatorPelatihan.nomor_sertifikat" class="text-danger">Wajib Diisi.</span>
                     </div>
                   </div>
                 </div>
@@ -385,7 +398,7 @@
                       <button @click="edit_pelatihan(listPelatihan.id)" class="btn btn-warning">
                         <i class="fas fa-edit"></i>
                       </button>
-                      <button @click="delPelatihan(listPelatihan.id)" class="btn btn-danger">
+                      <button @click="confirmDeletePelatihan(listPelatihan.id)" class="btn btn-danger">
                         <i class="fas fa-trash"></i>
                       </button>
                     </template>
@@ -417,6 +430,7 @@ import LayoutProfileAside from "@/views/crafted/layout/LayoutProfile.vue";
 import KTDatatable from "@/components/kt-datatable/KTDataTable.vue";
 import { Field, ErrorMessage } from "vee-validate";
 import { mapState, mapActions } from "vuex";
+import Swal from "sweetalert2/dist/sweetalert2.min.js";
 
 export default {
   name: "BackOfficePendidikan",
@@ -536,6 +550,8 @@ export default {
       'updateFormPelatihan',
       'deletePendidikan',
       'deletePelatihan',
+      'validatePendidikan',
+      'validatePelatihan',
       'cleanFormPendidikan',
       'cleanFormPelatihan'
     ]),
@@ -558,13 +574,28 @@ export default {
       await this.getListKota()
     },
     async submit_pendidikan() {
-      const submit = await this.submitFormPendidikan()
-      if (submit) {
-        this.getListPendidikan();
-        this.cleanFormPendidikan();
-        console.log('Submit Berhasil');
-      } else {
-        console.log('Submit Error');
+      const validateForm = await this.validatePendidikan()
+      if (validateForm) {
+        const submit = await this.submitFormPendidikan()
+        if (submit) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Data Berhasil Disimpan!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          this.getListPendidikan();
+          this.cleanFormPendidikan();
+        } else {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Something went wrong, please try again later!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
       }
     },
     async edit_pendidikan(id){
@@ -574,13 +605,28 @@ export default {
       await this.getPendidikanById()
     },
     async update_pendidikan() {
-      const update = await this.updateFormPendidikan()
-      if (update) {
-        this.getListPendidikan();
-        this.cleanFormPendidikan();
-        console.log('Update Berhasil');
-      } else {
-        console.log('Update Error');
+      const validateForm = await this.validatePendidikan()
+      if (validateForm) {
+        const update = await this.updateFormPendidikan()
+        if (update) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Data Berhasil Diubah!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          this.getListPendidikan();
+          this.cleanFormPendidikan();
+        } else {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Something went wrong, please try again later!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
       }
     },
     async delPendidikan(id) {
@@ -589,21 +635,61 @@ export default {
       })
       const del = await this.deletePendidikan()
       if (del) {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Data Berhasil Dihapus!',
+          showConfirmButton: false,
+          timer: 1500,
+        });
         this.getListPendidikan();
         this.cleanFormPendidikan();
-        console.log('Delete Berhasil');
       } else {
-        console.log('Delete Error');
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: 'Something went wrong, please try again later!',
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
     },
+    confirmDeletePendidikan(id){
+      Swal.fire({
+        title: "Hapus data riwayat pendidikan ini?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "Hapus"
+      }).then((result) => {
+        if (result.value) {
+          this.delPendidikan(id);
+        }
+      });
+    },
     async submit_pelatihan() {
-      const submit = await this.submitFormPelatihan()
-      if (submit) {
-        this.getListPelatihan();
-        this.cleanFormPelatihan();
-        console.log('Submit Berhasil');
-      } else {
-        console.log('Submit Error');
+      const validateForm = await this.validatePelatihan()
+      if (validateForm) {
+        const submit = await this.submitFormPelatihan()
+        if (submit) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Data Berhasil Disimpan!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          this.getListPelatihan();
+          this.cleanFormPelatihan();
+        } else {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Something went wrong, please try again later!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
       }
     },
     async edit_pelatihan(id){
@@ -613,13 +699,28 @@ export default {
       await this.getPelatihanById()
     },
     async update_pelatihan() {
-      const update = await this.updateFormPelatihan()
-      if (update) {
-        this.getListPelatihan();
-        this.cleanFormPelatihan();
-        console.log('Update Berhasil');
-      } else {
-        console.log('Update Error');
+      const validateForm = await this.validatePelatihan()
+      if (validateForm) {
+        const update = await this.updateFormPelatihan()
+        if (update) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Data Berhasil Diubah!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          this.getListPelatihan();
+          this.cleanFormPelatihan();
+        } else {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Something went wrong, please try again later!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
       }
     },
     async delPelatihan(id) {
@@ -628,13 +729,38 @@ export default {
       })
       const del = await this.deletePelatihan()
       if (del) {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Data Berhasil Dihapus!',
+          showConfirmButton: false,
+          timer: 1500,
+        });
         this.getListPelatihan();
         this.cleanFormPelatihan();
-        console.log('Delete Berhasil');
       } else {
-        console.log('Delete Error');
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: 'Something went wrong, please try again later!',
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
-    }
+    },
+    confirmDeletePelatihan(id){
+      Swal.fire({
+        title: "Hapus data riwayat pelatihan ini?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "Hapus"
+      }).then((result) => {
+        if (result.value) {
+          this.delPelatihan(id);
+        }
+      });
+    },
   },
 
   components: {

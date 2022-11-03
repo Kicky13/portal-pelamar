@@ -14,6 +14,13 @@ const state = {
             id_jenis_organisasi: '',
             tanggal_mulai: '',
             tanggal_akhir: ''
+        },
+        validator: {
+            uraian_kegiatan: false,
+            jabatan: false,
+            nama_organisasi: false,
+            id_jenis_organisasi: false,
+            tanggal_mulai: false,
         }
     },
 }
@@ -189,6 +196,27 @@ const actions = {
                 isLoading: false,
             });
             return false
+        }
+    },
+    async validateForm({commit, state}) {
+        const { data } = state
+        let validator = {
+            uraian_kegiatan: data.formData.uraian_kegiatan == '' || data.formData.uraian_kegiatan == null ? true : false,
+            jabatan: data.formData.jabatan == '' || data.formData.jabatan == null ? true : false,
+            nama_organisasi: data.formData.nama_organisasi == '' || data.formData.nama_organisasi == null ? true : false,
+            id_jenis_organisasi: data.formData.id_jenis_organisasi == '' || data.formData.id_jenis_organisasi == null ? true : false,
+            tanggal_mulai: data.formData.tanggal_mulai == '' || data.formData.tanggal_mulai == null ? true : false,
+            // tanggal_akhir: data.formData.tanggal_akhir == '' || data.formData.tanggal_akhir == null ? true : false,
+        }
+        console.log(validator)
+        commit('changeDataOrganisasi', {
+            validator: validator
+        })
+
+        if (validator.uraian_kegiatan || validator.jabatan || validator.nama_organisasi || validator.id_jenis_organisasi || validator.tanggal_mulai) {
+            return false
+        } else {
+            return true
         }
     },
 }
