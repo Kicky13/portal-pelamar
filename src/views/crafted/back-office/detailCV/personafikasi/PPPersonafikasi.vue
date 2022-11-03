@@ -57,7 +57,7 @@
                           <input
                             class="form-check-input"
                             type="checkbox"
-                            v-model="personifikasiModule.formData.bidang_keminatan"
+                            v-model="personifikasiModule.formData.minat"
                             :value="data.id"
                             id="defaultCheck1" />
                           <label class="form-check-label" for="defaultCheck1">
@@ -65,7 +65,7 @@
                           </label>
                         </div>
                       </div>
-                      <span v-show="personifikasiModule.validator.bidang_keminatan" class="col-sm-10 text-danger">Wajib Memilih minimal 1.</span>
+                      <span v-show="personifikasiModule.validator.minat" class="col-sm-10 text-danger">Wajib Memilih minimal 1.</span>
                     </div>
                   </div>
                 </div>
@@ -185,15 +185,16 @@ export default {
   methods: {
     ...mapActions('personifikasiModule', [
       'getPersonifikasi',
-      'submitPersonifikasi',
+      'storePersonifikasi',
       'getBidangKeminatan',
       'validateForm',
+      'clearForm',
     ]),
     async submit() {
       const validating = await this.validateForm()
       console.log(this.personifikasiModule.formData)
       if (validating) {
-        const submit = await this.submitPersonifikasi()
+        const submit = await this.storePersonifikasi()
         if (submit) {
           Swal.fire({
             position: 'top-end',
@@ -201,8 +202,10 @@ export default {
             title: 'Data Berhasil Disimpan!',
             showConfirmButton: false,
             timer: 1500,
-          })
-          this.router.push({ name: "ProfilePersonafikasi" });
+          });
+          this.clearForm();
+          this.getPersonifikasi();
+          this.router.push({ name: "ProfileRiwayatPekerjaan" });
         } else {
           Swal.fire({
             position: 'top-end',
