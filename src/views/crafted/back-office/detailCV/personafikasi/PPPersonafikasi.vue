@@ -205,7 +205,7 @@ export default {
           });
           this.clearForm();
           this.getPersonifikasi();
-          // this.router.push({ name: "ProfilePersonafikasi" });
+          this.router.push({ name: "ProfileRiwayatPekerjaan" });
         } else {
           Swal.fire({
             position: 'top-end',
