@@ -5,11 +5,11 @@
         class="col-sm-6 bg-login d-flex justify-content-center align-items-center"
         :style="
           'background-image: url(' +
-          require('@/assets/images/background/bg_login.png') +
-          ')'
+          require('@/assets/images/background/bg_login_portal.png') +
+          '); background-size: cover'
         ">
         <div class="img-logo">
-          <img :src="require('@/assets/images/logo/lg_bumn.png')" alt="" />
+          <img :src="require('@/assets/images/logo/logo_login.png')" alt="" />
         </div>
       </div>
       <div
@@ -72,10 +72,11 @@
               <router-link :to="`/registrasi`">Disini</router-link></span
             >
           </div>
-        </Form>
-        <footer class="form-data pt-0">
           <ButtonBack linkPage="/"></ButtonBack>
-        </footer>
+        </Form>
+        <!-- <footer class="form-data pt-0">
+          <ButtonBack linkPage="/"></ButtonBack>
+        </footer> -->
       </div>
     </div>
   </div>
