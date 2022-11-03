@@ -7,7 +7,7 @@
           class="banner w-100"
           :style="
             'background-image: url(' +
-            require('@/assets/images/background/bg_home_1.png') +
+            require('@/assets/images/background/bg_home_1_new.png') +
             ')'
           ">
           <div class="container">
@@ -18,7 +18,7 @@
                   <br />
                   Untuk <strong>Negeri</strong>
                 </div>
-                <div class="sub-title">Lorem Ipsum</div>
+                <div class="sub-title">Portal Pelamar BUMN</div>
               </div>
             </div>
           </div>
@@ -198,9 +198,15 @@
         require('@/assets/images/background/bg_home_2.png') +
         ')'
       ">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="container content-kebijakan">
+      <div class="container content-kebijakan">
+        <div class="row">
+          <div class="col-sm-12 text-center">
+            <span class="title-persyaratan"> Persyaratan Umum </span>
+            <div class="line-persyaratan"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
             <label for="" class="content-title">
               Sebelum mendaftar pastikan Anda telah membaca seluruh ketentuan
               umum, tata cara melamar dan jadwal kegiatan rekrutmen dan seleksi
