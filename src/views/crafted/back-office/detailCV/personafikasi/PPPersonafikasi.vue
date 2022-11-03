@@ -57,6 +57,7 @@
                           <input
                             class="form-check-input"
                             type="checkbox"
+                            v-model="personifikasiModule.formData.bidang_keminatan"
                             :value="data.id"
                             id="defaultCheck1" />
                           <label class="form-check-label" for="defaultCheck1">
@@ -64,7 +65,7 @@
                           </label>
                         </div>
                       </div>
-                      <span v-show="personifikasiModule.validator.sosmed_linkedin" class="col-sm-10 text-danger">Wajib Memilih minimal 1.</span>
+                      <span v-show="personifikasiModule.validator.bidang_keminatan" class="col-sm-10 text-danger">Wajib Memilih minimal 1.</span>
                     </div>
                   </div>
                 </div>
@@ -190,7 +191,7 @@ export default {
     ]),
     async submit() {
       const validating = await this.validateForm()
-      console.log(validating)
+      console.log(this.personifikasiModule.formData)
       if (validating) {
         const submit = await this.submitPersonifikasi()
         if (submit) {

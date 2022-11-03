@@ -140,7 +140,7 @@ const actions = {
         let validator = {
             nilai_pribadi: data.formData.nilai_pribadi == '' || data.formData.nilai_pribadi == null ? true : false,
             visi_pribadi: data.formData.visi_pribadi == '' || data.formData.visi_pribadi == null ? true : false,
-            bidang_keminatan: data.formData.bidang_keminatan.length == '' || data.formData.bidang_keminatan == null ? true : false,
+            bidang_keminatan: data.formData.bidang_keminatan.length == 0 || data.formData.bidang_keminatan == null ? true : false,
             sosmed_instagram: data.formData.sosmed_instagram == '' || data.formData.sosmed_instagram == null ? true : false,
             sosmed_facebook: data.formData.sosmed_facebook == '' || data.formData.sosmed_facebook == null ? true : false,
             sosmed_linkedin: data.formData.sosmed_linkedin == '' || data.formData.sosmed_linkedin == null ? true : false,
