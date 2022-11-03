@@ -12,12 +12,12 @@ const state = {
             sosmed_facebook: '',
             sosmed_linkedin: '',
             sosmed_twitter: '',
-            bidang_keminatan: [],
+            minat: [],
         },
         validator: {
             nilai_pribadi: false,
             visi_pribadi: false,
-            bidang_keminatan: false,
+            minat: false,
             sosmed_instagram: false,
             sosmed_facebook: false,
             sosmed_linkedin: false,
@@ -60,11 +60,13 @@ const actions = {
     clearForm({commit, state}) {
         commit('changePersonifikasi', {
             formData: {
-                nama_acara: '',
-                tahun: '',
-                jumlah_peserta: '',
-                penyelenggara: '',
-                lokasi: '',
+                nilai_pribadi: '',
+                visi_pribadi: '',
+                sosmed_instagram: '',
+                sosmed_facebook: '',
+                sosmed_linkedin: '',
+                sosmed_twitter: '',
+                minat: [],
             },
             selectedRecordID: null,
         })
@@ -77,7 +79,7 @@ const actions = {
         });
 
         try {
-            const res = await ApiService.post('cv/narasumber', data.formData);
+            const res = await ApiService.post('cv/personifikasi', data.formData);
             if (res.data.status_code == `201` || res.data.status_code == 201) {
                 await commit('changePersonifikasi', {
                     isSubmitLoading: false,
@@ -107,7 +109,7 @@ const actions = {
         try {
             const res = await ApiService.get('cv/personifikasi');
             if (res.data.status_code == `201` || res.data.status_code == 201) {
-                let responseData = res.data.data;
+                let responseData = res.data.data[0];
                 await commit('changePersonifikasi', {
                     isSubmitLoading: false,
                     formData: {
@@ -117,7 +119,7 @@ const actions = {
                         sosmed_facebook: responseData.sosmed_facebook,
                         sosmed_linkedin: responseData.sosmed_linkedin,
                         sosmed_twitter: responseData.sosmed_twitter,
-                        bidang_keminatan: [],
+                        minat: responseData.minat,
                     },
                 });
                 return true
@@ -140,7 +142,7 @@ const actions = {
         let validator = {
             nilai_pribadi: data.formData.nilai_pribadi == '' || data.formData.nilai_pribadi == null ? true : false,
             visi_pribadi: data.formData.visi_pribadi == '' || data.formData.visi_pribadi == null ? true : false,
-            bidang_keminatan: data.formData.bidang_keminatan.length == 0 || data.formData.bidang_keminatan == null ? true : false,
+            minat: data.formData.minat = [] || data.formData.minat == null ? true : false,
             sosmed_instagram: data.formData.sosmed_instagram == '' || data.formData.sosmed_instagram == null ? true : false,
             sosmed_facebook: data.formData.sosmed_facebook == '' || data.formData.sosmed_facebook == null ? true : false,
             sosmed_linkedin: data.formData.sosmed_linkedin == '' || data.formData.sosmed_linkedin == null ? true : false,
@@ -151,7 +153,7 @@ const actions = {
             validator: validator
         })
 
-        if (validator.nilai_pribadi || validator.visi_pribadi || validator.bidang_keminatan || validator.sosmed_facebook || validator.sosmed_instagram || validator.sosmed_linkedin || validator.sosmed_twitter) {
+        if (validator.nilai_pribadi || validator.visi_pribadi || validator.minat || validator.sosmed_facebook || validator.sosmed_instagram || validator.sosmed_linkedin || validator.sosmed_twitter) {
             return false
         } else {
             return true
