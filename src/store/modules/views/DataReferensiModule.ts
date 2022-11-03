@@ -11,6 +11,12 @@ const state = {
             jabatan: '',
             perusahaan: '',
             no_hp: '',
+        },
+        validator: {
+            nama_ref: false,
+            jabatan: false,
+            perusahaan: false,
+            no_hp: false,
         }
     },
 }
@@ -160,6 +166,23 @@ const actions = {
                 isLoading: false,
             });
             return false
+        }
+    },
+    async validateForm({commit, state}) {
+        const { data } = state
+        let validator = {};
+        Object.entries(data.formData).forEach(([key, value], index) => {
+            validator[key] = value == '' || value == null ? true : false;
+        });
+        console.log(validator)
+        commit('changeDataReferensi', {
+            validator: validator
+        })
+
+        if (Object.values(validator).some(val => val === true)) {
+            return false
+        } else {    
+            return true
         }
     },
 }
