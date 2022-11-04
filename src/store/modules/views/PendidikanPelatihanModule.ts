@@ -54,7 +54,76 @@ const state = {
             tahun: false,
             id_kategori_pelatihan: false,
             nomor_sertifikat: false
-        }
+        },
+        tableHeader: [
+            {
+              columnName: "Jenjang Pendidikan",
+              columnLabel: "jenjang",
+              sortEnabled: false,
+            },
+            {
+              columnName: "Tahun Lulus",
+              columnLabel: "tahun_lulus",
+              sortEnabled: false,
+            },
+            {
+              columnName: "Jurusan",
+              columnLabel: "jurusan",
+              sortEnabled: false,
+            },
+            {
+              columnName: "Kota dan Negara",
+              columnLabel: "kota",
+              sortEnabled: false,
+            },
+            {
+              columnName: "Penghargaan",
+              columnLabel: "penghargaan",
+              sortEnabled: false,
+            },
+            {
+              columnName: "Action",
+              columnLabel: "action",
+              sortEnabled: false,
+            },
+        ],
+        tableHeader2: [
+            {
+              columnName: "Nama Pelatihan",
+              columnLabel: "nama",
+              sortEnabled: false,
+            },
+            {
+              columnName: "Tahun",
+              columnLabel: "tahun",
+              sortEnabled: false,
+            },
+            {
+              columnName: "Nama Penyelenggara",
+              columnLabel: "penyelenggara",
+              sortEnabled: false,
+            },
+            {
+              columnName: "Kota Penyelenggara",
+              columnLabel: "kota",
+              sortEnabled: false,
+            },
+            {
+              columnName: "Kategori",
+              columnLabel: "kategori",
+              sortEnabled: false,
+            },
+            {
+              columnName: "Nomor Sertifikat",
+              columnLabel: "no_sertifikat",
+              sortEnabled: false,
+            },
+            {
+              columnName: "Action",
+              columnLabel: "action",
+              sortEnabled: false,
+            },
+        ],
     },
 }
 

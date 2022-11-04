@@ -168,7 +168,7 @@
                     @on-items-select="onItemSelect"
                     :loading="riwayatPekerjaanModule.isLoading1"
                     :data="riwayatPekerjaanModule.listPekerjaan1"
-                    :header="tableHeader">
+                    :header="riwayatPekerjaanModule.tableHeader">
                     <template v-slot:jabatan="{ row: listPekerjaan1 }">
                       {{ listPekerjaan1.jabatan }}<br>
                       {{ listPekerjaan1.nama_instansi }}
@@ -186,7 +186,7 @@
                       {{ listPekerjaan1.achievement }}
                     </template>
                     <template v-slot:bidang_jabatan="{ row: listPekerjaan1 }">
-                      {{ listPekerjaan1.id_bidang_jabatan }}
+                      {{ listPekerjaan1.bidang.name }}
                     </template>
                     <template v-slot:action="{ row: listPekerjaan1 }">
                       <button @click="edit1(listPekerjaan1.id)" class="btn btn-warning">
@@ -369,7 +369,7 @@
                     @on-items-select="onItemSelect"
                     :loading="riwayatPekerjaanModule.isLoading2"
                     :data="riwayatPekerjaanModule.listPekerjaan2"
-                    :header="tableHeader">
+                    :header="riwayatPekerjaanModule.tableHeader">
                     <template v-slot:jabatan="{ row: listPekerjaan2 }">
                       {{ listPekerjaan2.jabatan }}<br>
                       {{ listPekerjaan2.nama_instansi }}
@@ -387,7 +387,7 @@
                       {{ listPekerjaan2.achievement }}
                     </template>
                     <template v-slot:bidang_jabatan="{ row: listPekerjaan2 }">
-                      {{ listPekerjaan2.id_bidang_jabatan }}
+                      {{ listPekerjaan2.bidang.name }}
                     </template>
                     <template v-slot:action="{ row: listPekerjaan2 }">
                       <button @click="edit2(listPekerjaan2.id)" class="btn btn-warning">
@@ -427,43 +427,6 @@ export default {
   data() {
     return {
       title: "Data Riwayat Pekerjaan",
-      tableHeader: [
-        {
-          columnName: "Jabatan",
-          columnLabel: "jabatan",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Awal Menjabat",
-          columnLabel: "tanggal_mulai",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Akhir Menjabat",
-          columnLabel: "tanggal_akhir",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Tupoksi",
-          columnLabel: "tupoksi",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Achievement",
-          columnLabel: "achievement",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Bidang Jabatan",
-          columnLabel: "bidang_jabatan",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Action",
-          columnLabel: "action",
-          sortEnabled: false,
-        },
-      ],
     };
   },
   computed: {

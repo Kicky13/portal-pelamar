@@ -194,7 +194,7 @@
                     @on-items-select="onItemSelect"
                     :loading="pendidikanPelatihanModule.isLoading1"
                     :data="pendidikanPelatihanModule.listPendidikan"
-                    :header="tableHeader">
+                    :header="pendidikanPelatihanModule.tableHeader">
                     <template v-slot:jenjang="{ row: listPendidikan }">
                       {{ listPendidikan.jenjang.name }} - {{ listPendidikan.perguruan_tinggi.name }}
                     </template>
@@ -375,7 +375,7 @@
                     @on-items-select="onItemSelect"
                     :loading="pendidikanPelatihanModule.isLoading2"
                     :data="pendidikanPelatihanModule.listPelatihan"
-                    :header="tableHeader2">
+                    :header="pendidikanPelatihanModule.tableHeader2">
                     <template v-slot:nama="{ row: listPelatihan }">
                       {{ listPelatihan.name }}
                     </template>
@@ -433,75 +433,6 @@ export default {
     return {
       title: "Data Keanggotaan Pendidikan",
       yearList: [],
-      tableHeader: [
-        {
-          columnName: "Jenjang Pendidikan",
-          columnLabel: "jenjang",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Tahun Lulus",
-          columnLabel: "tahun_lulus",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Jurusan",
-          columnLabel: "jurusan",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Kota dan Negara",
-          columnLabel: "kota",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Penghargaan",
-          columnLabel: "penghargaan",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Action",
-          columnLabel: "action",
-          sortEnabled: false,
-        },
-      ],
-      tableHeader2: [
-        {
-          columnName: "Nama Pelatihan",
-          columnLabel: "nama",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Tahun",
-          columnLabel: "tahun",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Nama Penyelenggara",
-          columnLabel: "penyelenggara",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Kota Penyelenggara",
-          columnLabel: "kota",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Kategori",
-          columnLabel: "kategori",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Nomor Sertifikat",
-          columnLabel: "no_sertifikat",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Action",
-          columnLabel: "action",
-          sortEnabled: false,
-        },
-      ],
     };
   },
   computed: {
