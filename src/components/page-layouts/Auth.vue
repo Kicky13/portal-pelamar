@@ -102,14 +102,11 @@ export default {
 
     const submitButton = ref<HTMLButtonElement | null>(null);
     const submitLogin = async (values) => {
-      console.log(values)
 
-      await store.dispatch(Actions.LOGIN, values);
-      const [errorName] = Object.keys(store.getters.getErrors);
-      const error = store.getters.getErrors[errorName];
-      console.log(error)
+      const res = await store.dispatch(Actions.LOGIN, values);
+      console.log(res)
 
-      if (!error) {
+      if (res.status) {
         Swal.fire({
           text: "You have successfully logged in!",
           icon: "success",
@@ -120,11 +117,11 @@ export default {
           },
         }).then(function () {
           // Go to page after successfully login
-          router.push({ name: "ProfileUser" });
+          router.push({ name: "dashboard" });
         });
       } else {
         Swal.fire({
-          text: error[0],
+          text: res.message,
           icon: "error",
           buttonsStyling: false,
           confirmButtonText: "Try again!",
@@ -143,7 +140,7 @@ export default {
     onMounted(() => {
       //check if current user is authenticated
       if (store.getters.isUserAuthenticated) {
-        router.push({ name: "ProfileUser" });
+        router.push({ name: "dashboard" });
       }
 
       nextTick(() => {
@@ -163,7 +160,7 @@ export default {
 
         // check if current user is authenticated
         if (store.getters.isUserAuthenticated) {
-          router.push({ name: "ProfileUser" });
+          router.push({ name: "dashboard" });
         }
 
         removeModalBackdrop();

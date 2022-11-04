@@ -422,7 +422,22 @@ export default {
       const validating = await this.validateForm()
       console.log(validating)
       if (validating) {
-        const submit = await this.submitForm()
+        const formData = new FormData();
+        formData.append('nama', this.dataPersonalModule.formData.nama)
+        formData.append('gelar', this.dataPersonalModule.formData.gelar)
+        formData.append('id_kota_lahir', this.dataPersonalModule.formData.id_kota_lahir)
+        formData.append('provinsi', this.dataPersonalModule.formData.provinsi)
+        formData.append('kota', this.dataPersonalModule.formData.kota)
+        formData.append('gender', this.dataPersonalModule.formData.gender)
+        formData.append('marital_status', this.dataPersonalModule.formData.marital_status)
+        formData.append('nik', this.dataPersonalModule.formData.nik)
+        formData.append('phone', this.dataPersonalModule.formData.phone)
+        formData.append('tgl_lahir', this.dataPersonalModule.formData.tgl_lahir)
+        formData.append('agama', this.dataPersonalModule.formData.agama)
+        formData.append('email', this.dataPersonalModule.formData.email)
+        formData.append('ktp', this.dataPersonalModule.formData.ktp)
+        formData.append('alamat', this.dataPersonalModule.formData.alamat)
+        const submit = await this.submitForm(formData);
         if (submit) {
           Swal.fire({
             position: 'top-end',
