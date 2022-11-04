@@ -140,7 +140,7 @@
                     @on-items-select="onItemSelect"
                     :loading="dataOrganisasiModule.isLoading"
                     :data="dataOrganisasiModule.listOrganisasi"
-                    :header="tableHeader">
+                    :header="dataOrganisasiModule.tableHeader">
                     <template v-slot:jabatan="{ row: listOrganisasi }">
                       {{ listOrganisasi.jabatan }}<br>
                       {{ listOrganisasi.nama_organisasi }}
@@ -195,38 +195,6 @@ export default {
   data() {
     return {
       title: "Data Keanggotaan Organisasi",
-      tableHeader: [
-        {
-          columnName: "Jabatan",
-          columnLabel: "jabatan",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Awal Menjabat",
-          columnLabel: "tanggal_mulai",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Akhir Menjabat",
-          columnLabel: "tanggal_akhir",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Uraian Kegiatan",
-          columnLabel: "uraian_kegiatan",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Jenis Organisasi",
-          columnLabel: "jenis_organisasi",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Action",
-          columnLabel: "action",
-          sortEnabled: false,
-        },
-      ],
     };
   },
   computed: {

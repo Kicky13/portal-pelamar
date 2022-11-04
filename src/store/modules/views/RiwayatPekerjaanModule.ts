@@ -51,7 +51,44 @@ const state = {
             nama_instansi: false,
             id_bidang_jabatan: false,
             achievement: false,
-        }
+        },
+        tableHeader: [
+            {
+              columnName: "Jabatan",
+              columnLabel: "jabatan",
+              sortEnabled: false,
+            },
+            {
+              columnName: "Awal Menjabat",
+              columnLabel: "tanggal_mulai",
+              sortEnabled: false,
+            },
+            {
+              columnName: "Akhir Menjabat",
+              columnLabel: "tanggal_akhir",
+              sortEnabled: false,
+            },
+            {
+              columnName: "Tupoksi",
+              columnLabel: "tupoksi",
+              sortEnabled: false,
+            },
+            {
+              columnName: "Achievement",
+              columnLabel: "achievement",
+              sortEnabled: false,
+            },
+            {
+              columnName: "Bidang Jabatan",
+              columnLabel: "bidang_jabatan",
+              sortEnabled: false,
+            },
+            {
+              columnName: "Action",
+              columnLabel: "action",
+              sortEnabled: false,
+            },
+        ],
     },
 }
 
