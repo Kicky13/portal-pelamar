@@ -1,6 +1,4 @@
 import ApiService from "@/core/services/ApiService";
-import axiosService from '@/core/services/AxiosService';
-import { da } from "element-plus/es/locale";
 
 const state = {
     data: {
@@ -117,15 +115,18 @@ const actions = {
                     isSubmitLoading: false,
                     listProvinsi: res.data.data,
                 });
+                return true;
             } else {
                 await commit('changeDataPersonal', {
                     isSubmitLoading: false,
                 });
+                return false;
             }
         } catch {
             await commit('changeDataPersonal', {
                 isSubmitLoading: false,
             });
+            return false;
         }
     },
     async getListKota({ commit, state }) {
@@ -144,15 +145,18 @@ const actions = {
                     isLoading: false,
                     listKotaByProvinsi: res.data.data,
                 });
+                return true;
             } else {
                 await commit('changeDataPersonal', {
                     isLoading: false,
                 });
+                return false;
             }
         } catch {
             await commit('changeDataPersonal', {
                 isLoading: false,
             });
+            return false;
         }
     },
     async getListStatus({ commit, state }) {
@@ -188,16 +192,20 @@ const actions = {
             if (res.data.status_code == `201` || res.data.status_code == 201) {
                 await commit('changeDataPersonal', {
                     isLoading: false,
+                    formData: res.data.data,
                 });
+                return true;
             } else {
                 await commit('changeDataPersonal', {
                     isLoading: false,
                 });
+                return false;
             }
         } catch {
             await commit('changeDataPersonal', {
                 isLoading: false,
             });
+            return false;
         }
     },
     cleanForm({ commit, state }) {
@@ -220,29 +228,13 @@ const actions = {
             }
         })
     },
-    async submitForm({ commit, state }) {
+    async submitForm({ commit, state }, payload) {
         await commit('changeDataPersonal', {
             isLoading: true,
         })
         const { data } = state
-        const formData = new FormData();
-        formData.append('nama', data.formData.nama)
-        formData.append('gelar', data.formData.gelar)
-        formData.append('id_kota_lahir', data.formData.id_kota_lahir)
-        formData.append('provinsi', data.formData.provinsi)
-        formData.append('kota', data.formData.kota)
-        formData.append('gender', data.formData.gender)
-        formData.append('marital_status', data.formData.marital_status)
-        formData.append('nik', data.formData.nik)
-        formData.append('phone', data.formData.phone)
-        formData.append('tgl_lahir', data.formData.tgl_lahir)
-        formData.append('agama', data.formData.agama)
-        formData.append('email', data.formData.email)
-        formData.append('ktp', data.formData.ktp)
-        formData.append('alamat', data.formData.alamat)
-
         try {
-            const res = await axiosService.post('cv/personal', formData);
+            const res = await ApiService.post('cv/personal', payload);
             if (res.data.status_code == `201` || res.data.status_code == 201) {
                 await commit('changeDataPersonal', {
                     isLoading: false,
@@ -261,6 +253,14 @@ const actions = {
             return false
         }
     }, 
+    async findKodeProvinsi({commit, state}) {
+        const { data } = state;
+        const dataSource = [...data.listProvinsi];
+        console.log(data.formData.provinsi);
+        let filtered = dataSource.filter(x => x.id == data.formData.provinsi);
+        return filtered[0].kode;
+    },
+
     async validateForm({ commit, state }) {
         const { data } = state
         let special = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;

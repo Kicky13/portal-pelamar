@@ -102,14 +102,11 @@ export default {
 
     const submitButton = ref<HTMLButtonElement | null>(null);
     const submitLogin = async (values) => {
-      console.log(values)
 
-      await store.dispatch(Actions.LOGIN, values);
-      const [errorName] = Object.keys(store.getters.getErrors);
-      const error = store.getters.getErrors[errorName];
-      console.log(error)
+      const res = await store.dispatch(Actions.LOGIN, values);
+      console.log(res)
 
-      if (!error) {
+      if (res.status) {
         Swal.fire({
           text: "You have successfully logged in!",
           icon: "success",
@@ -124,7 +121,7 @@ export default {
         });
       } else {
         Swal.fire({
-          text: error[0],
+          text: res.message,
           icon: "error",
           buttonsStyling: false,
           confirmButtonText: "Try again!",

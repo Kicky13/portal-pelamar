@@ -7,6 +7,7 @@ import BreadcrumbsModule from "@/store/modules/BreadcrumbsModule";
 import ConfigModule from "@/store/modules/ConfigModule";
 import ThemeModeModule from "@/store/modules/ThemeModeModule";
 import StateManagement from "@/store/modules/StateManagement";
+import RegisterState from "@/store/modules/RegisterAccount";
 // Views
 import DataPersonal from "@/store/modules/views/DataPersonalModule";
 import DataOrganisasi from "@/store/modules/views/DataOrganisasiModule";
@@ -37,7 +38,8 @@ const store = createStore({
     narasumberModule: Narasumber,
     publikasiModule: Publikasi,
     personifikasiModule: Personifikasi,
-    resumeCVModule: ResumeCV
+    resumeCVModule: ResumeCV,
+    registerModule: RegisterState,
   },
 });
 

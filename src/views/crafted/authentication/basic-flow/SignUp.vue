@@ -98,6 +98,7 @@
         />
         <div class="fv-plugins-message-container">
           <div class="fv-help-block">
+            <span v-show="validator.email" class="col-sm-9 text-danger">Wajib Diisi. Harus berisikan angka saja. Minimal 10 karakter.</span>
             <ErrorMessage name="email" />
           </div>
         </div>
@@ -123,6 +124,7 @@
             />
             <div class="fv-plugins-message-container">
               <div class="fv-help-block">
+                <span v-show="validator.password" class="col-sm-9 text-danger">Wajib Diisi. Harus berisikan angka saja. Minimal 10 karakter.</span>
                 <ErrorMessage name="password" />
               </div>
             </div>
@@ -227,6 +229,7 @@ import { useRouter } from "vue-router";
 import { Actions } from "@/store/enums/StoreEnums";
 import { PasswordMeterComponent } from "@/assets/ts/components";
 import Swal from "sweetalert2/dist/sweetalert2.min.js";
+import store from "@/store";
 
 export default defineComponent({
   name: "sign-up",
@@ -258,9 +261,74 @@ export default defineComponent({
       });
     });
 
+    let formData = {
+      name: '',
+      nik: '',
+      email: '',
+      password: '',
+      confirm_password: '',
+      nama_role: 'test',
+    }
+
+    let validator = {
+      name: false,
+      nik: false,
+      email: false,
+      password: false,
+      confirm_password: false,
+      nama_role: false,
+    }
+
+    const validateForm = async () => {
+      let validating = {
+        name: (formData.name == '' || formData.name == null) ? true : false,
+        nik: (formData.nik == '' || formData.nik == null) ? true : false,
+        email: (formData.email == '' || formData.email == null) ? true : false,
+        password: (formData.password == '' || formData.password == null) ? true : false,
+        confirm_password: (formData.confirm_password == '' || formData.confirm_password == null) ? true : false,
+        nama_role: false,
+      };
+      validator = validating
+
+      if (validating.name || validating.nik || validating.email || validating.password || validating.confirm_password) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+
     const onSubmitRegister = async (values) => {
       // Clear existing errors
       store.dispatch(Actions.LOGOUT);
+
+      if (await validateForm) {
+        const res = await store.dispatch(Actions.REGISTER, values);
+        
+        if (res.status) {
+        Swal.fire({
+          text: "You have successfully logged in!",
+          icon: "success",
+          buttonsStyling: false,
+          confirmButtonText: "Ok, got it!",
+          customClass: {
+            confirmButton: "btn fw-semobold btn-light-primary",
+          },
+        }).then(function () {
+          // Go to page after successfully login
+          router.push({ name: "dashboard" });
+        });
+        } else {
+          Swal.fire({
+            text: 'error',
+            icon: "error",
+            buttonsStyling: false,
+            confirmButtonText: "Try again!",
+            customClass: {
+              confirmButton: "btn fw-semobold btn-light-danger",
+            },
+          });
+        }
+      }
 
       // eslint-disable-next-line
       submitButton.value!.disabled = true;
@@ -274,40 +342,19 @@ export default defineComponent({
       const [errorName] = Object.keys(store.getters.getErrors);
       const error = store.getters.getErrors[errorName];
 
-      if (!error) {
-        Swal.fire({
-          text: "You have successfully logged in!",
-          icon: "success",
-          buttonsStyling: false,
-          confirmButtonText: "Ok, got it!",
-          customClass: {
-            confirmButton: "btn fw-semobold btn-light-primary",
-          },
-        }).then(function () {
-          // Go to page after successfully login
-          router.push({ name: "dashboard" });
-        });
-      } else {
-        Swal.fire({
-          text: error[0],
-          icon: "error",
-          buttonsStyling: false,
-          confirmButtonText: "Try again!",
-          customClass: {
-            confirmButton: "btn fw-semobold btn-light-danger",
-          },
-        });
-      }
-
       submitButton.value?.removeAttribute("data-kt-indicator");
       // eslint-disable-next-line
       submitButton.value!.disabled = false;
     };
 
     return {
+      formData,
+      validator,
       registration,
       onSubmitRegister,
       submitButton,
+      store,
+      router,
     };
   },
 });

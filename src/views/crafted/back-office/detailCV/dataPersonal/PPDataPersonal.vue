@@ -84,7 +84,7 @@
                           <option selected disabled value="">Pilih Salah Satu</option>
                           <option
                             v-for="(provinsi, index) in dataPersonalModule.listProvinsi"
-                            :value="provinsi.kode"
+                            :value="provinsi.id"
                             :key="index">
                             {{ provinsi.nama }}
                           </option>
@@ -401,11 +401,9 @@ export default {
   },
   mounted() {
     this.getListAgama()
-    this.getListKota()
-    this.getListProvinsi()
+    this.initiatePage()
     this.getListKotaLahir()
     this.getListStatus()
-    this.getDataPersonal()
   },
   methods: {
     ...mapActions('dataPersonalModule', [
@@ -417,12 +415,40 @@ export default {
       'getDataPersonal',
       'submitForm',
       'validateForm',
+      'findKodeProvinsi',
     ]),
+    async initiatePage() {
+      const provinsi = await this.getListProvinsi();
+      const personal = await this.getDataPersonal();
+
+      if (provinsi && personal) {
+        const kodeProvinsi = await this.findKodeProvinsi();
+        this.$store.commit('dataPersonalModule/changeDataPersonal', {
+          selectedProvinsi: kodeProvinsi,
+        })
+        await this.getListKota()
+      }
+    },
     async submit() {
       const validating = await this.validateForm()
       console.log(validating)
       if (validating) {
-        const submit = await this.submitForm()
+        const formData = new FormData();
+        formData.append('nama', this.dataPersonalModule.formData.nama)
+        formData.append('gelar', this.dataPersonalModule.formData.gelar)
+        formData.append('id_kota_lahir', this.dataPersonalModule.formData.id_kota_lahir)
+        formData.append('provinsi', this.dataPersonalModule.formData.provinsi)
+        formData.append('kota', this.dataPersonalModule.formData.kota)
+        formData.append('gender', this.dataPersonalModule.formData.gender)
+        formData.append('marital_status', this.dataPersonalModule.formData.marital_status)
+        formData.append('nik', this.dataPersonalModule.formData.nik)
+        formData.append('phone', this.dataPersonalModule.formData.phone)
+        formData.append('tgl_lahir', this.dataPersonalModule.formData.tgl_lahir)
+        formData.append('agama', this.dataPersonalModule.formData.agama)
+        formData.append('email', this.dataPersonalModule.formData.email)
+        formData.append('ktp', this.dataPersonalModule.formData.ktp)
+        formData.append('alamat', this.dataPersonalModule.formData.alamat)
+        const submit = await this.submitForm(formData);
         if (submit) {
           Swal.fire({
             position: 'top-end',
@@ -444,8 +470,9 @@ export default {
       }
     },
     async changeProvinsiHandler() {
+      const kodeProvinsi = await findKodeProvinsi();
       this.$store.commit('dataPersonalModule/changeDataPersonal', {
-        selectedProvinsi: this.dataPersonalModule.formData.provinsi
+        selectedProvinsi: kodeProvinsi,
       })
       await this.getListKota()
     },
