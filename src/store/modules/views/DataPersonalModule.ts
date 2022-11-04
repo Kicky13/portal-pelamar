@@ -1,6 +1,4 @@
 import ApiService from "@/core/services/ApiService";
-import axiosService from '@/core/services/AxiosService';
-import { da } from "element-plus/es/locale";
 
 const state = {
     data: {

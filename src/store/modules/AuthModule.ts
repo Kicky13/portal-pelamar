@@ -82,14 +82,34 @@ export default class AuthModule extends VuexModule implements UserAuthInfo {
   }
 
   @Action
-  [Actions.LOGIN](credentials) {
-    return ApiService.post("auth/login?username=" + credentials.email + "&password=" + credentials.password, credentials)
-      .then(({ data }) => {
-        this.context.commit(Mutations.SET_AUTH, data);
-      })
-      .catch(({ response }) => {
-        this.context.commit(Mutations.SET_ERROR, response.status_code);
-      });
+  async [Actions.LOGIN](credentials) {
+    try {
+      const res = await ApiService.post("auth/login?username=" + credentials.email + "&password=" + credentials.password, credentials);
+      if (res) {
+        this.context.commit(Mutations.SET_AUTH, res.data)
+        const response = {
+          data: res.data,
+          status: true,
+          message: 'Login Berhasil',
+        }
+        return response;
+      } else {
+        this.context.commit(Mutations.SET_ERROR, res);
+        const response = {
+          data: res,
+          status: false,
+          message: 'Username atau password salah',
+        }
+        return response;
+      }
+    } catch {
+      const response = {
+        data: null,
+        status: false,
+        message: 'Username atau password salah'
+      }
+      return response;
+    }
   }
 
   @Action
