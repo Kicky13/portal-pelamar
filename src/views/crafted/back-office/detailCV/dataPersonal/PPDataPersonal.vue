@@ -84,7 +84,7 @@
                           <option selected disabled value="">Pilih Salah Satu</option>
                           <option
                             v-for="(provinsi, index) in dataPersonalModule.listProvinsi"
-                            :value="provinsi.kode"
+                            :value="provinsi.id"
                             :key="index">
                             {{ provinsi.nama }}
                           </option>
@@ -401,11 +401,9 @@ export default {
   },
   mounted() {
     this.getListAgama()
-    this.getListKota()
-    this.getListProvinsi()
+    this.initiatePage()
     this.getListKotaLahir()
     this.getListStatus()
-    this.getDataPersonal()
   },
   methods: {
     ...mapActions('dataPersonalModule', [
@@ -417,7 +415,20 @@ export default {
       'getDataPersonal',
       'submitForm',
       'validateForm',
+      'findKodeProvinsi',
     ]),
+    async initiatePage() {
+      const provinsi = await this.getListProvinsi();
+      const personal = await this.getDataPersonal();
+
+      if (provinsi && personal) {
+        const kodeProvinsi = await this.findKodeProvinsi();
+        this.$store.commit('dataPersonalModule/changeDataPersonal', {
+          selectedProvinsi: kodeProvinsi,
+        })
+        await this.getListKota()
+      }
+    },
     async submit() {
       const validating = await this.validateForm()
       console.log(validating)
@@ -459,8 +470,9 @@ export default {
       }
     },
     async changeProvinsiHandler() {
+      const kodeProvinsi = await findKodeProvinsi();
       this.$store.commit('dataPersonalModule/changeDataPersonal', {
-        selectedProvinsi: this.dataPersonalModule.formData.provinsi
+        selectedProvinsi: kodeProvinsi,
       })
       await this.getListKota()
     },

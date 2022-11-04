@@ -115,15 +115,18 @@ const actions = {
                     isSubmitLoading: false,
                     listProvinsi: res.data.data,
                 });
+                return true;
             } else {
                 await commit('changeDataPersonal', {
                     isSubmitLoading: false,
                 });
+                return false;
             }
         } catch {
             await commit('changeDataPersonal', {
                 isSubmitLoading: false,
             });
+            return false;
         }
     },
     async getListKota({ commit, state }) {
@@ -142,15 +145,18 @@ const actions = {
                     isLoading: false,
                     listKotaByProvinsi: res.data.data,
                 });
+                return true;
             } else {
                 await commit('changeDataPersonal', {
                     isLoading: false,
                 });
+                return false;
             }
         } catch {
             await commit('changeDataPersonal', {
                 isLoading: false,
             });
+            return false;
         }
     },
     async getListStatus({ commit, state }) {
@@ -186,16 +192,20 @@ const actions = {
             if (res.data.status_code == `201` || res.data.status_code == 201) {
                 await commit('changeDataPersonal', {
                     isLoading: false,
+                    formData: res.data.data,
                 });
+                return true;
             } else {
                 await commit('changeDataPersonal', {
                     isLoading: false,
                 });
+                return false;
             }
         } catch {
             await commit('changeDataPersonal', {
                 isLoading: false,
             });
+            return false;
         }
     },
     cleanForm({ commit, state }) {
@@ -243,6 +253,14 @@ const actions = {
             return false
         }
     }, 
+    async findKodeProvinsi({commit, state}) {
+        const { data } = state;
+        const dataSource = [...data.listProvinsi];
+        console.log(data.formData.provinsi);
+        let filtered = dataSource.filter(x => x.id == data.formData.provinsi);
+        return filtered[0].kode;
+    },
+
     async validateForm({ commit, state }) {
         const { data } = state
         let special = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
