@@ -17,53 +17,48 @@
                         <tr>
                           <td class="title-body w-50">Nama</td>
                           <td>:</td>
-                          <td class="title-sub-body">Nurul Jannah</td>
+                          <td class="title-sub-body">{{resumeCVModule.listPersonal.nama}}</td>
                         </tr>
                         <tr>
                           <td class="title-body w-50">Gelar Akademik</td>
                           <td>:</td>
-                          <td class="">MBA, SE</td>
+                          <td class="">{{resumeCVModule.listPersonal.gelar}}</td>
                         </tr>
                         <tr>
                           <td class="title-body w-50">Jenis Kelamin</td>
                           <td>:</td>
-                          <td class="">Perempuan</td>
+                          <td class="">{{resumeCVModule.listPersonal.gender == 'L' ? 'Laki-laki' : 'Perempuan'}}</td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                           <td class="title-body w-50">Kewarganegaraan</td>
                           <td>:</td>
                           <td class="t">WNI</td>
-                        </tr>
+                        </tr> -->
                         <tr>
                           <td class="title-body w-50">NIK / Passport</td>
                           <td>:</td>
-                          <td class="t">3174067351720007</td>
-                        </tr>
-                        <tr>
-                          <td class="title-body w-50">Status Kawin</td>
-                          <td>:</td>
-                          <td class="t">KAWIN</td>
+                          <td class="t">{{resumeCVModule.listPersonal.nik}}</td>
                         </tr>
                         <tr>
                           <td class="title-body w-50">Tempat Lahir</td>
                           <td>:</td>
-                          <td class="t">KOTA MEDAN</td>
+                          <td class="t">{{resumeCVModule.listPersonal.tempat_lahir}}</td>
                         </tr>
                         <tr>
                           <td class="title-body w-50">Tanggal Lahir</td>
                           <td>:</td>
-                          <td class="t">09 Juni 1972</td>
+                          <td class="t">{{resumeCVModule.listPersonal.tgl_lahir}}</td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                           <td class="title-body w-50">Agama</td>
                           <td>:</td>
-                          <td class="t">Agama Islam</td>
-                        </tr>
+                          <td class="t">{{resumeCVModule.listPersonal.agama_desc}}</td>
+                        </tr> -->
                       </table>
                     </div>
                     <div class="col-sm-6">
                       <div class="resume-cv__personal__update">
-                        <button class="btn btn-primary-portal">
+                        <router-link to="/profile//detail-cv/personal" class="btn btn-primary-portal">
                           Ubah Data
                           <img
                             class="mr-2"
@@ -71,43 +66,51 @@
                               require('@/assets/images/icon/ic_edit_white.svg')
                             "
                             alt="" />
-                        </button>
+                        </router-link>
                       </div>
                       <table style="width: 100%">
-                        <tr>
+                        <!-- <tr>
                           <td class="title-body w-50">Golongan Darah</td>
                           <td>:</td>
                           <td class="">B</td>
-                        </tr>
+                        </tr> -->
                         <tr>
+                          <td class="title-body w-50">Agama</td>
+                          <td>:</td>
+                          <td class="t">{{resumeCVModule.listPersonal.agama_desc}}</td>
+                        </tr>
+                        <!-- <tr>
                           <td class="title-body w-50">Suku</td>
                           <td>:</td>
                           <td class="">JAWA</td>
-                        </tr>
+                        </tr> -->
                         <tr>
                           <td class="title-body w-50">Alamat</td>
                           <td class="">:</td>
                           <td class="">
-                            Alamat Jl. Gaharu III No. 3 – 5, RT 002/RW 007,
-                            Kramat Pela, Kebayoran Baru, Jakarta Selatan. Kode
-                            Pos : 12130
+                            {{resumeCVModule.listPersonal.alamat}}
                           </td>
                         </tr>
                         <tr>
                           <td class="title-body w-50">Email</td>
                           <td>:</td>
-                          <td class="t">nurul@gmail.co.id</td>
+                          <td class="t">{{resumeCVModule.listPersonal.email}}</td>
                         </tr>
                         <tr>
                           <td class="title-body w-50">No Handphone</td>
                           <td>:</td>
-                          <td class="t">08118717288</td>
+                          <td class="t">{{resumeCVModule.listPersonal.phone}}</td>
                         </tr>
                         <tr>
+                          <td class="title-body w-50">Status Kawin</td>
+                          <td>:</td>
+                          <td class="t">{{resumeCVModule.listPersonal.status_kawin}}</td>
+                        </tr>
+                        <!-- <tr>
                           <td class="title-body w-50">NPWP</td>
                           <td>:</td>
                           <td class="t">689876700017000</td>
-                        </tr>
+                        </tr> -->
                       </table>
                     </div>
                   </div>
@@ -128,13 +131,7 @@
                       <div class="col-sm-1">:</div>
                       <div class="col-sm-9">
                         <div class="informasi">
-                          Ekonomi makro, long run economy, capital and
-                          investment flow, ekonomi regional, dan keterkaitan
-                          industri.Strategic leadership dan transformative
-                          leadership;Mendorong perubahan mindset kolektif;
-                          Mendorong munculnya inisiatif, kreatifitas, dan rasa
-                          saling membutuhkan pada anggota suatu komunitas;
-                          Memimpikan terbentuknya komunitas-komunitas kreatif.
+                          {{resumeCVModule.listPersonifikasi.nilai_pribadi}}
                         </div>
                       </div>
                     </div>
@@ -145,14 +142,7 @@
                       <div class="col-sm-1">:</div>
                       <div class="col-sm-9">
                         <div class="informasi">
-                          Dengan latar belakang yang saya miliki, dimana selama
-                          ini saya telah mengelola berbagai portfolio di
-                          berbagai sektor industri, maka menurut hemat saya
-                          dapat mengembangkan karir di perbankan ( antara lain
-                          Corporate Banking , Commercial Banking, Treasury,
-                          Keuangan ) maupun non perbankan. Saya memiliki
-                          tertarik berkarir di sektor / bidang yang memberikan
-                          ruang untuk melakukan inovasi.
+                          {{resumeCVModule.listPersonifikasi.visi_pribadi}}
                         </div>
                       </div>
                     </div>
@@ -173,10 +163,7 @@
                       </div>
                       <div class="col-sm-1">:</div>
                       <div class="col-sm-9">
-                        <div class="informasi">
-                          nurul jannah (<strong>facebook</strong>) - nurul
-                          jannah (<strong>Instagram</strong>) - nurul jannah
-                          (<strong>Twitter</strong>)
+                        <div class="informasi" v-html="resumeCVModule.sosmed != '' ? resumeCVModule.sosmed : '-'">
                         </div>
                       </div>
                     </div>
@@ -193,71 +180,63 @@
                     class="text-center"
                     @on-sort="sort"
                     @on-items-select="onItemSelect"
-                    :data="data"
-                    :header="tableHeader">
-                    <template v-slot:customer="{ row: customer }">
-                      <router-link
-                        to="/apps/subscriptions/view-subscription"
-                        href=""
-                        class="text-gray-800 text-hover-primary mb-1">
-                        {{ customer.customer }}
-                      </router-link>
+                    :loading="riwayatPekerjaanModule.isLoading1"
+                    :data="riwayatPekerjaanModule.listPekerjaan1"
+                    :header="riwayatPekerjaanModule.tableHeader">
+                    <template v-slot:jabatan="{ row: listPekerjaan1 }">
+                      {{ listPekerjaan1.jabatan }}<br>
+                      {{ listPekerjaan1.nama_instansi }}
                     </template>
-                    <template v-slot:status="{ row: customer }">
-                      <a href="#" class="text-gray-600 text-hover-primary mb-1">
-                        <div :class="`badge badge-light-${customer.color}`">
-                          {{ customer.status }}
-                        </div>
-                      </a>
+                    <template v-slot:tanggal_mulai="{ row: listPekerjaan1 }">
+                      {{ listPekerjaan1.tanggal_mulai }}
                     </template>
-                    <template v-slot:billing="{ row: customer }">
-                      <div class="badge badge-light">
-                        {{ customer.billing }}
-                      </div>
+                    <template v-slot:tanggal_akhir="{ row: listPekerjaan1 }">
+                      {{ listPekerjaan1.tanggal_akhir }}
                     </template>
-                    <template v-slot:product="{ row: customer }">
-                      {{ customer.product }}
+                    <template v-slot:tupoksi="{ row: listPekerjaan1 }">
+                      {{ listPekerjaan1.tupoksi }}
                     </template>
-                    <template v-slot:createdDate="{ row: customer }">
-                      {{ customer.createdDate }}
+                    <template v-slot:achievement="{ row: listPekerjaan1 }">
+                      {{ listPekerjaan1.achievement }}
                     </template>
-                    <template v-slot:actions="{ row: customer }">
-                      <a
-                        href="#"
-                        class="btn btn-sm btn-light btn-active-light-primary"
-                        data-kt-menu-trigger="click"
-                        data-kt-menu-placement="bottom-end"
-                        data-kt-menu-flip="top-end"
-                        >Actions
-                        <span class="svg-icon svg-icon-5 m-0">
-                          <inline-svg
-                            src="media/icons/duotune/arrows/arr072.svg" />
-                        </span>
-                      </a>
-                      <!--begin::Menu-->
-                      <div
-                        class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semobold fs-7 w-125px py-4"
-                        data-kt-menu="true">
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-3">
-                          <router-link
-                            to="/apps/customers/customer-details"
-                            class="menu-link px-3"
-                            >View</router-link
-                          >
-                        </div>
-                        <!--end::Menu item-->
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-3">
-                          <a
-                            @click="deleteSubscription(customer.id)"
-                            class="menu-link px-3"
-                            >Delete</a
-                          >
-                        </div>
-                        <!--end::Menu item-->
-                      </div>
-                      <!--end::Menu-->
+                    <template v-slot:bidang_jabatan="{ row: listPekerjaan1 }">
+                      {{ listPekerjaan1.bidang.name }}
+                    </template>
+                  </KTDatatable>
+                </div>
+                <!-- Riwayat Pekerjaan -->
+
+                <!-- Riwayat Pekerjaan Dewan -->
+                <div class="title d-flex align-items-center border-top">
+                  <label for="">Penugasan yang berkaitan dengan Dewan Komisaris/Dewan Pengawas</label>
+                </div>
+
+                <div class="container">
+                  <KTDatatable
+                    class="text-center"
+                    @on-sort="sort"
+                    @on-items-select="onItemSelect"
+                    :loading="riwayatPekerjaanModule.isLoading2"
+                    :data="riwayatPekerjaanModule.listPekerjaan2"
+                    :header="riwayatPekerjaanModule.tableHeader">
+                    <template v-slot:jabatan="{ row: listPekerjaan2 }">
+                      {{ listPekerjaan2.jabatan }}<br>
+                      {{ listPekerjaan2.nama_instansi }}
+                    </template>
+                    <template v-slot:tanggal_mulai="{ row: listPekerjaan2 }">
+                      {{ listPekerjaan2.tanggal_mulai }}
+                    </template>
+                    <template v-slot:tanggal_akhir="{ row: listPekerjaan2 }">
+                      {{ listPekerjaan2.tanggal_akhir }}
+                    </template>
+                    <template v-slot:tupoksi="{ row: listPekerjaan2 }">
+                      {{ listPekerjaan2.tupoksi }}
+                    </template>
+                    <template v-slot:achievement="{ row: listPekerjaan2 }">
+                      {{ listPekerjaan2.achievement }}
+                    </template>
+                    <template v-slot:bidang_jabatan="{ row: listPekerjaan2 }">
+                      {{ listPekerjaan2.bidang.name }}
                     </template>
                   </KTDatatable>
                 </div>
@@ -273,71 +252,24 @@
                     class="text-center"
                     @on-sort="sort"
                     @on-items-select="onItemSelect"
-                    :data="data"
-                    :header="tableHeader">
-                    <template v-slot:customer="{ row: customer }">
-                      <router-link
-                        to="/apps/subscriptions/view-subscription"
-                        href=""
-                        class="text-gray-800 text-hover-primary mb-1">
-                        {{ customer.customer }}
-                      </router-link>
+                    :loading="dataOrganisasiModule.isLoading"
+                    :data="dataOrganisasiModule.listOrganisasi"
+                    :header="dataOrganisasiModule.tableHeader">
+                    <template v-slot:jabatan="{ row: listOrganisasi }">
+                      {{ listOrganisasi.jabatan }}<br>
+                      {{ listOrganisasi.nama_organisasi }}
                     </template>
-                    <template v-slot:status="{ row: customer }">
-                      <a href="#" class="text-gray-600 text-hover-primary mb-1">
-                        <div :class="`badge badge-light-${customer.color}`">
-                          {{ customer.status }}
-                        </div>
-                      </a>
+                    <template v-slot:tanggal_mulai="{ row: listOrganisasi }">
+                      {{ listOrganisasi.tanggal_mulai }}
                     </template>
-                    <template v-slot:billing="{ row: customer }">
-                      <div class="badge badge-light">
-                        {{ customer.billing }}
-                      </div>
+                    <template v-slot:tanggal_akhir="{ row: listOrganisasi }">
+                      {{ listOrganisasi.tanggal_akhir }}
                     </template>
-                    <template v-slot:product="{ row: customer }">
-                      {{ customer.product }}
+                    <template v-slot:uraian_kegiatan="{ row: listOrganisasi }">
+                      {{ listOrganisasi.uraian_kegiatan }}
                     </template>
-                    <template v-slot:createdDate="{ row: customer }">
-                      {{ customer.createdDate }}
-                    </template>
-                    <template v-slot:actions="{ row: customer }">
-                      <a
-                        href="#"
-                        class="btn btn-sm btn-light btn-active-light-primary"
-                        data-kt-menu-trigger="click"
-                        data-kt-menu-placement="bottom-end"
-                        data-kt-menu-flip="top-end"
-                        >Actions
-                        <span class="svg-icon svg-icon-5 m-0">
-                          <inline-svg
-                            src="media/icons/duotune/arrows/arr072.svg" />
-                        </span>
-                      </a>
-                      <!--begin::Menu-->
-                      <div
-                        class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semobold fs-7 w-125px py-4"
-                        data-kt-menu="true">
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-3">
-                          <router-link
-                            to="/apps/customers/customer-details"
-                            class="menu-link px-3"
-                            >View</router-link
-                          >
-                        </div>
-                        <!--end::Menu item-->
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-3">
-                          <a
-                            @click="deleteSubscription(customer.id)"
-                            class="menu-link px-3"
-                            >Delete</a
-                          >
-                        </div>
-                        <!--end::Menu item-->
-                      </div>
-                      <!--end::Menu-->
+                    <template v-slot:jenis_organisasi="{ row: listOrganisasi }">
+                      {{ listOrganisasi.jenis_org.name }}
                     </template>
                   </KTDatatable>
                 </div>
@@ -345,7 +277,7 @@
 
                 <!-- Pendidikan & Pelatihan -->
                 <div class="title d-flex align-items-center border-top">
-                  <label for="">Pendidikan & Pelatihan</label>
+                  <label for="">Riwayat Pendidikan Formal</label>
                 </div>
 
                 <div class="container">
@@ -353,71 +285,56 @@
                     class="text-center"
                     @on-sort="sort"
                     @on-items-select="onItemSelect"
-                    :data="data"
-                    :header="tableHeader">
-                    <template v-slot:customer="{ row: customer }">
-                      <router-link
-                        to="/apps/subscriptions/view-subscription"
-                        href=""
-                        class="text-gray-800 text-hover-primary mb-1">
-                        {{ customer.customer }}
-                      </router-link>
+                    :loading="pendidikanPelatihanModule.isLoading1"
+                    :data="pendidikanPelatihanModule.listPendidikan"
+                    :header="pendidikanPelatihanModule.tableHeader">
+                    <template v-slot:jenjang="{ row: listPendidikan }">
+                      {{ listPendidikan.jenjang.name }} - {{ listPendidikan.perguruan_tinggi.name }}
                     </template>
-                    <template v-slot:status="{ row: customer }">
-                      <a href="#" class="text-gray-600 text-hover-primary mb-1">
-                        <div :class="`badge badge-light-${customer.color}`">
-                          {{ customer.status }}
-                        </div>
-                      </a>
+                    <template v-slot:tahun_lulus="{ row: listPendidikan }">
+                      {{ listPendidikan.tahun_lulus }}
                     </template>
-                    <template v-slot:billing="{ row: customer }">
-                      <div class="badge badge-light">
-                        {{ customer.billing }}
-                      </div>
+                    <template v-slot:jurusan="{ row: listPendidikan }">
+                      {{ listPendidikan.jurusan }}
                     </template>
-                    <template v-slot:product="{ row: customer }">
-                      {{ customer.product }}
+                    <template v-slot:kota="{ row: listPendidikan }">
+                      {{ listPendidikan.kota.nama }}, {{ listPendidikan.negara.nama }}
                     </template>
-                    <template v-slot:createdDate="{ row: customer }">
-                      {{ customer.createdDate }}
+                    <template v-slot:penghargaan="{ row: listPendidikan }">
+                      {{ listPendidikan.penghargaan }}
                     </template>
-                    <template v-slot:actions="{ row: customer }">
-                      <a
-                        href="#"
-                        class="btn btn-sm btn-light btn-active-light-primary"
-                        data-kt-menu-trigger="click"
-                        data-kt-menu-placement="bottom-end"
-                        data-kt-menu-flip="top-end"
-                        >Actions
-                        <span class="svg-icon svg-icon-5 m-0">
-                          <inline-svg
-                            src="media/icons/duotune/arrows/arr072.svg" />
-                        </span>
-                      </a>
-                      <!--begin::Menu-->
-                      <div
-                        class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semobold fs-7 w-125px py-4"
-                        data-kt-menu="true">
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-3">
-                          <router-link
-                            to="/apps/customers/customer-details"
-                            class="menu-link px-3"
-                            >View</router-link
-                          >
-                        </div>
-                        <!--end::Menu item-->
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-3">
-                          <a
-                            @click="deleteSubscription(customer.id)"
-                            class="menu-link px-3"
-                            >Delete</a
-                          >
-                        </div>
-                        <!--end::Menu item-->
-                      </div>
-                      <!--end::Menu-->
+                  </KTDatatable>
+                </div>
+
+                <div class="title d-flex align-items-center border-top">
+                  <label for="">Riwayat Pelatihan</label>
+                </div>
+
+                <div class="container">
+                  <KTDatatable
+                    class="text-center"
+                    @on-sort="sort"
+                    @on-items-select="onItemSelect"
+                    :loading="pendidikanPelatihanModule.isLoading2"
+                    :data="pendidikanPelatihanModule.listPelatihan"
+                    :header="pendidikanPelatihanModule.tableHeader2">
+                    <template v-slot:nama="{ row: listPelatihan }">
+                      {{ listPelatihan.name }}
+                    </template>
+                    <template v-slot:tahun="{ row: listPelatihan }">
+                      {{ listPelatihan.tahun }}
+                    </template>
+                    <template v-slot:penyelenggara="{ row: listPelatihan }">
+                      {{ listPelatihan.penyelenggara }}
+                    </template>
+                    <template v-slot:kota="{ row: listPelatihan }">
+                      {{ listPelatihan.kota.nama }}
+                    </template>
+                    <template v-slot:kategori="{ row: listPelatihan }">
+                      {{ listPelatihan.kategori.name }}
+                    </template>
+                    <template v-slot:no_sertifikat="{ row: listPelatihan }">
+                      {{ listPelatihan.nomor_sertifikat }}
                     </template>
                   </KTDatatable>
                 </div>
@@ -433,71 +350,16 @@
                     class="text-center"
                     @on-sort="sort"
                     @on-items-select="onItemSelect"
-                    :data="data"
-                    :header="tableHeader">
-                    <template v-slot:customer="{ row: customer }">
-                      <router-link
-                        to="/apps/subscriptions/view-subscription"
-                        href=""
-                        class="text-gray-800 text-hover-primary mb-1">
-                        {{ customer.customer }}
-                      </router-link>
+                    :data="publikasiModule.listPublikasi"
+                    :header="publikasiModule.column">
+                    <template v-slot:judul="{ row: data }">
+                      {{ data.judul }}
                     </template>
-                    <template v-slot:status="{ row: customer }">
-                      <a href="#" class="text-gray-600 text-hover-primary mb-1">
-                        <div :class="`badge badge-light-${customer.color}`">
-                          {{ customer.status }}
-                        </div>
-                      </a>
+                    <template v-slot:media="{ row: data }">
+                      {{ data.media }}
                     </template>
-                    <template v-slot:billing="{ row: customer }">
-                      <div class="badge badge-light">
-                        {{ customer.billing }}
-                      </div>
-                    </template>
-                    <template v-slot:product="{ row: customer }">
-                      {{ customer.product }}
-                    </template>
-                    <template v-slot:createdDate="{ row: customer }">
-                      {{ customer.createdDate }}
-                    </template>
-                    <template v-slot:actions="{ row: customer }">
-                      <a
-                        href="#"
-                        class="btn btn-sm btn-light btn-active-light-primary"
-                        data-kt-menu-trigger="click"
-                        data-kt-menu-placement="bottom-end"
-                        data-kt-menu-flip="top-end"
-                        >Actions
-                        <span class="svg-icon svg-icon-5 m-0">
-                          <inline-svg
-                            src="media/icons/duotune/arrows/arr072.svg" />
-                        </span>
-                      </a>
-                      <!--begin::Menu-->
-                      <div
-                        class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semobold fs-7 w-125px py-4"
-                        data-kt-menu="true">
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-3">
-                          <router-link
-                            to="/apps/customers/customer-details"
-                            class="menu-link px-3"
-                            >View</router-link
-                          >
-                        </div>
-                        <!--end::Menu item-->
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-3">
-                          <a
-                            @click="deleteSubscription(customer.id)"
-                            class="menu-link px-3"
-                            >Delete</a
-                          >
-                        </div>
-                        <!--end::Menu item-->
-                      </div>
-                      <!--end::Menu-->
+                    <template v-slot:tahun="{ row: data }">
+                      {{ data.tahun }}
                     </template>
                   </KTDatatable>
                 </div>
@@ -513,71 +375,23 @@
                     class="text-center"
                     @on-sort="sort"
                     @on-items-select="onItemSelect"
-                    :data="data"
-                    :header="tableHeader">
-                    <template v-slot:customer="{ row: customer }">
-                      <router-link
-                        to="/apps/subscriptions/view-subscription"
-                        href=""
-                        class="text-gray-800 text-hover-primary mb-1">
-                        {{ customer.customer }}
-                      </router-link>
+                    :loading="narasumberModule.isLoading"
+                    :data="narasumberModule.listNarasumber"
+                    :header="narasumberModule.column">
+                    <template v-slot:nama_acara="{ row: listNarasumber }">
+                      {{ listNarasumber.nama_acara }}
                     </template>
-                    <template v-slot:status="{ row: customer }">
-                      <a href="#" class="text-gray-600 text-hover-primary mb-1">
-                        <div :class="`badge badge-light-${customer.color}`">
-                          {{ customer.status }}
-                        </div>
-                      </a>
+                    <template v-slot:tahun="{ row: listNarasumber }">
+                      {{ listNarasumber.tahun }}
                     </template>
-                    <template v-slot:billing="{ row: customer }">
-                      <div class="badge badge-light">
-                        {{ customer.billing }}
-                      </div>
+                    <template v-slot:jumlah_peserta="{ row: listNarasumber }">
+                      {{ listNarasumber.jumlah_peserta }}
                     </template>
-                    <template v-slot:product="{ row: customer }">
-                      {{ customer.product }}
+                    <template v-slot:penyelenggara="{ row: listNarasumber }">
+                      {{ listNarasumber.penyelenggara }}
                     </template>
-                    <template v-slot:createdDate="{ row: customer }">
-                      {{ customer.createdDate }}
-                    </template>
-                    <template v-slot:actions="{ row: customer }">
-                      <a
-                        href="#"
-                        class="btn btn-sm btn-light btn-active-light-primary"
-                        data-kt-menu-trigger="click"
-                        data-kt-menu-placement="bottom-end"
-                        data-kt-menu-flip="top-end"
-                        >Actions
-                        <span class="svg-icon svg-icon-5 m-0">
-                          <inline-svg
-                            src="media/icons/duotune/arrows/arr072.svg" />
-                        </span>
-                      </a>
-                      <!--begin::Menu-->
-                      <div
-                        class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semobold fs-7 w-125px py-4"
-                        data-kt-menu="true">
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-3">
-                          <router-link
-                            to="/apps/customers/customer-details"
-                            class="menu-link px-3"
-                            >View</router-link
-                          >
-                        </div>
-                        <!--end::Menu item-->
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-3">
-                          <a
-                            @click="deleteSubscription(customer.id)"
-                            class="menu-link px-3"
-                            >Delete</a
-                          >
-                        </div>
-                        <!--end::Menu item-->
-                      </div>
-                      <!--end::Menu-->
+                    <template v-slot:lokasi="{ row: listNarasumber }">
+                      {{ listNarasumber.lokasi }}
                     </template>
                   </KTDatatable>
                 </div>
@@ -593,71 +407,20 @@
                     class="text-center"
                     @on-sort="sort"
                     @on-items-select="onItemSelect"
-                    :data="data"
-                    :header="tableHeader">
-                    <template v-slot:customer="{ row: customer }">
-                      <router-link
-                        to="/apps/subscriptions/view-subscription"
-                        href=""
-                        class="text-gray-800 text-hover-primary mb-1">
-                        {{ customer.customer }}
-                      </router-link>
+                    :loading="dataReferensiModule.isLoading"
+                    :data="dataReferensiModule.listReferensi"
+                    :header="dataReferensiModule.tableHeader">
+                    <template v-slot:nama="{ row: listReferensi }">
+                      {{ listReferensi.nama_ref }}
                     </template>
-                    <template v-slot:status="{ row: customer }">
-                      <a href="#" class="text-gray-600 text-hover-primary mb-1">
-                        <div :class="`badge badge-light-${customer.color}`">
-                          {{ customer.status }}
-                        </div>
-                      </a>
+                    <template v-slot:jabatan="{ row: listReferensi }">
+                      {{ listReferensi.jabatan }}
                     </template>
-                    <template v-slot:billing="{ row: customer }">
-                      <div class="badge badge-light">
-                        {{ customer.billing }}
-                      </div>
+                    <template v-slot:perusahaan="{ row: listReferensi }">
+                      {{ listReferensi.perusahaan }}
                     </template>
-                    <template v-slot:product="{ row: customer }">
-                      {{ customer.product }}
-                    </template>
-                    <template v-slot:createdDate="{ row: customer }">
-                      {{ customer.createdDate }}
-                    </template>
-                    <template v-slot:actions="{ row: customer }">
-                      <a
-                        href="#"
-                        class="btn btn-sm btn-light btn-active-light-primary"
-                        data-kt-menu-trigger="click"
-                        data-kt-menu-placement="bottom-end"
-                        data-kt-menu-flip="top-end"
-                        >Actions
-                        <span class="svg-icon svg-icon-5 m-0">
-                          <inline-svg
-                            src="media/icons/duotune/arrows/arr072.svg" />
-                        </span>
-                      </a>
-                      <!--begin::Menu-->
-                      <div
-                        class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semobold fs-7 w-125px py-4"
-                        data-kt-menu="true">
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-3">
-                          <router-link
-                            to="/apps/customers/customer-details"
-                            class="menu-link px-3"
-                            >View</router-link
-                          >
-                        </div>
-                        <!--end::Menu item-->
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-3">
-                          <a
-                            @click="deleteSubscription(customer.id)"
-                            class="menu-link px-3"
-                            >Delete</a
-                          >
-                        </div>
-                        <!--end::Menu item-->
-                      </div>
-                      <!--end::Menu-->
+                    <template v-slot:no_hp="{ row: listReferensi }">
+                      {{ listReferensi.no_hp }}
                     </template>
                   </KTDatatable>
                 </div>
@@ -673,6 +436,7 @@
 <script>
 import LayoutProfileAside from "@/views/crafted/layout/LayoutProfile.vue";
 import KTDatatable from "@/components/kt-datatable/KTDataTable.vue";
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "BackOfficeResumeCV",
@@ -708,6 +472,55 @@ export default {
         },
       ],
     };
+  },
+  computed: {
+    ...mapState({
+      resumeCVModule: (state) => state.resumeCVModule.data,
+      riwayatPekerjaanModule: (state) => state.riwayatPekerjaanModule.data,
+      dataOrganisasiModule: (state) => state.dataOrganisasiModule.data,
+      pendidikanPelatihanModule: (state) => state.pendidikanPelatihanModule.data,
+      publikasiModule: (state) => state.publikasiModule.data,
+      narasumberModule: (state) => state.narasumberModule.data,
+      dataReferensiModule: (state) => state.dataReferensiModule.data,
+    })
+  },
+  mounted() {
+    this.getDataPersonal(),
+    this.getPersonifikasi(),
+    this.getListPekerjaan1(),
+    this.getListPekerjaan2(),
+    this.getListOrganisasi(),
+    this.getListPendidikan(),
+    this.getListPelatihan(),
+    this.getPublikasi(),
+    this.getNarasumber(),
+    this.getListReferensi()
+  },
+  methods: {
+    ...mapActions('resumeCVModule', [
+      'getDataPersonal',
+      'getPersonifikasi'
+    ]),
+    ...mapActions('riwayatPekerjaanModule', [
+      'getListPekerjaan1',
+      'getListPekerjaan2',
+    ]),
+    ...mapActions('dataOrganisasiModule', [
+      'getListOrganisasi'
+    ]),
+    ...mapActions('pendidikanPelatihanModule', [
+      'getListPendidikan',
+      'getListPelatihan'
+    ]),
+    ...mapActions('publikasiModule', [
+      'getPublikasi'
+    ]),
+    ...mapActions('narasumberModule', [
+      'getNarasumber'
+    ]),
+    ...mapActions('dataReferensiModule', [
+      'getListReferensi'
+    ]),
   },
   components: {
     LayoutProfileAside,

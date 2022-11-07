@@ -17,7 +17,34 @@ const state = {
             jabatan: false,
             perusahaan: false,
             no_hp: false,
-        }
+        },
+        tableHeader: [
+            {
+              columnName: "nama",
+              columnLabel: "nama",
+              sortEnabled: false,
+            },
+            {
+              columnName: "jabatan",
+              columnLabel: "jabatan",
+              sortEnabled: false,
+            },
+            {
+              columnName: "perusahaan",
+              columnLabel: "perusahaan",
+              sortEnabled: false,
+            },
+            {
+              columnName: "No Handphone",
+              columnLabel: "no_hp",
+              sortEnabled: false,
+            },
+            {
+              columnName: "Action",
+              columnLabel: "action",
+              sortEnabled: false,
+            },
+        ],
     },
 }
 

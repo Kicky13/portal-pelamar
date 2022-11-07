@@ -110,7 +110,7 @@
                     @on-items-select="onItemSelect"
                     :loading="dataReferensiModule.isLoading"
                     :data="dataReferensiModule.listReferensi"
-                    :header="tableHeader">
+                    :header="dataReferensiModule.tableHeader">
                     <template v-slot:nama="{ row: listReferensi }">
                       {{ listReferensi.nama_ref }}
                     </template>
@@ -140,10 +140,7 @@
                     <router-link to="#" class="btn btn-transparent-portal-soft"
                       >Kembali</router-link
                     >
-
-                    <router-link to="#" class="btn btn-success-portal-soft"
-                      >Selanjutnya</router-link
-                    >
+                    <router-link to="/profile/resume-cv" class="btn btn-success-portal-soft">Selanjutnya</router-link>
                   </div>
                 </div>
               </div>
@@ -166,33 +163,6 @@ export default {
   data() {
     return {
       title: "Data Referensi",
-      tableHeader: [
-        {
-          columnName: "nama",
-          columnLabel: "nama",
-          sortEnabled: false,
-        },
-        {
-          columnName: "jabatan",
-          columnLabel: "jabatan",
-          sortEnabled: false,
-        },
-        {
-          columnName: "perusahaan",
-          columnLabel: "perusahaan",
-          sortEnabled: false,
-        },
-        {
-          columnName: "No Handphone",
-          columnLabel: "no_hp",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Action",
-          columnLabel: "action",
-          sortEnabled: false,
-        },
-      ],
     };
   },
   computed: {

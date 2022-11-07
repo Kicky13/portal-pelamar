@@ -109,7 +109,7 @@ const actions = {
         try {
             const res = await ApiService.get('cv/personifikasi');
             if (res.data.status_code == `201` || res.data.status_code == 201) {
-                let responseData = res.data.data[0];
+                let responseData = res.data.data;
                 await commit('changePersonifikasi', {
                     isSubmitLoading: false,
                     formData: {
