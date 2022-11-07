@@ -21,7 +21,39 @@ const state = {
             nama_organisasi: false,
             id_jenis_organisasi: false,
             tanggal_mulai: false,
-        }
+        },
+        tableHeader: [
+            {
+                columnName: "Jabatan",
+                columnLabel: "jabatan",
+                sortEnabled: false,
+            },
+            {
+                columnName: "Awal Menjabat",
+                columnLabel: "tanggal_mulai",
+                sortEnabled: false,
+            },
+            {
+                columnName: "Akhir Menjabat",
+                columnLabel: "tanggal_akhir",
+                sortEnabled: false,
+            },
+            {
+                columnName: "Uraian Kegiatan",
+                columnLabel: "uraian_kegiatan",
+                sortEnabled: false,
+            },
+            {
+                columnName: "Jenis Organisasi",
+                columnLabel: "jenis_organisasi",
+                sortEnabled: false,
+            },
+            {
+                columnName: "Action",
+                columnLabel: "action",
+                sortEnabled: false,
+            },
+        ],
     },
 }
 

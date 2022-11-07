@@ -5,11 +5,11 @@
         class="col-sm-6 bg-login d-flex justify-content-center align-items-center"
         :style="
           'background-image: url(' +
-          require('@/assets/images/background/bg_login.png') +
-          ')'
+          require('@/assets/images/background/bg_login_portal.png') +
+          '); background-size: cover'
         ">
         <div class="img-logo">
-          <img :src="require('@/assets/images/logo/lg_bumn.png')" alt="" />
+          <img :src="require('@/assets/images/logo/logo_login.png')" alt="" />
         </div>
       </div>
       <div
@@ -72,10 +72,11 @@
               <router-link :to="`/registrasi`">Disini</router-link></span
             >
           </div>
-        </Form>
-        <footer class="form-data pt-0">
           <ButtonBack linkPage="/"></ButtonBack>
-        </footer>
+        </Form>
+        <!-- <footer class="form-data pt-0">
+          <ButtonBack linkPage="/"></ButtonBack>
+        </footer> -->
       </div>
     </div>
   </div>
@@ -101,14 +102,11 @@ export default {
 
     const submitButton = ref<HTMLButtonElement | null>(null);
     const submitLogin = async (values) => {
-      console.log(values)
 
-      await store.dispatch(Actions.LOGIN, values);
-      const [errorName] = Object.keys(store.getters.getErrors);
-      const error = store.getters.getErrors[errorName];
-      console.log(error)
+      const res = await store.dispatch(Actions.LOGIN, values);
+      console.log(res)
 
-      if (!error) {
+      if (res.status) {
         Swal.fire({
           text: "You have successfully logged in!",
           icon: "success",
@@ -123,7 +121,7 @@ export default {
         });
       } else {
         Swal.fire({
-          text: error[0],
+          text: res.message,
           icon: "error",
           buttonsStyling: false,
           confirmButtonText: "Try again!",
