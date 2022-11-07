@@ -28,9 +28,11 @@
                     >
                     <div class="col-sm-10">
                       <input
-                        type="email"
+                        type="text"
+                        v-model="publikasiModule.formData.judul"
                         class="form-control narasumber__form"
                         id="inputPassword" />
+                      <span v-show="publikasiModule.validator.judul" class="text-danger">Wajib Diisi.</span>  
                     </div>
                   </div>
                   <div class="form-group row">
@@ -42,8 +44,10 @@
                     <div class="col-sm-10">
                       <input
                         type="email"
+                        v-model="publikasiModule.formData.media"
                         class="form-control narasumber__form"
                         id="inputPassword" />
+                      <span v-show="publikasiModule.validator.media" class="text-danger">Wajib Diisi.</span>  
                     </div>
                   </div>
                   <div class="form-group row">
@@ -56,11 +60,14 @@
                       <select
                         class="custom_form_select w-25"
                         placeholder="Select..."
+                        v-model="publikasiModule.formData.tahun"
                         as="select">
-                        <option value="Dalam Negeri">Dalam Negeri</option>
-                        <option value="Luar Negeri">Dalam Negeri</option>
+                        <option selected disabled value="">Pilih Salah Satu</option>
+                        <option v-for="(data, index) in yearList" :value="data">{{ data }}</option>
                       </select>
                     </div>
+                    <div class="col-sm-2"></div>
+                    <span v-show="publikasiModule.validator.tahun" class="col-sm-10 text-danger">Wajib Dipilih.</span>  
                   </div>
                  
                 </div>
@@ -69,8 +76,18 @@
               <div class="row">
                 <div class="col-sm-12">
                   <div class="pengaturan__update">
-                    <button class="btn btn-primary-portal">
+                    <button @click="handleSubmit" v-if="!publikasiModule.isSubmitLoading && publikasiModule.selectedRecordID == null" class="btn btn-primary-portal">
                       <i class="fas fa-plus"></i> Tambah Publikasi
+                    </button>
+                    <button @click="handleUpdate" v-else-if="!publikasiModule.isSubmitLoading && publikasiModule.selectedRecordID != null" class="btn btn-primary-portal">
+                      <i class="fas fa-plus"></i> Tambah Publikasi
+                    </button>
+                    <button v-else class="btn btn-primary-portal">
+                      <span class="indicator-label">Mohon Tunggu
+                        <span
+                          class="spinner-border spinner-border-sm align-middle ms-2">
+                        </span>
+                      </span>
                     </button>
                   </div>
                 </div>
@@ -81,71 +98,24 @@
                     class="text-center"
                     @on-sort="sort"
                     @on-items-select="onItemSelect"
-                    :data="data"
-                    :header="tableHeader">
-                    <template v-slot:customer="{ row: customer }">
-                      <router-link
-                        to="/apps/subscriptions/view-subscription"
-                        href=""
-                        class="text-gray-800 text-hover-primary mb-1">
-                        {{ customer.customer }}
-                      </router-link>
+                    :data="publikasiModule.listPublikasi"
+                    :header="publikasiModule.column">
+                    <template v-slot:judul="{ row: data }">
+                      {{ data.judul }}
                     </template>
-                    <template v-slot:status="{ row: customer }">
-                      <a href="#" class="text-gray-600 text-hover-primary mb-1">
-                        <div :class="`badge badge-light-${customer.color}`">
-                          {{ customer.status }}
-                        </div>
-                      </a>
+                    <template v-slot:media="{ row: data }">
+                      {{ data.media }}
                     </template>
-                    <template v-slot:billing="{ row: customer }">
-                      <div class="badge badge-light">
-                        {{ customer.billing }}
-                      </div>
+                    <template v-slot:tahun="{ row: data }">
+                      {{ data.tahun }}
                     </template>
-                    <template v-slot:product="{ row: customer }">
-                      {{ customer.product }}
-                    </template>
-                    <template v-slot:createdDate="{ row: customer }">
-                      {{ customer.createdDate }}
-                    </template>
-                    <template v-slot:actions="{ row: customer }">
-                      <a
-                        href="#"
-                        class="btn btn-sm btn-light btn-active-light-primary"
-                        data-kt-menu-trigger="click"
-                        data-kt-menu-placement="bottom-end"
-                        data-kt-menu-flip="top-end"
-                        >Actions
-                        <span class="svg-icon svg-icon-5 m-0">
-                          <inline-svg
-                            src="media/icons/duotune/arrows/arr072.svg" />
-                        </span>
-                      </a>
-                      <!--begin::Menu-->
-                      <div
-                        class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semobold fs-7 w-125px py-4"
-                        data-kt-menu="true">
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-3">
-                          <router-link
-                            to="/apps/customers/customer-details"
-                            class="menu-link px-3"
-                            >View</router-link
-                          >
-                        </div>
-                        <!--end::Menu item-->
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-3">
-                          <a
-                            @click="deleteSubscription(customer.id)"
-                            class="menu-link px-3"
-                            >Delete</a
-                          >
-                        </div>
-                        <!--end::Menu item-->
-                      </div>
-                      <!--end::Menu-->
+                    <template v-slot:action="{ row: data }">
+                      <button @click="getUpdateRecord(data.id)" class="btn btn-warning">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button @click="deleteRecord(data.id)" class="btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                      </button>
                     </template>
                   </KTDatatable>
                 </div>
@@ -153,13 +123,8 @@
               <div class="row">
                 <div class="col-sm-12">
                   <div class="pengaturan__update">
-                    <router-link to="#" class="btn btn-transparent-portal-soft"
-                      >Kembali</router-link
-                    >
-
-                    <router-link to="#" class="btn btn-success-portal-soft"
-                      >Selanjutnya</router-link
-                    >
+                    <router-link to="#" class="btn btn-transparent-portal-soft">Kembali</router-link>
+                    <router-link to="/profile/detail-cv/narasumber" class="btn btn-success-portal-soft">Selanjutnya</router-link>
                   </div>
                 </div>
               </div>
@@ -173,43 +138,139 @@
 <script>
 import LayoutProfileAside from "@/views/crafted/layout/LayoutProfile.vue";
 import KTDatatable from "@/components/kt-datatable/KTDataTable.vue";
+import { mapState, mapActions } from "vuex";
+import Swal from "sweetalert2/dist/sweetalert2.min.js";
 
 export default {
   name: "BackOfficeNarasumber",
+  computed: {
+    ...mapState({
+      publikasiModule: (state) => state.publikasiModule.data,
+    })
+  },
+  mounted() {
+    this.getPublikasi();
+    this.getYears();
+  },
+  methods: {
+    ...mapActions('publikasiModule', [
+      'getPublikasi',
+      'getDetailPublikasi',
+      'updatePublikasi',
+      'deletePublikasi',
+      'storePublikasi',
+      'validateForm',
+      'clearForm',
+    ]),
+    async handleSubmit() {
+      const validateForm = await this.validateForm()
+      if (validateForm) {
+        const submit = await this.storePublikasi()
+        if (submit) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Data Berhasil Disimpan!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          this.getPublikasi();
+          this.clearForm();
+        } else {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Something went wrong, please try again later!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      }
+    },
+    async getUpdateRecord(idRecord) {
+      await this.getDetailPublikasi(idRecord)
+    },
+    async deleteRecord(idRecord) {
+      console.log(idRecord)
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(() => {
+        this.progressDelete(idRecord);
+      })
+    },
+    async progressDelete(recordID) {
+      const deleteRecord = await this.deletePublikasi(recordID)
+        if (deleteRecord) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Data Berhasil Disimpan!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          this.getPublikasi();
+          this.clearForm();
+        } else {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Something went wrong, please try again later!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+    },
+    async handleUpdate() {
+      const validateForm = await this.validateForm()
+      if (validateForm) {
+        const submit = await this.updatePublikasi()
+        if (submit) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Data Berhasil Disimpan!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          this.getPublikasi();
+          this.clearForm();
+        } else {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Something went wrong, please try again later!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      }
+    },
+    cancelUpdate() {
+      this.clearForm()
+    },
+    getYears() {
+      let currentDate = new Date();
+      let currentYear = currentDate.getFullYear();
+      
+      for (let i = 0; i < 5; i++) {
+        let yearIndex = currentYear - i;
+        this.yearList.push(yearIndex)
+      }
+      console.log(this.yearList)
+    },
+  },
   data() {
     return {
-      title: "Narasumber",
-      tableHeader: [
-        {
-          columnName: "Order id",
-          columnLabel: "order",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Amount",
-          columnLabel: "amount",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Status",
-          columnLabel: "status",
-          sortingField: "status.label",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Date",
-          columnLabel: "date",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Invoice",
-          columnLabel: "invoice",
-          sortEnabled: false,
-        },
-      ],
+      title: "Publikasi",
+      yearList: [],
     };
   },
-
   components: {
     LayoutProfileAside,
     KTDatatable,

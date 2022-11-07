@@ -85,6 +85,16 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/crafted/back-office/detailCV/riwayatPekerjaan/PPRiwayat.vue"),
   },
   {
+    path: "/profile/detail-cv/keanggotaan-organisasi",
+    name: "ProfileKeanggotaanOrganisasi",
+    component: () => import("@/views/crafted/back-office/detailCV/organisasi/PPOrganisasi.vue"),
+  },
+  {
+    path: "/profile/detail-cv/pendidikan-pelatihan",
+    name: "ProfilePendidikanPelatihan",
+    component: () => import("@/views/crafted/back-office/detailCV/pendidikan/PPPendidikan.vue"),
+  },
+  {
     path: "/profile/detail-cv/referensi",
     name: "ProfileReferensi",
     component: () => import("@/views/crafted/back-office/detailCV/referensi/PPReferensi.vue"),
