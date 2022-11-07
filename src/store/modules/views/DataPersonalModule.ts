@@ -4,6 +4,7 @@ const state = {
     data: {
         isLoading: false,
         isSubmitLoading: false,
+        ktpFilename: '',
         listKotaLahir: [],
         listProvinsi: [],
         selectedProvinsi: null,
@@ -193,6 +194,7 @@ const actions = {
                 await commit('changeDataPersonal', {
                     isLoading: false,
                     formData: res.data.data,
+                    ktpFilename: '',
                 });
                 return true;
             } else {
