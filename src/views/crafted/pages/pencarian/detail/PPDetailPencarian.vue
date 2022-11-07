@@ -56,7 +56,9 @@
                 </div>
                 <div class="data-informasi">
                   <div class="name">Tanggal Posting</div>
-                  <div class="detail">{{ formatDate(selected.start_date) }}</div>
+                  <div class="detail">
+                    {{ formatDate(selected.start_date) }}
+                  </div>
                 </div>
                 <div class="data-informasi">
                   <div class="name">Batas Akhir</div>
@@ -109,7 +111,9 @@
           </div>
           <div class="pencarian-list">
             <!--  -->
-            <div v-for="(item, index) in recommended" class="row d-flex align-items-center">
+            <div
+              v-for="(item, index) in recommended"
+              class="row d-flex align-items-center">
               <div class="col-sm-10">
                 <div class="informasi d-flex align-items-center">
                   <div class="images">
@@ -120,13 +124,14 @@
                   <div class="detail-informasi">
                     <label for="">{{ item.nama_jabatan }}</label>
                     <div class="name">{{ item.nama_perusahaan }}</div>
-                    <div class="date">Buka Sampai {{ formatDate(item.end_date) }}</div>
+                    <div class="date">
+                      Buka Sampai {{ formatDate(item.end_date) }}
+                    </div>
                   </div>
                 </div>
               </div>
               <div class="col-sm-2">
                 <button
-                  :to="`/pencarian-lowongan/${item.id}/detail`"
                   @click="routeToPage(item.id)"
                   class="btn w-100 float-right btn-primary-outline-portal">
                   Detail
@@ -151,46 +156,48 @@ export default {
   computed: {
     ...mapState({
       lowonganModule: (state) => state.lowonganModule.data,
-    })
+    }),
   },
   async mounted() {
-    await this.initPage()
+    await this.initPage();
   },
   methods: {
-    ...mapActions('lowonganModule', [
-      'getLowongan',
-    ]),
+    ...mapActions("lowonganModule", ["getLowongan"]),
     async initPage() {
-      await this.getLowongan()
-      .then(() => {
+      await this.getLowongan().then(() => {
         this.getSelected();
         this.getRecommended();
-      })
+      });
     },
     getSelected() {
-      const dataSource = this.lowonganModule.listLowongan
-      this.selected = dataSource.find(x => x.id == this.$route.params.uuid)
+      const dataSource = this.lowonganModule.listLowongan;
+      this.selected = dataSource.find((x) => x.id == this.$route.params.uuid);
     },
     getRecommended() {
-      const dataSource = this.lowonganModule.listLowongan
-      this.recommended = dataSource.filter(x => x.id != this.$route.params.uuid)
+      const dataSource = this.lowonganModule.listLowongan;
+      this.recommended = dataSource.filter(
+        (x) => x.id != this.$route.params.uuid
+      );
     },
     formatDate(tanggal) {
-      let nd = new Date(tanggal).toLocaleDateString('id-id', { day:"numeric", year:"numeric", month:"long"});
+      let nd = new Date(tanggal).toLocaleDateString("id-id", {
+        day: "numeric",
+        year: "numeric",
+        month: "long",
+      });
       return nd;
     },
     formatText(myString) {
-      return String(myString).replace('<p>', '').replace('</p>', '')
+      return String(myString).replace("<p>", "").replace("</p>", "");
     },
-    routeToPage() {
-      const route = useRouter();
-      route.push({ name: '' })
+    routeToPage(item) {
+      this.$router.push(`/pencarian-lowongan/${item}/detail`);
     },
   },
   data() {
     return {
       selected: {},
-      recommended: []
+      recommended: [],
     };
   },
 };
