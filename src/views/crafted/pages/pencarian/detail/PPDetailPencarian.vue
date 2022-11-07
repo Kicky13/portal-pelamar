@@ -11,7 +11,6 @@
         </div>
       </div>
     </div>
-
     <!-- Title -->
     <div class="row">
       <div class="col-sm-12">
@@ -25,8 +24,8 @@
                   alt="" />
 
                 <div class="nama-perusahaan">
-                  <div class="posisi">Direktur Human Capital</div>
-                  <div class="nama">PT. Semen Indonesia (Persero) Tbk.</div>
+                  <div class="posisi">{{ selected.nama_jabatan }}</div>
+                  <div class="nama">{{ selected.nama_perusahaan }}</div>
                 </div>
               </div>
               <div class="col-sm-2">
@@ -49,19 +48,19 @@
               <div class="col-sm-4">
                 <div class="data-informasi">
                   <div class="name">Lokasi</div>
-                  <div class="detail">Jakarta</div>
+                  <div class="detail">{{ selected.nama_kota }}</div>
                 </div>
                 <div class="data-informasi">
                   <div class="name">Perusahaan</div>
-                  <div class="detail">PT. Semen Indonesia (Persero) Tbk.</div>
+                  <div class="detail">{{ selected.nama_perusahaan }}</div>
                 </div>
                 <div class="data-informasi">
                   <div class="name">Tanggal Posting</div>
-                  <div class="detail">2 September 2022</div>
+                  <div class="detail">{{ formatDate(selected.start_date) }}</div>
                 </div>
                 <div class="data-informasi">
                   <div class="name">Batas Akhir</div>
-                  <div class="detail">23 November 2022</div>
+                  <div class="detail">{{ formatDate(selected.end_date) }}</div>
                 </div>
               </div>
               <div class="col-sm-1"></div>
@@ -70,32 +69,14 @@
                   <div>
                     <label for="">Gambaran Singkat</label>
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Maecenas ac augue maximus, consequat nisl at, porttitor
-                      mi. Phasellus auctor facilisis velit, vitae rhoncus mi
-                      venenatis eget. Etiam fringilla felis nulla. Praesent at
-                      hendrerit lectus, in malesuada lorem. Aenean sed tortor
-                      sit amet lacus fringilla condimentum et at nisl. Nam
-                      semper urna enim, sed efficitur arcu lobortis sit amet.
-                      Etiam volutpat massa vitae ipsum ultricies, ut feugiat
-                      elit dignissim. Nam at consequat lacus. Integer sed nunc
-                      dui.
+                      {{ formatText(selected.deskripsi) }}
                     </p>
                   </div>
 
                   <div>
                     <label for="">Peran dan Tanggung Jawab</label>
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Maecenas ac augue maximus, consequat nisl at, porttitor
-                      mi. Phasellus auctor facilisis velit, vitae rhoncus mi
-                      venenatis eget. Etiam fringilla felis nulla. Praesent at
-                      hendrerit lectus, in malesuada lorem. Aenean sed tortor
-                      sit amet lacus fringilla condimentum et at nisl. Nam
-                      semper urna enim, sed efficitur arcu lobortis sit amet.
-                      Etiam volutpat massa vitae ipsum ultricies, ut feugiat
-                      elit dignissim. Nam at consequat lacus. Integer sed nunc
-                      dui.
+                      {{ formatText(selected.tanggung_jawab) }}
                     </p>
                   </div>
 
@@ -128,7 +109,7 @@
           </div>
           <div class="pencarian-list">
             <!--  -->
-            <div class="row d-flex align-items-center">
+            <div v-for="(item, index) in recommended" class="row d-flex align-items-center">
               <div class="col-sm-10">
                 <div class="informasi d-flex align-items-center">
                   <div class="images">
@@ -137,70 +118,19 @@
                       alt="" />
                   </div>
                   <div class="detail-informasi">
-                    <label for="">Direktur Human Capital</label>
-                    <div class="name">PT. Semen Indonesia (Persero) Tbk.</div>
-                    <div class="date">Buka Sampai 3 Juli 2023</div>
+                    <label for="">{{ item.nama_jabatan }}</label>
+                    <div class="name">{{ item.nama_perusahaan }}</div>
+                    <div class="date">Buka Sampai {{ formatDate(item.end_date) }}</div>
                   </div>
                 </div>
               </div>
               <div class="col-sm-2">
-                <router-link
-                  :to="`/pencarian-lowongan/${this.detailUuid}/detail`"
+                <button
+                  :to="`/pencarian-lowongan/${item.id}/detail`"
+                  @click="routeToPage(item.id)"
                   class="btn w-100 float-right btn-primary-outline-portal">
                   Detail
-                </router-link>
-              </div>
-            </div>
-            <!--  -->
-
-            <!--  -->
-            <div class="row d-flex align-items-center">
-              <div class="col-sm-10">
-                <div class="informasi d-flex align-items-center">
-                  <div class="images">
-                    <img
-                      :src="require('@/assets/images/content/pertamina.png')"
-                      alt="" />
-                  </div>
-                  <div class="detail-informasi">
-                    <label for="">Direktur Human Capital</label>
-                    <div class="name">PT. Semen Indonesia (Persero) Tbk.</div>
-                    <div class="date">Buka Sampai 3 Juli 2023</div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-2">
-                <router-link
-                  :to="`/pencarian-lowongan/${this.detailUuid}/detail`"
-                  class="btn w-100 float-right btn-primary-outline-portal">
-                  Detail
-                </router-link>
-              </div>
-            </div>
-            <!--  -->
-
-            <!--  -->
-            <div class="row d-flex align-items-center">
-              <div class="col-sm-10">
-                <div class="informasi d-flex align-items-center">
-                  <div class="images">
-                    <img
-                      :src="require('@/assets/images/content/telkom.png')"
-                      alt="" />
-                  </div>
-                  <div class="detail-informasi">
-                    <label for="">Direktur Human Capital</label>
-                    <div class="name">PT. Semen Indonesia (Persero) Tbk.</div>
-                    <div class="date">Buka Sampai 3 Juli 2023</div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-2">
-                <router-link
-                  :to="`/pencarian-lowongan/${this.detailUuid}/detail`"
-                  class="btn w-100 float-right btn-primary-outline-portal">
-                  Detail
-                </router-link>
+                </button>
               </div>
             </div>
             <!--  -->
@@ -213,10 +143,54 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+import Swal from "sweetalert2/dist/sweetalert2.min.js";
+import { useRouter } from "vue-router";
+
 export default {
+  computed: {
+    ...mapState({
+      lowonganModule: (state) => state.lowonganModule.data,
+    })
+  },
+  async mounted() {
+    await this.initPage()
+  },
+  methods: {
+    ...mapActions('lowonganModule', [
+      'getLowongan',
+    ]),
+    async initPage() {
+      await this.getLowongan()
+      .then(() => {
+        this.getSelected();
+        this.getRecommended();
+      })
+    },
+    getSelected() {
+      const dataSource = this.lowonganModule.listLowongan
+      this.selected = dataSource.find(x => x.id == this.$route.params.uuid)
+    },
+    getRecommended() {
+      const dataSource = this.lowonganModule.listLowongan
+      this.recommended = dataSource.filter(x => x.id != this.$route.params.uuid)
+    },
+    formatDate(tanggal) {
+      let nd = new Date(tanggal).toLocaleDateString('id-id', { day:"numeric", year:"numeric", month:"long"});
+      return nd;
+    },
+    formatText(myString) {
+      return String(myString).replace('<p>', '').replace('</p>', '')
+    },
+    routeToPage() {
+      const route = useRouter();
+      route.push({ name: '' })
+    },
+  },
   data() {
     return {
-      detailUuid: "123456",
+      selected: {},
+      recommended: []
     };
   },
 };

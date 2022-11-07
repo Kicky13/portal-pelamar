@@ -311,7 +311,8 @@
                     </label>
                     <div class="col-sm-9">
                       <input @change="uploadKtp" ref="ktp" type="file" id="upload" hidden />
-                      <label for="upload" class="label-upload w-100">Pilih atau taruh file disini</label>
+                      <label v-if="dataPersonalModule.ktpFilename == ''" for="upload" class="label-upload w-100">Pilih atau taruh file disini</label>
+                      <label v-else for="upload" class="label-upload">{{ dataPersonalModule.formData.ktp.name }}</label>
                       <span v-show="dataPersonalModule.validation.ktp" class="text-danger">Wajib melampirkan file dengan format pdf, png, jpg atau jpeg.</span>
                     </div>
                   </div>
@@ -478,6 +479,7 @@ export default {
     },
     uploadKtp() {
       this.dataPersonalModule.formData.ktp = this.$refs.ktp.files[0]
+      this.dataPersonalModule.ktpFilename = this.$refs.ktp.files[0].name
       console.log(this.dataPersonalModule.formData.ktp)
     }
   },

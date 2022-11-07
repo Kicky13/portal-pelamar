@@ -18,6 +18,7 @@ import Narasumber from "@/store/modules/views/NarasumberModule";
 import Publikasi from "@/store/modules/views/PublikasiModule";
 import Personifikasi from "@/store/modules/views/PersonifikasiModule";
 import ResumeCV from "@/store/modules/views/ResumeCVModule";
+import Lowongan from "@/store/modules/views/LowonganModule";
 
 config.rawError = true;
 
@@ -40,6 +41,7 @@ const store = createStore({
     personifikasiModule: Personifikasi,
     resumeCVModule: ResumeCV,
     registerModule: RegisterState,
+    lowonganModule: Lowongan,
   },
 });
 

@@ -75,13 +75,13 @@
         <div class="container">
           <div class="pencarian-content">
             <div class="title">
-              Menampilkan <strong>1</strong> dari <strong>34</strong> Records
+              Menampilkan <strong>{{ endIndex + 1 }}</strong> dari <strong>{{ totalItems }}</strong> Records
             </div>
             <div class="line-title"></div>
           </div>
           <div class="pencarian-list">
             <!--  -->
-            <div class="row d-flex align-items-center">
+            <div v-for="(item, index) in showData" class="row d-flex align-items-center">
               <div class="col-sm-10">
                 <div class="informasi d-flex align-items-center">
                   <div class="images">
@@ -90,125 +90,15 @@
                       alt="" />
                   </div>
                   <div class="detail-informasi">
-                    <label for="">Direktur Human Capital</label>
-                    <div class="name">PT. Semen Indonesia (Persero) Tbk.</div>
-                    <div class="date">Buka Sampai 3 Juli 2023</div>
+                    <label for="">{{ item.nama_jabatan }}</label>
+                    <div class="name">{{ item.nama_perusahaan }}</div>
+                    <div class="date">Buka Sampai {{ formatDate(item.end_date) }}</div>
                   </div>
                 </div>
               </div>
               <div class="col-sm-2">
                 <router-link
-                  :to="`/pencarian-lowongan/${this.detailUuid}/detail`"
-                  class="btn w-100 float-right btn-primary-outline-portal">
-                  Detail
-                </router-link>
-              </div>
-            </div>
-            <!--  -->
-
-            <!--  -->
-            <div class="row d-flex align-items-center">
-              <div class="col-sm-10">
-                <div class="informasi d-flex align-items-center">
-                  <div class="images">
-                    <img
-                      :src="require('@/assets/images/content/perumnas.png')"
-                      alt="" />
-                  </div>
-                  <div class="detail-informasi">
-                    <label for="">Direktur Manajemen Risiko </label>
-                    <div class="name">Perum Perumnas</div>
-                    <div class="date">Buka Sampai 3 Juli 2023</div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-2">
-                <router-link
-                  :to="`/pencarian-lowongan/${this.detailUuid}/detail`"
-                  class="btn w-100 float-right btn-primary-outline-portal">
-                  Detail
-                </router-link>
-              </div>
-            </div>
-            <!--  -->
-
-            <!--  -->
-            <div class="row d-flex align-items-center">
-              <div class="col-sm-10">
-                <div class="informasi d-flex align-items-center">
-                  <div class="images">
-                    <img
-                      :src="require('@/assets/images/content/bri.png')"
-                      alt="" />
-                  </div>
-                  <div class="detail-informasi">
-                    <label for=""
-                      >Direktur Treasury dan International Banking
-                    </label>
-                    <div class="name">
-                      PT Bank Rakyat Indonesia (Persero) Tbk
-                    </div>
-                    <div class="date">Buka Sampai 3 Juli 2023</div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-2">
-                <router-link
-                  :to="`/pencarian-lowongan/${this.detailUuid}/detail`"
-                  class="btn w-100 float-right btn-primary-outline-portal">
-                  Detail
-                </router-link>
-              </div>
-            </div>
-            <!--  -->
-
-            <!--  -->
-            <div class="row d-flex align-items-center">
-              <div class="col-sm-10">
-                <div class="informasi d-flex align-items-center">
-                  <div class="images">
-                    <img
-                      :src="require('@/assets/images/content/pertamina.png')"
-                      alt="" />
-                  </div>
-                  <div class="detail-informasi">
-                    <label for="">Direktur Logistik & Infrastruktur </label>
-                    <div class="name">PT Pertamina (Persero)</div>
-                    <div class="date">Buka Sampai 3 Juli 2023</div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-2">
-                <router-link
-                  :to="`/pencarian-lowongan/${this.detailUuid}/detail`"
-                  class="btn w-100 float-right btn-primary-outline-portal">
-                  Detail
-                </router-link>
-              </div>
-            </div>
-            <!--  -->
-
-            <!--  -->
-            <div class="row d-flex align-items-center">
-              <div class="col-sm-10">
-                <div class="informasi d-flex align-items-center">
-                  <div class="images">
-                    <img
-                      :src="require('@/assets/images/content/telkom.png')"
-                      alt="" />
-                  </div>
-                  <div class="detail-informasi">
-                    <label for="">Direktur Keuangan</label>
-                    <div class="name">
-                      PT Telekomunikasi Indonesia (Persero), Tbk.
-                    </div>
-                    <div class="date">Buka Sampai 3 Juli 2023</div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-2">
-                <router-link
-                  :to="`/pencarian-lowongan/${this.detailUuid}/detail`"
+                  :to="`/pencarian-lowongan/${item.id}/detail`"
                   class="btn w-100 float-right btn-primary-outline-portal">
                   Detail
                 </router-link>
@@ -219,15 +109,15 @@
           <div class="pagination-portal">
             <nav aria-label="Page navigation example">
               <ul class="pagination">
-                <li class="page-item">
+                <li :class="startIndex == 0 ? `page-item disabled` : `page-item`">
                   <a class="page-link page-link-prev" href="#">Prev</a>
                 </li>
-                <li class="page-item">
-                  <a class="page-link active" href="#">1</a>
+                <!-- <li class="page-item"><a class="page-link active" href="#">1</a></li> -->
+                <li v-for="item in pagination" :class="(item == activePageIndex) ? classActive : classInactive">
+                  <button v-if="item == activePageIndex" disabled class="page-link">{{ item }}</button>
+                  <button v-else class="page-link">{{ item }}</button>
                 </li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
+                <li :class="activePageIndex == totalPage ? `page-item disabled` : `page-item`">
                   <a class="page-link page-link-next" href="#">Next</a>
                 </li>
               </ul>
@@ -239,12 +129,70 @@
   </div>
 </template>
 <script>
+import { mapState, mapActions } from "vuex";
+import Swal from "sweetalert2/dist/sweetalert2.min.js";
+import { useRouter } from "vue-router";
+
 export default {
   name: "pencarian",
+  computed: {
+    ...mapState({
+      lowonganModule: (state) => state.lowonganModule.data,
+    })
+  },
   data() {
     return {
       detailUuid: "123456",
+      classActive: "page-item active",
+      classInactive: "page-item",
+      showData: [],
+      pagination: [1],
+      activePageIndex: 1,
+      totalItems: 100,
+      totalPage: 1,
+      itemPerPage: 10,
+      startIndex: 0,
+      endIndex: 9,
     };
+  },
+  async mounted() {
+    await this.initiateData()
+  },
+  methods: {
+    ...mapActions('lowonganModule', [
+      'getLowongan',
+    ]),
+    async initiateData() {
+      await this.getLowongan().then(() => {
+        this.setupPagination()
+      });
+    },
+    formatDate(tanggal) {
+      console.log(tanggal)
+      let nd = new Date(tanggal).toLocaleDateString('id-id', { day:"numeric", year:"numeric", month:"long"});
+      return nd;
+    },
+    setupPagination() {
+      this.activePage = 1
+      this.totalItems = this.lowonganModule.listLowongan.length
+      let pagination = []
+      if (this.totalItems <= this.itemPerPage) {
+        this.showData = this.lowonganModule.listLowongan
+        this.startIndex = 0
+        this.endIndex = this.totalItems - 1
+        this.pagination = [1]
+        console.log(true)
+      } else {
+        this.startIndex = 0
+        this.endIndex = this.startIndex + this.itemPerPage - 1
+        this.showData = this.lowonganModule.listLowongan.slice(this.startIndex, this.endIndex)
+        this.totalPage = Math.floor(this.totalItems/this.itemPerPage)
+      }
+      for (let i = 1; i <= this.totalPage; i++) {
+        pagination.push(i);
+      }
+      this.pagination = pagination
+    },
   },
 };
 </script>
