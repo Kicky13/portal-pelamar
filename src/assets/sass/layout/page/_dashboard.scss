@@ -16,8 +16,34 @@
       background: #d9d9d9;
       border-radius: 5px;
     }
-  }
 
+  }
+  .upload-btn-wrapper__PoP input[type="file"] {
+    font-size: 100px;
+    position: absolute;
+    left: -20px;
+    top: 0;
+    opacity: 0;
+  }
+  .upload-btn-wrapper__PoP {
+    position: relative;
+    // overflow: hidden;
+    // display: contents;
+    .btn__upload {
+      color: gray;
+      background-color: #1796a4;
+      border-radius: 8px;
+      font-weight: bold;
+      border: transparent;
+      padding: 6px 10px;
+      border-radius: 50%;
+      margin: 50px 0px 0px -20px;
+     
+      i {
+        color: white;
+      }
+    }
+  }
   .informasi-profile {
     margin-left: 33px;
     label {
@@ -90,7 +116,7 @@
     }
   }
 
-  .sub-title-card{
+  .sub-title-card {
     margin-left: 5px;
     margin-right: 10px;
   }
@@ -315,7 +341,7 @@
       }
 
       &__update {
-        i{
+        i {
           color: #fff;
         }
         float: right;
@@ -345,7 +371,7 @@
       }
 
       &__update {
-        i{
+        i {
           color: #fff;
         }
         float: right;
@@ -355,8 +381,7 @@
         margin-bottom: 15px;
       }
     }
-        // narasumber
-
+    // narasumber
   }
 }
 
@@ -404,7 +429,7 @@
 
 .label-upload {
   background-color: #e5f1f3;
-  border: 1px solid #1896A4;
+  border: 1px solid #1896a4;
   opacity: 1;
   color: #bcc2c4;
   display: flex;
@@ -418,11 +443,11 @@
   height: 100px;
 }
 
-.form-check{
+.form-check {
   margin-bottom: 10px;
 }
 
-.form-check-input:checked{
-  background-color: #1896A4;
-  border: 1px solid #1896A4;
+.form-check-input:checked {
+  background-color: #1896a4;
+  border: 1px solid #1896a4;
 }
