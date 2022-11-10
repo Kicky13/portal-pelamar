@@ -46,84 +46,80 @@
                       >Tempat Lahir<span class="text-danger">*</span>
                     </label>
                     <div class="col-sm-9">
-                      <div class="row">
-                        <select
-                          class="custom_form_select w-50"
-                          placeholder="Select..."
-                          as="select"
-                          v-model="dataPersonalModule.formData.id_kota_lahir"
-                          name="kotaLahir">
-                          <option selected disabled value="">Pilih Salah Satu</option>
-                          <option
-                            v-for="(kota, index) in dataPersonalModule.listKotaLahir"
-                            :value="kota.id"
-                            :key="index">
-                            {{ kota.nama }}
-                          </option>
-                        </select>
-                        <span v-show="dataPersonalModule.validation.id_kota_lahir" class="text-danger">Wajib Memilih salah satu</span>
-                      </div>
+                      <select
+                        class="custom_form_select w-100"
+                        placeholder="Select..."
+                        as="select"
+                        v-model="dataPersonalModule.formData.id_kota_lahir"
+                        name="kotaLahir">
+                        <option selected disabled value="">Pilih Salah Satu</option>
+                        <option
+                          v-for="(kota, index) in dataPersonalModule.listKotaLahir"
+                          :value="kota.id"
+                          :key="index">
+                          {{ kota.nama }}
+                        </option>
+                      </select>
+                      <span v-show="dataPersonalModule.validation.id_kota_lahir" class="text-danger">Wajib Memilih salah satu</span>
                     </div>
                   </div>
                   <div class="form-group row">
-                    <div class="d-flex align-items-center">
-                      <label
-                        for="inputPassword"
-                        class="col-sm-3 col-form-label personal__label"
-                        >Provinsi<span class="text-danger">*</span>
-                      </label>
-                      <div class="row col-sm-4">
-                        <select
-                          style="margin-left: 5px"
-                          class="custom_form_select w-100"
-                          placeholder="Select..."
-                          name="provinsi"
-                          v-model="dataPersonalModule.formData.provinsi"
-                          @change="changeProvinsiHandler"
-                          as="select">
-                          <option selected disabled value="">Pilih Salah Satu</option>
-                          <option
-                            v-for="(provinsi, index) in dataPersonalModule.listProvinsi"
-                            :value="provinsi.id"
-                            :key="index">
-                            {{ provinsi.nama }}
-                          </option>
-                        </select>
-                        <span v-show="dataPersonalModule.validation.provinsi" class="text-danger">Wajib Dipilih</span>
-                      </div>
-                      <label
-                        for="inputPassword"
-                        style="margin-left: 10px"
-                        class="col-sm-1 col-form-label personal__label"
-                        >Kota<span class="text-danger">*</span>
-                      </label>
-                      <div class="row col-sm-4">
-                        <select
-                          v-if="dataPersonalModule.selectedProvinsi != null && dataPersonalModule.selectedProvinsi != `` && dataPersonalModule.selectedProvinsi != 0"
-                          class="custom_form_select w-100"
-                          placeholder="Select..."
-                          name="kota"
-                          v-model="dataPersonalModule.formData.kota"
-                          as="select">
-                          <option selected disabled value="">Pilih Salah Satu</option>
-                          <option
-                            v-for="(kota, index) in dataPersonalModule.listKotaByProvinsi"
-                            :value="kota.id"
-                            :key="index">
-                            {{ kota.nama }}
-                          </option>
-                        </select>
-                        <select
-                          v-else
-                          class="custom_form_select w-100"
-                          placeholder="Select..."
-                          name="kota"
-                          disabled
-                          as="select">
-                          <option selected disabled value="">Pilih Provinsi Dahulu</option>
-                        </select>
-                        <span v-show="dataPersonalModule.validation.kota" class="text-danger">Wajib Dipilih</span>
-                      </div>
+                    <label
+                      for="inputPassword"
+                      class="col-sm-3 col-form-label personal__label"
+                      >Provinsi<span class="text-danger">*</span>
+                    </label>
+                    <div class="col-sm-9">
+                      <select
+                        class="custom_form_select w-100"
+                        placeholder="Select..."
+                        name="provinsi"
+                        v-model="dataPersonalModule.formData.provinsi"
+                        @change="changeProvinsiHandler"
+                        as="select">
+                        <option selected disabled value="">Pilih Salah Satu</option>
+                        <option
+                          v-for="(provinsi, index) in dataPersonalModule.listProvinsi"
+                          :value="provinsi.id"
+                          :key="index">
+                          {{ provinsi.nama }}
+                        </option>
+                      </select>
+                      <span v-show="dataPersonalModule.validation.provinsi" class="text-danger">Wajib Dipilih</span>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label
+                      for="inputPassword"
+                      class="col-sm-3 col-form-label personal__label"
+                      >Kota<span class="text-danger">*</span>
+                    </label>
+                    <div class="col-sm-9">
+                      <select
+                        v-if="dataPersonalModule.selectedProvinsi != null && dataPersonalModule.selectedProvinsi != `` && dataPersonalModule.selectedProvinsi != 0"
+                        class="custom_form_select w-100"
+                        placeholder="Select..."
+                        name="kota"
+                        v-model="dataPersonalModule.formData.kota"
+                        as="select">
+                        <option selected disabled value="">Pilih Salah Satu</option>
+                        <option
+                          v-for="(kota, index) in dataPersonalModule.listKotaByProvinsi"
+                          :value="kota.id"
+                          :key="index">
+                          {{ kota.nama }}
+                        </option>
+                      </select>
+                      <select
+                        v-else
+                        class="custom_form_select w-100"
+                        placeholder="Select..."
+                        name="kota"
+                        disabled
+                        as="select">
+                        <option selected disabled value="">Pilih Provinsi Dahulu</option>
+                      </select>
+                      <span v-show="dataPersonalModule.validation.kota" class="text-danger">Wajib Dipilih</span>
                     </div>
                   </div>
 
@@ -476,7 +472,7 @@ export default {
       }
     },
     async changeProvinsiHandler() {
-      const kodeProvinsi = await findKodeProvinsi();
+      const kodeProvinsi = await this.findKodeProvinsi();
       this.$store.commit('dataPersonalModule/changeDataPersonal', {
         selectedProvinsi: kodeProvinsi,
       })
