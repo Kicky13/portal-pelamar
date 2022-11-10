@@ -174,10 +174,10 @@
                       {{ listPekerjaan1.nama_instansi }}
                     </template>
                     <template v-slot:tanggal_mulai="{ row: listPekerjaan1 }">
-                      {{ listPekerjaan1.tanggal_mulai }}
+                      {{ formatDate(listPekerjaan1.tanggal_mulai) }}
                     </template>
                     <template v-slot:tanggal_akhir="{ row: listPekerjaan1 }">
-                      {{ listPekerjaan1.tanggal_akhir }}
+                      {{ formatDate(listPekerjaan1.tanggal_akhir) }}
                     </template>
                     <template v-slot:tupoksi="{ row: listPekerjaan1 }">
                       {{ listPekerjaan1.tupoksi }}
@@ -375,10 +375,10 @@
                       {{ listPekerjaan2.nama_instansi }}
                     </template>
                     <template v-slot:tanggal_mulai="{ row: listPekerjaan2 }">
-                      {{ listPekerjaan2.tanggal_mulai }}
+                      {{ formatDate(listPekerjaan2.tanggal_mulai) }}
                     </template>
                     <template v-slot:tanggal_akhir="{ row: listPekerjaan2 }">
-                      {{ listPekerjaan2.tanggal_akhir }}
+                      {{ formatDate(listPekerjaan2.tanggal_akhir) }}
                     </template>
                     <template v-slot:tupoksi="{ row: listPekerjaan2 }">
                       {{ listPekerjaan2.tupoksi }}
@@ -459,6 +459,10 @@ export default {
       'cleanForm1',
       'cleanForm2'
     ]),
+    formatDate(tanggal) {
+      let nd = new Date(tanggal).toLocaleDateString('id-id', { day:"numeric", year:"numeric", month:"long"});
+      return nd;
+    },
     async submit1() {
       this.$store.commit('riwayatPekerjaanModule/changeDataPekerjaan', {
         statusDewan: 0
