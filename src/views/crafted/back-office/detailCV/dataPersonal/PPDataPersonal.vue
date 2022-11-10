@@ -200,9 +200,10 @@
                     >
                     <div class="col-sm-9">
                       <input
-                        type="number"
+                        type="text"
                         v-model="dataPersonalModule.formData.nik"
                         class="form-control personal__form"
+                        @keypress="isNumber($event)"
                         id="inputPassword" />
                       <span v-show="dataPersonalModule.validation.nik" class="text-danger">Wajib Diisi. Harus berisikan angka saja. Minimal 5 karakter.</span>
                     </div>
@@ -220,9 +221,10 @@
                       </div>
                       <label for="" class="number-id">+62</label>
                       <input
-                        type="number"
+                        type="text"
                         v-model="dataPersonalModule.formData.phone"
                         class="form-control personal__form"
+                        @keypress="isNumber($event)"
                         id="inputPassword" />
                     </div>
                     <label class="col-sm-3"></label>
@@ -418,6 +420,9 @@ export default {
       'validateForm',
       'findKodeProvinsi',
     ]),
+    isNumber(event){
+      if (!/^[0-9]+$/.test(event.key)) return event.preventDefault();
+    },
     async initiatePage() {
       const provinsi = await this.getListProvinsi();
       const personal = await this.getDataPersonal();
