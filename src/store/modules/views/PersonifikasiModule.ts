@@ -18,10 +18,7 @@ const state = {
             nilai_pribadi: false,
             visi_pribadi: false,
             minat: false,
-            sosmed_instagram: false,
-            sosmed_facebook: false,
-            sosmed_linkedin: false,
-            sosmed_twitter: false,
+            sosmed: false,
         },
     },
 }
@@ -143,17 +140,14 @@ const actions = {
             nilai_pribadi: data.formData.nilai_pribadi == '' || data.formData.nilai_pribadi == null ? true : false,
             visi_pribadi: data.formData.visi_pribadi == '' || data.formData.visi_pribadi == null ? true : false,
             minat: data.formData.minat = [] || data.formData.minat == null ? true : false,
-            sosmed_instagram: data.formData.sosmed_instagram == '' || data.formData.sosmed_instagram == null ? true : false,
-            sosmed_facebook: data.formData.sosmed_facebook == '' || data.formData.sosmed_facebook == null ? true : false,
-            sosmed_linkedin: data.formData.sosmed_linkedin == '' || data.formData.sosmed_linkedin == null ? true : false,
-            sosmed_twitter: data.formData.sosmed_twitter == '' || data.formData.sosmed_twitter == null ? true : false,
+            sosmed: (data.formData.sosmed_instagram == '' || data.formData.sosmed_instagram == null) && (data.formData.sosmed_facebook == '' || data.formData.sosmed_facebook == null) && (data.formData.sosmed_linkedin == '' || data.formData.sosmed_linkedin == null) && (data.formData.sosmed_twitter == '' || data.formData.sosmed_twitter == null) ? true : false,
         }
         console.log(validator)
         commit('changePersonifikasi', {
             validator: validator
         })
 
-        if (validator.nilai_pribadi || validator.visi_pribadi || validator.minat || validator.sosmed_facebook || validator.sosmed_instagram || validator.sosmed_linkedin || validator.sosmed_twitter) {
+        if (validator.nilai_pribadi || validator.visi_pribadi || validator.minat || validator.sosmed) {
             return false
         } else {
             return true
