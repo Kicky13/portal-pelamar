@@ -18,8 +18,12 @@
           <div class="title-informasi">
             <div class="row d-flex align-items-center pl-3 pr-3">
               <div class="col-sm-10 d-flex align-items-center">
-                <img
+                <!-- <img
                   :src="require('@/assets/images/content/sig.png')"
+                  class="img-logo"
+                  alt="" /> -->
+                <img
+                  :src="selected.logo"
                   class="img-logo"
                   alt="" />
 

@@ -15,55 +15,73 @@
             >
             <div class="line-banner"></div>
             <div class="total-lowongan">
-              <strong>213</strong> Lowongan Tersedia
+              <strong>{{lowonganModule.listLowongan.length}}</strong> Lowongan Tersedia
             </div>
           </div>
 
           <div class="form-pencarian">
             <div class="row d-flex justify-content-center">
-              <div class="col-sm-3">
+              <div class="col-sm-4">
                 <input
                   type="text"
                   class="form-control form-control-solid"
+                  v-model="lowonganModule.filter.search"
                   placeholder="name@example.com" />
               </div>
               <div class="col-sm-3">
                 <select
                   class="form-select form-select-solid"
+                  v-model="lowonganModule.filter.id_perusahaan"
                   aria-label="Select example">
-                  <option>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  <option value="" disabled hidden>Pilih Perusahaan BUMN</option>
+                  <option
+                    v-for="(perusahaan, index) in lowonganModule.listPerusahaan"
+                    :value="perusahaan.id"
+                    :key="index">
+                    {{ perusahaan.nama_perusahaan }}
+                  </option>
                 </select>
               </div>
-              <div class="col-sm-2">
+              <!-- <div class="col-sm-2">
                 <select
                   class="form-select form-select-solid"
+                  v-model="lowonganModule.filter.id_bidang_jabatan"
                   aria-label="Select example">
-                  <option>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  <option value="" disabled hidden>Kategori</option>
+                  <option
+                    v-for="(bidang, index) in lowonganModule.listKategori"
+                    :value="bidang.id"
+                    :key="index">
+                    {{ bidang.name }}
+                  </option>
                 </select>
-              </div>
-              <div class="col-sm-2">
+              </div> -->
+              <div class="col-sm-3">
                 <select
                   class="form-select form-select-solid"
+                  v-model="lowonganModule.filter.id_jabatan"
                   aria-label="Select example">
-                  <option>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  <option value="" disabled hidden>Position</option>
+                  <option
+                    v-for="(jabatan, index) in lowonganModule.listJabatan"
+                    :value="jabatan.id"
+                    :key="index">
+                    {{ jabatan.nama_jabatan }}
+                  </option>
                 </select>
               </div>
 
               <div class="col-sm-2">
-                <router-link
+                <button
+                  @click="cari"
+                  class="btn btn-primary-portal w-100">
+                  Cari
+                </button>
+                <!-- <router-link
                   :to="`/pencarian-lowongan?`"
                   class="btn btn-primary-portal w-100">
                   Cari
-                </router-link>
+                </router-link> -->
               </div>
             </div>
           </div>
@@ -85,8 +103,11 @@
               <div class="col-sm-10">
                 <div class="informasi d-flex align-items-center">
                   <div class="images">
-                    <img
+                    <!-- <img
                       :src="require('@/assets/images/content/sig.png')"
+                      alt="" /> -->
+                    <img
+                      :src="item.logo"
                       alt="" />
                   </div>
                   <div class="detail-informasi">
@@ -156,12 +177,23 @@ export default {
     };
   },
   async mounted() {
-    await this.initiateData()
+    await this.initiateData(),
+    this.getKategori(),
+    this.getPerusahaan(),
+    this.getJabatan()
   },
   methods: {
     ...mapActions('lowonganModule', [
       'getLowongan',
+      'getPerusahaan',
+      'getKategori',
+      'getJabatan'
     ]),
+    async cari() {
+      await this.getLowongan().then(() => {
+        this.setupPagination()
+      });
+    },
     async initiateData() {
       await this.getLowongan().then(() => {
         this.setupPagination()
