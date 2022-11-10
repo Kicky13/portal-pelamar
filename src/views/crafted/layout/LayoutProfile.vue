@@ -18,7 +18,14 @@
                         require('@/assets/images/icon/ic_image_profile.png')
                       "
                       alt="" />
+                   
                   </div>
+                  <div class="upload-btn-wrapper__PoP">
+                      <button class="btn__upload">
+                        <i class="fas fa-edit" aria-hidden="true"></i>
+                      </button>
+                      <input type="file" name="myfile" />
+                    </div>
                   <div class="informasi-profile">
                     <label for="">Nurul Jannah</label>
                     <div class="email">nama@gmail.com</div>
