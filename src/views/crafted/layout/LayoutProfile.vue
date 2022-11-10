@@ -18,27 +18,32 @@
                         require('@/assets/images/icon/ic_image_profile.png')
                       "
                       alt="" />
-                   
+                  </div>
+                  <div class="col-sm-1 upload-btn-wrapper__PoP">
+                    <button class="btn__upload">
+                      <i class="fas fa-edit" aria-hidden="true"></i>
+                      <input type="file" name="myfile" />
+                    </button>
                   </div>
                   <div class="upload-btn-wrapper__PoP">
-                      <button class="btn__upload">
-                        <i class="fas fa-edit" aria-hidden="true"></i>
-                      </button>
+                    <button class="btn__upload">
+                      <i class="fas fa-edit" aria-hidden="true"></i>
                       <input type="file" name="myfile" />
-                    </div>
+                    </button>
+                  </div>
                   <div class="informasi-profile">
-                    <label for="">Nurul Jannah</label>
-                    <div class="email">nama@gmail.com</div>
+                    <label for="">{{ infoUser.name }}</label>
+                    <div class="email">{{ infoUser.email }}</div>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="informasi-persentase d-flex align-items-center">
                     <div class="jabatan-dilamar text-center">
-                      <label for="" class="total">2</label>
+                      <label for="" class="total">{{ infoUser.jabatan_dilamar }}</label>
                       <p for="" class="wording">Jabatan Dilamar</p>
                     </div>
                     <div class="jabatan-dilamar text-center">
-                      <label for="" class="total">100%</label>
+                      <label for="" class="total">{{ infoUser.progress_cv }}%</label>
                       <p for="" class="wording">Prosentase CV</p>
                     </div>
                   </div>
@@ -63,6 +68,19 @@ export default {
     titlePage: {
       type: String,
       default: null,
+    },
+  },
+  data() {
+    return {
+      infoUser: {},
+    }
+  },
+  mounted() {
+    this.initPage()
+  },
+  methods: {
+    initPage() {
+      this.infoUser = JSON.parse(window.localStorage.getItem('user_info'))
     },
   },
   components: {

@@ -61,6 +61,7 @@ export default class AuthModule extends VuexModule implements UserAuthInfo {
     JwtService.saveToken(data.data.access_token);
     ApiService.setHeader();
     window.localStorage.setItem('id_token', data.data.access_token);
+    window.localStorage.setItem('user_info', JSON.stringify(this.user));
   }
 
   @Mutation
