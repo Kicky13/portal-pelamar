@@ -20,7 +20,8 @@
                       <input
                         type="text"
                         class="form-control personal__form"
-                        v-model="dataPersonalModule.formData.nama"/>
+                        v-model="dataPersonalModule.formData.nama"
+                        disabled/>
                         <span v-show="dataPersonalModule.validation.nama" class="text-danger">Wajib Diisi. Harus berisikan abjad saja. Minimal 3 karakter.</span>
                     </div>
                   </div>
@@ -252,7 +253,8 @@
                         type="email"
                         v-model="dataPersonalModule.formData.email"
                         class="form-control personal__form"
-                        id="inputPassword" />
+                        id="inputPassword"
+                        disabled />
                       <span v-show="dataPersonalModule.validation.email" class="text-danger">Wajib Diisi. Format email harus benar.</span>
                     </div>
                   </div>
