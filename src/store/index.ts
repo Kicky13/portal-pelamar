@@ -19,6 +19,8 @@ import Publikasi from "@/store/modules/views/PublikasiModule";
 import Personifikasi from "@/store/modules/views/PersonifikasiModule";
 import ResumeCV from "@/store/modules/views/ResumeCVModule";
 import Lowongan from "@/store/modules/views/LowonganModule";
+// Part
+import ChangePassword from "@/store/modules/part/ChangePasswordModule"
 
 config.rawError = true;
 
@@ -42,6 +44,7 @@ const store = createStore({
     resumeCVModule: ResumeCV,
     registerModule: RegisterState,
     lowonganModule: Lowongan,
+    changePasswordPart: ChangePassword,
   },
 });
 
