@@ -29,11 +29,11 @@
                           <td>:</td>
                           <td class="">{{resumeCVModule.listPersonal.gender == 'L' ? 'Laki-laki' : 'Perempuan'}}</td>
                         </tr>
-                        <!-- <tr>
+                        <tr>
                           <td class="title-body w-50">Kewarganegaraan</td>
                           <td>:</td>
-                          <td class="t">WNI</td>
-                        </tr> -->
+                          <td class="t">{{resumeCVModule.listPersonal.is_wna == 0 ? 'WNI' : 'WNA'}}</td>
+                        </tr>
                         <tr>
                           <td class="title-body w-50">NIK / Passport</td>
                           <td>:</td>
@@ -42,7 +42,7 @@
                         <tr>
                           <td class="title-body w-50">Tempat Lahir</td>
                           <td>:</td>
-                          <td class="t">{{resumeCVModule.listPersonal.tempat_lahir}}</td>
+                          <td class="t">{{resumeCVModule.listPersonal.tempat_lahir}} - {{resumeCVModule.listPersonal.nama_provinsi}}</td>
                         </tr>
                         <tr>
                           <td class="title-body w-50">Tanggal Lahir</td>

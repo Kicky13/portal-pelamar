@@ -33,6 +33,7 @@ const state = {
             email: '',
             ktp: null,
             alamat: '',
+            is_wna: 0,
         },
         validation: {
             nama: false,
@@ -49,6 +50,7 @@ const state = {
             email: false,
             agama: false,
             ktp: false,
+            is_wna: false,
         },
     },
 }
@@ -132,11 +134,13 @@ const actions = {
     },
     async getListKota({ commit, state }) {
         const { data } = state
+        const kode = data.selectedProvinsi ? data.selectedProvinsi : data.formData.provinsi
+        const iln = kode == 1945 ? 0 : data.formData.is_wna
         await commit('changeDataPersonal', {
             isLoading: true,
             reqParamsKota: {
-                is_luar_negeri: 0,
-                kode_provinsi: data.formData.provinsi,
+                is_luar_negeri: iln,
+                kode_provinsi: kode,
             }
         });
         try {
@@ -227,6 +231,7 @@ const actions = {
                 email: '',
                 ktp: null,
                 alamat: '',
+                is_wna: 0,
             }
         })
     },
@@ -271,7 +276,7 @@ const actions = {
         let validator = {
             nama: data.formData.nama.length < 4 || special.test(data.formData.nama) || numbers.test(data.formData.nama) ? true : false,
             gelar: data.formData.gelar.length < 4 || numbers.test(data.formData.gelar) ? true : false,
-            id_kota_lahir: data.formData.id_kota_lahir == '' || data.formData.id_kota_lahir == null ? true : false,
+            // id_kota_lahir: data.formData.id_kota_lahir == '' || data.formData.id_kota_lahir == null ? true : false,
             provinsi: data.formData.provinsi == '' || data.formData.provinsi == null ? true : false,
             kota: data.formData.kota == '' || data.formData.kota == null ? true : false,
             gender: false,
@@ -282,6 +287,7 @@ const actions = {
             tgl_lahir: data.formData.tgl_lahir == '' || data.formData.tgl_lahir == null ? true : false,
             email: data.formData.email.length < 4 || !email.test(data.formData.email) ? true : false,
             agama: data.formData.agama == '' || data.formData.agama == null ? true : false,
+            is_wna: data.formData.is_wna == '' || data.formData.is_wna == null ? true : false,
             ktp: false,
         }
         console.log(validator)
@@ -289,7 +295,7 @@ const actions = {
             validation: validator
         })
 
-        if (validator.nama || validator.agama || validator.email || validator.alamat || validator.gelar || validator.gender || validator.kota || validator.nik || validator.provinsi || validator.marital_status || validator.tgl_lahir || validator.id_kota_lahir) {
+        if (validator.nama || validator.agama || validator.email || validator.alamat || validator.gelar || validator.gender || validator.kota || validator.nik || validator.provinsi || validator.marital_status || validator.tgl_lahir || validator.is_wna) {
             return false
         } else {
             return true
