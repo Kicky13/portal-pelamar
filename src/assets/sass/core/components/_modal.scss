@@ -3,63 +3,204 @@
 //
 
 .modal {
-  	--#{$prefix}modal-color: var(--kt-modal-content-color);
-  	--#{$prefix}modal-bg: var(--kt-modal-content-bg);
-  	--#{$prefix}modal-border-color: var(--kt-modal-content-border-color);
-  	--#{$prefix}modal-box-shadow: var(--kt-modal-content-box-shadow-xs);
-  	--#{$prefix}modal-header-border-color: var(--kt-modal-header-border-color);
-  	--#{$prefix}modal-footer-bg: var(--kt-modal-footer-bg);
-  	--#{$prefix}modal-footer-border-color: var(--kt-modal-footer-border-color);
+  --#{$prefix}modal-color: var(--kt-modal-content-color);
+  --#{$prefix}modal-bg: var(--kt-modal-content-bg);
+  --#{$prefix}modal-border-color: var(--kt-modal-content-border-color);
+  --#{$prefix}modal-box-shadow: var(--kt-modal-content-box-shadow-xs);
+  --#{$prefix}modal-header-border-color: var(--kt-modal-header-border-color);
+  --#{$prefix}modal-footer-bg: var(--kt-modal-footer-bg);
+  --#{$prefix}modal-footer-border-color: var(--kt-modal-footer-border-color);
 }
 
- // Mobile dialog
+// Mobile dialog
 .modal-dialog {
-	outline: none !important;
+  outline: none !important;
 }
 
 // Modal header
 .modal-header {
-	align-items: center;
-	justify-content: space-between;
-	@include border-top-radius($modal-content-border-radius);
-	border-bottom: $modal-header-border-width solid var(--kt-modal-header-border-color);
+  align-items: center;
+  justify-content: space-between;
+  @include border-top-radius($modal-content-border-radius);
+  border-bottom: $modal-header-border-width solid
+    var(--kt-modal-header-border-color);
 
-	// Headings
-	h1,h2,h3,h4,h5,h6 {
-		margin-bottom: 0;
-	}
+  // Headings
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: 0;
+  }
 }
 
 // Modal content
 .modal-content {
-	color: var(--kt-modal-color);    
-	background-color: var(--kt-modal-bg);
-	border: $modal-content-border-width solid var(--kt-modal-border-color);
-	@include box-shadow(var(--kt-modal-box-shadow));
+  color: var(--kt-modal-color);
+  background-color: var(--kt-modal-bg);
+  border: $modal-content-border-width solid var(--kt-modal-border-color);
+  @include box-shadow(var(--kt-modal-box-shadow));
 }
 
 // Modal footer
 .modal-footer {
-	background-color: var(--kt-modal-footer-bg);
-	border-top: $modal-footer-border-width solid var(--#{$prefix}modal-footer-border-color);
+  background-color: var(--kt-modal-footer-bg);
+  border-top: $modal-footer-border-width solid
+    var(--#{$prefix}modal-footer-border-color);
 }
 
 // Modal background
 .modal-backdrop {
-  	--#{$prefix}backdrop-bg: var(--kt-modal-backdrop-bg);
-  	--#{$prefix}backdrop-opacity: var(--kt-modal-backdrop-opacity);
+  --#{$prefix}backdrop-bg: var(--kt-modal-backdrop-bg);
+  --#{$prefix}backdrop-opacity: var(--kt-modal-backdrop-opacity);
 }
 
 // Scale up the modal
 @include media-breakpoint-up(sm) {
-	.modal-content {
-		@include box-shadow(var(--kt-modal-box-shadow-sm-up));
-	}
+  .modal-content {
+    @include box-shadow(var(--kt-modal-box-shadow-sm-up));
+  }
 }
 
 // Utilities
 .modal-rounded {
-	@if $enable-rounded {
-		border-radius: $modal-content-border-radius !important;
-	}
+  @if $enable-rounded {
+    border-radius: $modal-content-border-radius !important;
+  }
+}
+
+.modal-progress-lamaran {
+  $number-of-steps: 4;
+
+  $line-width: 2px;
+  $bullet-size: 2em;
+  $background-color: black;
+  $foreground-color: #555;
+
+  $active-background-color: #00ff00;
+  $active-foreground-color: black;
+
+  .section-list {
+    hr {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      border: 1px solid #d3d3d3;
+    }
+    .images-perusahaan {
+      img {
+        width: 100%;
+        height: auto;
+        max-width: 60px;
+        max-height: 30px;
+        object-fit: contain;
+      }
+    }
+    .posisi-perusahaan {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 21px;
+      color: #1f2855;
+    }
+    .perusahaan {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 11px;
+      line-height: 16px;
+      color: #585858;
+    }
+
+    .status-seleksi {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 13px;
+      line-height: 20px;
+      color: #7ba8ff;
+    }
+    .status-ditolak {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 13px;
+      line-height: 20px;
+      color: #ff4768;
+    }
+  }
+
+  .section-list-activity {
+    font-family: "Poppins";
+    font-style: normal;
+    font-size: 12px;
+    line-height: 18px;
+    color: rgba(10, 10, 10, 0.5);
+  }
+
+  .wizard-data {
+	margin-top: 26px;
+    ol {
+      position: relative;
+      overflow: hidden;
+      counter-reset: wizard;
+      list-style-type: none;
+    }
+
+    li {
+      position: relative;
+      float: left;
+      width: 100% / $number-of-steps;
+      text-align: center;
+      color: #6B6B6B;
+    }
+
+    .current ~ li {
+      color: $foreground-color;
+    }
+
+    li:before {
+      counter-increment: wizard;
+      content: counter(wizard);
+      display: block;
+      color: black;
+      background-color: #fff;
+      border: 2px solid #1896a4;
+      text-align: center;
+      width: 2em;
+      height: 2em;
+      line-height: 1.6em;
+      border-radius: 50%;
+      position: relative;
+      left: 50%;
+      margin-left: -1em;
+      z-index: 1;
+
+      .current ~ & {
+        background-color: $background-color;
+        color: $foreground-color;
+        border-color: $foreground-color;
+      }
+    }
+
+    li + li {
+      &:after {
+        content: "";
+        display: block;
+        width: 100%;
+        background-color: #1896a4;
+        height: $line-width;
+        position: absolute;
+        left: -50%;
+        top: $bullet-size / 2;
+        z-index: 0;
+      }
+    }
+
+    .current ~ li:after {
+      background-color: $foreground-color;
+    }
+  }
 }

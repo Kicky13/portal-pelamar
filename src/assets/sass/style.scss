@@ -12,9 +12,12 @@
 // Layout
 @import "layout/layout";
 
-page
-.row {
+page .row {
   --bs-gutter-x: none !important;
+}
+
+a {
+  text-decoration: none !important;
 }
 @import "layout/page/auth";
 @import "layout/page/registrasi";
