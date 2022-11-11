@@ -7,6 +7,7 @@ const state = {
         ktpFilename: '',
         listKotaLahir: [],
         listProvinsi: [],
+        labelProvinsi: 'Provinsi',
         selectedProvinsi: null,
         listKotaByProvinsi: [],
         listStatus: [],
