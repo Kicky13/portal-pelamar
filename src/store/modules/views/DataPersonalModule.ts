@@ -7,6 +7,7 @@ const state = {
         ktpFilename: '',
         listKotaLahir: [],
         listProvinsi: [],
+        labelProvinsi: 'Provinsi',
         selectedProvinsi: null,
         listKotaByProvinsi: [],
         listStatus: [],
@@ -265,7 +266,8 @@ const actions = {
         const dataSource = [...data.listProvinsi];
         console.log(data.formData.provinsi);
         let filtered = dataSource.filter(x => x.id == data.formData.provinsi);
-        return filtered[0].kode;
+        const result = filtered.length > 0 ? filtered[0].kode : null;
+        return result;
     },
 
     async validateForm({ commit, state }) {
