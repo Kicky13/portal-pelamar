@@ -108,7 +108,7 @@
                     <label
                       for="inputPassword"
                       class="col-sm-3 col-form-label personal__label"
-                      >Provinsi<span class="text-danger">*</span>
+                      >{{dataPersonalModule.labelProvinsi}}<span class="text-danger">*</span>
                     </label>
                     <div class="col-sm-9">
                       <select
@@ -464,7 +464,9 @@ export default {
     },
     async initiatePage() {
       const personal = await this.getDataPersonal();
+      const label = this.dataPersonalModule.formData.is_wna == 0 ? 'Provinsi' : 'Negara';
       this.$store.commit('dataPersonalModule/changeDataPersonal', {
+        labelProvinsi: label,
         selectedWN: this.dataPersonalModule.formData.is_wna,
         reqParams: {
           is_luar_negeri: this.dataPersonalModule.formData.is_wna,
@@ -522,7 +524,9 @@ export default {
       }
     },
     async changeWNHandler(val) {
+      const label = val == 0 ? 'Provinsi' : 'Negara';
       this.$store.commit('dataPersonalModule/changeDataPersonal', {
+        labelProvinsi: label,
         selectedWN: val,
         reqParams: {
           is_luar_negeri: val,
