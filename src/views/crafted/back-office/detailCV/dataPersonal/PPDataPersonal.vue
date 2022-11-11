@@ -463,8 +463,14 @@ export default {
       if (!/^[0-9]+$/.test(event.key)) return event.preventDefault();
     },
     async initiatePage() {
-      const provinsi = await this.getListProvinsi();
       const personal = await this.getDataPersonal();
+      this.$store.commit('dataPersonalModule/changeDataPersonal', {
+        selectedWN: this.dataPersonalModule.formData.is_wna,
+        reqParams: {
+          is_luar_negeri: this.dataPersonalModule.formData.is_wna,
+        },
+      })
+      const provinsi = await this.getListProvinsi();
 
       if (provinsi && personal) {
         const kodeProvinsi = await this.findKodeProvinsi();
@@ -516,7 +522,6 @@ export default {
       }
     },
     async changeWNHandler(val) {
-      console.log(val);
       this.$store.commit('dataPersonalModule/changeDataPersonal', {
         selectedWN: val,
         reqParams: {
