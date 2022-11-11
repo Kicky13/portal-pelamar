@@ -74,9 +74,10 @@
                       </div>
                       <label for="" class="number-id">+62</label>
                       <input
-                        type="number"
+                        type="text"
                         class="form-control personal__form"
                         v-model="dataReferensiModule.formData.no_hp"
+                        @keypress="isNumber($event)"
                         id="inputNoHp" />
                     </div>
                     <div class="col-sm-3"></div><div class="col-sm-9" v-show="dataReferensiModule.validator.no_hp"><span class="text-danger">Wajib Diisi.</span></div>
@@ -189,6 +190,9 @@ export default {
       'validateForm',
       'cleanForm'
     ]),
+    isNumber(event){
+      if (!/^[0-9]+$/.test(event.key)) return event.preventDefault();
+    },
     async submit() {
       const validateForm = await this.validateForm()
       if (validateForm) {

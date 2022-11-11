@@ -20,7 +20,8 @@
                       <input
                         type="text"
                         class="form-control personal__form"
-                        v-model="dataPersonalModule.formData.nama"/>
+                        v-model="dataPersonalModule.formData.nama"
+                        disabled/>
                         <span v-show="dataPersonalModule.validation.nama" class="text-danger">Wajib Diisi. Harus berisikan abjad saja. Minimal 3 karakter.</span>
                     </div>
                   </div>
@@ -39,91 +40,127 @@
                       <span v-show="dataPersonalModule.validation.gelar" class="text-danger">Wajib Diisi. Harus berisikan abjad saja. Minimal 3 karakter.</span>
                     </div>
                   </div>
-                  <div class="form-group row">
+                  <!-- <div class="form-group row">
                     <label
                       for="inputPassword"
                       class="col-sm-3 col-form-label personal__label"
                       >Tempat Lahir<span class="text-danger">*</span>
                     </label>
                     <div class="col-sm-9">
-                      <div class="row">
-                        <select
-                          class="custom_form_select w-50"
-                          placeholder="Select..."
-                          as="select"
-                          v-model="dataPersonalModule.formData.id_kota_lahir"
-                          name="kotaLahir">
-                          <option selected disabled value="">Pilih Salah Satu</option>
-                          <option
-                            v-for="(kota, index) in dataPersonalModule.listKotaLahir"
-                            :value="kota.id"
-                            :key="index">
-                            {{ kota.nama }}
-                          </option>
-                        </select>
-                        <span v-show="dataPersonalModule.validation.id_kota_lahir" class="text-danger">Wajib Memilih salah satu</span>
+                      <select
+                        class="custom_form_select w-100"
+                        placeholder="Select..."
+                        as="select"
+                        v-model="dataPersonalModule.formData.id_kota_lahir"
+                        name="kotaLahir">
+                        <option selected disabled value="">Pilih Salah Satu</option>
+                        <option
+                          v-for="(kota, index) in dataPersonalModule.listKotaLahir"
+                          :value="kota.id"
+                          :key="index">
+                          {{ kota.nama }}
+                        </option>
+                      </select>
+                      <span v-show="dataPersonalModule.validation.id_kota_lahir" class="text-danger">Wajib Memilih salah satu</span>
+                    </div>
+                  </div> -->
+                  <div class="form-group row">
+                    <label
+                      for="inputPassword"
+                      class="col-sm-3 col-form-label personal__label"
+                      >Kewarganegaraan<span class="text-danger">*</span>
+                    </label>
+                    <div class="col-sm-9">
+                      <div class="form-check mb-4 p-0">
+                        <input
+                          class="custom_form_check"
+                          type="radio"
+                          name="is_wna"
+                          id="is_wna1"
+                          :value="0"
+                          v-model="dataPersonalModule.formData.is_wna"
+                          @click="changeWNHandler(0)"
+                          checked />
+                        <label
+                          class="form-check-label ml-2"
+                          for="exampleRadios1">
+                          WNI
+                        </label>
+                      </div>
+                      <div class="form-check p-0">
+                        <input
+                          class="custom_form_check"
+                          type="radio"
+                          name="is_wna"
+                          id="is_wna2"
+                          v-model="dataPersonalModule.formData.is_wna"
+                          @click="changeWNHandler(1)"
+                          :value="1" />
+                        <label
+                          class="form-check-label ml-2"
+                          for="exampleRadios2">
+                          WNA
+                        </label>
                       </div>
                     </div>
                   </div>
                   <div class="form-group row">
-                    <div class="d-flex align-items-center">
-                      <label
-                        for="inputPassword"
-                        class="col-sm-3 col-form-label personal__label"
-                        >Provinsi<span class="text-danger">*</span>
-                      </label>
-                      <div class="row col-sm-4">
-                        <select
-                          style="margin-left: 5px"
-                          class="custom_form_select w-100"
-                          placeholder="Select..."
-                          name="provinsi"
-                          v-model="dataPersonalModule.formData.provinsi"
-                          @change="changeProvinsiHandler"
-                          as="select">
-                          <option selected disabled value="">Pilih Salah Satu</option>
-                          <option
-                            v-for="(provinsi, index) in dataPersonalModule.listProvinsi"
-                            :value="provinsi.id"
-                            :key="index">
-                            {{ provinsi.nama }}
-                          </option>
-                        </select>
-                        <span v-show="dataPersonalModule.validation.provinsi" class="text-danger">Wajib Dipilih</span>
-                      </div>
-                      <label
-                        for="inputPassword"
-                        style="margin-left: 10px"
-                        class="col-sm-1 col-form-label personal__label"
-                        >Kota<span class="text-danger">*</span>
-                      </label>
-                      <div class="row col-sm-4">
-                        <select
-                          v-if="dataPersonalModule.selectedProvinsi != null && dataPersonalModule.selectedProvinsi != `` && dataPersonalModule.selectedProvinsi != 0"
-                          class="custom_form_select w-100"
-                          placeholder="Select..."
-                          name="kota"
-                          v-model="dataPersonalModule.formData.kota"
-                          as="select">
-                          <option selected disabled value="">Pilih Salah Satu</option>
-                          <option
-                            v-for="(kota, index) in dataPersonalModule.listKotaByProvinsi"
-                            :value="kota.id"
-                            :key="index">
-                            {{ kota.nama }}
-                          </option>
-                        </select>
-                        <select
-                          v-else
-                          class="custom_form_select w-100"
-                          placeholder="Select..."
-                          name="kota"
-                          disabled
-                          as="select">
-                          <option selected disabled value="">Pilih Provinsi Dahulu</option>
-                        </select>
-                        <span v-show="dataPersonalModule.validation.kota" class="text-danger">Wajib Dipilih</span>
-                      </div>
+                    <label
+                      for="inputPassword"
+                      class="col-sm-3 col-form-label personal__label"
+                      >Provinsi<span class="text-danger">*</span>
+                    </label>
+                    <div class="col-sm-9">
+                      <select
+                        class="custom_form_select w-100"
+                        placeholder="Select..."
+                        name="provinsi"
+                        v-model="dataPersonalModule.formData.provinsi"
+                        @change="changeProvinsiHandler"
+                        as="select">
+                        <option selected disabled value="">Pilih Salah Satu</option>
+                        <option
+                          v-for="(provinsi, index) in dataPersonalModule.listProvinsi"
+                          :value="provinsi.id"
+                          :key="index">
+                          {{ provinsi.nama }}
+                        </option>
+                      </select>
+                      <span v-show="dataPersonalModule.validation.provinsi" class="text-danger">Wajib Dipilih</span>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label
+                      for="inputPassword"
+                      class="col-sm-3 col-form-label personal__label"
+                      >Kota<span class="text-danger">*</span>
+                    </label>
+                    <div class="col-sm-9">
+                      <select
+                        v-if="dataPersonalModule.selectedProvinsi != null && dataPersonalModule.selectedProvinsi != `` && dataPersonalModule.selectedProvinsi != 0"
+                        class="custom_form_select w-100"
+                        placeholder="Select..."
+                        name="kota"
+                        v-model="dataPersonalModule.formData.kota"
+                        as="select">
+                        <option selected disabled value="">Pilih Salah Satu</option>
+                        <option
+                          v-for="(kota, index) in dataPersonalModule.listKotaByProvinsi"
+                          :value="kota.id"
+                          :key="index">
+                          {{ kota.nama }}
+                        </option>
+                      </select>
+                      <select
+                        v-else
+                        class="custom_form_select w-100"
+                        placeholder="Select..."
+                        name="kota"
+                        disabled
+                        as="select">
+                        <option selected disabled value="">Pilih Provinsi Dahulu</option>
+                      </select>
+                      <span v-show="dataPersonalModule.validation.kota" class="text-danger">Wajib Dipilih</span>
                     </div>
                   </div>
 
@@ -200,9 +237,10 @@
                     >
                     <div class="col-sm-9">
                       <input
-                        type="number"
+                        type="text"
                         v-model="dataPersonalModule.formData.nik"
                         class="form-control personal__form"
+                        @keypress="isNumber($event)"
                         id="inputPassword" />
                       <span v-show="dataPersonalModule.validation.nik" class="text-danger">Wajib Diisi. Harus berisikan angka saja. Minimal 5 karakter.</span>
                     </div>
@@ -220,9 +258,10 @@
                       </div>
                       <label for="" class="number-id">+62</label>
                       <input
-                        type="number"
+                        type="text"
                         v-model="dataPersonalModule.formData.phone"
                         class="form-control personal__form"
+                        @keypress="isNumber($event)"
                         id="inputPassword" />
                     </div>
                     <label class="col-sm-3"></label>
@@ -254,7 +293,8 @@
                         type="email"
                         v-model="dataPersonalModule.formData.email"
                         class="form-control personal__form"
-                        id="inputPassword" />
+                        id="inputPassword"
+                        disabled/>
                       <span v-show="dataPersonalModule.validation.email" class="text-danger">Wajib Diisi. Format email harus benar.</span>
                     </div>
                   </div>
@@ -387,6 +427,7 @@ export default {
         email: false,
         agama: false,
         ktp: false,
+        is_wna: false,
       },
     };
   },
@@ -418,9 +459,18 @@ export default {
       'validateForm',
       'findKodeProvinsi',
     ]),
+    isNumber(event){
+      if (!/^[0-9]+$/.test(event.key)) return event.preventDefault();
+    },
     async initiatePage() {
-      const provinsi = await this.getListProvinsi();
       const personal = await this.getDataPersonal();
+      this.$store.commit('dataPersonalModule/changeDataPersonal', {
+        selectedWN: this.dataPersonalModule.formData.is_wna,
+        reqParams: {
+          is_luar_negeri: this.dataPersonalModule.formData.is_wna,
+        },
+      })
+      const provinsi = await this.getListProvinsi();
 
       if (provinsi && personal) {
         const kodeProvinsi = await this.findKodeProvinsi();
@@ -437,7 +487,7 @@ export default {
         const formData = new FormData();
         formData.append('nama', this.dataPersonalModule.formData.nama)
         formData.append('gelar', this.dataPersonalModule.formData.gelar)
-        formData.append('id_kota_lahir', this.dataPersonalModule.formData.id_kota_lahir)
+        formData.append('id_kota_lahir', this.dataPersonalModule.formData.kota)
         formData.append('provinsi', this.dataPersonalModule.formData.provinsi)
         formData.append('kota', this.dataPersonalModule.formData.kota)
         formData.append('gender', this.dataPersonalModule.formData.gender)
@@ -449,6 +499,7 @@ export default {
         formData.append('email', this.dataPersonalModule.formData.email)
         formData.append('ktp', this.dataPersonalModule.formData.ktp)
         formData.append('alamat', this.dataPersonalModule.formData.alamat)
+        formData.append('is_wna', this.dataPersonalModule.formData.is_wna)
         const submit = await this.submitForm(formData);
         if (submit) {
           Swal.fire({
@@ -470,8 +521,18 @@ export default {
         }
       }
     },
+    async changeWNHandler(val) {
+      this.$store.commit('dataPersonalModule/changeDataPersonal', {
+        selectedWN: val,
+        reqParams: {
+          is_luar_negeri: val,
+        },
+      })
+      await this.getListProvinsi()
+      await this.getListKota()
+    },
     async changeProvinsiHandler() {
-      const kodeProvinsi = await findKodeProvinsi();
+      const kodeProvinsi = await this.findKodeProvinsi();
       this.$store.commit('dataPersonalModule/changeDataPersonal', {
         selectedProvinsi: kodeProvinsi,
       })

@@ -89,7 +89,7 @@
                     v-model="personifikasiModule.formData.sosmed_facebook"
                     class="form-control personal__form"
                     id="inputPassword" />
-                  <span v-show="personifikasiModule.validator.sosmed_facebook" class="col-sm-10 text-danger">Wajib Diisi.</span>
+                  <span v-show="personifikasiModule.validator.sosmed" class="col-sm-10 text-danger">Salah Satu Wajib Diisi.</span>
                 </div>
               </div>
 
@@ -105,7 +105,7 @@
                     class="form-control personal__form"
                     v-model="personifikasiModule.formData.sosmed_instagram"
                     id="inputPassword" />
-                  <span v-show="personifikasiModule.validator.sosmed_instagram" class="col-sm-10 text-danger">Wajib Diisi.</span>
+                  <span v-show="personifikasiModule.validator.sosmed" class="col-sm-10 text-danger">Salah Satu Wajib Diisi.</span>
                 </div>
               </div>
 
@@ -121,7 +121,7 @@
                     v-model="personifikasiModule.formData.sosmed_twitter"
                     class="form-control personal__form"
                     id="inputPassword" />
-                  <span v-show="personifikasiModule.validator.sosmed_twitter" class="col-sm-10 text-danger">Wajib Diisi.</span>
+                  <span v-show="personifikasiModule.validator.sosmed" class="col-sm-10 text-danger">Salah Satu Wajib Diisi.</span>
                 </div>
               </div>
 
@@ -137,7 +137,7 @@
                     v-model="personifikasiModule.formData.sosmed_linkedin"
                     class="form-control personal__form"
                     id="inputPassword" />
-                  <span v-show="personifikasiModule.validator.sosmed_linkedin" class="col-sm-10 text-danger">Wajib Diisi.</span>
+                  <span v-show="personifikasiModule.validator.sosmed" class="col-sm-10 text-danger">Salah Satu Wajib Diisi.</span>
                 </div>
               </div>
               <div class="row">
