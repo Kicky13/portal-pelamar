@@ -40,7 +40,7 @@
                       <span v-show="dataPersonalModule.validation.gelar" class="text-danger">Wajib Diisi. Harus berisikan abjad saja. Minimal 3 karakter.</span>
                     </div>
                   </div>
-                  <div class="form-group row">
+                  <!-- <div class="form-group row">
                     <label
                       for="inputPassword"
                       class="col-sm-3 col-form-label personal__label"
@@ -62,6 +62,46 @@
                         </option>
                       </select>
                       <span v-show="dataPersonalModule.validation.id_kota_lahir" class="text-danger">Wajib Memilih salah satu</span>
+                    </div>
+                  </div> -->
+                  <div class="form-group row">
+                    <label
+                      for="inputPassword"
+                      class="col-sm-3 col-form-label personal__label"
+                      >Kewarganegaraan<span class="text-danger">*</span>
+                    </label>
+                    <div class="col-sm-9">
+                      <div class="form-check mb-4 p-0">
+                        <input
+                          class="custom_form_check"
+                          type="radio"
+                          name="is_wna"
+                          id="is_wna1"
+                          :value="0"
+                          v-model="dataPersonalModule.formData.is_wna"
+                          @click="changeWNHandler(0)"
+                          checked />
+                        <label
+                          class="form-check-label ml-2"
+                          for="exampleRadios1">
+                          WNI
+                        </label>
+                      </div>
+                      <div class="form-check p-0">
+                        <input
+                          class="custom_form_check"
+                          type="radio"
+                          name="is_wna"
+                          id="is_wna2"
+                          v-model="dataPersonalModule.formData.is_wna"
+                          @click="changeWNHandler(1)"
+                          :value="1" />
+                        <label
+                          class="form-check-label ml-2"
+                          for="exampleRadios2">
+                          WNA
+                        </label>
+                      </div>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -254,7 +294,7 @@
                         v-model="dataPersonalModule.formData.email"
                         class="form-control personal__form"
                         id="inputPassword"
-                        disabled />
+                        disabled/>
                       <span v-show="dataPersonalModule.validation.email" class="text-danger">Wajib Diisi. Format email harus benar.</span>
                     </div>
                   </div>
@@ -387,6 +427,7 @@ export default {
         email: false,
         agama: false,
         ktp: false,
+        is_wna: false,
       },
     };
   },
@@ -440,7 +481,7 @@ export default {
         const formData = new FormData();
         formData.append('nama', this.dataPersonalModule.formData.nama)
         formData.append('gelar', this.dataPersonalModule.formData.gelar)
-        formData.append('id_kota_lahir', this.dataPersonalModule.formData.id_kota_lahir)
+        formData.append('id_kota_lahir', this.dataPersonalModule.formData.kota)
         formData.append('provinsi', this.dataPersonalModule.formData.provinsi)
         formData.append('kota', this.dataPersonalModule.formData.kota)
         formData.append('gender', this.dataPersonalModule.formData.gender)
@@ -452,6 +493,7 @@ export default {
         formData.append('email', this.dataPersonalModule.formData.email)
         formData.append('ktp', this.dataPersonalModule.formData.ktp)
         formData.append('alamat', this.dataPersonalModule.formData.alamat)
+        formData.append('is_wna', this.dataPersonalModule.formData.is_wna)
         const submit = await this.submitForm(formData);
         if (submit) {
           Swal.fire({
@@ -472,6 +514,17 @@ export default {
           });
         }
       }
+    },
+    async changeWNHandler(val) {
+      console.log(val);
+      this.$store.commit('dataPersonalModule/changeDataPersonal', {
+        selectedWN: val,
+        reqParams: {
+          is_luar_negeri: val,
+        },
+      })
+      await this.getListProvinsi()
+      await this.getListKota()
     },
     async changeProvinsiHandler() {
       const kodeProvinsi = await this.findKodeProvinsi();
