@@ -19,18 +19,23 @@
                       "
                       alt="" />
                   </div>
-                  <div class="col-sm-1 upload-btn-wrapper__PoP">
+                  <div>
+                    <div class="upload-btn-wrapper__PoP">
                     <button class="btn__upload">
                       <i class="fas fa-edit" aria-hidden="true"></i>
                       <input type="file" name="myfile" />
                     </button>
+                    
                   </div>
                   <div class="upload-btn-wrapper__PoP">
-                    <button class="btn__upload">
+                    <button class="btn__confirm">
                       <i class="fas fa-edit" aria-hidden="true"></i>
                       <input type="file" name="myfile" />
                     </button>
+                    
                   </div>
+                  </div>
+                 
                   <div class="informasi-profile">
                     <label for="">{{ infoUser.name }}</label>
                     <div class="email">{{ infoUser.email }}</div>

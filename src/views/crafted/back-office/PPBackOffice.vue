@@ -1,12 +1,22 @@
 <template>
   <LayoutProfileAside :titlePage="title">
-
     <div class="row">
       <div class="col-sm-7">
         <div class="card-profile min-h-200px">
           <div class="title-card">
-            <img :src="require('@/assets/images/icon/ic_koper.svg')" alt="" />
-            <span>Jabatan Yang Dilamar</span>
+            <div class="row">
+              <div class="col-sm-6 d-flex align-items-center">
+                <img
+                  :src="require('@/assets/images/icon/ic_koper.svg')"
+                  alt="" />
+                <div class="title__general">Jabatan Yang Dilamar</div>
+              </div>
+              <div class="col-sm-6 d-flex justify-content-end">
+                <button class="btn btn__outline__pp" @click="modalShow = true">
+                  Lihat Progress
+                </button>
+              </div>
+            </div>
           </div>
           <div class="body-card">
             <!-- Empty state | empty state yang dipakai jika data kosong -->
@@ -155,6 +165,50 @@
           </div>
         </div>
       </div>
+
+      <b-modal
+        size="lg"
+        centered
+        hide-footer
+        no-close-on-backdrop
+        no-close-on-esc
+        v-model="modalShow">
+        <div>
+          <div class="modal-progress-lamaran">
+            <div class="section-list">
+              <div class="row d-flex align-items-center">
+                <div class="col-sm-2">
+                  <div class="images-perusahaan">
+                    <img
+                      :src="require('@/assets/images/content/sig.png')"
+                      alt="" />
+                  </div>
+                </div>
+                <div class="col-sm-7">
+                  <div class="posisi-perusahaan">Direktur Human Capital</div>
+                  <div class="perusahaan">
+                    PT. Semen Indonesia (Persero) Tbk.
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="status-seleksi">Seleksi Admin</div>
+                </div>
+              </div>
+              <hr />
+            </div>
+
+            <hr />
+            <div class="wizard-data">
+              <ol>
+                <li class="">Step 1</li>
+                <li class="current">Step 2</li>
+                <li class="">Step 3</li>
+                <li class="">Ready to go!</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </b-modal>
     </div>
   </LayoutProfileAside>
 </template>
@@ -171,6 +225,7 @@ export default {
   data() {
     return {
       title: "Dashboard",
+      modalShow: false,
     };
   },
   computed: {
