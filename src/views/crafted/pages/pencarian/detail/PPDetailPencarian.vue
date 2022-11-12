@@ -23,13 +23,13 @@
                   class="img-logo"
                   alt="" /> -->
                 <img
-                  :src="selected.logo"
+                  :src="lowonganModule.selectedLowongan.logo"
                   class="img-logo"
                   alt="" />
 
                 <div class="nama-perusahaan">
-                  <div class="posisi">{{ selected.nama_jabatan }}</div>
-                  <div class="nama">{{ selected.nama_perusahaan }}</div>
+                  <div class="posisi">{{ lowonganModule.selectedLowongan.nama_jabatan }}</div>
+                  <div class="nama">{{ lowonganModule.selectedLowongan.nama_perusahaan }}</div>
                 </div>
               </div>
               <div class="col-sm-2">
@@ -52,21 +52,21 @@
               <div class="col-sm-4">
                 <div class="data-informasi">
                   <div class="name">Lokasi</div>
-                  <div class="detail">{{ selected.nama_kota }}</div>
+                  <div class="detail">{{ lowonganModule.selectedLowongan.nama_kota }}</div>
                 </div>
                 <div class="data-informasi">
                   <div class="name">Perusahaan</div>
-                  <div class="detail">{{ selected.nama_perusahaan }}</div>
+                  <div class="detail">{{ lowonganModule.selectedLowongan.nama_perusahaan }}</div>
                 </div>
                 <div class="data-informasi">
                   <div class="name">Tanggal Posting</div>
                   <div class="detail">
-                    {{ formatDate(selected.start_date) }}
+                    {{ formatDate(lowonganModule.selectedLowongan.start_date) }}
                   </div>
                 </div>
                 <div class="data-informasi">
                   <div class="name">Batas Akhir</div>
-                  <div class="detail">{{ formatDate(selected.end_date) }}</div>
+                  <div class="detail">{{ formatDate(lowonganModule.selectedLowongan.end_date) }}</div>
                 </div>
               </div>
               <div class="col-sm-1"></div>
@@ -75,22 +75,26 @@
                   <div>
                     <label for="">Gambaran Singkat</label>
                     <p>
-                      {{ formatText(selected.deskripsi) }}
+                      {{ formatText(lowonganModule.selectedLowongan.deskripsi) }}
                     </p>
                   </div>
 
                   <div>
                     <label for="">Peran dan Tanggung Jawab</label>
                     <p>
-                      {{ formatText(selected.tanggung_jawab) }}
+                      {{ formatText(lowonganModule.selectedLowongan.tanggung_jawab) }}
                     </p>
                   </div>
 
                   <div>
-                    <button class="btn btn-success-portal w-25" type="button">
+                    <button
+                    @click="lamarPekerjaan"
+                    class="btn btn-success-portal w-25"
+                    type="button">
                       Lamar Pekerjaan
                     </button>
                     <button
+                      @click="backToPage"
                       class="btn btn-transparent-portal w-25"
                       type="button">
                       Kembali
@@ -116,13 +120,13 @@
           <div class="pencarian-list">
             <!--  -->
             <div
-              v-for="(item, index) in recommended"
+              v-for="(item, index) in lowonganModule.listRecommended"
               class="row d-flex align-items-center">
               <div class="col-sm-10">
                 <div class="informasi d-flex align-items-center">
                   <div class="images">
                     <img
-                      :src="require('@/assets/images/content/bri.png')"
+                      :src="item.logo"
                       alt="" />
                   </div>
                   <div class="detail-informasi">
@@ -152,7 +156,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, useStore } from "vuex";
 import Swal from "sweetalert2/dist/sweetalert2.min.js";
 import { useRouter } from "vue-router";
 
@@ -162,11 +166,27 @@ export default {
       lowonganModule: (state) => state.lowonganModule.data,
     }),
   },
+  setup() {
+    const router = useRouter();
+    const store = useStore();
+    const isUserAuthenticated = store.getters.isUserAuthenticated;
+
+    return {
+      router,
+      store,
+      isUserAuthenticated,
+    }
+  },
   async mounted() {
     await this.initPage();
   },
   methods: {
-    ...mapActions("lowonganModule", ["getLowongan"]),
+    ...mapActions('lowonganModule', [
+      'getLowongan',
+      'changeRecommended',
+      'changeSelectedLowongan',
+      'lamarLowongan'
+    ]),
     async initPage() {
       await this.getLowongan().then(() => {
         this.getSelected();
@@ -176,12 +196,14 @@ export default {
     getSelected() {
       const dataSource = this.lowonganModule.listLowongan;
       this.selected = dataSource.find((x) => x.id == this.$route.params.uuid);
+      this.changeSelectedLowongan(this.selected)
     },
     getRecommended() {
       const dataSource = this.lowonganModule.listLowongan;
       this.recommended = dataSource.filter(
         (x) => x.id != this.$route.params.uuid
       );
+      this.changeRecommended(this.recommended)
     },
     formatDate(tanggal) {
       let nd = new Date(tanggal).toLocaleDateString("id-id", {
@@ -195,7 +217,28 @@ export default {
       return String(myString).replace("<p>", "").replace("</p>", "");
     },
     routeToPage(item) {
-      this.$router.push(`/pencarian-lowongan/${item}/detail`);
+      this.router.push(`/pencarian-lowongan/${item}/detail`);
+      this.initPage()
+    },
+    backToPage() {
+      this.router.push({ name: 'pencarian-lowongan' });
+    },
+    async lamarPekerjaan() {
+      const userInfo = JSON.parse(window.localStorage.getItem('user_info'))
+      if (this.isUserAuthenticated) {
+        if (userInfo.progress_cv == 100) {
+          const formData = {
+            id_lowongan: this.lowonganModule.selectedLowongan.id
+          }
+          await this.lamarLowongan(formData).then((res) => {
+            this.router.push({ name: 'ProfileUser' });
+          })
+        } else {
+          this.router.push({ name: 'ProfilePersonal' });
+        }
+      } else {
+        this.router.push({ name: 'registrasi' });
+      }
     },
   },
   data() {
