@@ -22,6 +22,7 @@ import Lowongan from "@/store/modules/views/LowonganModule";
 import Dashboard from "@/store/modules/views/DashboardModule";
 // Part
 import ChangePassword from "@/store/modules/part/ChangePasswordModule"
+import ChangeFoto from "@/store/modules/part/ChangeProfilePicModule"
 
 config.rawError = true;
 
@@ -47,6 +48,7 @@ const store = createStore({
     lowonganModule: Lowongan,
     dashboardModule: Dashboard,
     changePasswordPart: ChangePassword,
+    changeFoto: ChangeFoto,
   },
 });
 

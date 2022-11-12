@@ -14,28 +14,34 @@
                 <div class="col-sm-6 d-flex align-items-center">
                   <div class="images-profile">
                     <img
+                      v-if="changeFoto"
+                      :src="fotoUrl"
+                    alt="" />
+                    <img
+                      v-else
                       :src="
                         require('@/assets/images/icon/ic_image_profile.png')
                       "
                       alt="" />
                   </div>
                   <div>
-                    <div class="upload-btn-wrapper__PoP">
-                    <button class="btn__upload">
-                      <i class="fas fa-edit" aria-hidden="true"></i>
-                      <input type="file" name="myfile" />
-                    </button>
-                    
+                    <div v-show="changeFoto" class="upload-btn-wrapper__PoP">
+                      <button @click="cancelChange" class="btn__cancel">
+                        <i class="fas fa-ban" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                    <div v-show="changeFoto" class="upload-btn-wrapper__PoP">
+                      <button @click="storeChange" class="btn__confirm">
+                        <i class="fas fa-check" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                    <div v-show="!changeFoto" class="upload-btn-wrapper__PoP">
+                      <button @click="chooseFile()" class="btn__upload">
+                        <input @change="onChangeFoto" ref="profilePic" type="file" name="profilePic" id="profilePic" accept="image/*" />
+                        <i class="fas fa-edit" aria-hidden="true"></i>
+                      </button>
+                    </div>
                   </div>
-                  <div class="upload-btn-wrapper__PoP">
-                    <button class="btn__confirm">
-                      <i class="fas fa-edit" aria-hidden="true"></i>
-                      <input type="file" name="myfile" />
-                    </button>
-                    
-                  </div>
-                  </div>
-                 
                   <div class="informasi-profile">
                     <label for="">{{ infoUser.name }}</label>
                     <div class="email">{{ infoUser.email }}</div>
@@ -68,6 +74,8 @@ import NavbarLayout from "@/views/crafted/layout/Navbar/PPNavbar.vue";
 import FooterLayout from "@/views/crafted/layout/FooterProfile/PPFooter.vue";
 import AssideProfile from "@/views/crafted/layout/AssideProfile/PPAssideProfile.vue";
 import Informasi from "@/views/crafted/layout/InformasiLayout/PPInformasi.vue";
+import { mapState, mapActions } from "vuex";
+import Swal from "sweetalert2/dist/sweetalert2.min.js";
 export default {
   props: {
     titlePage: {
@@ -75,17 +83,65 @@ export default {
       default: null,
     },
   },
+  computed: {
+    ...mapState({
+      changeFoto: (state) => state.changeFoto.data,
+    })
+  },
   data() {
     return {
       infoUser: {},
+      changeFoto: false,
+      profilePics: null,
+      fotoUrl: null,
     }
   },
   mounted() {
     this.initPage()
   },
   methods: {
+    ...mapActions('changeFoto', [
+      'storeNewPic',
+    ]),
     initPage() {
       this.infoUser = JSON.parse(window.localStorage.getItem('user_info'))
+    },
+    onChangeFoto() {
+      this.profilePic = this.$refs.profilePic.files[0]
+      this.changeFoto = true
+      this.fotoUrl = URL.createObjectURL(this.profilePic)
+    },
+    cancelChange() {
+      this.$refs.profilePic.value = null
+      this.changeFoto = false
+      this.profilePic = null
+      this.fotoUrl = null
+    },
+    chooseFile() {
+      document.getElementById("profilePic").click();
+    },
+    async storeChange() {
+      const formData = new FormData();
+      formData.append('foto', this.profilePic)
+      const res = await this.storeNewPic(formData)
+      if (res) {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Foto Berhasil Diubah!',
+          showConfirmButton: false,
+          timer: 1500,
+        })
+      } else {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: 'Something went wrong, please try again later!',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+      this.cancelChange()
     },
   },
   components: {
