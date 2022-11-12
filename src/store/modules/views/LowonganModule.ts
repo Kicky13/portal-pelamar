@@ -7,6 +7,8 @@ const state = {
         listPerusahaan: [],
         listKategori: [],
         listJabatan: [],
+        listRecommended: [],
+        selectedLowongan: {},
         filter: {
             search: '',
             id_perusahaan: '',
@@ -30,6 +32,37 @@ const mutations = {
 }
 
 const actions = {
+    changeSelectedLowongan({commit, state}, payload) {
+        commit('changeLowongan', {
+            selectedLowongan: payload
+        });
+    },
+    changeRecommended({commit, state}, payload) {
+        commit('changeLowongan', {
+            listRecommended: payload
+        });
+    },
+    async lamarLowongan({commit, state}, payload) {
+        await commit('changeLowongan', {
+            isLoading: true,
+        })
+        try {
+            const res = await ApiService.post('job', payload);
+            if (res.data.status_code == `201` || res.data.status_code == 201) {
+                await commit('changeLowongan', {
+                    isLoading: false,
+                });
+            } else {
+                await commit('changeLowongan', {
+                    isLoading: false,
+                });
+            }
+        } catch {
+            await commit('changeLowongan', {
+                isLoading: false,
+            });
+        }
+    },
     async getPerusahaan({ commit, state }) {
         await commit('changeLowongan', {
             isLoading: true,
