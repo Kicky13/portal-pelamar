@@ -12,24 +12,20 @@
     data-kt-drawer-toggle="#kt_header_menu_mobile_toggle"
     data-kt-swapper="true"
     data-kt-swapper-mode="prepend"
-    data-kt-swapper-parent="{default: '#kt_body', lg: '#kt_header_nav'}"
-  >
+    data-kt-swapper-parent="{default: '#kt_body', lg: '#kt_header_nav'}">
     <!--begin::Menu-->
     <div
       class="menu menu-lg-rounded menu-column menu-lg-row menu-state-bg menu-title-gray-700 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-400 fw-semobold my-5 my-lg-0 align-items-stretch"
       id="#kt_header_menu"
-      data-kt-menu="true"
-    >
+      data-kt-menu="true">
       <template v-for="(item, i) in MainMenuConfig" :key="i">
         <template v-if="!item.heading">
           <template v-for="(menuItem, j) in item.pages" :key="j">
             <div v-if="menuItem.heading" class="menu-item me-lg-1">
-              
               <router-link
                 class="menu-link"
                 :to="menuItem.route"
-                active-class="active"
-              >
+                active-class="active">
                 <span class="menu-title">{{
                   translate(menuItem.heading)
                 }}</span>
@@ -41,21 +37,28 @@
       <div
         data-kt-menu-trigger="click"
         data-kt-menu-placement="bottom-start"
-        class="menu-item menu-lg-down-accordion me-lg-1"
-      >
-        <router-link v-if="isUserAuthenticated && isLanding()" :to="`/profile/user`" class="menu-link py-3">
+        class="menu-item menu-lg-down-accordion me-lg-1">
+        <router-link
+          v-if="isUserAuthenticated && isLanding()"
+          :to="`/profile/user`"
+          class="menu-link py-3">
           <span class="menu-login btn explore-btn-primary">Dashboard</span>
           <span class="menu-arrow d-lg-none"></span>
         </router-link>
-        <a @click="logout" v-else-if="isUserAuthenticated && !isLanding()" class="menu-link py-3">
-          <span class="menu-login btn explore-btn-primary">Logout</span>
+        <a
+          @click="logout"
+          v-else-if="isUserAuthenticated && !isLanding()"
+          class="menu-link py-3 px-5 explore-btn-primary">
+          <span class="">Logout</span>
           <span class="menu-arrow d-lg-none"></span>
         </a>
-        <router-link v-else :to="`/sign-in`" class="menu-link py-3">
-          <span class="menu-login btn explore-btn-primary">Login</span>
+        <router-link
+          v-else
+          :to="`/sign-in`"
+          class="py-3 px-5 menu-login explore-btn-primary">
+          <span class="">Login</span>
           <span class="menu-arrow d-lg-none"></span>
         </router-link>
-       
       </div>
       <!--end::Menu-->
     </div>
@@ -83,10 +86,15 @@ export default defineComponent({
     const route = useRoute();
     const isUserAuthenticated = store.getters.isUserAuthenticated;
 
-    console.log(route.name)
+    console.log(route.name);
 
     const isLanding = () => {
-      if (route.name == 'landing' || route.name == 'pencarian-lowongan' || route.name == 'pencarian-lowongan-detail' || route.name == 'faq') {
+      if (
+        route.name == "landing" ||
+        route.name == "pencarian-lowongan" ||
+        route.name == "pencarian-lowongan-detail" ||
+        route.name == "faq"
+      ) {
         return true;
       } else {
         return false;
@@ -99,8 +107,8 @@ export default defineComponent({
 
     const logout = () => {
       store
-      .dispatch(Actions.LOGOUT)
-      .then(() => router.push({ name: "sign-in" }))
+        .dispatch(Actions.LOGOUT)
+        .then(() => router.push({ name: "sign-in" }));
     };
 
     const translate = (text) => {
