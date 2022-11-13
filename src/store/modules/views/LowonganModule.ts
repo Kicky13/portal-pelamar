@@ -4,6 +4,17 @@ const state = {
     data: {
         isLoading: false,
         listLowongan: [],
+        listPerusahaan: [],
+        listKategori: [],
+        listJabatan: [],
+        listRecommended: [],
+        selectedLowongan: {},
+        filter: {
+            search: '',
+            id_perusahaan: '',
+            id_bidang_jabatan: '',
+            id_jabatan: '',
+        },
         itemPerPage: 10,
         totalItems: 100,
         totalPage: 1,
@@ -21,15 +32,110 @@ const mutations = {
 }
 
 const actions = {
+    changeSelectedLowongan({commit, state}, payload) {
+        commit('changeLowongan', {
+            selectedLowongan: payload
+        });
+    },
+    changeRecommended({commit, state}, payload) {
+        commit('changeLowongan', {
+            listRecommended: payload
+        });
+    },
+    async lamarLowongan({commit, state}, payload) {
+        await commit('changeLowongan', {
+            isLoading: true,
+        })
+        try {
+            const res = await ApiService.post('job', payload);
+            if (res.data.status_code == `201` || res.data.status_code == 201) {
+                await commit('changeLowongan', {
+                    isLoading: false,
+                });
+            } else {
+                await commit('changeLowongan', {
+                    isLoading: false,
+                });
+            }
+        } catch {
+            await commit('changeLowongan', {
+                isLoading: false,
+            });
+        }
+    },
+    async getPerusahaan({ commit, state }) {
+        await commit('changeLowongan', {
+            isLoading: true,
+        });
+        try {
+            const res = await ApiService.get('master/perusahaan');
+            if (res.data.status_code == `201` || res.data.status_code == 201) {
+                await commit('changeLowongan', {
+                    isLoading: false,
+                    listPerusahaan: res.data.data,
+                });
+            } else {
+                await commit('changeLowongan', {
+                    isLoading: false,
+                });
+            }
+        } catch {
+            await commit('changeLowongan', {
+                isLoading: false,
+            });
+        }
+    },
+    async getKategori({ commit, state }) {
+        await commit('changeLowongan', {
+            isLoading: true,
+        });
+        try {
+            const res = await ApiService.get('master/bidang_jabatan');
+            if (res.data.status_code == `201` || res.data.status_code == 201) {
+                await commit('changeLowongan', {
+                    isLoading: false,
+                    listKategori: res.data.data,
+                });
+            } else {
+                await commit('changeLowongan', {
+                    isLoading: false,
+                });
+            }
+        } catch {
+            await commit('changeLowongan', {
+                isLoading: false,
+            });
+        }
+    },
+    async getJabatan({ commit, state }) {
+        await commit('changeLowongan', {
+            isLoading: true,
+        });
+        try {
+            const res = await ApiService.get('master/jabatan');
+            if (res.data.status_code == `201` || res.data.status_code == 201) {
+                await commit('changeLowongan', {
+                    isLoading: false,
+                    listJabatan: res.data.data,
+                });
+            } else {
+                await commit('changeLowongan', {
+                    isLoading: false,
+                });
+            }
+        } catch {
+            await commit('changeLowongan', {
+                isLoading: false,
+            });
+        }
+    },
     async getLowongan({ commit, state }) {
         await commit('changeLowongan', {
             isLoading: true,
         });
         const { data } = state
-        const tesStr = 'Kikikagfsh'
-        console.log(tesStr.replace('ag', '').replace('s', ''))
         try {
-            const res = await ApiService.get('job');
+            const res = await ApiService.post('job/list', data.filter);
 
             if (res.data.status_code == `201` || res.data.status_code == 201) {
                 commit('changeLowongan', {

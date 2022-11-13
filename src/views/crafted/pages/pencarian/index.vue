@@ -15,55 +15,56 @@
             >
             <div class="line-banner"></div>
             <div class="total-lowongan">
-              <strong>213</strong> Lowongan Tersedia
+              <strong>{{lowonganModule.listLowongan.length}}</strong> Lowongan Tersedia
             </div>
           </div>
 
           <div class="form-pencarian">
             <div class="row d-flex justify-content-center">
-              <div class="col-sm-3">
+              <div class="col-sm-4">
                 <input
                   type="text"
                   class="form-control form-control-solid"
-                  placeholder="name@example.com" />
+                  v-model="lowonganModule.filter.search"
+                  placeholder="Cari Keyword" />
               </div>
               <div class="col-sm-3">
                 <select
                   class="form-select form-select-solid"
+                  v-model="lowonganModule.filter.id_perusahaan"
                   aria-label="Select example">
-                  <option>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  <option value="" disabled hidden>Pilih Perusahaan BUMN</option>
+                  <option value="">Semua</option>
+                  <option
+                    v-for="(perusahaan, index) in lowonganModule.listPerusahaan"
+                    :value="perusahaan.id"
+                    :key="index">
+                    {{ perusahaan.nama_perusahaan }}
+                  </option>
                 </select>
               </div>
-              <div class="col-sm-2">
+              <div class="col-sm-3">
                 <select
                   class="form-select form-select-solid"
+                  v-model="lowonganModule.filter.id_jabatan"
                   aria-label="Select example">
-                  <option>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
-              </div>
-              <div class="col-sm-2">
-                <select
-                  class="form-select form-select-solid"
-                  aria-label="Select example">
-                  <option>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  <option value="" disabled hidden>Pilih Posisi</option>
+                  <option value="">Semua</option>
+                  <option
+                    v-for="(jabatan, index) in lowonganModule.listJabatan"
+                    :value="jabatan.id"
+                    :key="index">
+                    {{ jabatan.nama_jabatan }}
+                  </option>
                 </select>
               </div>
 
               <div class="col-sm-2">
-                <router-link
-                  :to="`/pencarian-lowongan?`"
+                <button
+                  @click="cari"
                   class="btn btn-primary-portal w-100">
                   Cari
-                </router-link>
+                </button>
               </div>
             </div>
           </div>
@@ -86,7 +87,7 @@
                 <div class="informasi d-flex align-items-center">
                   <div class="images">
                     <img
-                      :src="require('@/assets/images/content/sig.png')"
+                      :src="item.logo"
                       alt="" />
                   </div>
                   <div class="detail-informasi">
@@ -112,7 +113,6 @@
                 <li :class="startIndex == 0 ? `page-item disabled` : `page-item`">
                   <a class="page-link page-link-prev" href="#">Prev</a>
                 </li>
-                <!-- <li class="page-item"><a class="page-link active" href="#">1</a></li> -->
                 <li v-for="item in pagination" :class="(item == activePageIndex) ? classActive : classInactive">
                   <button v-if="item == activePageIndex" disabled class="page-link">{{ item }}</button>
                   <button v-else class="page-link">{{ item }}</button>
@@ -156,12 +156,23 @@ export default {
     };
   },
   async mounted() {
-    await this.initiateData()
+    await this.initiateData(),
+    this.getKategori(),
+    this.getPerusahaan(),
+    this.getJabatan()
   },
   methods: {
     ...mapActions('lowonganModule', [
       'getLowongan',
+      'getPerusahaan',
+      'getKategori',
+      'getJabatan'
     ]),
+    async cari() {
+      await this.getLowongan().then(() => {
+        this.setupPagination()
+      });
+    },
     async initiateData() {
       await this.getLowongan().then(() => {
         this.setupPagination()

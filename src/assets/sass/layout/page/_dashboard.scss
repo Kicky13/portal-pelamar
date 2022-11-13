@@ -47,7 +47,21 @@
     }
     .btn__confirm {
       color: gray;
-      background-color: #1796a4;
+      background-color: #2aa417;
+      border-radius: 8px;
+      font-weight: bold;
+      border: transparent;
+      padding: 6px 10px;
+      border-radius: 50%;
+      margin: 5px 0px 0px -20px;
+     
+      i {
+        color: white;
+      }
+    }
+    .btn__cancel {
+      color: gray;
+      background-color: #a41717;
       border-radius: 8px;
       font-weight: bold;
       border: transparent;
@@ -257,7 +271,7 @@
       }
       &__form {
         background: rgba(0, 0, 0, 0.07);
-        border-radius: 12px;
+        border-radius: 4px;
         height: 40px;
       }
 
@@ -404,7 +418,7 @@
 
 .custom_form_select {
   background: rgba(0, 0, 0, 0.07);
-  border-radius: 12px;
+  border-radius: 4px;
   height: 40px;
   width: 50%;
   padding: 5px;
@@ -419,8 +433,9 @@
 
 .custom_textarea {
   background: rgba(0, 0, 0, 0.07);
-  border-radius: 12px;
+  border-radius: 2px;
   border: 1px solid transparent;
+  padding: 8px;
 }
 
 .number-id {
