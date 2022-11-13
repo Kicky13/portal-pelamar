@@ -154,9 +154,9 @@
       font-size: 14px;
     }
 
-	.menu-login{
-		color: $white
-	}
+    .menu-login {
+      color: $white;
+    }
   }
 
   @if ($icon-color != null) {
