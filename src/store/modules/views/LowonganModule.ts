@@ -134,8 +134,6 @@ const actions = {
             isLoading: true,
         });
         const { data } = state
-        const tesStr = 'Kikikagfsh'
-        console.log(tesStr.replace('ag', '').replace('s', ''))
         try {
             const res = await ApiService.post('job/list', data.filter);
 
