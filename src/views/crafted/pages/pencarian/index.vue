@@ -26,7 +26,7 @@
                   type="text"
                   class="form-control form-control-solid"
                   v-model="lowonganModule.filter.search"
-                  placeholder="name@example.com" />
+                  placeholder="Cari Keyword" />
               </div>
               <div class="col-sm-3">
                 <select
@@ -34,6 +34,7 @@
                   v-model="lowonganModule.filter.id_perusahaan"
                   aria-label="Select example">
                   <option value="" disabled hidden>Pilih Perusahaan BUMN</option>
+                  <option value="">Semua</option>
                   <option
                     v-for="(perusahaan, index) in lowonganModule.listPerusahaan"
                     :value="perusahaan.id"
@@ -42,26 +43,13 @@
                   </option>
                 </select>
               </div>
-              <!-- <div class="col-sm-2">
-                <select
-                  class="form-select form-select-solid"
-                  v-model="lowonganModule.filter.id_bidang_jabatan"
-                  aria-label="Select example">
-                  <option value="" disabled hidden>Kategori</option>
-                  <option
-                    v-for="(bidang, index) in lowonganModule.listKategori"
-                    :value="bidang.id"
-                    :key="index">
-                    {{ bidang.name }}
-                  </option>
-                </select>
-              </div> -->
               <div class="col-sm-3">
                 <select
                   class="form-select form-select-solid"
                   v-model="lowonganModule.filter.id_jabatan"
                   aria-label="Select example">
-                  <option value="" disabled hidden>Position</option>
+                  <option value="" disabled hidden>Pilih Posisi</option>
+                  <option value="">Semua</option>
                   <option
                     v-for="(jabatan, index) in lowonganModule.listJabatan"
                     :value="jabatan.id"
@@ -77,11 +65,6 @@
                   class="btn btn-primary-portal w-100">
                   Cari
                 </button>
-                <!-- <router-link
-                  :to="`/pencarian-lowongan?`"
-                  class="btn btn-primary-portal w-100">
-                  Cari
-                </router-link> -->
               </div>
             </div>
           </div>
@@ -103,9 +86,6 @@
               <div class="col-sm-10">
                 <div class="informasi d-flex align-items-center">
                   <div class="images">
-                    <!-- <img
-                      :src="require('@/assets/images/content/sig.png')"
-                      alt="" /> -->
                     <img
                       :src="item.logo"
                       alt="" />
@@ -133,7 +113,6 @@
                 <li :class="startIndex == 0 ? `page-item disabled` : `page-item`">
                   <a class="page-link page-link-prev" href="#">Prev</a>
                 </li>
-                <!-- <li class="page-item"><a class="page-link active" href="#">1</a></li> -->
                 <li v-for="item in pagination" :class="(item == activePageIndex) ? classActive : classInactive">
                   <button v-if="item == activePageIndex" disabled class="page-link">{{ item }}</button>
                   <button v-else class="page-link">{{ item }}</button>

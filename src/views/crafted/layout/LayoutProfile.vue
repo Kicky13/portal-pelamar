@@ -18,6 +18,10 @@
                       :src="fotoUrl"
                     alt="" />
                     <img
+                      v-else-if="changeFotoModule.userData.foto"
+                      :src="changeFotoModule.userData.foto"
+                      alt="" />
+                    <img
                       v-else
                       :src="
                         require('@/assets/images/icon/ic_image_profile.png')
@@ -85,7 +89,7 @@ export default {
   },
   computed: {
     ...mapState({
-      changeFoto: (state) => state.changeFoto.data,
+      changeFotoModule: (state) => state.changeFoto.data,
     })
   },
   data() {
@@ -96,14 +100,16 @@ export default {
       fotoUrl: null,
     }
   },
-  mounted() {
-    this.initPage()
+  async mounted() {
+    await this.initPage()
   },
   methods: {
     ...mapActions('changeFoto', [
       'storeNewPic',
+      'getProfilePic',
     ]),
-    initPage() {
+    async initPage() {
+      await this.getProfilePic()
       this.infoUser = JSON.parse(window.localStorage.getItem('user_info'))
     },
     onChangeFoto() {
@@ -141,6 +147,7 @@ export default {
           timer: 1500,
         });
       }
+      await this.getProfilePic()
       this.cancelChange()
     },
   },
