@@ -102,6 +102,7 @@
                           WNA
                         </label>
                       </div>
+                      <span v-show="dataPersonalModule.validation.is_wna" class="text-danger">Wajib Dipilih</span>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -200,6 +201,7 @@
                           Perempuan
                         </label>
                       </div>
+                      <span v-show="dataPersonalModule.validation.gender" class="text-danger">Wajib Dipilih</span>
                     </div>
                   </div>
 
