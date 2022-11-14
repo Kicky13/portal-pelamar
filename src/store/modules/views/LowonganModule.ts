@@ -153,6 +153,16 @@ const actions = {
             });
         }
     },
+    resetFilter({commit, state}) {
+        commit('changeLowongan', {
+            filter: {
+                search: '',
+                id_perusahaan: '',
+                id_bidang_jabatan: '',
+                id_jabatan: '',
+            },
+        })
+    },
 }
 
 export default {
