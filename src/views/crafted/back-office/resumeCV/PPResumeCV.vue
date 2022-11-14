@@ -29,11 +29,11 @@
                           <td>:</td>
                           <td class="">{{resumeCVModule.listPersonal.gender == 'L' ? 'Laki-laki' : 'Perempuan'}}</td>
                         </tr>
-                        <!-- <tr>
+                        <tr>
                           <td class="title-body w-50">Kewarganegaraan</td>
                           <td>:</td>
-                          <td class="t">WNI</td>
-                        </tr> -->
+                          <td class="t">{{resumeCVModule.listPersonal.is_wna == 0 ? 'WNI' : 'WNA'}}</td>
+                        </tr>
                         <tr>
                           <td class="title-body w-50">NIK / Passport</td>
                           <td>:</td>
@@ -42,12 +42,12 @@
                         <tr>
                           <td class="title-body w-50">Tempat Lahir</td>
                           <td>:</td>
-                          <td class="t">{{resumeCVModule.listPersonal.tempat_lahir}}</td>
+                          <td class="t">{{resumeCVModule.listPersonal.tempat_lahir}} - {{resumeCVModule.listPersonal.nama_provinsi}}</td>
                         </tr>
                         <tr>
                           <td class="title-body w-50">Tanggal Lahir</td>
                           <td>:</td>
-                          <td class="t">{{resumeCVModule.listPersonal.tgl_lahir}}</td>
+                          <td class="t">{{formatDate(resumeCVModule.listPersonal.tgl_lahir)}}</td>
                         </tr>
                         <!-- <tr>
                           <td class="title-body w-50">Agama</td>
@@ -188,10 +188,10 @@
                       {{ listPekerjaan1.nama_instansi }}
                     </template>
                     <template v-slot:tanggal_mulai="{ row: listPekerjaan1 }">
-                      {{ listPekerjaan1.tanggal_mulai }}
+                      {{ formatDate(listPekerjaan1.tanggal_mulai) }}
                     </template>
                     <template v-slot:tanggal_akhir="{ row: listPekerjaan1 }">
-                      {{ listPekerjaan1.tanggal_akhir }}
+                      {{ formatDate(listPekerjaan1.tanggal_akhir) }}
                     </template>
                     <template v-slot:tupoksi="{ row: listPekerjaan1 }">
                       {{ listPekerjaan1.tupoksi }}
@@ -224,10 +224,10 @@
                       {{ listPekerjaan2.nama_instansi }}
                     </template>
                     <template v-slot:tanggal_mulai="{ row: listPekerjaan2 }">
-                      {{ listPekerjaan2.tanggal_mulai }}
+                      {{ formatDate(listPekerjaan2.tanggal_mulai) }}
                     </template>
                     <template v-slot:tanggal_akhir="{ row: listPekerjaan2 }">
-                      {{ listPekerjaan2.tanggal_akhir }}
+                      {{ formatDate(listPekerjaan2.tanggal_akhir) }}
                     </template>
                     <template v-slot:tupoksi="{ row: listPekerjaan2 }">
                       {{ listPekerjaan2.tupoksi }}
@@ -260,10 +260,10 @@
                       {{ listOrganisasi.nama_organisasi }}
                     </template>
                     <template v-slot:tanggal_mulai="{ row: listOrganisasi }">
-                      {{ listOrganisasi.tanggal_mulai }}
+                      {{ formatDate(listOrganisasi.tanggal_mulai) }}
                     </template>
                     <template v-slot:tanggal_akhir="{ row: listOrganisasi }">
-                      {{ listOrganisasi.tanggal_akhir }}
+                      {{ formatDate(listOrganisasi.tanggal_akhir) }}
                     </template>
                     <template v-slot:uraian_kegiatan="{ row: listOrganisasi }">
                       {{ listOrganisasi.uraian_kegiatan }}
@@ -521,6 +521,10 @@ export default {
     ...mapActions('dataReferensiModule', [
       'getListReferensi'
     ]),
+    formatDate(tanggal) {
+      let nd = new Date(tanggal).toLocaleDateString('id-id', { day:"numeric", year:"numeric", month:"long"});
+      return nd;
+    },
   },
   components: {
     LayoutProfileAside,

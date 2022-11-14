@@ -146,10 +146,10 @@
                       {{ listOrganisasi.nama_organisasi }}
                     </template>
                     <template v-slot:tanggal_mulai="{ row: listOrganisasi }">
-                      {{ listOrganisasi.tanggal_mulai }}
+                      {{ formatDate(listOrganisasi.tanggal_mulai) }}
                     </template>
                     <template v-slot:tanggal_akhir="{ row: listOrganisasi }">
-                      {{ listOrganisasi.tanggal_akhir }}
+                      {{ formatDate(listOrganisasi.tanggal_akhir) }}
                     </template>
                     <template v-slot:uraian_kegiatan="{ row: listOrganisasi }">
                       {{ listOrganisasi.uraian_kegiatan }}
@@ -223,6 +223,10 @@ export default {
       'validateForm',
       'cleanForm'
     ]),
+    formatDate(tanggal) {
+      let nd = new Date(tanggal).toLocaleDateString('id-id', { day:"numeric", year:"numeric", month:"long"});
+      return nd;
+    },
     async submit() {
       const validateForm = await this.validateForm()
       if (validateForm) {
