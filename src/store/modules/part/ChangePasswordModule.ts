@@ -48,6 +48,15 @@ const actions = {
             return false;
         }
     },
+    cleanForm({ commit, state }) {
+        commit('changePassword', {
+            formData: {
+                password: '',
+                new_password: '',
+                re_password: '',
+            },
+        })
+    },
     async validateForm({commit, state}) {
         const { data } = state
         let validator = {
