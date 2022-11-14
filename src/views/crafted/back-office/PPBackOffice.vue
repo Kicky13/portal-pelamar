@@ -57,7 +57,7 @@
                     <div v-if="lamaran.status_lamar" class="status-seleksi">
                       Lolos Seleksi
                     </div>
-                    <div v-else-if="lamaran.is_manually_closed" class="status-ditolak">
+                    <div v-else-if="lamaran.is_manual_closed || lamaran.closed_by_date" class="status-ditolak">
                       Tidak Lolos
                     </div>
                     <div v-else class="status-seleksi">
@@ -175,36 +175,54 @@
         v-model="modalShow">
         <div>
           <div class="modal-progress-lamaran">
-            <div class="section-list">
-              <div class="row d-flex align-items-center">
-                <div class="col-sm-2">
-                  <div class="images-perusahaan">
-                    <img
-                      :src="require('@/assets/images/content/sig.png')"
-                      alt="" />
+            <div v-for="lamaran in dashboardModule.listLamaranDetail">
+              <div class="section-list">
+                <div class="row d-flex align-items-center">
+                  <div class="col-sm-2">
+                    <div class="images-perusahaan">
+                      <img
+                        :src="lamaran.logo"
+                        alt="" />
+                    </div>
+                  </div>
+                  <div class="col-sm-7">
+                    <div class="posisi-perusahaan">{{lamaran.nama_jabatan}}</div>
+                    <div class="perusahaan">
+                      {{lamaran.nama_perusahaan}}
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div v-if="lamaran.status_lamar" class="status-seleksi">
+                      Lolos Seleksi
+                    </div>
+                    <div v-else-if="lamaran.is_manual_closed || lamaran.closed_by_date" class="status-ditolak">
+                      Tidak Lolos
+                    </div>
+                    <div v-else class="status-seleksi">
+                      Seleksi Admin
+                    </div>
                   </div>
                 </div>
-                <div class="col-sm-7">
-                  <div class="posisi-perusahaan">Direktur Human Capital</div>
-                  <div class="perusahaan">
-                    PT. Semen Indonesia (Persero) Tbk.
-                  </div>
-                </div>
-                <div class="col-sm-3">
-                  <div class="status-seleksi">Seleksi Admin</div>
-                </div>
+                <hr />
               </div>
               <hr />
-            </div>
-
-            <hr />
-            <div class="wizard-data">
-              <ol>
-                <li class="">Step 1</li>
-                <li class="current">Step 2</li>
-                <li class="">Step 3</li>
-                <li class="">Ready to go!</li>
-              </ol>
+              <div v-if="lamaran.status_lamar" class="wizard-data">
+                <ol>
+                  <li class="">Daftar</li>
+                  <li class="">Seleksi Admin</li>
+                  <li class="current">Lolos Eligible</li>
+                </ol>
+              </div>
+              <div v-else-if="lamaran.is_manual_closed || lamaran.closed_by_date" class="row">
+                <center><i>Mohon maaf, anda belum lolos untuk jabatan ini</i></center>
+              </div>
+              <div v-else class="wizard-data">
+                <ol>
+                  <li class="">Daftar</li>
+                  <li class="current">Seleksi Admin</li>
+                  <li class="">Lolos Eligible</li>
+                </ol>
+              </div>
             </div>
           </div>
         </div>
@@ -239,11 +257,13 @@ export default {
     ErrorMessage,
   },
   mounted() {
-    this.getListLamaran()
+    this.getListLamaran(),
+    this.getListLamaranDetail()
   },
   methods: {
     ...mapActions('dashboardModule', [
-      'getListLamaran'
+      'getListLamaran',
+      'getListLamaranDetail'
     ]),
   }
 };

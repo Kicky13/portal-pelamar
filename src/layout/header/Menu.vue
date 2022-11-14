@@ -41,8 +41,8 @@
         <router-link
           v-if="isUserAuthenticated && isLanding()"
           :to="`/profile/user`"
-          class="menu-link py-3">
-          <span class="menu-login btn explore-btn-primary">Dashboard</span>
+          class="menu-link py-3 px-5 explore-btn-primary">
+          <span class="">Dashboard</span>
           <span class="menu-arrow d-lg-none"></span>
         </router-link>
         <a
