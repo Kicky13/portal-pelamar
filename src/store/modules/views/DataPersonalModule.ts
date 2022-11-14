@@ -196,6 +196,11 @@ const actions = {
         try {
             const res = await ApiService.get('cv/personal');
             if (res.data.status_code == `201` || res.data.status_code == 201) {
+                console.log(res.data.data);
+                if(res.data.data && res.data.data.gender == null){
+                    res.data.data.gender = 'L';
+                }
+                console.log(res.data.data);
                 await commit('changeDataPersonal', {
                     isLoading: false,
                     formData: res.data.data,
@@ -289,7 +294,7 @@ const actions = {
             tgl_lahir: data.formData.tgl_lahir == '' || data.formData.tgl_lahir == null ? true : false,
             email: data.formData.email.length < 4 || !email.test(data.formData.email) ? true : false,
             agama: data.formData.agama == '' || data.formData.agama == null ? true : false,
-            is_wna: data.formData.is_wna == '' || data.formData.is_wna == null ? true : false,
+            is_wna: false,
             ktp: false,
         }
         console.log(validator)
