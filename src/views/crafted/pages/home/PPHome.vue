@@ -46,40 +46,41 @@
                         <input
                           type="text"
                           class="form-control form-control-solid"
-                          placeholder="name@example.com" />
+                          v-model="lowonganModule.filter.search"
+                          placeholder="Cari Keyword" />
                       </div>
                       <div class="col-sm-3">
                         <select
                           class="form-select form-select-solid"
-                          aria-label="Select example">
-                          <option>Open this select menu</option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
+                          v-model="lowonganModule.filter.id_perusahaan"
+                          aria-label="Pilih Perusahaan">
+                          <option value="" disabled hidden>Pilih Perusahaan BUMN</option>
+                          <option value="">Semua</option>
+                          <option
+                            v-for="(perusahaan, index) in lowonganModule.listPerusahaan"
+                            :value="perusahaan.id"
+                            :key="index">
+                            {{ perusahaan.nama_perusahaan }}
+                          </option>
                         </select>
                       </div>
-                      <div class="col-sm-2">
+                      <div class="col-sm-3">
                         <select
                           class="form-select form-select-solid"
+                          v-model="lowonganModule.filter.id_jabatan"
                           aria-label="Select example">
-                          <option>Open this select menu</option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
+                          <option value="" disabled hidden>Pilih Posisi</option>
+                          <option value="">Semua</option>
+                          <option
+                            v-for="(jabatan, index) in lowonganModule.listJabatan"
+                            :value="jabatan.id"
+                            :key="index">
+                            {{ jabatan.nama_jabatan }}
+                          </option>
                         </select>
                       </div>
-                      <div class="col-sm-2">
-                        <select
-                          class="form-select form-select-solid"
-                          aria-label="Select example">
-                          <option>Open this select menu</option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
-                        </select>
-                      </div>
-                      <div class="col-sm-2">
-                        <router-link :to="`/pencarian-lowongan?`" class="btn btn-primary-portal w-100">
+                      <div class="col-sm-3">
+                        <router-link :to="`/pencarian-lowongan`" class="btn btn-primary-portal w-100">
                           Cari
                         </router-link>
                       </div>
@@ -269,8 +270,32 @@
   </div>
 </template>
 <script>
+import { mapState, mapActions } from "vuex";
+import Swal from "sweetalert2/dist/sweetalert2.min.js";
+import { useRouter } from "vue-router";
+
 export default {
   name: "Home",
+  computed: {
+    ...mapState({
+      lowonganModule: (state) => state.lowonganModule.data,
+    })
+  },
+  mounted() {
+    this.getKategori(),
+    this.getPerusahaan(),
+    this.getJabatan(),
+    this.resetFilter()
+  },
+  methods: {
+    ...mapActions('lowonganModule', [
+      'getLowongan',
+      'getPerusahaan',
+      'getKategori',
+      'getJabatan',
+      'resetFilter',
+    ]),
+  },
   components: {
     // Navbar: () => import(`../../layout/Navbar/PPNavbar.vue`),
     // // FooterLayout: () => import(`./FooterBar/PPFooter.vue`),
