@@ -56,6 +56,9 @@
       </div>
       <div class="col-sm-5">
         <div class="card-profile">
+          <img :src="require('@/assets/images/background/img_setting.png')" alt="" />
+        </div>
+        <!-- <div class="card-profile">
           <div class="title-card">
             <img :src="require('@/assets/images/icon/ic_user.svg')" alt="" />
             <span>Akun</span>
@@ -97,7 +100,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </LayoutProfileAside>
@@ -142,7 +145,7 @@ export default {
           Swal.fire({
             position: 'top-end',
             icon: 'error',
-            title: 'Something went wrong, please try again later!',
+            title: 'Invalid Password!',
             showConfirmButton: false,
             timer: 1500,
           });

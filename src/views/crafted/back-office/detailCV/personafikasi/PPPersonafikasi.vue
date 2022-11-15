@@ -4,7 +4,7 @@
       <div class="col-sm-12">
         <div class="card-profile">
           <div class="title-card">
-            <span>Personifikasi</span>
+            <span class="title__general">Personifikasi</span>
           </div>
           <div class="body-card">
             <div class="container personal">
@@ -59,7 +59,7 @@
                             type="checkbox"
                             v-model="personifikasiModule.formData.minat"
                             :value="data.id"
-                            id="defaultCheck1" />
+                            :id="'defaultCheck'+index" />
                           <label class="form-check-label" for="defaultCheck1">
                             {{ data.name }}
                           </label>
@@ -73,7 +73,7 @@
             </div>
           </div>
           <div class="title-card">
-            <span>Akun Sosial Media </span>
+            <span class="title__general">Akun Sosial Media (<i>Silakan isi minimal 1</i>)</span>
           </div>
           <div class="body-card">
             <div class="container personal">
@@ -81,7 +81,7 @@
                 <label
                   for="staticEmail"
                   class="col-sm-2 col-form-label personal__label"
-                  >Facebook<span class="text-danger">*</span></label
+                  >Facebook</label
                 >
                 <div class="col-sm-10">
                   <input
@@ -97,7 +97,7 @@
                 <label
                   for="staticEmail"
                   class="col-sm-2 col-form-label personal__label"
-                  >Instagram<span class="text-danger">*</span></label
+                  >Instagram</label
                 >
                 <div class="col-sm-10">
                   <input
@@ -113,7 +113,7 @@
                 <label
                   for="staticEmail"
                   class="col-sm-2 col-form-label personal__label"
-                  >Twitter<span class="text-danger">*</span></label
+                  >Twitter</label
                 >
                 <div class="col-sm-10">
                   <input
@@ -129,7 +129,7 @@
                 <label
                   for="staticEmail"
                   class="col-sm-2 col-form-label personal__label"
-                  >LinkedIn<span class="text-danger">*</span></label
+                  >LinkedIn</label
                 >
                 <div class="col-sm-10">
                   <input
@@ -170,6 +170,7 @@
 import LayoutProfileAside from "@/views/crafted/layout/LayoutProfile.vue";
 import { mapState, mapActions } from "vuex";
 import Swal from "sweetalert2/dist/sweetalert2.min.js";
+import { useRouter } from "vue-router";
 
 export default {
   name: "BackOfficePengaturan",
@@ -177,6 +178,12 @@ export default {
     ...mapState({
       personifikasiModule: (state) => state.personifikasiModule.data,
     })
+  },
+  setup() {
+    const router = useRouter();
+    return {
+      router
+    }
   },
   mounted() {
     this.getPersonifikasi();
@@ -210,7 +217,7 @@ export default {
           Swal.fire({
             position: 'top-end',
             icon: 'error',
-            title: 'Something went wrong, please try again later!',
+            title: 'Gagal Simpan, pastikan data yang anda masukkan sudah benar!',
             showConfirmButton: false,
             timer: 1500,
           });
