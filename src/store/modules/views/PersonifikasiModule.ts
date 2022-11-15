@@ -139,7 +139,7 @@ const actions = {
         let validator = {
             nilai_pribadi: data.formData.nilai_pribadi == '' || data.formData.nilai_pribadi == null ? true : false,
             visi_pribadi: data.formData.visi_pribadi == '' || data.formData.visi_pribadi == null ? true : false,
-            minat: data.formData.minat = [] || data.formData.minat == null ? true : false,
+            minat: data.formData.minat.length <= 0 ? true : false,
             sosmed: (data.formData.sosmed_instagram == '' || data.formData.sosmed_instagram == null) && (data.formData.sosmed_facebook == '' || data.formData.sosmed_facebook == null) && (data.formData.sosmed_linkedin == '' || data.formData.sosmed_linkedin == null) && (data.formData.sosmed_twitter == '' || data.formData.sosmed_twitter == null) ? true : false,
         }
         console.log(validator)

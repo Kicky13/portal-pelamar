@@ -59,7 +59,7 @@
                             type="checkbox"
                             v-model="personifikasiModule.formData.minat"
                             :value="data.id"
-                            id="defaultCheck1" />
+                            :id="'defaultCheck'+index" />
                           <label class="form-check-label" for="defaultCheck1">
                             {{ data.name }}
                           </label>
@@ -170,6 +170,7 @@
 import LayoutProfileAside from "@/views/crafted/layout/LayoutProfile.vue";
 import { mapState, mapActions } from "vuex";
 import Swal from "sweetalert2/dist/sweetalert2.min.js";
+import { useRouter } from "vue-router";
 
 export default {
   name: "BackOfficePengaturan",
@@ -177,6 +178,12 @@ export default {
     ...mapState({
       personifikasiModule: (state) => state.personifikasiModule.data,
     })
+  },
+  setup() {
+    const router = useRouter();
+    return {
+      router
+    }
   },
   mounted() {
     this.getPersonifikasi();
