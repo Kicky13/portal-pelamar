@@ -484,7 +484,7 @@ export default {
           Swal.fire({
             position: 'top-end',
             icon: 'error',
-            title: 'Something went wrong, please try again later!',
+            title: 'Gagal Simpan, pastikan data yang anda masukkan sudah benar!',
             showConfirmButton: false,
             timer: 1500,
           });
@@ -519,7 +519,7 @@ export default {
           Swal.fire({
             position: 'top-end',
             icon: 'error',
-            title: 'Something went wrong, please try again later!',
+            title: 'Gagal Simpan, pastikan data yang anda masukkan sudah benar!',
             showConfirmButton: false,
             timer: 1500,
           });
@@ -546,7 +546,7 @@ export default {
         Swal.fire({
           position: 'top-end',
           icon: 'error',
-          title: 'Something went wrong, please try again later!',
+          title: 'Gagal Simpan, pastikan data yang anda masukkan sudah benar!',
           showConfirmButton: false,
           timer: 1500,
         });
@@ -573,7 +573,7 @@ export default {
           Swal.fire({
             position: 'top-end',
             icon: 'error',
-            title: 'Something went wrong, please try again later!',
+            title: 'Gagal Simpan, pastikan data yang anda masukkan sudah benar!',
             showConfirmButton: false,
             timer: 1500,
           });
@@ -608,7 +608,7 @@ export default {
           Swal.fire({
             position: 'top-end',
             icon: 'error',
-            title: 'Something went wrong, please try again later!',
+            title: 'Gagal Simpan, pastikan data yang anda masukkan sudah benar!',
             showConfirmButton: false,
             timer: 1500,
           });
@@ -635,7 +635,7 @@ export default {
         Swal.fire({
           position: 'top-end',
           icon: 'error',
-          title: 'Something went wrong, please try again later!',
+          title: 'Gagal Simpan, pastikan data yang anda masukkan sudah benar!',
           showConfirmButton: false,
           timer: 1500,
         });

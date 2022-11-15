@@ -26,6 +26,11 @@
 		border-bottom-color: inherit;
 	}
 
+	thead {
+	    vertical-align: bottom;
+	    background: #f7f7f7;
+	}
+
 	tr, th, td {
 		border-color: inherit;
 		border-width: inherit;
