@@ -124,14 +124,28 @@ export default {
     ...mapActions('changePasswordPart', [
       'validateForm',
       'storeNewPassword',
+      'cleanForm'
     ]),
     async submitNewPassword() {
       if (await this.validateForm()) {
         const res = await this.storeNewPassword();
         if (res) {
-          console.log(res)
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Password Berhasil Diubah!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          this.cleanForm()
         } else {
-          console.log(res)
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Something went wrong, please try again later!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
         }
       }
     },
