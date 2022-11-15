@@ -26,7 +26,9 @@
           <div class="informasi-akun">
             <span
               >Sudah memiliki akun?
-              <router-link to="/sign-in" class="font-weight-bold">Masuk disni</router-link></span
+              <router-link to="/sign-in" class="font-weight-bold"
+                >Masuk disni</router-link
+              ></span
             >
           </div>
 
@@ -38,7 +40,12 @@
               placeholder="Nama Lengkap"
               v-model="registerModule.formData.name"
               name="" />
-            <span v-show="registerModule.validator.name" class="col-sm-9 text-danger">Wajib Diisi. Harus berisikan angka saja. Minimal 4 karakter.</span>
+            <span
+              v-show="registerModule.validator.name"
+              class="col-sm-9 text-danger"
+              >Wajib Diisi. Harus berisikan angka saja. Minimal 4
+              karakter.</span
+            >
           </div>
           <div class="form-group">
             <input
@@ -48,7 +55,12 @@
               placeholder="No. KTP"
               v-model="registerModule.formData.nik"
               name="" />
-            <span v-show="registerModule.validator.nik" class="col-sm-9 text-danger">Wajib Diisi. Harus berisikan angka saja. Minimal 8 karakter.</span>
+            <span
+              v-show="registerModule.validator.nik"
+              class="col-sm-9 text-danger"
+              >Wajib Diisi. Harus berisikan angka saja. Minimal 8
+              karakter.</span
+            >
           </div>
           <div class="form-group">
             <input
@@ -58,30 +70,76 @@
               v-model="registerModule.formData.email"
               placeholder="Email"
               name="" />
-            <span v-show="registerModule.validator.email" class="col-sm-9 text-danger">Wajib Diisi. Format Email harus benar.</span>
+            <span
+              v-show="registerModule.validator.email"
+              class="col-sm-9 text-danger"
+              >Wajib Diisi. Format Email harus benar.</span
+            >
           </div>
           <div class="form-group">
-            <Field
-              type="password"
-              placeholder="Password"
-              class="form-control form-control-solid"
-              name="newpassword"
-              v-model="registerModule.formData.password"
-              id="newpassword" />
-            <span v-show="registerModule.validator.password" class="col-sm-9 text-danger">Wajib Diisi. Harus berisikan angka saja. Minimal 8 karakter.</span>
+            <div class="input-group">
+              <Field
+                :type="passwordFieldType"
+                placeholder="Password"
+                class="form-control form-control-solid"
+                name="newpassword"
+                v-model="registerModule.formData.password"
+                id="newpassword" />
+              <div class="input-group-addon">
+                <a href="javascript:void(0)" @click="switchVisibility()"
+                  ><i
+                    class="icon-field-registrasi"
+                    :class="
+                      passwordFieldType === `password`
+                        ? `fa fa-eye-slash`
+                        : `fa fa-eye`
+                    "
+                    aria-hidden="true"
+                    margin="left"></i
+                ></a>
+              </div>
+            </div>
+
+            <span
+              v-show="registerModule.validator.password"
+              class="col-sm-9 text-danger"
+              >Wajib Diisi. Harus berisikan angka saja. Minimal 8
+              karakter.</span
+            >
           </div>
           <div class="form-group">
-            <Field
-              type="password"
-              placeholder="Password"
-              class="form-control form-control-solid"
-              name="newpassword"
-              v-model="registerModule.formData.confirm_password"
-              id="newpassword" />
-            <span v-show="registerModule.validator.confirm_password" class="col-sm-9 text-danger">Wajib Diisi. Harus cocok dengan password.</span>
+            <div class="input-group">
+              <Field
+                :type="passwordFieldTypeConfirm"
+                class="form-control form-control-solid"
+                name="newpassword"
+                v-model="registerModule.formData.confirm_password"
+                id="newpassword" />
+              <div class="input-group-addon">
+                <a href="javascript:void(0)" @click="switchVisibilityConfirm()"
+                  ><i
+                    class="icon-field-registrasi"
+                    :class="
+                      passwordFieldTypeConfirm === `password`
+                        ? `fa fa-eye-slash`
+                        : `fa fa-eye`
+                    "
+                    aria-hidden="true"
+                    margin="left"></i
+                ></a>
+              </div>
+            </div>
+
+            <span
+              v-show="registerModule.validator.confirm_password"
+              class="col-sm-9 text-danger"
+              >Wajib Diisi. Harus cocok dengan password.</span
+            >
           </div>
           <div class="form-group">
-            <button @click="onSubmitRegister" class="btn btn-success w-100">Daftar</button>
+            <button @click="onSubmitRegister" class="btn btn-success w-100">
+              Daftar
+            </button>
           </div>
         </div>
       </div>
@@ -100,11 +158,13 @@ export default {
   computed: {
     ...mapState({
       registerModule: (state) => state.registerModule.data,
-    })
+    }),
   },
   data() {
     return {
       siteKey: "",
+      passwordFieldType: "password",
+      passwordFieldTypeConfirm: "password",
     };
   },
   components: {
@@ -114,11 +174,19 @@ export default {
     VueRecaptcha,
   },
   methods: {
-    ...mapActions('registerModule', [
-      'storeRegister',
-      'validateForm',
-      'clearForm',
+    ...mapActions("registerModule", [
+      "storeRegister",
+      "validateForm",
+      "clearForm",
     ]),
+    switchVisibility() {
+      this.passwordFieldType =
+        this.passwordFieldType === "password" ? "text" : "password";
+    },
+    switchVisibilityConfirm() {
+      this.passwordFieldTypeConfirm =
+        this.passwordFieldTypeConfirm === "password" ? "text" : "password";
+    },
     async onSubmitRegister() {
       const validating = await this.validateForm();
       console.log(validating);
@@ -126,9 +194,10 @@ export default {
         const res = await this.storeRegister();
         if (res.status) {
           Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Pendaftaran Berhasil. Mohon Cek Email untuk konfirmasi akun anda!',
+            position: "top-end",
+            icon: "success",
+            title:
+              "Pendaftaran Berhasil. Mohon Cek Email untuk konfirmasi akun anda!",
             showConfirmButton: false,
             timer: 1500,
           });
@@ -137,6 +206,8 @@ export default {
             position: 'top-end',
             icon: 'error',
             title: 'Gagal Simpan, pastikan data yang anda masukkan sudah benar!',
+            position: "top-end",
+            icon: "error",
             showConfirmButton: false,
             timer: 1500,
           });
