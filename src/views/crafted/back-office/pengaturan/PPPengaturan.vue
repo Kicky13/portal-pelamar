@@ -142,7 +142,7 @@ export default {
           Swal.fire({
             position: 'top-end',
             icon: 'error',
-            title: 'Something went wrong, please try again later!',
+            title: 'Invalid Password!',
             showConfirmButton: false,
             timer: 1500,
           });
