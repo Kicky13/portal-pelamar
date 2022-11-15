@@ -141,7 +141,7 @@
   }
 
   .wizard-data {
-	margin-top: 26px;
+    margin-top: 26px;
     ol {
       position: relative;
       overflow: hidden;
@@ -154,7 +154,7 @@
       float: left;
       width: 100% / $number-of-steps;
       text-align: center;
-      color: #6B6B6B;
+      color: #6b6b6b;
     }
 
     .current ~ li {
@@ -201,6 +201,24 @@
 
     .current ~ li:after {
       background-color: $foreground-color;
+    }
+  }
+
+  .lowongan-empty {
+    margin-top: 33px;
+    margin-bottom: 67px;
+    label {
+      font-family: "Poppins";
+      font-style: italic;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 22px;
+      text-align: center;
+      color: rgba(31, 40, 85, 0.5);
+      margin-bottom: 24px;
+    }
+    .btn-custom {
+      padding: 16px 42px 16px 42px !important;
     }
   }
 }

@@ -68,6 +68,25 @@
   }
 
   .pencarian-list {
+    .empty-state-lowongan {
+      text-align: center;
+
+      label {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 16px;
+        color: #1f2855;
+        font-family: "Poppins";
+      }
+      .sub-title {
+        font-family: "Poppins";
+        margin-top: 14px;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 24px;
+        color: #828282;
+      }
+    }
     .informasi {
       .images {
         padding: 30px;
@@ -165,8 +184,6 @@
     margin-bottom: 36px;
   }
 
-
-
   .data-informasi {
     margin-bottom: 45px;
     text-align: end;
@@ -209,7 +226,7 @@
     }
   }
 
-  .detail-rekomendasi{
+  .detail-rekomendasi {
     margin-bottom: 60px;
     .rekomendasi {
       .title-rekomendasi {
@@ -239,7 +256,7 @@
             height: auto;
           }
         }
-  
+
         .detail-informasi {
           label {
             font-family: "Poppins";
@@ -249,7 +266,7 @@
             line-height: 27px;
             color: #1f2855;
           }
-  
+
           .name {
             font-family: "Poppins";
             font-style: normal;
@@ -258,7 +275,7 @@
             line-height: 24px;
             color: #585858;
           }
-  
+
           .date {
             font-family: "Poppins";
             font-style: normal;
