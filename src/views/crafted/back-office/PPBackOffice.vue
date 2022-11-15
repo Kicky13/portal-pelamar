@@ -20,7 +20,7 @@
           </div>
           <div class="body-card">
             <!-- Empty state | empty state yang dipakai jika data kosong -->
-            <!-- <div class="lowongan-empty text-center">
+            <div v-if="dashboardModule.listLamaran.length === 0" class="lowongan-empty text-center">
               <label for=""
                 >Belum ada Jabatan <br />
                 Yang dilamar</label
@@ -30,25 +30,27 @@
                   Cari Lowongan
                 </button>
               </div>
-            </div> -->
+            </div>
             <!-- Empty state | empty state yang dipakai jika data kosong -->
 
             <!-- Content | jika terdapat suatu data -->
             <div class="lowongan">
-              <fragment class="section-list" v-for="lamaran in dashboardModule.listLamaran">
+              <fragment
+                class="section-list"
+                v-for="lamaran in dashboardModule.listLamaran">
                 <div class="row d-flex align-items-center">
                   <div class="col-sm-2">
                     <div class="images-perusahaan">
                       <!-- <img
                         :src="require('@/assets/images/content/sig.png')"
                         alt="" /> -->
-                      <img
-                        :src="lamaran.logo"
-                        alt="" />
+                      <img :src="lamaran.logo" alt="" />
                     </div>
                   </div>
                   <div class="col-sm-7">
-                    <div class="posisi-perusahaan">{{ lamaran.nama_jabatan }}</div>
+                    <div class="posisi-perusahaan">
+                      {{ lamaran.nama_jabatan }}
+                    </div>
                     <div class="perusahaan">
                       {{ lamaran.nama_perusahaan }}
                     </div>
@@ -57,12 +59,14 @@
                     <div v-if="lamaran.status_lamar" class="status-seleksi">
                       Lolos Seleksi
                     </div>
-                    <div v-else-if="lamaran.is_manual_closed || lamaran.closed_by_date" class="status-ditolak">
+                    <div
+                      v-else-if="
+                        lamaran.is_manual_closed || lamaran.closed_by_date
+                      "
+                      class="status-ditolak">
                       Tidak Lolos
                     </div>
-                    <div v-else class="status-seleksi">
-                      Seleksi Admin
-                    </div>
+                    <div v-else class="status-seleksi">Seleksi Admin</div>
                   </div>
                 </div>
                 <hr />
@@ -101,7 +105,7 @@
           </div>
           <div class="body-card">
             <!-- Empty state | empty state yang dipakai jika data kosong -->
-            <!-- <div class="lowongan-empty text-center">
+            <div v-if="dashboardModule.listLamaran.length === 0" class="lowongan-empty text-center">
               <div class="d-flex flex-column">
                 <div class="p-2"></div>
                 <div class="p-2">
@@ -112,7 +116,7 @@
                 </div>
                 <div class="p-2"></div>
               </div>
-            </div> -->
+            </div>
             <!-- Empty state | empty state yang dipakai jika data kosong -->
 
             <!-- Content | jika terdapat suatu data -->
@@ -127,7 +131,8 @@
                   <div class="col-sm-11">
                     <div class="date">{{ lamaran.tgl_melamar }}</div>
                     <div class="informasi-activity">
-                      Melamar posisi {{ lamaran.nama_jabatan }} di {{ lamaran.nama_perusahaan }}
+                      Melamar posisi {{ lamaran.nama_jabatan }} di
+                      {{ lamaran.nama_perusahaan }}
                     </div>
                   </div>
                 </div>
@@ -180,27 +185,29 @@
                 <div class="row d-flex align-items-center">
                   <div class="col-sm-2">
                     <div class="images-perusahaan">
-                      <img
-                        :src="lamaran.logo"
-                        alt="" />
+                      <img :src="lamaran.logo" alt="" />
                     </div>
                   </div>
                   <div class="col-sm-7">
-                    <div class="posisi-perusahaan">{{lamaran.nama_jabatan}}</div>
+                    <div class="posisi-perusahaan">
+                      {{ lamaran.nama_jabatan }}
+                    </div>
                     <div class="perusahaan">
-                      {{lamaran.nama_perusahaan}}
+                      {{ lamaran.nama_perusahaan }}
                     </div>
                   </div>
                   <div class="col-sm-3">
                     <div v-if="lamaran.status_lamar" class="status-seleksi">
                       Lolos Seleksi
                     </div>
-                    <div v-else-if="lamaran.is_manual_closed || lamaran.closed_by_date" class="status-ditolak">
+                    <div
+                      v-else-if="
+                        lamaran.is_manual_closed || lamaran.closed_by_date
+                      "
+                      class="status-ditolak">
                       Tidak Lolos
                     </div>
-                    <div v-else class="status-seleksi">
-                      Seleksi Admin
-                    </div>
+                    <div v-else class="status-seleksi">Seleksi Admin</div>
                   </div>
                 </div>
                 <hr />
@@ -213,8 +220,12 @@
                   <li class="current">Lolos Eligible</li>
                 </ol>
               </div>
-              <div v-else-if="lamaran.is_manual_closed || lamaran.closed_by_date" class="row">
-                <center><i>Mohon maaf, anda belum lolos untuk jabatan ini</i></center>
+              <div
+                v-else-if="lamaran.is_manual_closed || lamaran.closed_by_date"
+                class="row">
+                <center>
+                  <i>Mohon maaf, anda belum lolos untuk jabatan ini</i>
+                </center>
               </div>
               <div v-else class="wizard-data">
                 <ol>
@@ -222,6 +233,19 @@
                   <li class="current">Seleksi Admin</li>
                   <li class="">Lolos Eligible</li>
                 </ol>
+              </div>
+            </div>
+            <div v-if="dashboardModule.listLamaranDetail.length === 0">
+              <div class="lowongan-empty text-center">
+                <label for=""
+                  >Belum ada Jabatan <br />
+                  Yang dilamar</label
+                >
+                <div>
+                  <button class="btn btn-primary-portal btn-custom">
+                    Cari Lowongan
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -249,7 +273,7 @@ export default {
   computed: {
     ...mapState({
       dashboardModule: (state) => state.dashboardModule.data,
-    })
+    }),
   },
   components: {
     LayoutProfileAside,
@@ -257,14 +281,13 @@ export default {
     ErrorMessage,
   },
   mounted() {
-    this.getListLamaran(),
-    this.getListLamaranDetail()
+    this.getListLamaran(), this.getListLamaranDetail();
   },
   methods: {
-    ...mapActions('dashboardModule', [
-      'getListLamaran',
-      'getListLamaranDetail'
+    ...mapActions("dashboardModule", [
+      "getListLamaran",
+      "getListLamaranDetail",
     ]),
-  }
+  },
 };
 </script>

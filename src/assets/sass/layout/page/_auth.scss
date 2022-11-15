@@ -49,9 +49,31 @@
         }
       }
 
-      .daftar-akun{
+      .daftar-akun {
         margin-top: -8px;
       }
     }
   }
+
+
+}
+
+.icon-field {
+  float: right;
+  margin-right: 20px;
+  margin-left: -45px;
+  margin-top: 24px;
+  position: relative;
+  font-size: 16px;
+  z-index: 99999999;
+}
+
+.icon-field-registrasi {
+  float: right;
+  margin-right: 20px;
+  margin-left: -45px;
+  margin-top: 15px;
+  position: relative;
+  font-size: 16px;
+  z-index: 99999999;
 }

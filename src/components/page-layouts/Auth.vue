@@ -31,8 +31,7 @@
               class="form-control form-control-lg form-control-solid"
               type="text"
               name="email"
-              autocomplete="off"
-            />
+              autocomplete="off" />
             <div class="fv-plugins-message-container">
               <div class="fv-help-block">
                 <ErrorMessage name="email" />
@@ -40,12 +39,23 @@
             </div>
           </div>
           <div class="form-group">
-            <Field
-              class="form-control form-control-lg form-control-solid"
-              type="password"
-              name="password"
-              autocomplete="off"
-            />
+            <div class="input-group">
+              <Field
+                class="form-control form-control-lg form-control-solid"
+                :type="passwordFieldType"
+                name="password"
+                autocomplete="off" />
+              <div class="input-group-addon">
+                <a href="javascript:void(0)" @click="switchVisibility()"
+                  ><i
+                    class="icon-field"
+                    :class="passwordFieldType === `password` ? `fa fa-eye-slash` : `fa fa-eye`"
+                    aria-hidden="true"
+                    margin="left"></i
+                ></a>
+              </div>
+            </div>
+
             <div class="fv-plugins-message-container">
               <div class="fv-help-block">
                 <ErrorMessage name="password" />
@@ -61,7 +71,10 @@
             <vue-recaptcha ref="recaptcha" sitekey="Your key here" />
           </div>
           <div class="form-group">
-            <button ref="submitButton" id="kt_sign_in_submit" class="btn btn-success w-100">
+            <button
+              ref="submitButton"
+              id="kt_sign_in_submit"
+              class="btn btn-success w-100">
               Masuk
             </button>
             <!-- <button class="btn btn-success w-100">Masuk</button> -->
@@ -82,7 +95,14 @@
   </div>
 </template>
 <script>
-import { defineComponent, ref, reactive, onMounted, watch, nextTick } from 'vue'
+import {
+  defineComponent,
+  ref,
+  reactive,
+  onMounted,
+  watch,
+  nextTick,
+} from "vue";
 import { ErrorMessage, Field, Form } from "vee-validate";
 import { VueRecaptcha } from "vue-recaptcha";
 import ButtonBack from "@/components/button-back/Back.vue";
@@ -100,11 +120,10 @@ export default {
     const router = useRouter();
     const route = useRoute();
 
-    const submitButton = ref<HTMLButtonElement | null>(null);
+    const submitButton = (ref < HTMLButtonElement) | (null > null);
     const submitLogin = async (values) => {
-
       const res = await store.dispatch(Actions.LOGIN, values);
-      console.log(res)
+      console.log(res);
 
       if (res.status) {
         Swal.fire({
@@ -174,11 +193,12 @@ export default {
       login,
       submitButton,
       submitLogin,
-    }
+    };
   },
   data() {
     return {
       siteKey: "",
+      passwordFieldType: "password",
     };
   },
   components: {
@@ -191,6 +211,10 @@ export default {
   methods: {
     login() {
       console.log(this.formData);
+    },
+    switchVisibility() {
+      this.passwordFieldType =
+        this.passwordFieldType === "password" ? "text" : "password";
     },
   },
 };

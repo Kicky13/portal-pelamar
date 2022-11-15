@@ -105,6 +105,10 @@
                 </router-link>
               </div>
             </div>
+            <div v-if="showData.length === 0" class="empty-state-lowongan">
+            <label for="">Lowongan tidak ditemukan</label>
+            <div class="sub-title">Mari coba cari ulang lowongan yang kamu cari</div>
+            </div>
             <!--  -->
           </div>
           <div class="pagination-portal">
