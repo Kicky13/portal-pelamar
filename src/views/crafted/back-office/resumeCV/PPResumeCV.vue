@@ -153,7 +153,7 @@
                       <div class="col-sm-1">:</div>
                       <div class="col-sm-9">
                         <div class="informasi">
-                          Kesehatan, Human Capital, Digitalisasi dan IT
+                          {{resumeCVModule.listPersonifikasi.minat_desc}}
                         </div>
                       </div>
                     </div>
