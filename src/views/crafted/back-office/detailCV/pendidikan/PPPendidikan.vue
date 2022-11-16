@@ -4,7 +4,7 @@
       <div class="col-sm-12">
         <div class="card-profile">
           <div class="title-card d-flex align-items-center">
-            <span>Riwayat Pendidikan Formal</span>
+            <span class="title__general">Riwayat Pendidikan Formal</span>
           </div>
           <div class="body-card">
             <div class="referensi">
@@ -227,7 +227,7 @@
             <hr>
           </div>
           <div class="title-card d-flex align-items-center">
-            <span>Riwayat Pelatihan</span>
+            <span class="title__general">Riwayat Pelatihan</span>
           </div>
           <div class="body-card">
             <div class="referensi">

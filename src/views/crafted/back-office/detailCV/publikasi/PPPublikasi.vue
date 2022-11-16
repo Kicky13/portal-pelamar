@@ -4,7 +4,7 @@
       <div class="col-sm-12">
         <div class="card-profile">
           <div class="title-card d-flex align-items-center">
-            <span>Publikasi</span>
+            <span class="title__general">Publikasi</span>
 
             <div class="d-flex align-items-center">
               <div class="sub-title-card">dalam 5 tahun terakhir</div>
