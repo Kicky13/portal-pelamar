@@ -164,6 +164,7 @@ export default {
   computed: {
     ...mapState({
       lowonganModule: (state) => state.lowonganModule.data,
+      progressCv: (state) => state.progressCv.data,
     }),
   },
   setup() {
@@ -185,7 +186,10 @@ export default {
       'getLowongan',
       'changeRecommended',
       'changeSelectedLowongan',
-      'lamarLowongan'
+      'lamarLowongan',
+    ]),
+    ...mapActions('progressCv', [
+      'getProgressCv',
     ]),
     async initPage() {
       await this.getLowongan().then(() => {
@@ -226,7 +230,7 @@ export default {
     async lamarPekerjaan() {
       const userInfo = JSON.parse(window.localStorage.getItem('user_info'))
       if (this.isUserAuthenticated) {
-        if (userInfo.progress_cv == 100) {
+        if (this.progressCv.persentase == 100) {
           const formData = {
             id_lowongan: this.lowonganModule.selectedLowongan.id
           }
