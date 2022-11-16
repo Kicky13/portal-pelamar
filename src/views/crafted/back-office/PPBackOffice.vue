@@ -289,7 +289,10 @@ export default {
       "getListLamaranDetail",
     ]),
     openmodal(){
+      console.log('lalalala');
+      console.log(this.modalShow);
       this.modalShow = true;
+      console.log(this.modalShow);
     }
   },
 };
