@@ -231,13 +231,43 @@ export default {
             id_lowongan: this.lowonganModule.selectedLowongan.id
           }
           await this.lamarLowongan(formData).then((res) => {
-            this.router.push({ name: 'ProfileUser' });
+            Swal.fire({
+              text: "Berhasil Mendaftar!",
+              icon: "success",
+              buttonsStyling: false,
+              confirmButtonText: "Ok, got it!",
+              customClass: {
+                confirmButton: "btn btn-primary",
+              },
+            }).then(() => {
+              this.router.push({ name: 'ProfileUser' });
+            });
           })
         } else {
-          this.router.push({ name: 'ProfilePersonal' });
+            Swal.fire({
+              text: "Data Pribadi belum lengkap, Mohon Melengkapin Data Personal Terlebih Dahulu!",
+              icon: "error",
+              buttonsStyling: false,
+              confirmButtonText: "Ok, got it!",
+              customClass: {
+                confirmButton: "btn btn-primary",
+              },
+            }).then(() => {
+              this.router.push({ name: 'ProfilePersonal' });
+            });
         }
       } else {
-        this.router.push({ name: 'registrasi' });
+          Swal.fire({
+            text: "Belum Memiliki Akun, mohon melakukan registrasi terlebih dahulu!",
+            icon: "error",
+            buttonsStyling: false,
+            confirmButtonText: "Ok, got it!",
+            customClass: {
+              confirmButton: "btn btn-primary",
+            },
+            }).then(() => {
+              this.router.push({ name: 'registrasi' });
+            });
       }
     },
   },

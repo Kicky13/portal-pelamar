@@ -1,0 +1,30 @@
+.custom-vselect {
+  .vs__dropdown-toggle {
+    background-color: var(--kt-input-solid-bg);
+    border-color: var(--kt-input-solid-bg);
+    color: var(--kt-input-solid-color);
+    transition: color 0.2s ease;
+    height: 57px;
+  }
+
+  .vs__selected-options {
+    font-family: "Poppins";
+  }
+
+  .vs__dropdown-menu {
+    margin-top: 15px !important;
+    border: 1px solid #f5f8fa;
+    border-radius: 4px;
+  }
+  .vs__dropdown-option {
+    font-family: "Poppins";
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .vs__dropdown-option--highlight {
+    background: #1896a4;
+    font-family: "Poppins";
+    font-size: 14px;
+  }
+}
