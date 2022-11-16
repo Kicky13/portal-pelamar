@@ -110,6 +110,7 @@
           <div class="form-group">
             <div class="input-group">
               <Field
+                placeholder="Ketik ulang Password"
                 :type="passwordFieldTypeConfirm"
                 class="form-control form-control-solid"
                 name="newpassword"
