@@ -12,7 +12,7 @@
                 <div class="title__general">Jabatan Yang Dilamar</div>
               </div>
               <div class="col-sm-6 d-flex justify-content-end">
-                <button v-if="dashboardModule.listLamaran.length != 0" class="btn btn__outline__pp" @click="modalShow = true">
+                <button v-if="dashboardModule.listLamaran.length != 0" class="btn btn__outline__pp" @click="openmodal">
                   Lihat Progress
                 </button>
               </div>
@@ -288,6 +288,9 @@ export default {
       "getListLamaran",
       "getListLamaranDetail",
     ]),
+    openmodal(){
+      this.modalShow = true;
+    }
   },
 };
 </script>
