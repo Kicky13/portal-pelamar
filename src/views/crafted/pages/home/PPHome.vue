@@ -137,7 +137,15 @@
                       <div class="col-sm-7">
                         <div class="images">
                           <!-- <img src="" alt=""> -->
-                          <div class="image-default"></div>
+                          <!-- <div class="image-default"></div> -->
+                          <div
+                            class="image-default"
+                            :style="
+                            'background-image: url(' +
+                            require('@/assets/images/background/bg_slide1.png') +
+                            ')'
+                          ">
+                          </div>
                         </div>
                       </div>
                     </div>
