@@ -24,7 +24,7 @@
                     <img
                       v-else
                       :src="
-                        require('@/assets/images/icon/ic_image_profile.png')
+                        require('@/assets/images/icon/avatar_pp.png')
                       "
                       alt="" />
                   </div>
@@ -54,11 +54,11 @@
                 <div class="col-sm-6">
                   <div class="informasi-persentase d-flex align-items-center">
                     <div class="jabatan-dilamar text-center">
-                      <label for="" class="total">{{ infoUser.jabatan_dilamar }}</label>
+                      <label for="" class="total">{{ progressCv.jobApplied }}</label>
                       <p for="" class="wording">Jabatan Dilamar</p>
                     </div>
                     <div class="jabatan-dilamar text-center">
-                      <label for="" class="total">{{ infoUser.progress_cv }}%</label>
+                      <label for="" class="total">{{ progressCv.persentase }}%</label>
                       <p for="" class="wording">Prosentase CV</p>
                     </div>
                   </div>
@@ -90,6 +90,7 @@ export default {
   computed: {
     ...mapState({
       changeFotoModule: (state) => state.changeFoto.data,
+      progressCv: (state) => state.progressCv.data,
     })
   },
   data() {
@@ -108,8 +109,12 @@ export default {
       'storeNewPic',
       'getProfilePic',
     ]),
+    ...mapActions('progressCv', [
+      'getProgressCV',
+    ]),
     async initPage() {
       await this.getProfilePic()
+      await this.getProgressCV()
       this.infoUser = JSON.parse(window.localStorage.getItem('user_info'))
     },
     onChangeFoto() {

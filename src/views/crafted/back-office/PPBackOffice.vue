@@ -12,7 +12,7 @@
                 <div class="title__general">Jabatan Yang Dilamar</div>
               </div>
               <div class="col-sm-6 d-flex justify-content-end">
-                <button class="btn btn__outline__pp" @click="modalShow = true">
+                <button v-if="dashboardModule.listLamaran.length != 0" class="btn btn__outline__pp" @click="modalShow = true">
                   Lihat Progress
                 </button>
               </div>
@@ -26,9 +26,9 @@
                 Yang dilamar</label
               >
               <div>
-                <button class="btn btn-primary-portal btn-custom">
+                <router-link to="/pencarian-lowongan" class="btn btn-primary-portal btn-custom">
                   Cari Lowongan
-                </button>
+                </router-link>
               </div>
             </div>
             <!-- Empty state | empty state yang dipakai jika data kosong -->
