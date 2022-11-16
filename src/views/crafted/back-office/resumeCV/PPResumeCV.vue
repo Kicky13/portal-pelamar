@@ -177,7 +177,7 @@
 
                 <div class="container">
                   <KTDatatable
-                    class="text-center"
+                    :class="riwayatPekerjaanModule.listPekerjaan1.length == 0 ? 'text-center' : ''"
                     @on-sort="sort"
                     @on-items-select="onItemSelect"
                     :loading="riwayatPekerjaanModule.isLoading1"
@@ -213,7 +213,7 @@
 
                 <div class="container">
                   <KTDatatable
-                    class="text-center"
+                    :class="riwayatPekerjaanModule.listPekerjaan2.length == 0 ? 'text-center' : ''"
                     @on-sort="sort"
                     @on-items-select="onItemSelect"
                     :loading="riwayatPekerjaanModule.isLoading2"
@@ -249,7 +249,7 @@
 
                 <div class="container">
                   <KTDatatable
-                    class="text-center"
+                    :class="dataOrganisasiModule.listOrganisasi.length == 0 ? 'text-center' : ''"
                     @on-sort="sort"
                     @on-items-select="onItemSelect"
                     :loading="dataOrganisasiModule.isLoading"
@@ -282,7 +282,7 @@
 
                 <div class="container">
                   <KTDatatable
-                    class="text-center"
+                    :class="pendidikanPelatihanModule.listPendidikan.length == 0 ? 'text-center' : ''"
                     @on-sort="sort"
                     @on-items-select="onItemSelect"
                     :loading="pendidikanPelatihanModule.isLoading1"
@@ -312,7 +312,7 @@
 
                 <div class="container">
                   <KTDatatable
-                    class="text-center"
+                    :class="pendidikanPelatihanModule.listPelatihan.length == 0 ? 'text-center' : ''"
                     @on-sort="sort"
                     @on-items-select="onItemSelect"
                     :loading="pendidikanPelatihanModule.isLoading2"
@@ -347,7 +347,7 @@
 
                 <div class="container">
                   <KTDatatable
-                    class="text-center"
+                    :class="publikasiModule.listPublikasi.length == 0 ? 'text-center' : ''"
                     @on-sort="sort"
                     @on-items-select="onItemSelect"
                     :data="publikasiModule.listPublikasi"
@@ -372,7 +372,7 @@
 
                 <div class="container">
                   <KTDatatable
-                    class="text-center"
+                    :class="narasumberModule.listNarasumber.length == 0 ? 'text-center' : ''"
                     @on-sort="sort"
                     @on-items-select="onItemSelect"
                     :loading="narasumberModule.isLoading"
@@ -404,7 +404,7 @@
 
                 <div class="container">
                   <KTDatatable
-                    class="text-center"
+                    :class="dataReferensiModule.listReferensi.length == 0 ? 'text-center' : ''"
                     @on-sort="sort"
                     @on-items-select="onItemSelect"
                     :loading="dataReferensiModule.isLoading"
