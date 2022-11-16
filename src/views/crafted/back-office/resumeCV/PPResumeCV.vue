@@ -58,7 +58,7 @@
                     </div>
                     <div class="col-sm-6">
                       <div class="resume-cv__personal__update">
-                        <router-link to="/profile//detail-cv/personal" class="btn btn-primary-portal">
+                        <router-link to="/profile/detail-cv/personal" class="btn btn-primary-portal">
                           Ubah Data
                           <img
                             class="mr-2"
@@ -182,7 +182,7 @@
                     @on-items-select="onItemSelect"
                     :loading="riwayatPekerjaanModule.isLoading1"
                     :data="riwayatPekerjaanModule.listPekerjaan1"
-                    :header="riwayatPekerjaanModule.tableHeader">
+                    :header="tableRiwayatPekerjaan">
                     <template v-slot:jabatan="{ row: listPekerjaan1 }">
                       {{ listPekerjaan1.jabatan }}<br>
                       {{ listPekerjaan1.nama_instansi }}
@@ -218,7 +218,7 @@
                     @on-items-select="onItemSelect"
                     :loading="riwayatPekerjaanModule.isLoading2"
                     :data="riwayatPekerjaanModule.listPekerjaan2"
-                    :header="riwayatPekerjaanModule.tableHeader">
+                    :header="tableRiwayatPekerjaan">
                     <template v-slot:jabatan="{ row: listPekerjaan2 }">
                       {{ listPekerjaan2.jabatan }}<br>
                       {{ listPekerjaan2.nama_instansi }}
@@ -254,7 +254,7 @@
                     @on-items-select="onItemSelect"
                     :loading="dataOrganisasiModule.isLoading"
                     :data="dataOrganisasiModule.listOrganisasi"
-                    :header="dataOrganisasiModule.tableHeader">
+                    :header="tableOrganisasi">
                     <template v-slot:jabatan="{ row: listOrganisasi }">
                       {{ listOrganisasi.jabatan }}<br>
                       {{ listOrganisasi.nama_organisasi }}
@@ -287,7 +287,7 @@
                     @on-items-select="onItemSelect"
                     :loading="pendidikanPelatihanModule.isLoading1"
                     :data="pendidikanPelatihanModule.listPendidikan"
-                    :header="pendidikanPelatihanModule.tableHeader">
+                    :header="tablePendidikan">
                     <template v-slot:jenjang="{ row: listPendidikan }">
                       {{ listPendidikan.jenjang.name }} - {{ listPendidikan.perguruan_tinggi.name }}
                     </template>
@@ -317,7 +317,7 @@
                     @on-items-select="onItemSelect"
                     :loading="pendidikanPelatihanModule.isLoading2"
                     :data="pendidikanPelatihanModule.listPelatihan"
-                    :header="pendidikanPelatihanModule.tableHeader2">
+                    :header="tablePelatihan">
                     <template v-slot:nama="{ row: listPelatihan }">
                       {{ listPelatihan.name }}
                     </template>
@@ -351,7 +351,7 @@
                     @on-sort="sort"
                     @on-items-select="onItemSelect"
                     :data="publikasiModule.listPublikasi"
-                    :header="publikasiModule.column">
+                    :header="tablePublikasi">
                     <template v-slot:judul="{ row: data }">
                       {{ data.judul }}
                     </template>
@@ -377,7 +377,7 @@
                     @on-items-select="onItemSelect"
                     :loading="narasumberModule.isLoading"
                     :data="narasumberModule.listNarasumber"
-                    :header="narasumberModule.column">
+                    :header="tableNarasumber">
                     <template v-slot:nama_acara="{ row: listNarasumber }">
                       {{ listNarasumber.nama_acara }}
                     </template>
@@ -409,7 +409,7 @@
                     @on-items-select="onItemSelect"
                     :loading="dataReferensiModule.isLoading"
                     :data="dataReferensiModule.listReferensi"
-                    :header="dataReferensiModule.tableHeader">
+                    :header="tableReferensi">
                     <template v-slot:nama="{ row: listReferensi }">
                       {{ listReferensi.nama_ref }}
                     </template>
@@ -443,34 +443,13 @@ export default {
   data() {
     return {
       title: "Resume CV",
-      tableHeader: [
-        {
-          columnName: "Order id",
-          columnLabel: "order",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Amount",
-          columnLabel: "amount",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Status",
-          columnLabel: "status",
-          sortingField: "status.label",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Date",
-          columnLabel: "date",
-          sortEnabled: false,
-        },
-        {
-          columnName: "Invoice",
-          columnLabel: "invoice",
-          sortEnabled: false,
-        },
-      ],
+      tableRiwayatPekerjaan: [],
+      tableOrganisasi: [],
+      tablePendidikan: [],
+      tablePelatihan: [],
+      tablePublikasi: [],
+      tableNarasumber: [],
+      tableReferensi: [],
     };
   },
   computed: {
@@ -485,7 +464,7 @@ export default {
     })
   },
   mounted() {
-    this.getDataPersonal(),
+    this.getDataPersonal()
     this.getPersonifikasi(),
     this.getListPekerjaan1(),
     this.getListPekerjaan2(),
@@ -495,6 +474,7 @@ export default {
     this.getPublikasi(),
     this.getNarasumber(),
     this.getListReferensi()
+    this.generateHeader()
   },
   methods: {
     ...mapActions('resumeCVModule', [
@@ -525,6 +505,22 @@ export default {
       let nd = new Date(tanggal).toLocaleDateString('id-id', { day:"numeric", year:"numeric", month:"long"});
       return nd;
     },
+    generateHeader() {
+      Object.assign(this.tableRiwayatPekerjaan, this.riwayatPekerjaanModule.tableHeader);
+      this.tableRiwayatPekerjaan.splice(-1);
+      Object.assign(this.tableOrganisasi, this.dataOrganisasiModule.tableHeader);
+      this.tableOrganisasi.splice(-1);
+      Object.assign(this.tablePendidikan, this.pendidikanPelatihanModule.tableHeader);
+      this.tablePendidikan.splice(-1);
+      Object.assign(this.tablePelatihan, this.pendidikanPelatihanModule.tableHeader2);
+      this.tablePelatihan.splice(-1);
+      Object.assign(this.tablePublikasi, this.publikasiModule.column);
+      this.tablePublikasi.splice(-1);
+      Object.assign(this.tableNarasumber, this.narasumberModule.column);
+      this.tableNarasumber.splice(-1);
+      Object.assign(this.tableReferensi, this.dataReferensiModule.tableHeader);
+      this.tableReferensi.splice(-1);
+    }
   },
   components: {
     LayoutProfileAside,

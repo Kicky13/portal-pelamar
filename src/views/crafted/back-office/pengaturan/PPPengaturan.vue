@@ -3,7 +3,7 @@
    
     <div class="row">
       <div class="col-sm-7">
-        <div class="card-profile">
+        <div class="card-profile" style="min-height: 360px !important;">
           <div class="title-card">
             <img :src="require('@/assets/images/icon/ic_lock.svg')" alt="" />
             <span>Ubah Password</span>
@@ -12,34 +12,91 @@
             <div class="pengaturan">
               <div class="form-group row">
                 <div class="col-sm-12">
-                  <input
+                  <!-- <input
                     placeholder="Password Saat ini"
                     type="password"
                     v-model="changePasswordPart.formData.password"
                     class="form-control pengaturan__form"
-                    id="inputPassword" />
+                    id="inputPassword" /> -->
+                  <div class="input-group">
+                    <input
+                      placeholder="Password Saat ini"
+                      class="form-control form-control-lg form-control-solid"
+                      :type="passwordFieldType1"
+                      v-model="changePasswordPart.formData.password"
+                      id="inputPassword"
+                      autocomplete="off"
+                      style="background: rgba(0, 0, 0, 0.07); border-radius: 3px;" />
+                    <div class="input-group-addon">
+                      <a href="javascript:void(0)" @click="switchVisibility(1)"
+                        ><i
+                          class="icon-field"
+                          :class="passwordFieldType1 === `password` ? `fa fa-eye-slash` : `fa fa-eye`"
+                          aria-hidden="true"
+                          margin="left"></i
+                      ></a>
+                    </div>
+                  </div>
                   <span v-show="changePasswordPart.validator.password" class="col-sm-9 text-danger">Wajib Diisi. Minimal 4 karakter.</span>
                 </div>
               </div>
               <div class="form-group row">
                 <div class="col-sm-12">
-                  <input
+                  <!-- <input
                     placeholder="Password Baru"
                     type="password"
                     v-model="changePasswordPart.formData.new_password"
                     class="form-control pengaturan__form"
-                    id="inputPassword" />
+                    id="inputPassword" /> -->
+                  <div class="input-group">
+                    <input
+                      placeholder="Password Baru"
+                      class="form-control form-control-lg form-control-solid"
+                      :type="passwordFieldType2"
+                      v-model="changePasswordPart.formData.new_password"
+                      id="inputPassword"
+                      autocomplete="off"
+                      style="background: rgba(0, 0, 0, 0.07); border-radius: 3px;" />
+                    <div class="input-group-addon">
+                      <a href="javascript:void(0)" @click="switchVisibility(2)"
+                        ><i
+                          class="icon-field"
+                          :class="passwordFieldType2 === `password` ? `fa fa-eye-slash` : `fa fa-eye`"
+                          aria-hidden="true"
+                          margin="left"></i
+                      ></a>
+                    </div>
+                  </div>
                   <span v-show="changePasswordPart.validator.new_password" class="col-sm-9 text-danger">Wajib Diisi. Minimal 4 karakter. Password tidak boleh sama dengan password saat ini</span>
                 </div>
               </div>
               <div class="form-group row">
                 <div class="col-sm-12">
-                  <input
+                  <!-- <input
                     placeholder="Ketik Ulang Password Baru"
                     type="password"
                     v-model="changePasswordPart.formData.re_password"
                     class="form-control pengaturan__form"
-                    id="inputPassword" />
+                    id="inputPassword" /> -->
+                  <div class="input-group">
+                    <input
+                      placeholder="Ketik Ulang Password Baru"
+                      class="form-control form-control-lg form-control-solid"
+                      :type="passwordFieldType3"
+                      v-model="changePasswordPart.formData.re_password"
+                      id="inputPassword"
+                      autocomplete="off"
+                      style="background: rgba(0, 0, 0, 0.07); border-radius: 3px;" />
+                    <div class="input-group-addon">
+                      <a href="javascript:void(0)" @click="switchVisibility(3)"
+                        ><i
+                          class="icon-field"
+                          :class="passwordFieldType3 === `password` ? `fa fa-eye-slash` : `fa fa-eye`"
+                          aria-hidden="true"
+                          margin="left"></i
+                      ></a>
+                    </div>
+                  </div>
                   <span v-show="changePasswordPart.validator.re_password" class="col-sm-9 text-danger">Wajib Diisi. Minimal 4 karakter. Harus sesuai password baru</span>
                 </div>
               </div>
@@ -121,6 +178,9 @@ export default {
   data() {
     return {
       title: "Pengaturan",
+      passwordFieldType1: "password",
+      passwordFieldType2: "password",
+      passwordFieldType3: "password",
     };
   },
   methods: {
@@ -150,6 +210,15 @@ export default {
             timer: 1500,
           });
         }
+      }
+    },
+    switchVisibility(val) {
+      if (val == 1) {
+        this.passwordFieldType1 = this.passwordFieldType1 === "password" ? "text" : "password";
+      }else if (val == 2) {
+        this.passwordFieldType2 = this.passwordFieldType2 === "password" ? "text" : "password";
+      }else {
+        this.passwordFieldType3 = this.passwordFieldType3 === "password" ? "text" : "password";
       }
     },
   },
