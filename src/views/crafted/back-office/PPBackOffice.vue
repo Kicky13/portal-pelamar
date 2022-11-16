@@ -177,7 +177,9 @@
         hide-footer
         no-close-on-backdrop
         no-close-on-esc
-        v-model="modalShow">
+        title="Progress Lamaran"
+        header-class="custom-modal-title"
+        v-model="modal_show">
         <div>
           <div class="modal-progress-lamaran">
             <div v-for="lamaran in dashboardModule.listLamaranDetail">
@@ -212,7 +214,6 @@
                 </div>
                 <hr />
               </div>
-              <hr />
               <div v-if="lamaran.status_lamar" class="wizard-data">
                 <ol>
                   <li class="">Daftar</li>
@@ -234,6 +235,7 @@
                   <li class="">Lolos Eligible</li>
                 </ol>
               </div>
+              <hr />
             </div>
             <div v-if="dashboardModule.listLamaranDetail.length === 0">
               <div class="lowongan-empty text-center">
@@ -267,7 +269,7 @@ export default {
   data() {
     return {
       title: "Dashboard",
-      modalShow: false,
+      modal_show: false,
     };
   },
   computed: {
@@ -289,10 +291,9 @@ export default {
       "getListLamaranDetail",
     ]),
     openmodal(){
-      console.log('lalalala');
-      console.log(this.modalShow);
-      this.modalShow = true;
-      console.log(this.modalShow);
+      console.log(this.modal_show);
+      this.modal_show = true;
+      console.log(this.modal_show);
     }
   },
 };
