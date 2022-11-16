@@ -4,7 +4,7 @@
       <div class="col-sm-12">
         <div class="card-profile">
           <div class="title-card d-flex align-items-center">
-            <span>Keanggotaan Organisasi</span>
+            <span class="title__general">Keanggotaan Organisasi</span>
           </div>
           <div class="body-card">
             <div class="referensi">

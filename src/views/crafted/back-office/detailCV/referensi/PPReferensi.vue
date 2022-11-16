@@ -4,7 +4,7 @@
       <div class="col-sm-12">
         <div class="card-profile">
           <div class="title-card d-flex align-items-center">
-            <span>Referensi</span>
+            <span class="title__general">Referensi</span>
 
             <div class="sub-title-card">
               berasal dari pihak internal maupun eksternal perusahaan

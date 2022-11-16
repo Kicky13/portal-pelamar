@@ -4,7 +4,7 @@
       <div class="col-sm-12">
         <div class="card-profile">
           <div class="title-card">
-            <span>Data Personal</span>
+            <span class="title__general">Data Personal</span>
           </div>
           <div class="body-card">
             <div class="container personal">
