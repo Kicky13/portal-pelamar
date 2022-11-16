@@ -15,7 +15,7 @@ import ApiService from "@/core/services/ApiService";
 import { initApexCharts } from "@/core/plugins/apexcharts";
 import { initInlineSvg } from "@/core/plugins/inline-svg";
 import { initVeeValidate } from "@/core/plugins/vee-validate";
-
+import 'vue-select/dist/vue-select.css';
 import "@/core/plugins/prismjs";
 import "bootstrap";
 
