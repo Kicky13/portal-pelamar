@@ -50,37 +50,27 @@
                           placeholder="Cari Keyword" />
                       </div>
                       <div class="col-sm-3">
-                        <select
-                          class="form-select form-select-solid"
+                        <v-select
+                          label="name"
+                          class="custom-vselect"
+                          placeholder="Pilih Perusahaan BUMN"
                           v-model="lowonganModule.filter.id_perusahaan"
-                          aria-label="Pilih Perusahaan">
-                          <option value="" disabled hidden>Pilih Perusahaan BUMN</option>
-                          <option value="">Semua</option>
-                          <option
-                            v-for="(perusahaan, index) in lowonganModule.listPerusahaan"
-                            :value="perusahaan.id"
-                            :key="index">
-                            {{ perusahaan.nama_perusahaan }}
-                          </option>
-                        </select>
+                          :reduce="(option) => option.id"
+                          :options="lowonganModule.listPerusahaan"></v-select>
                       </div>
                       <div class="col-sm-3">
-                        <select
-                          class="form-select form-select-solid"
+                        <v-select
+                          label="name"
+                          class="custom-vselect"
+                          placeholder="Pilih Posisi"
                           v-model="lowonganModule.filter.id_jabatan"
-                          aria-label="Select example">
-                          <option value="" disabled hidden>Pilih Posisi</option>
-                          <option value="">Semua</option>
-                          <option
-                            v-for="(jabatan, index) in lowonganModule.listJabatan"
-                            :value="jabatan.id"
-                            :key="index">
-                            {{ jabatan.nama_jabatan }}
-                          </option>
-                        </select>
+                          :reduce="(option) => option.id"
+                          :options="lowonganModule.listJabatan"></v-select>
                       </div>
                       <div class="col-sm-3">
-                        <router-link :to="`/pencarian-lowongan`" class="btn btn-primary-portal w-100">
+                        <router-link
+                          :to="`/pencarian-lowongan`"
+                          class="btn btn-primary-portal w-100">
                           Cari
                         </router-link>
                       </div>
@@ -247,21 +237,21 @@
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
           <div class="cols-sm-12">
-          <div class="perusahaan">
-            <div class="">
-              <img
-                :src="require('@/assets/images/content/content_1.png')"
-                class="img-fluid w-100"
-                alt="" />
-            </div>
-            <div>
-              <img
-                :src="require('@/assets/images/content/content_2.png')"
-                class="img-fluid w-100"
-                alt="" />
+            <div class="perusahaan">
+              <div class="">
+                <img
+                  :src="require('@/assets/images/content/content_1.png')"
+                  class="img-fluid w-100"
+                  alt="" />
+              </div>
+              <div>
+                <img
+                  :src="require('@/assets/images/content/content_2.png')"
+                  class="img-fluid w-100"
+                  alt="" />
+              </div>
             </div>
           </div>
-        </div>
         </div>
         <div class="col-sm-2"></div>
       </div>
@@ -273,30 +263,32 @@
 import { mapState, mapActions } from "vuex";
 import Swal from "sweetalert2/dist/sweetalert2.min.js";
 import { useRouter } from "vue-router";
+import vSelect from "vue-select";
 
 export default {
   name: "Home",
   computed: {
     ...mapState({
       lowonganModule: (state) => state.lowonganModule.data,
-    })
+    }),
   },
   mounted() {
     this.getKategori(),
-    this.getPerusahaan(),
-    this.getJabatan(),
-    this.resetFilter()
+      this.getPerusahaan(),
+      this.getJabatan(),
+      this.resetFilter();
   },
   methods: {
-    ...mapActions('lowonganModule', [
-      'getLowongan',
-      'getPerusahaan',
-      'getKategori',
-      'getJabatan',
-      'resetFilter',
+    ...mapActions("lowonganModule", [
+      "getLowongan",
+      "getPerusahaan",
+      "getKategori",
+      "getJabatan",
+      "resetFilter",
     ]),
   },
   components: {
+    vSelect,
     // Navbar: () => import(`../../layout/Navbar/PPNavbar.vue`),
     // // FooterLayout: () => import(`./FooterBar/PPFooter.vue`),
   },
