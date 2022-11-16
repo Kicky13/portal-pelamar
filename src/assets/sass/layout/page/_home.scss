@@ -1,185 +1,368 @@
-.home-page {
-  .banner {
-    width: 100%;
-    height: 642px;
-    max-height: 642px;
-    background-repeat: no-repeat;
-    background-size: cover;
-
-    .title-banner {
-      padding-top: 170px;
-      font-family: "Poppins";
-      font-style: normal;
-      font-weight: 100;
-      font-size: 40px;
-      line-height: 60px;
-      color: #ffffff;
-      text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    }
-
-    .sub-title {
-      margin-top: 16px;
-      font-family: "Poppins";
-      font-style: normal;
-      font-weight: 400;
-      font-size: 20px;
-      line-height: 30px;
-      color: #ffffff;
-      text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    }
-
-    .banner-filter {
-      margin-top: 145px;
+@media only screen and (max-width: 480px){
+  .home-page {
+    .banner {
       width: 100%;
-      height: 180px;
-      background-color: $white;
-      box-shadow: 0px 6px 23px rgba(0, 0, 0, 0.25);
-      border-radius: 3px;
-      padding: 32px 32px 46px 32px;
-      .title-filter {
-        font-family: "Poppins";
-        font-style: normal;
-        font-weight: 700;
-        font-size: 20px;
-        line-height: 30px;
-        /* identical to box height */
+      height: 642px;
+      max-height: 642px;
+      background-repeat: no-repeat;
+      background-size: cover;
 
-        color: #1f2855;
-      }
-      .sub-title-filter {
-        float: right;
+      .title-banner {
+        padding-top: 170px;
         font-family: "Poppins";
         font-style: normal;
         font-weight: 100;
-        font-size: 15px;
-        line-height: 22px;
-        color: #1f2855;
+        font-size: 40px;
+        line-height: 60px;
+        color: #ffffff;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       }
-      .filter-data {
-        margin-top: 24px;
-      }
-    }
-  }
 
-  .pendaftaran {
-    margin-top: 160px;
-    .title-pendaftaran {
-      font-family: "Poppins";
-      font-style: normal;
-      font-weight: 700;
-      font-size: 24px;
-      line-height: 36px;
-      color: #1f2855;
-    }
-
-    .line-pendaftaran {
-      width: 474px;
-      border: 1px solid #1896a4;
-      margin: auto;
-      margin-top: 21px;
-      margin-bottom: 36px;
-    }
-  }
-
-  .kebijakan {
-    width: 100%;
-    height: 642px;
-    max-height: 642px;
-    background-repeat: no-repeat;
-    background-size: cover;
-
-    .content-kebijakan {
-      padding-top: 150px;
-      padding-bottom: 200px;
-      padding-left: 50px;
-      padding-right: 50px;
-      text-align: justify;
-      .content-title {
+      .sub-title {
+        margin-top: 16px;
         font-family: "Poppins";
         font-style: normal;
         font-weight: 400;
-        font-size: 15px;
-        line-height: 22px;
-        color: $white;
+        font-size: 20px;
+        line-height: 30px;
+        color: #ffffff;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       }
 
-      .list-content {
-        .ol-custom {
-          list-style: none;
+      .banner-filter {
+        margin-top: 145px;
+        width: 100%;
+        height: 399px;
+        background-color: #fff;
+        box-shadow: 0 6px 23px rgb(0 0 0 / 25%);
+        border-radius: 3px;
+        padding: 32px 32px 46px 32px;
+        .title-filter {
+          font-family: "Poppins";
+          font-style: normal;
+          font-weight: 700;
+          font-size: 20px;
+          line-height: 30px;
+          /* identical to box height */
 
-          li {
-            font-family: "Poppins";
-            font-style: normal;
-            font-weight: 400;
-            font-size: 15px;
-            line-height: 29px;
-            color: #ffffff;
-
-            &:before {
-              margin-right: 10px;
-              background: lightblue;
-              width: 30px;
-              height: 30px;
-              border-radius: 100%;
-              color: white;
-              text-align: center;
-              display: inline-block;
-            }
-            ul {
-              list-style: none;
-            }
-          }
+          color: #1f2855;
+        }
+        .sub-title-filter {
+          float: right;
+          font-family: "Poppins";
+          font-style: normal;
+          font-weight: 100;
+          font-size: 15px;
+          line-height: 22px;
+          color: #1f2855;
+        }
+        .filter-data {
+          margin-top: 24px;
         }
       }
+    }
 
-      .title-persyaratan {
+    .pendaftaran {
+      margin-top: 341px;
+      .title-pendaftaran {
         font-family: "Poppins";
         font-style: normal;
         font-weight: 700;
         font-size: 24px;
         line-height: 36px;
-        color: #ffffff;
+        color: #1f2855;
       }
 
-      .line-persyaratan {
+      .line-pendaftaran {
         width: 474px;
-        border: 1px solid #ffffff;
+        border: 1px solid #1896a4;
         margin: auto;
         margin-top: 21px;
         margin-bottom: 36px;
       }
     }
+
+    .kebijakan {
+      width: 100%;
+      height: 813px;
+      max-height: 813px;
+      background-repeat: no-repeat;
+      background-size: cover;
+
+      .content-kebijakan {
+        padding-top: 160px;
+        padding-bottom: 0px; 
+        padding-left: 20px; 
+        padding-right: 20px; 
+        text-align: justify;
+        height: 61px;
+        .content-title {
+          font-family: "Poppins";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 15px;
+          line-height: 22px;
+          color: $white;
+        }
+
+        .list-content {
+          .ol-custom {
+            list-style: none;
+
+            li {
+              font-family: "Poppins";
+              font-style: normal;
+              font-weight: 400;
+              font-size: 15px;
+              line-height: 29px;
+              color: #ffffff;
+
+              &:before {
+                margin-right: 10px;
+                background: lightblue;
+                width: 30px;
+                height: 30px;
+                border-radius: 100%;
+                color: white;
+                text-align: center;
+                display: inline-block;
+              }
+              ul {
+                list-style: none;
+              }
+            }
+          }
+        }
+
+        .title-persyaratan {
+          font-family: "Poppins";
+          font-style: normal;
+          font-weight: 700;
+          font-size: 24px;
+          line-height: 36px;
+          color: #ffffff;
+        }
+
+        .line-persyaratan {
+          width: 474px;
+          border: 1px solid #ffffff;
+          margin: auto;
+          margin-top: 21px;
+          margin-bottom: 36px;
+        }
+      }
+    }
+
+    .kontribusi {
+      margin-bottom: 60px;
+      .title-kontribusi {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 36px;
+        color: #1f2855;
+      }
+
+      .line-kontribusi {
+        width: 474px;
+        border: 1px solid #1896a4;
+        margin: auto;
+        margin-top: 21px;
+        margin-bottom: 36px;
+      }
+
+      .sub-title-kontribusi {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 24px;color: #1f2855;
+      }
+    }
   }
+}
 
-  .kontribusi {
-    margin-bottom: 60px;
-    .title-kontribusi {
-      font-family: "Poppins";
-      font-style: normal;
-      font-weight: 700;
-      font-size: 24px;
-      line-height: 36px;
-      color: #1f2855;
+@media only screen and (min-width: 481px){
+  .home-page {
+    .banner {
+      width: 100%;
+      height: 642px;
+      max-height: 642px;
+      background-repeat: no-repeat;
+      background-size: cover;
+
+      .title-banner {
+        padding-top: 170px;
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 100;
+        font-size: 40px;
+        line-height: 60px;
+        color: #ffffff;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      }
+
+      .sub-title {
+        margin-top: 16px;
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 30px;
+        color: #ffffff;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      }
+
+      .banner-filter {
+        margin-top: 145px;
+        width: 100%;
+        height: 180px;
+        background-color: $white;
+        box-shadow: 0px 6px 23px rgba(0, 0, 0, 0.25);
+        border-radius: 3px;
+        padding: 32px 32px 46px 32px;
+        .title-filter {
+          font-family: "Poppins";
+          font-style: normal;
+          font-weight: 700;
+          font-size: 20px;
+          line-height: 30px;
+          /* identical to box height */
+
+          color: #1f2855;
+        }
+        .sub-title-filter {
+          float: right;
+          font-family: "Poppins";
+          font-style: normal;
+          font-weight: 100;
+          font-size: 15px;
+          line-height: 22px;
+          color: #1f2855;
+        }
+        .filter-data {
+          margin-top: 24px;
+        }
+      }
     }
 
-    .line-kontribusi {
-      width: 474px;
-      border: 1px solid #1896a4;
-      margin: auto;
-      margin-top: 21px;
-      margin-bottom: 36px;
+    .pendaftaran {
+      margin-top: 160px;
+      .title-pendaftaran {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 36px;
+        color: #1f2855;
+      }
+
+      .line-pendaftaran {
+        width: 474px;
+        border: 1px solid #1896a4;
+        margin: auto;
+        margin-top: 21px;
+        margin-bottom: 36px;
+      }
     }
 
-    .sub-title-kontribusi {
-      font-family: "Poppins";
-      font-style: normal;
-      font-weight: 300;
-      font-size: 16px;
-      line-height: 24px;color: #1f2855;
+    .kebijakan {
+      width: 100%;
+      height: 642px;
+      max-height: 642px;
+      background-repeat: no-repeat;
+      background-size: cover;
+
+      .content-kebijakan {
+        padding-top: 150px;
+        padding-bottom: 200px;
+        padding-left: 50px;
+        padding-right: 50px;
+        text-align: justify;
+        .content-title {
+          font-family: "Poppins";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 15px;
+          line-height: 22px;
+          color: $white;
+        }
+
+        .list-content {
+          .ol-custom {
+            list-style: none;
+
+            li {
+              font-family: "Poppins";
+              font-style: normal;
+              font-weight: 400;
+              font-size: 15px;
+              line-height: 29px;
+              color: #ffffff;
+
+              &:before {
+                margin-right: 10px;
+                background: lightblue;
+                width: 30px;
+                height: 30px;
+                border-radius: 100%;
+                color: white;
+                text-align: center;
+                display: inline-block;
+              }
+              ul {
+                list-style: none;
+              }
+            }
+          }
+        }
+
+        .title-persyaratan {
+          font-family: "Poppins";
+          font-style: normal;
+          font-weight: 700;
+          font-size: 24px;
+          line-height: 36px;
+          color: #ffffff;
+        }
+
+        .line-persyaratan {
+          width: 474px;
+          border: 1px solid #ffffff;
+          margin: auto;
+          margin-top: 21px;
+          margin-bottom: 36px;
+        }
+      }
     }
 
-   
+    .kontribusi {
+      margin-bottom: 60px;
+      .title-kontribusi {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 36px;
+        color: #1f2855;
+      }
+
+      .line-kontribusi {
+        width: 474px;
+        border: 1px solid #1896a4;
+        margin: auto;
+        margin-top: 21px;
+        margin-bottom: 36px;
+      }
+
+      .sub-title-kontribusi {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 24px;color: #1f2855;
+      }
+    }
   }
-
-  
 }
