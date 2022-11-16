@@ -12,7 +12,7 @@
                 <div class="title__general">Jabatan Yang Dilamar</div>
               </div>
               <div class="col-sm-6 d-flex justify-content-end">
-                <button v-if="dashboardModule.listLamaran.length != 0" class="btn btn__outline__pp" @click="openmodal">
+                <button v-if="dashboardModule.listLamaran.length != 0" class="btn btn__outline__pp" v-b-modal.modal_progress>
                   Lihat Progress
                 </button>
               </div>
@@ -179,7 +179,7 @@
         no-close-on-esc
         title="Progress Lamaran"
         header-class="custom-modal-title"
-        v-model="modal_show">
+        id="modal_progress">
         <div>
           <div class="modal-progress-lamaran">
             <div v-for="lamaran in dashboardModule.listLamaranDetail">
