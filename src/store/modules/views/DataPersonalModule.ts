@@ -204,7 +204,7 @@ const actions = {
                 await commit('changeDataPersonal', {
                     isLoading: false,
                     formData: res.data.data,
-                    ktpFilename: '',
+                    ktpFilename: res.data.data.ktp,
                 });
                 return true;
             } else {
@@ -295,14 +295,14 @@ const actions = {
             email: data.formData.email.length < 4 || !email.test(data.formData.email) ? true : false,
             agama: data.formData.agama == '' || data.formData.agama == null ? true : false,
             is_wna: false,
-            ktp: false,
+            ktp: data.ktpFilename == '' || data.ktpFilename == null ? true : false,
         }
         console.log(validator)
         commit('changeDataPersonal', {
             validation: validator
         })
 
-        if (validator.nama || validator.agama || validator.email || validator.alamat || validator.gelar || validator.gender || validator.kota || validator.nik || validator.provinsi || validator.marital_status || validator.tgl_lahir || validator.is_wna) {
+        if (validator.nama || validator.agama || validator.email || validator.alamat || validator.gelar || validator.gender || validator.kota || validator.nik || validator.provinsi || validator.marital_status || validator.tgl_lahir || validator.is_wna || validator.ktp) {
             return false
         } else {
             return true

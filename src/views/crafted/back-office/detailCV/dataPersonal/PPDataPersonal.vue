@@ -353,9 +353,9 @@
                     </label>
                     <div class="col-sm-9">
                       <input @change="uploadKtp" ref="ktp" type="file" id="upload" hidden />
-                      <label v-if="dataPersonalModule.ktpFilename == ''" for="upload" class="label-upload w-100">Pilih atau taruh file disini</label>
-                      <label v-else for="upload" class="label-upload">{{ dataPersonalModule.formData.ktp.name }}</label>
-                      <span v-show="dataPersonalModule.validation.ktp" class="text-danger">Wajib melampirkan file dengan format pdf, png, jpg atau jpeg.</span>
+                      <label v-if="dataPersonalModule.ktpFilename == '' || dataPersonalModule.ktpFilename == null" for="upload" class="label-upload w-100"><span><i class="fa fa-upload"></i><br><i>Pilih atau taruh file disini dengan format png, jpg atau jpeg maksimum 1 Mb.</i></span></label>
+                      <label v-else for="upload" class="label-upload">{{ dataPersonalModule.ktpFilename }}</label>
+                      <span v-show="dataPersonalModule.validation.ktp" class="text-danger">Wajib melampirkan file dengan format png, jpg atau jpeg maksimum 1 Mb.</span>
                     </div>
                   </div>
                 </div>
