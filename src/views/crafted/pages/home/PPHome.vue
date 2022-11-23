@@ -36,7 +36,7 @@
                       </div>
                       <div class="col-sm-6 ml-auto">
                         <div class="sub-title-filter">
-                          <strong>213</strong> Lowongan Tersedia
+                          <strong>{{ lowonganModule.listLowongan.length }}</strong> Lowongan Tersedia
                         </div>
                         <br />
                       </div>
@@ -282,9 +282,10 @@ export default {
   },
   mounted() {
     this.getKategori(),
-      this.getPerusahaan(),
-      this.getJabatan(),
-      this.resetFilter();
+    this.getLowongan(),
+    this.getPerusahaan(),
+    this.getJabatan(),
+    this.resetFilter();
   },
   methods: {
     ...mapActions("lowonganModule", [
