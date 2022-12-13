@@ -1,3 +1,29 @@
+* {
+  
+}
+.registrasi-page .bg-login .img-logo img {
+    top: -179px;
+    position: relative;
+}
+
+.auth-login .bg-bumn .form-data .daftar-akun {
+    font-size: 14px;
+}
+
+.label_tittle {
+    font-size: 14px;
+    font-family: 'Poppins';
+}
+
+.fix_logo {
+    top: -27%;
+    position: relative;
+}
+
+.bg_log{
+    background-size: contain;
+  }
+
 .aside-profile {
   background: #ffffff;
   border: 1px solid rgba(140, 141, 141, 0.5);
@@ -200,5 +226,16 @@
   .dataTables_wrapper{
     margin-top: 20px;
   }
+  .fix_logo {
+    top: 13% !important;
+    width: 22%;
+  }
+
+  .bg_log{
+    background-size: 146px !important;
+    background-position-y: -17px;
+  }
+
+  
 
 }

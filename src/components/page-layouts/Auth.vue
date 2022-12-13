@@ -2,13 +2,13 @@
   <div>
     <div class="row auth-login">
       <div
-        class="col-sm-6 bg-login d-flex justify-content-center align-items-center"
+        class="col-sm-6 bg-login d-flex justify-content-center align-items-center bg_log"
         :style="
           'background-image: url(' +
           require('@/assets/images/background/bg_login_portal.png') +
-          '); background-size: cover'
+          ');'
         ">
-        <div class="img-logo">
+        <div class="img-logo fix_logo">
           <img :src="require('@/assets/images/logo/logo_login.png')" alt="" />
         </div>
       </div>
@@ -25,12 +25,14 @@
           @submit="submitLogin"
           :validation-schema="login">
           <label for="my-input" class="label-data">Login</label>
+          <p class="label_tittle">Silahkan masukkan alamat email dan password anda untuk masuk</p>
 
           <div class="form-group">
             <Field
               class="form-control form-control-lg form-control-solid"
               type="text"
               name="email"
+              placeholder="Email"
               autocomplete="off" />
             <div class="fv-plugins-message-container">
               <div class="fv-help-block">
@@ -44,6 +46,7 @@
                 class="form-control form-control-lg form-control-solid"
                 :type="passwordFieldType"
                 name="password"
+                placeholder="Password"
                 autocomplete="off" />
               <div class="input-group-addon">
                 <a href="javascript:void(0)" @click="switchVisibility()"
