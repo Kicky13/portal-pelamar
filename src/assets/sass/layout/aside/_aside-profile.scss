@@ -98,3 +98,107 @@
     }
   }
 }
+
+/*mobile*/
+@media only screen and (max-width: 961px) {
+
+  .auth-login .bg-bumn .form-data {
+      padding: 32px !important;
+  }
+
+  .registrasi-page .bg-bumn .form-data {
+      padding: 32px !important;
+  }
+
+  .aside-profile .label {
+      margin-top: 0px !important;
+  }
+
+  .aside-profile ul {
+      display: flex;
+  }
+
+
+  .aside-profile ul li {
+      margin-right: 0px;
+      list-style: none;
+      flex: 0 0 50.333333%;
+  }
+
+  .accordion-body ul li a{
+      width: 348px;
+  }
+
+  .dashboard-profile .informasi-persentase {
+      float: right;
+      margin-top: 22px !important;
+  }
+
+  .card-profile .body-card .pengaturan__update {
+      float: none !important;
+      display: grid !important;
+  }
+
+  .card-profile .body-card .resume-cv__personal__update {
+      top: -211px !important;
+      position: relative !important;
+      right: -31px !important;
+  }
+
+  .btn.btn-primary-portal {
+      background: #1896a4;
+      border-radius: 3px;
+      padding: 16px;
+  }
+  .non_flex{
+    display: grid !important;
+  }
+  .table-responsive {
+    margin-top: 12px;
+  }
+  .content .card-profile img {
+    width: inherit;
+  }
+
+  .card-profile .body-card .lowongan .section-list .images-perusahaan img {
+    max-width: 100% !important;
+    margin-bottom: 16px;
+  }
+
+  .btn_progress {
+    width: 100%;
+    margin-top: 16px;
+  }
+  .ic_time{
+    display: none;
+  }
+
+  .section-list {
+    text-align: center;
+  }
+
+  .images-perusahaan img{
+    max-width: 100%;
+    margin-bottom: 12px;
+  }
+
+  .card-profile .body-card .resume-cv__personal__body .title-body {
+    font-size: 12px !important;
+  }
+
+  .card-profile .body-card .resume-cv__personal__body .title-body {
+    font-size: 11px !important;
+  }
+
+  .d_none{
+    display: none;
+  }
+
+  .card-profile .body-card .resume-cv__personal__body {
+    margin-bottom: 32px;
+  }
+  .dataTables_wrapper{
+    margin-top: 20px;
+  }
+
+}
