@@ -44,7 +44,7 @@
             data-bs-parent="#kt_accordion_1">
             <div class="accordion-body">
 
-              <ul style="margin-left: 36px; margin-top:10px;">
+              <ul class="non_flex" style="margin-left: 36px; margin-top:10px;">
                 <li>
                   <router-link to="/profile/detail-cv/personal">
                     <span>Data Personal</span>
@@ -100,17 +100,39 @@
       </li>
     </ul>
 
-    <div class="label" for="">
-      <img
-        :src="require('@/assets/images/icon/ic_logout.svg')"
-        class="img-fluid"
-        alt="" />Logout
-    </div>
+    <a
+      @click="logout"
+      style="cursor:pointer;">
+      <div class="label" for="">
+        <img
+          :src="require('@/assets/images/icon/ic_logout.svg')"
+          class="img-fluid"
+          alt="" />Logout
+      </div>
+    </a>
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { useRoute, useRouter } from "vue-router";
+import { useStore } from "vuex";
+import { Actions } from "@/store/enums/StoreEnums";
+
 export default {
   name: "AssideProfile",
+  setup(){
+    const store = useStore();
+    const router = useRouter();
+    const route = useRoute();
+
+    const logout = () => {
+      store
+        .dispatch(Actions.LOGOUT)
+        .then(() => router.push({ name: "sign-in" }));
+    };
+    return {
+      logout
+    };
+  }
 };
 </script>

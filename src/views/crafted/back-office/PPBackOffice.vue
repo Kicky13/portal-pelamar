@@ -12,7 +12,7 @@
                 <div class="title__general">Jabatan Yang Dilamar</div>
               </div>
               <div class="col-sm-6 d-flex justify-content-end">
-                <button v-if="dashboardModule.listLamaran.length != 0" class="btn btn__outline__pp" v-b-modal.modal_progress>
+                <button v-if="dashboardModule.listLamaran.length != 0" class="btn btn__outline__pp btn_progress" v-b-modal.modal_progress>
                   Lihat Progress
                 </button>
               </div>
@@ -123,7 +123,7 @@
             <div class="lowongan">
               <fragment ragment class="section-list-activity">
                 <div class="row" v-for="lamaran in dashboardModule.listLamaran">
-                  <div class="col-sm-1">
+                  <div class="col-sm-1 ic_time">
                     <img
                       :src="require('@/assets/images/icon/ic_clock.svg')"
                       alt="" />

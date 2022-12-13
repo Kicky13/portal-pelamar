@@ -128,7 +128,7 @@
                       <div class="col-sm-2">
                         <div class="title-personifikasi">Nilai Pribadi</div>
                       </div>
-                      <div class="col-sm-1">:</div>
+                      <div class="col-sm-1 d_none">:</div>
                       <div class="col-sm-9">
                         <div class="informasi">
                           {{resumeCVModule.listPersonifikasi.nilai_pribadi}}
@@ -139,7 +139,7 @@
                       <div class="col-sm-2">
                         <div class="title-personifikasi">Visi Pribadi</div>
                       </div>
-                      <div class="col-sm-1">:</div>
+                      <div class="col-sm-1 d_none">:</div>
                       <div class="col-sm-9">
                         <div class="informasi">
                           {{resumeCVModule.listPersonifikasi.visi_pribadi}}
@@ -150,7 +150,7 @@
                       <div class="col-sm-2">
                         <div class="title-personifikasi">Aspirasi Bidang</div>
                       </div>
-                      <div class="col-sm-1">:</div>
+                      <div class="col-sm-1 d_none">:</div>
                       <div class="col-sm-9">
                         <div class="informasi">
                           {{resumeCVModule.listPersonifikasi.minat_desc}}
@@ -161,7 +161,7 @@
                       <div class="col-sm-2">
                         <div class="title-personifikasi">Akun Sosial Media</div>
                       </div>
-                      <div class="col-sm-1">:</div>
+                      <div class="col-sm-1 d_none">:</div>
                       <div class="col-sm-9">
                         <div class="informasi" v-html="resumeCVModule.sosmed != '' ? resumeCVModule.sosmed : '-'">
                         </div>
